@@ -1,0 +1,70 @@
+<div class="form-container">
+    <p-card [style]="{ width: '25rem' }" *ngIf = "isSignUpActive; else signUpTemplate">
+        <!--<img src="https://itorizon.com/wp-content/uploads/2023/03/ITOWebL.png" alt="image"/>-->
+        <ng-template #header>
+            <img alt="Card" class="w-full" src="https://itorizon.com/wp-content/uploads/2023/03/ITOWebL.png" />
+        </ng-template>
+        <h1 class="heading-elements" [ngStyle]="{'font-size': '20px'}">Welcome</h1>
+        <p class="heading-elements" [ngStyle]="{'font-size': '15px'}">Please use Registered Username and Password to login your account</p>
+        <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+            <div class="card flex justify-center">
+                <div class="flex flex-col gap-2" [ngStyle]="{'margin':'5px'}">
+                    <label for="username">Username<sup>*</sup></label>
+                    <div [ngStyle]="{'margin-top':'5px'}">
+                        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="username" name="username"  placeholder="Username" [ngStyle]="{'width': '100%'}" required/>
+                    </div>
+                </div>
+                <div class="card flex justify-center" [ngStyle]="{'margin':'5px'}">
+                    <label for="password">Password<sup>*</sup></label>
+                    <div>
+                        <p-password [(ngModel)]="password" [toggleMask]="true" id="password" placeholder="Password" [ngStyle]="{'width': '100%'}" name="password" required/>
+                    </div>
+                </div>
+            </div>
+            <a href="#" [ngStyle]="{'margin':'5px'}">Forgot Password</a>
+            <p-button label="Login" [raised]="true" severity="info" type="submit" [ngStyle]="{'margin':'5px'}"/>
+        </form>
+        <p [ngStyle]="{'margin': '5px'}">You Don't have Account? <button type = "button" class="signup-btn" (click) = "showDialog()">Sign Up</button></p>
+    </p-card>
+</div>
+
+<ng-template #signUpTemplate>
+    <p-card [style]="{ width: '25rem' }">
+        <!--<img src="https://itorizon.com/wp-content/uploads/2023/03/ITOWebL.png" alt="image"/>-->
+        <ng-template #header>
+            <img alt="Card" class="w-full" src="https://itorizon.com/wp-content/uploads/2023/03/ITOWebL.png" />
+        </ng-template>
+        <h1 class="heading-elements" [ngStyle]="{'font-size': '20px'}">Welcome</h1>
+        <p class="heading-elements" [ngStyle]="{'font-size': '15px'}">Please Register with your Username and Password to Sign up into application</p>
+        <form #myFormSignup="ngForm" (ngSubmit)="onSubmitSignUp()">
+            <div class="card flex justify-center">
+                <div class="flex flex-col gap-2" [ngStyle]="{'margin':'5px'}">
+                    <label for="username">Username<sup>*</sup></label>
+                    <div [ngStyle]="{'margin-top':'5px'}">
+                        <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="username" name="username"  placeholder="Username" [ngStyle]="{'width': '100%'}" required/>
+                    </div>
+                </div>
+                <div class="card flex justify-center" [ngStyle]="{'margin':'5px'}">
+                    <label for="password">Password<sup>*</sup></label>
+                    <div>
+                        <p-password [(ngModel)]="password" [toggleMask]="true" id="password" placeholder="Password" [ngStyle]="{'width': '100%'}" name="password" required/>
+                    </div>
+                </div>
+                <div class="card flex justify-center" [ngStyle]="{'margin':'5px'}">
+                    <label for="confirmpassword">Confirm Password<sup>*</sup></label>
+                    <div>
+                        <input pInputText [(ngModel)]="confirmpassword"  id="confirmpassword" placeholder="Confirm password" [ngStyle]="{'width': '100%'}" name="confirmpassword" required/>
+                    </div>
+                </div>
+            </div>
+           <!--<span>{{userError}}</span>--> 
+            <p-button label="Submit" [raised]="true" severity="info" type="submit" [ngStyle]="{'margin':'5px'}"/>
+        </form>
+        <p [ngStyle]="{'margin': '5px'}">Back to Login page: <button type = "button" class="signup-btn" (click) = "showDialog()">Login</button></p>
+    </p-card>
+</ng-template>
+
+<div class="card flex justify-center" >
+    <p-toast [breakpoints]="{ '920px': { width: '100%', right: '0', left: '0' } }" />
+</div>
+

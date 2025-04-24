@@ -1,0 +1,39 @@
+{
+  "users": [
+    {
+      "id": "c6b1",
+      "username": "Navitha",
+      "password": "Navitha@123"
+    },
+    {
+      "id": "528b",
+      "username": "Navithasompalli",
+      "password": "Navitha@123"
+    },
+    {
+      "id": "3b6c",
+      "username": "Navitha",
+      "password": "12345"
+    },
+    {
+      "id": "ec61",
+      "username": "Navitha",
+      "password": "12345"
+    },
+    {
+      "id": "a072",
+      "username": "Mamatha",
+      "password": "12345"
+    },
+    {
+      "id": "743e",
+      "username": "Mamatha",
+      "password": "1234"
+    },
+    {
+      "id": "4813",
+      "username": "Mamatha",
+      "password": "1234"
+    }
+  ]
+}
