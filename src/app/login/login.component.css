@@ -6,6 +6,7 @@
     justify-content: center;
     align-items: center;
     background-color: 300;
+    background-image: linear-gradient(180deg,#fff, #93d0d9);
     
 }
 
@@ -14,13 +15,14 @@
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
-    box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.5) !important;
+  /*  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.5) !important;*/
 }
 
 .w-full{
     width:40%;
     height: 10%;
     margin-left: 30%;
+    margin-top:20px;
 }
 
 ::ng-deep .ng-template{
@@ -58,6 +60,7 @@
 ::ng-deep .p-button{
     width:97%;
     margin-top:10px;
+    cursor: pointer;
 }
 
 .signup-btn{
@@ -67,4 +70,19 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: #0099cc;
     font-weight: bold;
+    cursor: pointer;
+}
+
+label{
+    font-family: "Bree Serif";
+}
+
+.forgot-password{
+    background-color: none;
+    color: #0099cc;
+    font-family:'Courier New', Courier, monospace;
+    border:none;
+    cursor: pointer;
+    font-weight: bold;
+    margin-left:5px;
 }

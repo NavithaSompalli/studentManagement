@@ -25,4 +25,36 @@ export class LoginServiceService {
       })
     );
   }
+
+
+  getUser(username: string, password:string):Observable<any>{
+    return this.http.get<any[]>(`${this.apiUrl}?username=${username}`).pipe(
+      map((users) =>{
+        if(users.length === 0){
+          return true
+        }else{
+          return false
+        }
+      })
+    )}
+
+
+    /*userData(object: Object){
+      return  this.http.post('http://localhost:3000/studentList', object).subscribe({
+        next: (response) => console.log('Success:', response),
+        error: (error) => console.log("error", error ),
+        complete: () => console.log("Student deatails add successfully")
+      });
+    }*/
+
+
+    getStudentDetails():Observable<any>{
+      return this.http.get('http://localhost:3000/studentList')
+      
+    }
+
+    deleteStudentDetails(id):Observable<any>{
+      return this.http.delete(`http://localhost:3000/studentList/${id}`);
+    }
+
 }

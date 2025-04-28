@@ -1,0 +1,132 @@
+.card {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input, textarea, p-datepicker{
+    width: 100%;
+   /* padding: 8px;*/
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+::ng-deep .input{
+  border-radius: 0px;
+ /* width: 100%;
+   padding: 8px;*/
+   margin-bottom: 10px;
+}
+
+p-select{
+    height: 40px;
+    width:35%;
+}
+
+p-button {
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.flex {
+    display: flex;
+    gap: 10px;
+   /* align-items: center;*/
+}
+
+.flex-auto {
+    flex: 1;
+    margin-bottom: 15px;
+}
+
+::ng-deep .p-dialog{
+    width:70% !important;
+}
+
+.avatar-container {
+    text-align: center;
+    width:100%;
+    height:40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #dadbd9;
+    padding: 5px; 
+}
+
+.avatar-upload {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+}
+
+.avatar-preview {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.upload-placeholder {
+    color: #666;
+    color:#fff;
+    background-color: #0099cc;
+    width:40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    top:50%;
+    
+}
+
+.form-container {
+    flex: 1;
+    margin-left:10px;
+}
+
+.input-Element{
+    width:100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.buttons-container{
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+}
+
+::ng-deep .p-select, ::ng-deep .p-inputtext {
+    border-radius: 0 !important;
+    border-top-right-radius: 0px !important;
+    border-bottom-right-radius: 0px !important;
+    background-color: azure !important;
+}
+
+::ng-deep .p-select{
+    background-color: #0099cc;
+    border-bottom-left-radius: 5px !important;
+    border-top-left-radius: 5px !important;
+    color:#fff !important;
+    outline: none !important;
+}
+

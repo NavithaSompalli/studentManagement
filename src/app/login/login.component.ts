@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { LoginServiceService } from '../login-service.service';
 import { MessageService } from 'primeng/api';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ import { MessageService } from 'primeng/api';
 export class LoginComponent {
   @Input() isSignUpActive: boolean = true;
 
-  constructor(private http: HttpClient, private loginService: LoginServiceService, private messageService: MessageService) {} 
+  constructor(private http: HttpClient, private loginService: LoginServiceService, private messageService: MessageService, private router: Router) {} 
   //loginService: LoginServiceService = Inject(LoginServiceService);
 
   showDialog() {
@@ -31,24 +32,35 @@ export class LoginComponent {
 
   @ViewChild('myForm') form!: NgForm;
 
-  onSubmit(): any {
-    if (!this.form) {
+  onSubmitLogin(): any {
+   /* if (!this.form) {
       alert('Form is not properly initialized.');
       return;
-    }
+    }*/
   
     const usernameControl = this.form.controls['username'];
     const passwordControl = this.form.controls['password'];
   
-    if (!usernameControl || !passwordControl) {
+   /* if (!usernameControl || !passwordControl) {
       alert('Invalid form structure.');
       return;
-    }
+    }*/
   
     this.username = usernameControl.value;
     this.password = passwordControl.value;
-  
-    if (this.username.trim() !== '' && this.password.trim() !== '') {
+
+    if(this.username === undefined || this.password === undefined){
+      if(this.username === undefined && this.password !== undefined){
+        this.userError = 'Please Enter Username field';
+        this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError});
+      }else if(this.username !== undefined && this.password === undefined){
+        this.userError = 'Please Enter Password field';
+        this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError});
+      }else{
+      this.userError = "Please Enter all the fields"
+      this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError});
+      }
+    }else if (this.username.trim() !== '' && this.password.trim() !== '') {
       //console.log('Attempting login...');
     /*  this.loginService.login(this.username, this.password).subscribe({
         next: () => alert('Login Successful'),
@@ -67,12 +79,13 @@ export class LoginComponent {
         complete: () => {
           this.userError = "User Login Successfully";
           this.messageService.add({ severity: 'success', summary: 'Success', detail: this.userError })
+          this.router.navigate(['home']);
         },
       });
 
     } else {
       this.userError = 'Please enter valid credentials.'
-      this.messageService.add({ severity: 'warn', summary: 'Warn', detail: this.userError});
+      this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError});
     }
   }
   
@@ -86,22 +99,46 @@ export class LoginComponent {
       password: this.password,
     };
 
+   // let response = false
     if (!this.username || !this.password || !this.confirmpassword) {
       this.userError = 'Please enter all the fields';
-      this.messageService.add({ severity: 'warn', summary: 'Warn', detail: this.userError })
+      this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError })
     } else if (this.password !== this.confirmpassword) {
       this.userError = 'Password and Confirm Password must match';
-      this.messageService.add({ severity: 'warn', summary: 'Warn', detail: this.userError })
+      this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError })
     } else {
      // console.log('User created successfully');
+      
+     this.loginService.getUser(this.username, this.password).subscribe({
+      next: (response) => {
+        if(response){
+          console.log(`Get User true :  ${response}`);
+              this.http.post(apiUrl, userData).subscribe({
+                next: (response) => console.log('Success:', response),
+                error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
+                complete: () => this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User created successfully' }),
+              });
+    
+              this.isSignUpActive = !this.isSignUpActive;
+            }else{
+              console.log(`Get User false:  ${response}`);
+              this.messageService.add({severity: 'error', summary: 'Warning', detail: 'User already Exits'});
+            }
+      }
+     })
 
-      this.http.post(apiUrl, userData).subscribe({
-        next: (response) => console.log('Success:', response),
-        error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
-        complete: () => this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User created successfully' }),
-      });
-
-      this.isSignUpActive = !this.isSignUpActive;
+    
     }
+  }
+
+ // Forgot password
+ visible: boolean; 
+ position: 'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright' = 'center';
+  onForgotPassword(position:  'topright' ){
+    this.position = position;
+    this.visible = !this.visible
+  }
+  onUpdatePassword(){
+
   }
 }

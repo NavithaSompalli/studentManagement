@@ -2,29 +2,30 @@
     <p-card [style]="{ width: '25rem' }" *ngIf = "isSignUpActive; else signUpTemplate">
         <!--<img src="https://itorizon.com/wp-content/uploads/2023/03/ITOWebL.png" alt="image"/>-->
         <ng-template #header>
-            <img alt="Card" class="w-full" src="https://itorizon.com/wp-content/uploads/2023/03/ITOWebL.png" />
+            <img alt="Card" class="w-full" src="https://higherlogicdownload.s3.amazonaws.com/OAUG/8c16d9fc-6910-4bca-9dce-e05462995493/UploadedImages/GeoSIG/Logos/cropped-itorizon.png" />
         </ng-template>
         <h1 class="heading-elements" [ngStyle]="{'font-size': '20px'}">Welcome</h1>
-        <p class="heading-elements" [ngStyle]="{'font-size': '15px'}">Please use Registered Username and Password to login your account</p>
-        <form #myForm="ngForm" (ngSubmit)="onSubmit()">
+        <p class="heading-elements" [ngStyle]="{'font-size': '15px', 'font-family': 'Bree Serif'}">Please use Registered Username and Password to login your account</p>
+        <form #myForm="ngForm" (ngSubmit)="onSubmitLogin()">
             <div class="card flex justify-center">
                 <div class="flex flex-col gap-2" [ngStyle]="{'margin':'5px'}">
-                    <label for="username">Username<sup>*</sup></label>
+                    <label for="username" >Username<sup  [ngStyle]="{'color':'red'}">*</sup></label>
                     <div [ngStyle]="{'margin-top':'5px'}">
                         <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="username" name="username"  placeholder="Username" [ngStyle]="{'width': '100%'}" required/>
                     </div>
                 </div>
                 <div class="card flex justify-center" [ngStyle]="{'margin':'5px'}">
-                    <label for="password">Password<sup>*</sup></label>
+                    <label for="password">Password<sup  [ngStyle]="{'color':'red'}">*</sup></label>
                     <div>
-                        <p-password [(ngModel)]="password" [toggleMask]="true" id="password" placeholder="Password" [ngStyle]="{'width': '100%'}" name="password" required/>
+                        <p-password [(ngModel)]="password" [toggleMask]="true" id="password" [feedback]="false" placeholder="Password" [ngStyle]="{'width': '100%'}" name="password" required/>
                     </div>
                 </div>
             </div>
-            <a href="#" [ngStyle]="{'margin':'5px'}">Forgot Password</a>
+           <!-- <button [ngStyle]="{'margin':'5px'}" (click) = "onForgotPassword()">Forgot Password?</button>-->
+           <button type="button" (click)="onForgotPassword('topright')" class="forgot-password" >Forgot Password?</button>
             <p-button label="Login" [raised]="true" severity="info" type="submit" [ngStyle]="{'margin':'5px'}"/>
         </form>
-        <p [ngStyle]="{'margin': '5px'}">You Don't have Account? <button type = "button" class="signup-btn" (click) = "showDialog()">Sign Up</button></p>
+        <p [ngStyle]="{'margin': '5px', 'font-family':'Bree Serif'}">You Don't have Account? <button type = "button" class="signup-btn" (click) = "showDialog()">Sign Up</button></p>
     </p-card>
 </div>
 
@@ -32,39 +33,56 @@
     <p-card [style]="{ width: '25rem' }">
         <!--<img src="https://itorizon.com/wp-content/uploads/2023/03/ITOWebL.png" alt="image"/>-->
         <ng-template #header>
-            <img alt="Card" class="w-full" src="https://itorizon.com/wp-content/uploads/2023/03/ITOWebL.png" />
+            <img alt="Card" class="w-full" src="https://higherlogicdownload.s3.amazonaws.com/OAUG/8c16d9fc-6910-4bca-9dce-e05462995493/UploadedImages/GeoSIG/Logos/cropped-itorizon.png" />
         </ng-template>
         <h1 class="heading-elements" [ngStyle]="{'font-size': '20px'}">Welcome</h1>
-        <p class="heading-elements" [ngStyle]="{'font-size': '15px'}">Please Register with your Username and Password to Sign up into application</p>
+        <p class="heading-elements" [ngStyle]="{'font-size': '15px','font-family': 'Bree Serif'}">Please Register with your Username and Password to Sign up into application</p>
         <form #myFormSignup="ngForm" (ngSubmit)="onSubmitSignUp()">
             <div class="card flex justify-center">
                 <div class="flex flex-col gap-2" [ngStyle]="{'margin':'5px'}">
-                    <label for="username">Username<sup>*</sup></label>
+                    <label for="username">Username<sup  [ngStyle]="{'color':'red'}">*</sup></label>
                     <div [ngStyle]="{'margin-top':'5px'}">
                         <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="username" name="username"  placeholder="Username" [ngStyle]="{'width': '100%'}" required/>
                     </div>
                 </div>
                 <div class="card flex justify-center" [ngStyle]="{'margin':'5px'}">
-                    <label for="password">Password<sup>*</sup></label>
+                    <label for="password">Password<sup  [ngStyle]="{'color':'red'}">*</sup></label>
                     <div>
-                        <p-password [(ngModel)]="password" [toggleMask]="true" id="password" placeholder="Password" [ngStyle]="{'width': '100%'}" name="password" required/>
+                        <p-password [(ngModel)]="password" [toggleMask]="true" [feedback]="false" id="password" placeholder="Password" [ngStyle]="{'width': '100%'}" name="password" required/>
                     </div>
                 </div>
                 <div class="card flex justify-center" [ngStyle]="{'margin':'5px'}">
-                    <label for="confirmpassword">Confirm Password<sup>*</sup></label>
+                    <label for="confirmpassword">Confirm Password<sup [ngStyle]="{'color':'red'}">*</sup></label>
                     <div>
-                        <input pInputText [(ngModel)]="confirmpassword"  id="confirmpassword" placeholder="Confirm password" [ngStyle]="{'width': '100%'}" name="confirmpassword" required/>
+                        <p-password [toggleMask]="true" [feedback]="false" [(ngModel)]="confirmpassword"  id="confirmpassword" placeholder="Confirm password" [ngStyle]="{'width': '100%'}" name="confirmpassword" />
                     </div>
                 </div>
             </div>
            <!--<span>{{userError}}</span>--> 
             <p-button label="Submit" [raised]="true" severity="info" type="submit" [ngStyle]="{'margin':'5px'}"/>
         </form>
-        <p [ngStyle]="{'margin': '5px'}">Back to Login page: <button type = "button" class="signup-btn" (click) = "showDialog()">Login</button></p>
+        <p [ngStyle]="{'margin': '5px', 'font-family':'Bree Serif'}">Back to Login page: <button type = "button" class="signup-btn" (click) = "showDialog()">Login</button></p>
     </p-card>
 </ng-template>
 
+<!--Toast-->
 <div class="card flex justify-center" >
     <p-toast [breakpoints]="{ '920px': { width: '100%', right: '0', left: '0' } }" />
 </div>
 
+<!--Modal-->
+<p-dialog header="Reset Password" [modal]="true" [(visible)]="visible" [position]="position" [style]="{ width: '25rem'}" [ngStyle]="{'font-family':'Bree Serif'}">
+    <span class="text-surface-500 dark:text-surface-400 block mb-8">Update your password.</span>
+    <div class="flex items-center gap-4 mb-4" [ngStyle]="{'margin-top': '5px'}">
+        <label for="username" class="font-semibold w-24" >New Password</label>
+        <input pInputText id="username" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex items-center gap-4 mb-8" [ngStyle]="{'margin-top': '5px'}">
+        <label for="email" class="font-semibold w-24" >Confirm Password</label>
+        <input pInputText id="email" class="flex-auto" autocomplete="off" />
+    </div>
+    <div class="flex justify-end gap-2">
+        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+        <p-button label="Save" (click) = "onUpdatePassword()"/><!--(click)="visible = false"-->
+    </div>
+</p-dialog>

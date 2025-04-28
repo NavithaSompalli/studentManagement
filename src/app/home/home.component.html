@@ -1,0 +1,8 @@
+<app-header (notifyParent)="receiveData($event)"></app-header>
+
+<div [ngSwitch]="selectedComponent">
+    <app-graph *ngSwitchCase="'home'"></app-graph>
+    <app-admin *ngSwitchCase="'admin'"></app-admin>
+    <app-student *ngSwitchCase="'student'"></app-student>
+    <div *ngSwitchDefault>Select a section from the header</div>
+</div>

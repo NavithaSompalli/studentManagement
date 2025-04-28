@@ -1,0 +1,112 @@
+<!--<div class="card flex justify-center">-->
+    <p-dialog header="Add New User" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '100vh', '575px': '100%' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
+        <hr/>
+        <form #dialogForm="ngForm" (ngSubmit)="onSubmitDialogue()" class="flex gap-4 ">
+            <!-- Avatar Upload Container -->
+            <div [ngStyle]="{'padding':'5px'}">
+                <div class="avatar-container">
+                    <div class="avatar-upload" (click)="openUploadDialog()">
+                        <img *ngIf="imageUrl" [src]="imageUrl" alt="Avatar" class="avatar-preview"/>
+                        <div *ngIf="!imageUrl" class="upload-placeholder">+</div>
+                    </div>
+                    <label [ngStyle]="{'margin-top':'15px'}">Max file 2MB<br/> Supporting formats: JPG, PNG</label>
+                    <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/png, image/jpeg" hidden name="image" required/>
+                </div>
+            </div>
+            <!-- Form Container -->
+            <div class="form-container">
+                <h3>Basic Details</h3>
+                <div>
+                    <div [ngStyle]="{ 'margin':'5px'}">
+                        <label for="username">Username<br/></label>
+                        <input type="text" pInputText [(ngModel)]="user.username" id="username" name="username" required/>
+                    </div>
+                    <div class="input-Element">
+                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                            <label for="firstname">First Name<br/></label>
+                            <input type="text" pInputText [(ngModel)]="user.firstname" id="firstname" name="firstname" required/>
+                        </div>
+                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                            <label for="lastname">Last Name <br/></label>
+                            <input type="text" pInputText [(ngModel)]="user.lastname" id="lastname" name="lastname" required/>
+                        </div>
+                    </div>
+                    <div class="input-Element">
+                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                            <label for="email">Email<br/></label>
+                            <input type="email" pInputText [(ngModel)]="user.email" id="firstname" name="email" email required/>
+                        </div>
+                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                            <label for="lastname">Gender <br/></label>
+                            <div class=" flex justify-center">
+                                <div class="flex flex-col gap-4">
+                                    <div *ngFor="let category of categories" class="field-checkbox flex">
+                                        <p-radiobutton [inputId]="category.key" name="category" [value]="category" [(ngModel)]="user.selectedCategory" size="small" required/>
+                                        <label [for]="category.key" class="ml-2">{{ category.name }}</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-Element" >
+                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                            <label for="dob">Date Of Birth<br/></label>
+                            <input  pInputText type="date" [(ngModel)]="user.dob" inputId="dob"  name="dob" [ngStyle]="{'width':'100%'}" required/>
+                        </div>
+                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                            <label for="phonenumber">Phone Number <br/></label>
+                            <div [ngStyle]="{'width':'100%'}">
+                                <p-select [options]="countryPhoneCodes" [(ngModel)]="user.selectedCity" [checkmark]="false" optionLabel="code" [showClear]="false" name="selectedCity" />
+                                <input type="number" pInputText  [(ngModel)]="user.phoneNumber" name="phoneNumber" [ngStyle]="{'width':'65%'}" required/> 
+                            </div>
+                        </div>
+                    </div>
+                    <div class="input-Element" >
+                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                            <label for="dob">Date Of Joining <br/></label>
+                            <p-datepicker [(ngModel)]="user.dateOfJoining" inputId="dob" [showIcon]="true" name="dateOfJoining" [ngStyle]="{'width':'600px'}" required/>
+                        </div>
+                     <!--  <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                            <label for="phonenumber">Created Source  <br/></label>
+                            <input type="text" pInputText  [(ngModel)]="user.createdSource" name="createdSource" disabled/> 
+                        </div>--> 
+                    </div>
+                  <!-- <div class="input-Element" >
+                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                            <label for="dob">Created Source Type <br/></label>
+                            <p-select [options]="userTypes" [(ngModel)]="selectedUserType" optionLabel="name" placeholder="Select a user type" class="w-full md:w-56" [ngStyle]="{'width':'100%'}" name="createdSourceType"/>
+                        </div>
+                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                            <label for="createdDttm">CreatedDttm   <br/></label>
+                            <p-datepicker [(ngModel)]="user.createdDttm" inputId="createdDttm" [showIcon]="true" name="createdDttm" [ngStyle]="{'width':'100%'}"/>
+                        </div>
+                    </div>
+                    <div class="input-Element" >
+                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                            <label for="dob">Modified Source <br/></label>
+                            <input type="text" pInputText  [(ngModel)]="user.modifiedResource" name="modifiedResource" /> 
+                        </div>
+                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                            <label for="createdDttm">Modified Source Type    <br/></label>
+                            <input type="text" pInputText  [(ngModel)]="user.modifiedSourceType" name="modifiedSourceType" disabled/> 
+                        </div>
+                    </div>
+                    <div class="input-Element" >
+                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                            <label for="dob">Modified Dttm  <br/></label>
+                            <p-select [options]="userTypes" [(ngModel)]="selectedUserType" optionLabel="name" placeholder="Select a user type" class="w-full md:w-56" [ngStyle]="{'width':'100%'}" name="modifiedDttm"/>
+                        </div>
+                    </div>
+                    --> 
+                    <hr/>
+                    <div class="buttons-container">
+                        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+                        <p-button label="Save" type="submit"  />
+                    </div>
+                </div>
+            </div>
+        </form>
+    </p-dialog>
+<!--</div>-->
+
+<p-button (click)="showDialog()" label="Add New" />

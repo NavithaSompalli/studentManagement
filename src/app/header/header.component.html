@@ -1,0 +1,16 @@
+<div class="card-container flex justify-center">
+    
+    <img alt="Card" class="header-image" src="https://higherlogicdownload.s3.amazonaws.com/OAUG/8c16d9fc-6910-4bca-9dce-e05462995493/UploadedImages/GeoSIG/Logos/cropped-itorizon.png" />
+
+<div>
+    <i class="fa-regular fa-bell" [ngStyle]="{'font-size':'25px','color':'#0099cc'}"></i>
+</div>
+</div>
+<ul class="ul-container container-fluid">
+    <li (click) = "loadComponent('home')" [ngClass]="{'active': selectedComponent === 'home'}">Home</li>
+    <li (click) = "loadComponent('admin')" [ngClass]="{'active': selectedComponent === 'admin'}">Admin</li>
+    <li (click) = "loadComponent('student')" [ngClass]="{'active': selectedComponent === 'student'}">Student</li>
+    <li (click) = "loadComponent('Attendence')" [ngClass]="{'active': selectedComponent === 'Attendence'}">Attendence</li>
+    <li (click) = "loadComponent('Department')" [ngClass]="{'active': selectedComponent === 'Department'}">Department</li>
+</ul>
+

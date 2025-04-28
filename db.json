@@ -1,6 +1,11 @@
 {
   "users": [
     {
+      "id": "3b6c",
+      "username": "admin",
+      "password": "admin"
+    },
+    {
       "id": "c6b1",
       "username": "Navitha",
       "password": "Navitha@123"
@@ -34,6 +39,22 @@
       "id": "4813",
       "username": "Mamatha",
       "password": "1234"
+    },
+    {
+      "id": "fe17",
+      "username": "Navitha",
+      "password": "1234567"
+    },
+    {
+      "id": "f730",
+      "username": "Gayathri",
+      "password": "gaya@123"
+    },
+    {
+      "id": "dad8",
+      "username": "Kavitha",
+      "password": "kavi2123"
     }
-  ]
+  ],
+  "studentList": []
 }
