@@ -13,14 +13,11 @@ import { HttpClient } from '@angular/common/http';
 })
 export class HomeComponent{
   
-  constructor(private service: LoginServiceService, private http:HttpClient){}
 
-  selectedComponent: string
+  selectedComponent: string = 'home'
 
   receiveData(event){
     this.selectedComponent = event;
     console.log(this.selectedComponent);
   }
-
-  
 }

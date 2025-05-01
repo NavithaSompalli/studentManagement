@@ -1,43 +1,56 @@
-
+<div [ngStyle]="{'background-color':'#0099cc', 'height':'15vh'}">
+    <h1 [ngStyle]="{'margin-left':'4%', 'color':'#fff','font-family':'Roboto', 'padding-top':'20px', 'font-size':'26px'}"><i class="fa-solid fa-users" [ngStyle]="{'font-size':'25px', 'margin-right':'10px'}"></i>Student List</h1>
+</div>
 <div class="card">
-    <p-table [value]="studentList" stripedRows [tableStyle]="{'min-width': '50rem'}">
+   <p-card [ngStyle]="{'width':'100%'}">
+    <div class="table-container" >
+        <div [ngStyle]="{'display':'flex','flex-direction':'row','justify-content':'space-between','align-items':'center', 'width':'100%'}">
+        <h1 class="student-heading"> {{studentList.length}} Student List</h1>
+        <p-button type="button" class="add-btn">+Add</p-button>
+    </div>
+    <hr/>
+    <div *ngIf="studentList.length === 0" class="no-records-container">
+        <h2>No records found.</h2>
+    </div>
+    <p-table [value]="studentList" stripedRows [tableStyle]="{ 'min-width': '100%' }" [paginator]="'paginator'" *ngIf="studentList.length !== 0"
+    [rows]="5"  [rowsPerPageOptions]="[5, 10, 20]"> 
         <ng-template #header>
             <tr>
-                <th>StudentId</th>
-                <th>First name </th>
-                <th>Last name </th>
-                <th>Dob</th>
+                <th>Student ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>DOB</th>
                 <th>Gender</th>
-                <th>PhoneNumber</th>
-                <th>DateOfJoining</th>
-                <th>CreatedSource </th>
-                <th>CreatedSourceType</th>
-                <th>CreatedDttm </th>
-                <th>ModifiedSource </th>
-                <th>ModifiedSourceType </th>
-                <th>ModifiedDttm</th>
+                <th>Phone Number</th>
+                <th>Date Of Joining</th>
+                <th>Created Source </th>
+                <th>Created Source Type</th>
+                <th>Created Datetime</th>
+                <th>Modified Resource</th>
+                <th>Modified Resource Type</th>
+                <th>Modified Datetime</th>
             </tr>
         </ng-template>
-        <ng-template #body let-product let-i="index">
+        <ng-template #body let-product>
             <tr>
-                <td>{{product.id}}</td>
-                <td>{{product.firstname}}</td>
-                <td>{{product.lastname}}</td>
-                <td>{{product.dob}}</td>
-                <td>{{product.selectedCategory["name"]}}</td>
-                <td>{{product.gender}}</td>
-                <td>{{product.phoneNumber}}</td>
-                <td>{{product.dateOfJoining}}</td>
-                <td>{{product.createdSource}}</td>
-                <td>{{product.createdSourceType}}</td>
-                <td>{{product.createdDttm}}</td>
-                <td>{{product.modifiedResource}}</td>
-                <td>{{product.modifiedSourceType}}</td>
-                <td>{{product.modifiedDttm}}</td>
-                <td>
-                    <button type="button" (click)="onDeleteRecord(product.id)">Delete</button>
-                </td>
+                <td>{{ product.id }}</td>
+                <td>{{ product.firstname }}</td>
+                <td>{{ product.lastname }}</td>
+                <td>{{ product.dob }}</td>
+                <td>{{ product.selectedCategory["name"] }}</td>
+                <td>{{ product.phoneNumber }}</td>
+                <td>{{ product.dateOfJoining |date }}</td>
+                <td>{{ product.createdSource }}</td>
+                <td>{{ product.createdSourceType }}</td>
+                <td>{{ product.createdDttm }}</td>
+                <td>{{ product.modifiedResource }}</td>
+                <td>{{ product.modifiedSourceType }}</td>
+                <td>{{ product.modifiedttm }}</td>
+                <td><i class="fa-solid fa-pen-to-square" [ngStyle]="{'color':'green','font-size':'20px'}"></i></td>
+                <td><button type="button" (click)="onDeleteRecord(product.id)" class="delete-btn"><i class="fa-solid fa-trash" [ngStyle]="{'color':'red', 'font-size':'20px'}"></i></button></td>
             </tr>
         </ng-template>
     </p-table>
+</div>
+   </p-card>
 </div>

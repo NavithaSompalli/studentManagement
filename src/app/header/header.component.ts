@@ -11,7 +11,7 @@ import { HomeComponent } from '../home/home.component';
 export class HeaderComponent {
 //@Input() selectedComponent:any;
   @Output() notifyParent = new EventEmitter<string>();
-  selectedComponent: string;
+  selectedComponent: string = 'home';
 
  loadComponent(component: string){
   this.notifyParent.emit(component);

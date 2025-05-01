@@ -5,7 +5,7 @@ import { MenuItem } from 'primeng/api';
 import { ViewChild } from '@angular/core';
 import { LoginServiceService } from '../login-service.service';
 import { HttpClient } from '@angular/common/http';
-
+import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
   selector: 'app-student',
  
@@ -14,121 +14,193 @@ import { HttpClient } from '@angular/common/http';
   standalone:false
 })
 export class StudentComponent {
+  position: 'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright' = 'center';
 
-  constructor(private service: LoginServiceService, private http:HttpClient){}
+ visible: boolean = false;
+ stuId: string= "";
+ dept:string = "";
 
-  visible: boolean = false;
-
-    showDialog() {
-        this.visible = true;
-    }
-
-    categories = [
-      {
-        name: "Female", key:'F'
+  constructor(private service: LoginServiceService, private http:HttpClient, private confirmService: ConfirmationService, private messageService:MessageService ){}
+  
+  studentList: object[];
+  paginator: boolean= false;
+  isAddBtnActive:boolean = false;
+  currentPage = 0;
+  rowsPerPage = {
+    name:"show 5",
+    value:5
+  };
+  totalPages = [];
+  rowsPerPageArray = [{
+        name:"show 5",
+        value:5
       },
       {
-        name: "Male", key:'M'
+        name:"show 10",
+        value:10
       },
       {
-        name: "TransGender", key:"T"
+        name:"show 20",
+        value:20
       }
-    ]
-    
+  ]
 
-    userTypes = [
-      {
-        name: 'User'
+
+  ngOnChanges(){
+    this.service.getStudentDetails().subscribe({
+      next: (response) => {
+        this.studentList = response
+        console.log(this.studentList)
       },
-      {
-        name: 'Admin'
+      error: (error) => console.log(error),
+      complete: ()=>console.log("completed")
+    })
+  }
+
+  getStudentDetails(){
+    this.service.getStudentDetails().subscribe({
+      next: (response) => {
+        this.studentList = response
+        console.log(this.studentList)
+        if(this.studentList.length >=5){
+          this.paginator = true;
+        }
+      },
+      error: (error) => console.log(error),
+      complete: ()=>{
+        console.log("completed");
+        this.totalPages = Array(Math.ceil(this.studentList.length / this.rowsPerPage.value)).fill(0);
+      console.log("total pages " + this.totalPages);
       }
-    ]
+    })
+  }
 
-    selectedUserType : string;
-    
-     date = new Date();
-     dateFormat = `${this.date.getDay()}-${this.date.getMonth()}-${this.date.getFullYear()} ${this.date.getHours()}:${this.date.getSeconds()} `
-     imageUrl!: string;
-    user = {
-      username:'',
-      firstname:'',
-      lastname:'',
-      dob:'',
-      email:'',
-      phoneNumber:'',
-      selectedCity:{ code: "+91", country: "India" },
-      selectedCategory:'',
-      image:this.imageUrl,
-      modifiedResource:'ECE',
-      modifiedSourceType:'Admin',
-      modifiedDttm:this.dateFormat,
-      createdDttm:this.dateFormat,
-      createdSourceType:'Admin',
-      createdSource:'CSE',
-      dateOfJoining:''
+  ngOnInit(){
+    this.getStudentDetails();
+  }
+
+
+  onDeleteRecord(id:number, position:'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright'){
+    this.position = position;
+
+    this.confirmService.confirm({
+        message: 'Are you sure you want to proceed?',
+        header: 'Confirmation',
+        icon: 'pi pi-info-circle',
+        rejectButtonStyleClass: 'p-button-text',
+        rejectButtonProps: {
+            label: 'Cancel',
+            severity: 'secondary',
+            text: true,
+        },
+        acceptButtonProps: {
+            label: 'Delete',
+            text: true,
+        },
+        accept: () => {
+            this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Request submitted' });
+            console.log(id);
+            this.service.deleteStudentDetails(id).subscribe({
+              next: (response) => console.log(id),
+              error: (error) => console.log(error),
+              complete: ()=>{
+                console.log("completed");
+                this.getStudentDetails();
+              }
+            })
+        },
+        reject: () => {
+            this.messageService.add({
+                severity: 'error',
+                summary: 'Rejected',
+                detail: 'Process incomplete',
+                life: 3000,
+            });
+        },
+        key: 'positionDialog',
+    });
+  }
+
+  onClickAddData(position:'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright'){
+    this.visible = !this.visible;
+    this.position = position;
+  }
+
+  /*OnCreateRecord(){
+    this.isAddBtnActive = !this.isAddBtnActive;
+    this.visible = !this.visible;
+  }*/
+
+  updatePagination(){
+    this.currentPage = 0; // Reset to first page whenever rows per page changes
+    this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i);
+  }
+
+  get paginatedStudents() {
+    const start = this.currentPage * this.rowsPerPage.value;
+    const end = start + this.rowsPerPage.value;
+    return this.studentList.slice(start, end);
+}
+
+onViewDetails(id){
+  console.log(id);
+}
+
+
+
+prevPage() {
+    if (this.currentPage > 0) this.currentPage--;
+}
+
+nextPage() {
+    if (this.currentPage < this.totalPages.length - 1) this.currentPage++;
+}
+
+goToPage(index: number) {
+    this.currentPage = index;
+}
+
+
+
+// mini dialogue box logic
+
+studentValidateObj = {
+  studentId:'',
+  department:''
+}
+
+@ViewChild('miniDialog') mindialogueForm : NgForm;
+
+onsumbitDialogue(){
+ //  console.log(this.mindialogueForm.controls["studentId"].value);
+ //  console.log(this.mindialogueForm.controls["department"].value);
+   let id = this.mindialogueForm.controls["studentId"].value;
+   let dept = this.mindialogueForm.controls["department"].value;
+   console.log(id,dept);
+
+   if(id !== undefined && dept !== undefined){
+
+   this.service.findStudent(id).subscribe({
+    next: (response) => {
+      console.log(response, "onsubmitDialogue");
+      console.log(response[0].studentId === id , response[0].department === dept)
+      if(response[0].id === id && response[0].department === dept){
+        alert("Student Already registered in this department");
+      }else{
+        this.isAddBtnActive = !this.isAddBtnActive;
+        this.visible = !this.visible;
+      }
+    },
+    error: (error) => console.log(error),
+    complete: ()=>{
+      console.log("completed");
     }
-
+  })
    
+}else{
+  alert("please enter all the fields");
+}
 
-     countryPhoneCodes = [
-      { country: "USA", code: "+1" },
-      { country: "UK", code: "+44" },
-      { country: "India", code: "+91" },
-      { country: "Australia", code: "+61" },
-      { country: "Canada", code: "+1" },
-      { country: "Germany", code: "+49" },
-      { country: "France", code: "+33" },
-      { country: "Japan", code: "+81" },
-      { country: "China", code: "+86" },
-      { country: "Brazil", code: "+55" },
-      { country: "Russia", code: "+7" },
-      { country: "South Africa", code: "+27" },
-      { country: "Mexico", code: "+52" },
-      { country: "Italy", code: "+39" },
-      { country: "Spain", code: "+34" },
-      { country: "Saudi Arabia", code: "+966" },
-      { country: "UAE", code: "+971" },
-      { country: "Singapore", code: "+65" },
-      { country: "South Korea", code: "+82" },
-      { country: "Netherlands", code: "+31" }
-  ];
-  
-
-    @ViewChild('dialogForm') form!: NgForm;
-
-    onSubmitDialogue(){
-      console.log(this.form);
-      console.log(this.imageUrl);
-      this.http.post('http://localhost:3000/studentList', this.user).subscribe({
-        next: (response) => console.log('Success:', response),
-        error: (error) => console.log("error", error ),
-        complete: () => console.log("Student deatails add successfully")
-      });
-
-      this.service.getStudentDetails().subscribe({
-        next: (response) => console.log('success:', response),
-        error: (error) =>console.log("error", error),
-        complete:()=>console.log("Student Details")
-      })
-      
-    }
-
-
-    openUploadDialog() {
-      document.getElementById('fileInput')?.click();
-  }
-  
-  onFileSelected(event: any) {
-      const file: File = event.target.files[0];
-  
-      if (file) {
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => {
-              this.imageUrl = reader.result as string;
-          };
-      }
-  }
+}
 
 }

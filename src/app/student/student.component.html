@@ -1,112 +1,111 @@
-<!--<div class="card flex justify-center">-->
-    <p-dialog header="Add New User" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '100vh', '575px': '100%' }" [style]="{ width: '50vw' }" [draggable]="false" [resizable]="false">
-        <hr/>
-        <form #dialogForm="ngForm" (ngSubmit)="onSubmitDialogue()" class="flex gap-4 ">
-            <!-- Avatar Upload Container -->
-            <div [ngStyle]="{'padding':'5px'}">
-                <div class="avatar-container">
-                    <div class="avatar-upload" (click)="openUploadDialog()">
-                        <img *ngIf="imageUrl" [src]="imageUrl" alt="Avatar" class="avatar-preview"/>
-                        <div *ngIf="!imageUrl" class="upload-placeholder">+</div>
-                    </div>
-                    <label [ngStyle]="{'margin-top':'15px'}">Max file 2MB<br/> Supporting formats: JPG, PNG</label>
-                    <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/png, image/jpeg" hidden name="image" required/>
-                </div>
-            </div>
-            <!-- Form Container -->
-            <div class="form-container">
-                <h3>Basic Details</h3>
-                <div>
-                    <div [ngStyle]="{ 'margin':'5px'}">
-                        <label for="username">Username<br/></label>
-                        <input type="text" pInputText [(ngModel)]="user.username" id="username" name="username" required/>
-                    </div>
-                    <div class="input-Element">
-                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
-                            <label for="firstname">First Name<br/></label>
-                            <input type="text" pInputText [(ngModel)]="user.firstname" id="firstname" name="firstname" required/>
-                        </div>
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="lastname">Last Name <br/></label>
-                            <input type="text" pInputText [(ngModel)]="user.lastname" id="lastname" name="lastname" required/>
-                        </div>
-                    </div>
-                    <div class="input-Element">
-                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
-                            <label for="email">Email<br/></label>
-                            <input type="email" pInputText [(ngModel)]="user.email" id="firstname" name="email" email required/>
-                        </div>
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="lastname">Gender <br/></label>
-                            <div class=" flex justify-center">
-                                <div class="flex flex-col gap-4">
-                                    <div *ngFor="let category of categories" class="field-checkbox flex">
-                                        <p-radiobutton [inputId]="category.key" name="category" [value]="category" [(ngModel)]="user.selectedCategory" size="small" required/>
-                                        <label [for]="category.key" class="ml-2">{{ category.name }}</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-Element" >
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="dob">Date Of Birth<br/></label>
-                            <input  pInputText type="date" [(ngModel)]="user.dob" inputId="dob"  name="dob" [ngStyle]="{'width':'100%'}" required/>
-                        </div>
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="phonenumber">Phone Number <br/></label>
-                            <div [ngStyle]="{'width':'100%'}">
-                                <p-select [options]="countryPhoneCodes" [(ngModel)]="user.selectedCity" [checkmark]="false" optionLabel="code" [showClear]="false" name="selectedCity" />
-                                <input type="number" pInputText  [(ngModel)]="user.phoneNumber" name="phoneNumber" [ngStyle]="{'width':'65%'}" required/> 
-                            </div>
-                        </div>
-                    </div>
-                    <div class="input-Element" >
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="dob">Date Of Joining <br/></label>
-                            <p-datepicker [(ngModel)]="user.dateOfJoining" inputId="dob" [showIcon]="true" name="dateOfJoining" [ngStyle]="{'width':'600px'}" required/>
-                        </div>
-                     <!--  <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="phonenumber">Created Source  <br/></label>
-                            <input type="text" pInputText  [(ngModel)]="user.createdSource" name="createdSource" disabled/> 
-                        </div>--> 
-                    </div>
-                  <!-- <div class="input-Element" >
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="dob">Created Source Type <br/></label>
-                            <p-select [options]="userTypes" [(ngModel)]="selectedUserType" optionLabel="name" placeholder="Select a user type" class="w-full md:w-56" [ngStyle]="{'width':'100%'}" name="createdSourceType"/>
-                        </div>
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="createdDttm">CreatedDttm   <br/></label>
-                            <p-datepicker [(ngModel)]="user.createdDttm" inputId="createdDttm" [showIcon]="true" name="createdDttm" [ngStyle]="{'width':'100%'}"/>
-                        </div>
-                    </div>
-                    <div class="input-Element" >
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="dob">Modified Source <br/></label>
-                            <input type="text" pInputText  [(ngModel)]="user.modifiedResource" name="modifiedResource" /> 
-                        </div>
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="createdDttm">Modified Source Type    <br/></label>
-                            <input type="text" pInputText  [(ngModel)]="user.modifiedSourceType" name="modifiedSourceType" disabled/> 
-                        </div>
-                    </div>
-                    <div class="input-Element" >
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="dob">Modified Dttm  <br/></label>
-                            <p-select [options]="userTypes" [(ngModel)]="selectedUserType" optionLabel="name" placeholder="Select a user type" class="w-full md:w-56" [ngStyle]="{'width':'100%'}" name="modifiedDttm"/>
-                        </div>
-                    </div>
-                    --> 
-                    <hr/>
-                    <div class="buttons-container">
-                        <p-button label="Cancel" severity="secondary" (click)="visible = false" />
-                        <p-button label="Save" type="submit"  />
-                    </div>
-                </div>
-            </div>
-        </form>
-    </p-dialog>
-<!--</div>-->
+<div [ngStyle]="{'background-color':'#0099cc', 'height':'15vh'}">
+    <h1 [ngStyle]="{'margin-left':'4%', 'color':'#fff','font-family':'Roboto', 'padding-top':'20px', 'font-size':'26px'}">
+        <i class="fa-solid fa-users" [ngStyle]="{'font-size':'25px', 'margin-right':'10px'}"></i>Student List
+    </h1>
+</div>
 
-<p-button (click)="showDialog()" label="Add New" />
+<div class="card">
+    <p-card [ngStyle]="{'width':'100%'}">
+        <div [ngStyle]="{'display':'flex','justify-content':'space-between','align-items':'center'}">
+            <h1 class="student-heading">Student List</h1>
+            <div class="student-form-elements">
+                <p-select [options]="rowsPerPageArray" [(ngModel)]="rowsPerPage" optionLabel="name" 
+                          class="w-full md:w-56 paginator-btn" *ngIf="studentList.length !== 0" (ngModelChange)="updatePagination()"/>
+                <button type="button" class="p-button add-btn" (click)="onClickAddData('center')">+Add</button>
+            </div>
+        </div>
+        
+        <hr/>
+
+        <div class="table-container">
+            <div *ngIf="studentList.length === 0" class="no-records-container">
+                <h2>No records found.</h2>
+            </div>
+
+            <p-table [value]="paginatedStudents" stripedRows *ngIf="studentList.length !== 0"
+                     [rows]="rowsPerPage.value" responsiveLayout="scroll"> 
+                <ng-template #header>
+                    <tr>
+                        <th style="white-space: nowrap;" pSortableColumn="id">Student ID <i class="fa-solid fa-sort" field="id"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="firstname">First Name <i class="fa-solid fa-sort" field="firstname"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="lastname">Last Name <i class="fa-solid fa-sort" field="lastname"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="dob">DOB <i class="fa-solid fa-sort" field="dob"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="gender">Gender <i class="fa-solid fa-sort" field="gender"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="phoneNumber">Phone Number <i class="fa-solid fa-sort" field="phoneNumber"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="dateOfJoining">Date Of Joining <i class="fa-solid fa-sort" field="dateOfJoining"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="createdSource">Created Source <i class="fa-solid fa-sort" field="createdSource"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="createdSourceType">Created Source Type <i class="fa-solid fa-sort" field="createdSourceType"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="createdDttm">Created Datetime <i class="fa-solid fa-sort" field="createdDttm"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="modifiedResource">Modified Resource <i class="fa-solid fa-sort" field="modifiedResource"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="modifiedSourceType">Modified Resource Type <i class="fa-solid fa-sort" field="modifiedSourceType"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="modifiedDttm">Modified Datetime <i class="fa-solid fa-sort" field="modifiedDttm"></i></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </ng-template>
+
+                <ng-template #body let-product>
+                    <tr>
+                        <td style="white-space: nowrap;">{{ product.id }}</td>
+                        <td style="white-space: nowrap;">{{ product.firstname }}</td>
+                        <td style="white-space: nowrap;">{{ product.lastname }}</td>
+                        <td style="white-space: nowrap;">{{ product.dob }}</td>
+                        <td style="white-space: nowrap;">{{ product.selectedCategory["name"] }}</td>
+                        <td style="white-space: nowrap;">{{ product.phoneNumber }}</td>
+                        <td style="white-space: nowrap;">{{ product.dateOfJoining | date }}</td>
+                        <td style="white-space: nowrap;">{{ product.createdSource }}</td>
+                        <td style="white-space: nowrap;">{{ product.createdSourceType }}</td>
+                        <td style="white-space: nowrap;">{{ product.createdDttm | date: 'medium' }}</td>
+                        <td style="white-space: nowrap;">{{ product.modifiedResource }}</td>
+                        <td style="white-space: nowrap;">{{ product.modifiedSourceType }}</td>
+                        <td style="white-space: nowrap;">{{ product.modifiedDttm | date: 'medium'}}</td>
+                        <td style="white-space: nowrap;"><i class="fa-solid fa-pen-to-square" style="color:green; font-size:20px;"></i></td>
+                        <td style="white-space: nowrap;"><button type="button" (click)="onDeleteRecord(product.id,'topright')" class="delete-btn">
+                            <i class="fa-solid fa-trash" style="color:red; font-size:20px;"></i></button>
+                        </td>
+                       
+                    </tr>
+                </ng-template>
+            </p-table>
+        </div>
+
+        <div class="custom-paginator" *ngIf="studentList.length !== 0">
+            <button (click)="prevPage()" [disabled]="currentPage === 0">Previous</button>
+            <span *ngFor="let page of totalPages; let i = index">
+                <button (click)="goToPage(i)" [ngClass]="{'active': currentPage === i}">
+                    {{ i + 1 }}
+                </button>
+            </span>
+            <button (click)="nextPage()" [disabled]="currentPage === totalPages.length - 1">Next</button>
+        </div>
+    </p-card>
+</div>
+
+<app-form-modal [visible]="isAddBtnActive" [stuId]="studentValidateObj.studentId" [dept]="studentValidateObj.department"></app-form-modal>
+
+<div class="card confirm-box-card">
+    <p-toast />
+    <p-confirmdialog key="positionDialog" [position]="position" />
+</div>
+
+<p-dialog header="Validate Student" [modal]="true" [(visible)]="visible" [position]="position" [ngStyle]="{'width':'50%'}">
+    
+    <form #miniDialog="ngForm" (ngSubmit)="onsumbitDialogue()">
+        <div class="flex items-center gap-4 mb-4">
+            <label for="studentId" class="font-semibold w-24">Student ID</label>
+            <div>
+            <input pInputText id="studentId" class="flex-auto" autocomplete="off" [(ngModel)]="studentValidateObj.studentId" name="studentId"/>
+        </div>
+        </div>
+        <div class="flex items-center gap-4 mb-8">
+            <label for="department" class="font-semibold w-24">Department</label>
+            <div>
+                <input pInputText id="department" class="flex-auto" autocomplete="off" [(ngModel)]="studentValidateObj.department" name="department"/>
+            </div>
+        </div>
+        <div class="flex justify-end gap-2 add-btn-container">
+            <p-button label="Cancel" severity="secondary" (click)="visible = false"/>
+            <p-button type="submit" label="Submit"/>
+        </div>
+    </form>
+</p-dialog>

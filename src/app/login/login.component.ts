@@ -77,9 +77,11 @@ export class LoginComponent {
           this.messageService.add({ severity: 'error', summary: 'Error', detail: this.userError })
         },
         complete: () => {
+          if(this.username === 'admin'){
           this.userError = "User Login Successfully";
           this.messageService.add({ severity: 'success', summary: 'Success', detail: this.userError })
           this.router.navigate(['home']);
+          }
         },
       });
 
@@ -89,7 +91,6 @@ export class LoginComponent {
     }
   }
   
-
   @ViewChild('myFormSignup') signup!: NgForm;
 
   onSubmitSignUp() {

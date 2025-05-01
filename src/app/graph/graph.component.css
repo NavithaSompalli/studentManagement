@@ -1,0 +1,11 @@
+.graph-card{
+    position: absolute !important;
+    z-index: index 1 !important;
+    top:25vh;
+    margin:20px;
+}
+
+
+::ng-deep .p-card{
+    border-radius: 0px !important;
+}

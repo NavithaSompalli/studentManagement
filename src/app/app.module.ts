@@ -2,12 +2,15 @@ import { NgModule } from "@angular/core";
 
 
 import { AppComponent } from "./app.component";
-import { SignUpComponent } from "./sign-up/sign-up.component";
+//import { SignUpComponent } from "./sign-up/sign-up.component";
 import { HomeComponent } from "./home/home.component";
 import {HeaderComponent} from './header/header.component';
 import { AdminComponent } from "./admin/admin.component";
 import { StudentComponent } from "./student/student.component";
 import { GraphComponent } from "./graph/graph.component";
+import { FooterComponent } from "./footer/footer.component";
+import { FormModalComponent } from "./form-modal/form-modal.component";
+
 
 import { BrowserModule } from "@angular/platform-browser";
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
@@ -25,6 +28,7 @@ import {HttpClientModule} from '@angular/common/http';
 import { LoginComponent } from "./login/login.component";
 import { LoginServiceService } from "./login-service.service";
 import { MessageService } from 'primeng/api'; // toast modules
+import { ConfirmationService } from 'primeng/api';
 import { Toast } from 'primeng/toast';
 import { Ripple } from 'primeng/ripple';
 import { RouterModule } from "@angular/router"; 
@@ -42,6 +46,11 @@ import { RadioButton } from 'primeng/radiobutton';
 
 import { InputNumberModule } from 'primeng/inputnumber';
 import { Select } from 'primeng/select';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+
+import { ConfirmDialog } from 'primeng/confirmdialog';
+
+
 
 
 
@@ -55,10 +64,10 @@ const routes: Routes = [
   ];
 
 @NgModule({
-    declarations:[AppComponent,LoginComponent,SignUpComponent,HomeComponent,HeaderComponent,AdminComponent,StudentComponent,GraphComponent],
-    imports:[Select,InputNumberModule,RadioButton,RadioButtonModule,DatePickerModule,TableModule,CommonModule,MenubarModule,RouterModule.forRoot(routes),Toast,Ripple,BrowserModule,ButtonModule,ButtonModule,CardModule,FormsModule,PasswordModule,InputTextModule,DialogModule,Dialog,HttpClientModule],
+    declarations:[FormModalComponent,FooterComponent,AppComponent,LoginComponent,HomeComponent,HeaderComponent,AdminComponent,StudentComponent,GraphComponent],
+    imports:[ConfirmDialog,ConfirmDialogModule,Select,InputNumberModule,RadioButton,RadioButtonModule,DatePickerModule,TableModule,CommonModule,MenubarModule,RouterModule.forRoot(routes),Toast,Ripple,BrowserModule,ButtonModule,ButtonModule,CardModule,FormsModule,PasswordModule,InputTextModule,DialogModule,Dialog,HttpClientModule],
     bootstrap:[AppComponent],
-    providers:[provideAnimationsAsync(),providePrimeNG({theme :{preset :Aura}}), LoginServiceService,MessageService],
+    providers:[provideAnimationsAsync(),providePrimeNG({theme :{preset :Aura}}), LoginServiceService,MessageService,ConfirmationService],
     exports:[RouterModule]
 })
 

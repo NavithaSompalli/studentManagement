@@ -37,13 +37,16 @@
 }
 
 .active {
-    background-color: #0099cc;
-    color: white;
-    font-weight: bold;
-    height: 8vh;
-    width:100px;
-    text-align:center;
-    align-self: center;
-    padding-top: 15px;
+  background-color: #0099cc;
+  color: white;
+  font-weight: bold;
+  height: 100%;
+  width: 100px;
+  text-align: center;
+  align-self: center;
 
+  display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }

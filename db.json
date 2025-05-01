@@ -56,5 +56,142 @@
       "password": "kavi2123"
     }
   ],
-  "studentList": []
+  "studentList": [
+    {
+      "id": "ITO202574",
+      "firstname": "Mamatha",
+      "lastname": "Sompalli",
+      "dob": "2025-04-24",
+      "email": "mamatha2024@gmail.com",
+      "phoneNumber": 9876543221,
+      "selectedCity": {
+        "code": "+91",
+        "country": "India"
+      },
+      "selectedCategory": {
+        "name": "Female",
+        "key": "F"
+      },
+      "modifiedResource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "3-3-2025 12:26 ",
+      "createdDttm": "3-3-2025 12:26 ",
+      "createdSourceType": "Admin",
+      "createdSource": "Admin",
+      "dateOfJoining": "2025-04-22T18:30:00.000Z"
+    },
+    {
+      "id": "ITO20254",
+      "firstname": "Navitha",
+      "lastname": "Sompalli",
+      "dob": "2025-04-29",
+      "email": "navitha098765@gmail.com",
+      "phoneNumber": 9018765432,
+      "selectedCity": {
+        "code": "+91",
+        "country": "India"
+      },
+      "selectedCategory": {
+        "name": "Female",
+        "key": "F"
+      },
+      "modifiedResource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "3-3-2025 13:54 ",
+      "createdDttm": "3-3-2025 13:54 ",
+      "createdSourceType": "Admin",
+      "createdSource": "Admin",
+      "dateOfJoining": "2025-04-20T18:30:00.000Z"
+    },
+    {
+      "id": "ITO202578",
+      "firstname": "Navitha",
+      "lastname": "Sompalli",
+      "dob": "2025-04-10",
+      "email": "navitha098765@gmail.com",
+      "phoneNumber": 9876543211,
+      "selectedCity": {
+        "code": "+91",
+        "country": "India"
+      },
+      "selectedCategory": {
+        "name": "Female",
+        "key": "F"
+      },
+      "modifiedResource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "3-3-2025 14:7 ",
+      "createdDttm": "3-3-2025 14:7 ",
+      "createdSourceType": "Admin",
+      "createdSource": "Admin",
+      "dateOfJoining": "2025-04-15T18:30:00.000Z"
+    },
+    {
+      "id": "ITO202536",
+      "firstname": "Navitha",
+      "lastname": "Sompalli",
+      "dob": "2025-04-23",
+      "email": "navitha098765@gmail.com",
+      "phoneNumber": 9876543211,
+      "selectedCity": {
+        "code": "+91",
+        "country": "India"
+      },
+      "selectedCategory": {
+        "name": "Female",
+        "key": "F"
+      },
+      "modifiedResource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "3-3-2025 14:27 ",
+      "createdDttm": "3-3-2025 14:27 ",
+      "createdSourceType": "Admin",
+      "createdSource": "Admin",
+      "dateOfJoining": "2025-04-23T18:30:00.000Z"
+    },
+    {
+      "id": "ITO202597",
+      "firstname": "Navitha",
+      "lastname": "Sompalli",
+      "dob": "2025-04-30",
+      "email": "navitha098765@gmail.com",
+      "phoneNumber": 9018765432,
+      "selectedCity": {
+        "code": "+91",
+        "country": "India"
+      },
+      "selectedCategory": {
+        "name": "Female",
+        "key": "F"
+      },
+      "modifiedResource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "3-3-2025 14:1 ",
+      "createdDttm": "3-3-2025 14:1 ",
+      "createdSourceType": "Admin",
+      "createdSource": "Admin",
+      "dateOfJoining": "2025-04-14T18:30:00.000Z"
+    },
+    {
+      "id": "ITO202577",
+      "firstname": "Navitha",
+      "lastname": "Sompalli",
+      "dob": "2025-04-23",
+      "email": "navitha098765@gmail.com",
+      "phoneNumber": 9018765432,
+      "selectedCity": {
+        "code": "+91",
+        "country": "India"
+      },
+      "selectedCategory": "",
+      "modifiedResource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "3-3-2025 17:25 ",
+      "createdDttm": "3-3-2025 17:25 ",
+      "createdSourceType": "Admin",
+      "createdSource": "Admin",
+      "dateOfJoining": "2025-04-15T18:30:00.000Z",
+      "department": "CSE"
+    }
+  ]
 }

@@ -9,6 +9,47 @@ import { map } from 'rxjs/operators';
 export class LoginServiceService {
   private apiUrl = 'http://localhost:3000/users';
 
+  studentList = {
+    StudentId :'',
+    FirstName:'',
+    LastName:'',
+    Dob:'',
+    Gender:'',
+    PhoneNumber:'',
+    DateOfJoining:'',
+    CreatedSource:'',
+    CreatedSourceType:'',
+    CreateDttm:'',
+    ModifiedSource:'',
+    ModifiedSourceType:'',
+    ModifiedDttm:''
+  }
+
+  
+  date = new Date();
+  dateFormat = `${this.date.getDay()}-${this.date.getMonth()}-${this.date.getFullYear()} ${this.date.getHours()}:${this.date.getSeconds()} `
+  imageUrl!: string;
+  
+
+  user = {
+    id:'ITO2025'+`${Math.floor(Math.random() * 90)+10}`,
+    firstname:'',
+    lastname:'',
+    dob:'',
+    email:'',
+    phoneNumber:'',
+    selectedCity:{ code: "+91", country: "India" },
+    selectedCategory:'',
+    image:this.imageUrl,
+    modifiedResource:'Admin',
+    modifiedSourceType:'Admin',
+    modifiedDttm:this.dateFormat,
+    createdDttm:this.dateFormat,
+    createdSourceType:'Admin',
+    createdSource:'Admin',
+    dateOfJoining:''
+  }
+
   constructor(private http: HttpClient) {}
 
   login(username: string, password: string): Observable<any> {
@@ -50,11 +91,25 @@ export class LoginServiceService {
 
     getStudentDetails():Observable<any>{
       return this.http.get('http://localhost:3000/studentList')
-      
     }
 
     deleteStudentDetails(id):Observable<any>{
       return this.http.delete(`http://localhost:3000/studentList/${id}`);
     }
+
+
+    findStudent(id){
+      return this.http.get<any[]>(`http://localhost:3000/studentList?id=${id}`).pipe(
+        map((users) =>{
+          console.log(users);
+          if(users.length !== 0){
+            return users
+          }else{
+            return false
+          }
+        })
+      )
+    }
+
 
 }

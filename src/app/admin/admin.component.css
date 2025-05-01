@@ -1,0 +1,78 @@
+.card{
+    position: absolute !important;
+    z-index: index 2 !important;
+    top:22vh;
+    margin:20px;
+    margin-left: 40px !important;
+    width: 95% !important;
+}
+
+.table-container{
+    width:100%; 
+    overflow:'auto';
+    overflow-y: scroll;
+    border:'none';
+    scrollbar-width: none;
+    height: 30% !important;
+
+}
+
+
+::ng-deep .p-card{
+    border-radius: 0px !important;
+    width:'100%' !important;
+}
+
+::ng-deep .p-table{
+    width:80% !important;
+   
+}
+
+::ng-deep .p-button{
+    background-color: #0099cc !important;
+    margin:5px !important;
+    border-radius: 0px !important;
+    width:150px !important;
+    font-weight: bold !important;
+}
+
+
+::ng-deep .p-paginator-page.p-paginator-page-selected{
+    border-radius: 0px !important;
+  
+    background-color: #0099cc !important;
+    color: #fff !important;
+}
+
+/*::ng-deep .p-select{
+    position: absolute !important;
+    top: -48px !important;
+    left: 82% !important;
+    width: 100px !important;
+    border-radius: 0px !important;
+
+}*/
+
+.student-heading{
+    margin:5px !important;
+    position: relative !important;
+    border-radius: 0px !important;
+    margin-bottom: 7px !important;
+    font-family: 'Roboto';
+    font-size:20px;
+
+}
+
+.no-records-container{
+    text-align: center;
+    padding-top:30px;
+    font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+.delete-btn{
+    background-color: transparent;
+    border:none;
+    cursor: pointer;
+}

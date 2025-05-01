@@ -1,0 +1,225 @@
+/* Global Styles */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Card Container */
+.card {
+    position: absolute !important;
+    z-index: 2 !important;
+    top: 22vh;
+    margin: 20px;
+    margin-left: 40px !important;
+    width: 95% !important;
+}
+
+/* Table Container */
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    height: 50vh;
+    border: none;
+    scrollbar-width: none;
+    
+}
+
+/* Table Styles */
+::ng-deep .p-card {
+    border-radius: 0px !important;
+    width: 100% !important;
+}
+
+::ng-deep .p-table {
+    width: 80% !important;
+   
+}
+
+/* Buttons */
+.add-btn {
+    background-color: #0077aa;
+    margin: 5px !important;
+    border-radius: 5px !important;
+    width: 150px !important;
+    font-weight: bold !important;
+}
+
+/* No Records Message */
+.no-records-container {
+    text-align: center;
+    padding-top: 30px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-weight: bold;
+    font-style: italic;
+}
+
+/* Delete Button */
+.delete-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+/* Pagination */
+.custom-paginator {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+.custom-paginator button {
+    padding: 6px 12px;
+    color: #0077aa;
+    border: none;
+    cursor: pointer;
+    border: 1px solid #ccc;
+}
+
+.custom-paginator button.active {
+    background-color: #0077aa;
+    font-weight: bold;
+    color: #fff;
+}
+
+.custom-paginator button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+/* Confirmation Box */
+.confirm-box-card {
+    width: 30% !important;
+}
+
+::ng-deep .p-confirmdialog {
+    width: 30% !important;
+}
+
+.p-confirmdialog .p-dialog-content {
+    font-family: "Roboto";
+    color: #34baeb;
+    font-weight: bold;
+}
+
+.p-dialog-topright .p-dialog {
+    background-color: ghostwhite;
+    width:50% !important;
+}
+
+/* Button Container */
+.add-btn-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+td{
+    text-align: center !important;
+}
+
+
+
+/* Responsive Adjustments */
+@media (max-width: 1024px) {
+    .card {
+        width: 90% !important;
+        margin-left: 20px !important;
+    }
+
+    .table-container {
+        height: 40vh;
+    }
+
+    th, td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .add-btn {
+        width: 120px !important;
+        font-size: 12px;
+    }
+
+    .custom-paginator button {
+        font-size: 12px;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        width: 85% !important;
+        margin-left: 10px !important;
+        top: 15vh;
+    }
+
+    .table-container {
+        height: 35vh;
+    }
+
+    th, td {
+        font-size: 12px;
+        padding: 6px;
+    }
+
+    .add-btn {
+        width: 100px !important;
+        font-size: 10px;
+    }
+
+    .custom-paginator {
+        justify-content: center;
+    }
+
+    .custom-paginator button {
+        font-size: 10px;
+        padding: 5px 8px;
+    }
+
+    .confirm-box-card {
+        width: 50% !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .card {
+        width: 95% !important;
+        margin-left: 5px !important;
+        top: 12vh;
+        margin-top:15vh;
+    }
+
+    .table-container {
+        height: 30vh;
+    }
+
+    th, td {
+        font-size: 10px;
+        padding: 5px;
+    }
+
+    .add-btn {
+        width: 80px !important;
+        font-size: 9px;
+    }
+
+    .custom-paginator button {
+        font-size: 9px;
+        padding: 4px 6px;
+    }
+
+    .confirm-box-card {
+        width: 70% !important;
+    }
+
+    .student-heading{
+        font-size:15px;
+    }
+
+    .paginator-btn{
+        width: 80px !important;
+        font-size: 9px;
+        border-radius: 5px;
+    }
+}

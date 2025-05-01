@@ -14,6 +14,8 @@ export class AdminComponent implements OnInit,OnChanges {
   constructor(private service: LoginServiceService, private http:HttpClient){}
   
   studentList: object[];
+  paginator: boolean= false;
+
 
   ngOnChanges(){
     this.service.getStudentDetails().subscribe({
@@ -31,6 +33,9 @@ export class AdminComponent implements OnInit,OnChanges {
       next: (response) => {
         this.studentList = response
         console.log(this.studentList)
+        if(this.studentList.length >=5){
+          this.paginator = true;
+        }
       },
       error: (error) => console.log(error),
       complete: ()=>console.log("completed")
@@ -43,7 +48,20 @@ export class AdminComponent implements OnInit,OnChanges {
     this.service.deleteStudentDetails(id).subscribe({
       next: (response) => console.log(id),
       error: (error) => console.log(error),
-      complete: ()=>console.log("completed")
+      complete: ()=>{
+        console.log("completed");
+        this.service.getStudentDetails().subscribe({
+          next: (response) => {
+            this.studentList = response
+            console.log(this.studentList)
+            if(this.studentList.length >=5){
+              this.paginator = true;
+            }
+          },
+          error: (error) => console.log(error),
+          complete: ()=>console.log("completed")
+        })
+      }
     })
   }
 }
