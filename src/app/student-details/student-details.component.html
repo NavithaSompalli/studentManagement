@@ -1,0 +1,218 @@
+<p-dialog header="Student Information" [modal]="true" [(visible)]="isViewDetailsActive" [style]="{ width: '25rem' }" class="depart-modal">
+    <hr/>
+
+    <div class="form-container">
+        <div class="image-container">
+          <img [src]="studentDetailsObject?.image" alt="imageElement" class="student-details-image"/>
+      </div>
+      <div class="form-elements-container">
+    <div class="details-container">
+       
+        <div class="detail-row">
+            <strong>Student ID</strong>: <span>{{ studentDetailsObject?.id }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>First Name</strong>: <span>{{ studentDetailsObject?.firstname }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Last Name</strong>: <span>{{ studentDetailsObject?.lastname }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Email</strong>: <span>{{ studentDetailsObject?.email }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Gender</strong>: <span>{{ studentDetailsObject?.selectedCategory?.name }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Date Of Birth</strong>: <span>{{ studentDetailsObject?.dob }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Address</strong>: <span>{{ studentDetailsObject?.address }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Blood Group</strong>: <span>{{ studentDetailsObject?.bloodGroup }}</span>
+        </div>
+        
+        <div class="detail-row">
+            <strong>Date Of Joining</strong>: <span>{{ studentDetailsObject?.dateOfJoining | date:'medium' }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Department ID</strong>: <span>{{ studentDetailsObject?.departmentId }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Department Name</strong> :<span>{{ studentDetailsObject?.department }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Created Datetime</strong> :<span>{{ studentDetailsObject?.createdDttm | date:'medium'}}</span>
+        </div>
+        
+        <div class="detail-row">
+            <strong>Created Source</strong> :<span>{{ studentDetailsObject?.createdSource }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Created Date</strong> :<span>{{ studentDetailsObject?.createdDttm | date:'medium' }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Created Source Type</strong>: <span>{{ studentDetailsObject?.createdSourceType }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Modified Source</strong> :<span>{{ studentDetailsObject?.modifiedResource }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Modified Date</strong> :<span>{{ studentDetailsObject?.modifiedDttm | date:'medium' }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Modified Source Type</strong> :<span>{{ studentDetailsObject?.modifiedSourceType }}</span>
+        </div>
+       
+    </div>
+
+    
+    </div>
+    <div class="buttons-container">
+        <div>
+            <p-button label="Back" severity="secondary" (click)="isViewDetailsActive = false" class="back-dept-button" />
+            <p-button label="Edit" type="submit" class="submit-model-btn" (click) = "OnEditOption()"/>
+        </div>
+    </div>
+    </div>
+</p-dialog>
+
+
+
+
+
+
+
+
+
+<p-dialog header="Edit Student Information" [modal]="true" [(visible)]="isUpdateActive" [style]="{ width: '25rem' }" class="student-details-modal">
+    <form #dialogForm="ngForm"  [ngStyle]="{'height':'50%'}">
+       <hr/>
+        <!-- Form Container -->
+        <div class="form-container">
+          <div class="image-container">
+            <img [src]="studentDetailsObject?.image" alt="imageElement" class="student-details-image"/>
+        </div>
+            <div class="form-elements-container">
+            <div>
+                <div [ngStyle]="{ 'margin':'5px'}">
+                    <label for="username">Student ID<br/></label>
+                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.id" id="username" name="id" required [disabled]="true"/>
+                </div>
+                <div class="input-Element">
+                    <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                        <label for="firstname">First Name<br/></label>
+                        <input type="text" pInputText [(ngModel)]="studentDetailsObject.firstname" id="firstname" name="firstname" required placeholder="Enter Your First Name" #firstname="ngModel" />
+                        <div *ngIf="firstname.invalid && firstname.touched" class="error-text">First Name is required</div>
+                    </div>
+                    <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <label for="lastname">Last Name <br/></label>
+                        <input type="text" pInputText [(ngModel)]="studentDetailsObject.lastname" id="lastname" name="lastname" required placeholder="Enter Your Last Name" #lastname="ngModel" />
+                        <div *ngIf="lastname.invalid && lastname.touched" class="error-text">Last Name is required</div>
+                    </div>
+                </div>
+                <div class="input-Element">
+                    <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                        <label for="email">Email<br/></label>
+                        <input type="email" pInputText [(ngModel)]="studentDetailsObject.email" id="firstname" name="email" email required placeholder="abcd@gmail.com" #email="ngModel" />
+                        <div *ngIf="email.invalid && email.touched" class="error-text">Email is required</div>
+                    </div>
+                    <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <label for="gender">Gender <br/></label>
+                        <input pInputText [(ngModel)]="studentDetailsObject.selectedCategory.name" id="gender" name="gender"  required  #email="ngModel" />
+                       
+                    </div>
+                </div>
+                <div class="input-Element" >
+                    <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <label for="dob">Date Of Birth<br/></label>
+                        <input  pInputText type="date" [(ngModel)]="studentDetailsObject.dob" inputId="dob"  name="dob" [ngStyle]="{'width':'100%'}" required #dob="ngModel" />
+                        <div *ngIf="dob.invalid && dob.touched" class="error-text">Date Of Birth is required</div>
+                    </div>
+                    <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <label for="phonenumber">Phone Number <br/></label>
+                        
+                            <input type="number" pInputText  [(ngModel)]="studentDetailsObject.phoneNumber" name="phoneNumber" pattern="[0-9]{10}" [ngStyle]="{'width':'65%'}" required #phNumber="ngModel" class="phone-number" /> 
+                            <div *ngIf="phNumber.invalid && phNumber.touched" class="error-text">Valid Phone Number is required</div>
+                       
+                    </div>
+                </div>
+                <div class="input-Element" >
+                   
+                    <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <label for="departmentId">Department ID<br/></label>
+                        <input pInputText [(ngModel)]="studentDetailsObject.departmentId" inputId="departmentId" name="departmentId"  required #departmentId="ngModel" />
+                        <div *ngIf="departmentId.invalid && departmentId.touched" class="error-text">Department ID is required</div>
+                    </div>
+                  <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <label for="department">Department  <br/></label>
+                        <input type="text" id="department" pInputText  [(ngModel)]="studentDetailsObject.department" name="department"  #department="ngModel" /> 
+                        <div *ngIf="department.invalid && department.touched" class="error-text">Department is required</div>
+                    </div>
+                </div>
+                <div class="input-Element" >
+                    <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <label for="dob">Date Of Joining <br/></label>
+                        <input type="text" id="dateOfJoining" pInputText  [(ngModel)]="studentDetailsObject.dateOfJoining" name="dateOfJoining" disabled="true" #dateOfJoining="ngModel" /> 
+                        <div *ngIf="dateOfJoining.invalid && dateOfJoining.touched" class="error-text">Date Of Joining is required</div>
+                    </div>
+                    <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                        <label for="bloodGroup">Blood Group<br/></label>
+                        <input type="text" pInputText [(ngModel)]="studentDetailsObject.bloodGroup" id="bloodGroup" name="bloodGroup" required placeholder="Enter Your Blood Group" #bloodGroup="ngModel" />
+                        <div *ngIf="bloodGroup.invalid && bloodGroup.touched" class="error-text">Blood Group is required</div>
+                    </div> 
+                </div>
+                <div class="input-Element" >
+                    <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                        <label for="address">Address<br/></label>
+                        <textarea rows="5" cols="30" pTextarea  [(ngModel)]="studentDetailsObject.address" id="address" #address="ngModel" name="address" ></textarea>
+                    </div>           
+                </div>
+              <div class="input-Element" >
+                <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                    <label for="createdSource">Created Source Type <br/></label>
+                    <input pInputText [(ngModel)]="studentDetailsObject.createdSource" id="createdSource" class="w-full md:w-56"  name="createdSource" />
+                </div>
+                    <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <label for="createdSourceType">Created Source <br/></label>
+                        <input pInputText [(ngModel)]="studentDetailsObject.createdSourceType" id="createdSourceType" class="w-full md:w-56"  name="createdSourceType" />
+                    </div>
+                    
+                </div>
+                <div class="input-Element" >
+                    <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <label for="createdDttm">Created DateTime   <br/></label>
+                        <input  pInputText  [(ngModel)]="studentDetailsObject.createdDttm" inputId="createdDttm"  name="createdDttm" />
+                    </div>
+                    <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <label for="modifiedResource">Modified Source <br/></label>
+                        <input type="text" pInputText id="modifiedResource"  [(ngModel)]="studentDetailsObject.modifiedResource" name="modifiedResource"/> 
+                    </div>
+                   
+                </div>
+                <div class="input-Element" >
+                    <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <label for="modifiedSourceType">Modified Source Type <br/></label>
+                        <input type="text" pInputText id="modifiedSourceType"  [(ngModel)]="studentDetailsObject.modifiedSourceType" name="modifiedSourceType" /> 
+                    </div>
+                    <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <label for="modifiedDttm">Modified Datetime  <br/></label>
+                        <input pInputText id ="modifiedDttm" [(ngModel)]="studentDetailsObject.modifiedDttm"   class="w-full md:w-56" [ngStyle]="{'width':'100%'}" name="modifiedDttm" />
+                    </div>
+                </div>
+            </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="buttons-container">
+            <div>
+                <p-button label="Back" severity="secondary" (click)="onBackClick()" class="back-dept-button"/>
+
+            </div>
+            <div>
+                <p-button label="Update" type="submit" class="submit-model-btn" (click) = "OnUpdateOption(studentDetailsObject.id)"/>
+            </div>
+        </div>
+    </form>
+</p-dialog>

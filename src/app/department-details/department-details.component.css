@@ -1,0 +1,91 @@
+
+
+::ng-deep .depart-modal .p-dialog {
+    width: 70rem !important; /* Adjust width without affecting other dialogs */
+    max-width: 90%; /* Ensures responsiveness */
+}
+
+
+
+.department-details strong {
+    color: #0077aa;
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+    width:98%;
+  
+}
+
+::ng-deep .back-dept-button .p-button{
+   /* background-color: #0099cc !important; /* Change to any color */
+    color: #000; /* Text color */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px 20px; /* Adjust size */
+    font-weight: bold; /* Make text bold */
+    align-self: flex-end !important;
+    border: 1px solid #d9dbde;
+}
+
+.detail-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid #ddd; /* Optional: Adds a divider */
+    padding: 5px 0;
+    font-weight: bold;
+}
+
+.detail-row strong {
+    width: 50%;
+    text-align: left;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.detail-row span {
+    width: 50%;
+    text-align: left;
+    padding-left:10px;
+    font-weight: 500 !important;
+}
+
+::ng-deep .p-dialog .p-dialog-title {
+    font-size: 20px; /* Adjust font size */
+    font-weight: bold; /* Make it stand out */
+    color: #0099cc !important; /* Change text color */
+    text-align: center; /* Center align */
+    padding: 10px; /* Add spacing */
+    background-color: #f4f4f4; /* Light background */
+   /* border-bottom: 2px solid #0099cc;  Add a subtle border */
+}
+/* Responsive Design */
+@media screen and (max-width: 1024px) {
+    .department-details {
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .department-details {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .department-details h2 {
+        font-size: 18px;
+    }
+
+    .department-details p {
+        font-size: 14px;
+    }
+}

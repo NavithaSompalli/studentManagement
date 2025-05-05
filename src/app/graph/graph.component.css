@@ -3,9 +3,21 @@
     z-index: index 1 !important;
     top:25vh;
     margin:20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width:98% !important;
 }
 
 
 ::ng-deep .p-card{
     border-radius: 0px !important;
+}
+
+::ng-deep .bargraph-container{
+    width:90% !important;
+}
+
+::ng-deep .p-card-container{
+    width:98% !important;
 }

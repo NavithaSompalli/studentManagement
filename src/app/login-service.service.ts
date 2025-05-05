@@ -9,23 +9,6 @@ import { map } from 'rxjs/operators';
 export class LoginServiceService {
   private apiUrl = 'http://localhost:3000/users';
 
-  studentList = {
-    StudentId :'',
-    FirstName:'',
-    LastName:'',
-    Dob:'',
-    Gender:'',
-    PhoneNumber:'',
-    DateOfJoining:'',
-    CreatedSource:'',
-    CreatedSourceType:'',
-    CreateDttm:'',
-    ModifiedSource:'',
-    ModifiedSourceType:'',
-    ModifiedDttm:''
-  }
-
-  
   date = new Date();
   dateFormat = `${this.date.getDay()}-${this.date.getMonth()}-${this.date.getFullYear()} ${this.date.getHours()}:${this.date.getSeconds()} `
   imageUrl!: string;
@@ -99,9 +82,10 @@ export class LoginServiceService {
 
 
     findStudent(id){
+      console.log("service", id);
       return this.http.get<any[]>(`http://localhost:3000/studentList?id=${id}`).pipe(
         map((users) =>{
-          console.log(users);
+        //  console.log(users);
           if(users.length !== 0){
             return users
           }else{
@@ -112,4 +96,8 @@ export class LoginServiceService {
     }
 
 
+    updateStudent(studentId: string, studentData: any): Observable<any> {
+      return this.http.put(`http://localhost:3000/studentList/${studentId}`, studentData);
+      ;
+    }
 }

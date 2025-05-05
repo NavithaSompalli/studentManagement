@@ -1,8 +1,9 @@
 
 
 <!--<div class="card flex justify-center">-->
-    <p-dialog header="Add New User" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '100vh', '575px': '100%' }" [style]="{width:'70%' }" [draggable]="false" [resizable]="false">
+    <p-dialog header="Add New User" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '100vh', '575px': '100%' }" [style]="{width:'80%' }" [draggable]="false" [resizable]="false" class="add-form-modal">
         <hr/>
+      <!--  <img [src]="imageUrl" alt="imageElement"/>-->
         <form #dialogForm="ngForm" (ngSubmit)="onSubmitDialogue()" [ngStyle]="{'height':'50%'}">
             <div class="flex gap-4 form-elements-container">
             <!-- Avatar Upload Container -->
@@ -17,8 +18,7 @@
                 </div>
             </div>
             <!-- Form Container -->
-            <div class="form-container">
-                <h3>Basic Details</h3>
+            <div class="form-container"> 
                 <div>
                     <div [ngStyle]="{ 'margin':'5px'}">
                         <label for="username">Student ID<br/></label>
@@ -26,25 +26,36 @@
                     </div>
                     <div class="input-Element">
                         <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
-                            <label for="firstname">First Name<br/></label>
-                            <input type="text" pInputText [(ngModel)]="user.firstname" id="firstname" name="firstname" required/>
+                            <label for="firstname">First Name*<br/></label>
+                            <input type="text" pInputText [(ngModel)]="user.firstname" id="firstname" name="firstname" required placeholder="Enter Your First Name" #firstname="ngModel"/>
+                            <div class="error-text">
+                                <span *ngIf="firstname.invalid && firstname.touched" >First Name is required</span>
+                            </div>
+                           
                         </div>
                         <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="lastname">Last Name <br/></label>
-                            <input type="text" pInputText [(ngModel)]="user.lastname" id="lastname" name="lastname" required/>
+                            <label for="lastname">Last Name* <br/></label>
+                            <input type="text" pInputText [(ngModel)]="user.lastname" id="lastname" name="lastname" required placeholder="Enter Your Last Name" #lastname="ngModel"/>
+                           <div class="error-text">
+                            <span *ngIf="lastname.invalid && lastname.touched" >Last Name is required</span>
+                            </div>
                         </div>
                     </div>
                     <div class="input-Element">
                         <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
-                            <label for="email">Email<br/></label>
-                            <input type="email" pInputText [(ngModel)]="user.email" id="firstname" name="email" email required/>
+                            <label for="email">Email*<br/></label>
+                            <input type="email" pInputText [(ngModel)]="user.email" id="firstname" name="email" email required placeholder="abcd@gmail.com" #email="ngModel"/>
+                            <div class="error-text">
+                            
+                                <span *ngIf="email.invalid && email.touched" >Email is required</span>
+                            </div>
                         </div>
                         <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="lastname">Gender <br/></label>
+                            <label for="lastname">Gender* <br/></label>
                             <div class=" flex justify-center">
                                 <div class="flex flex-col gap-4">
                                     <div *ngFor="let category of categories" class="field-checkbox flex">
-                                        <p-radiobutton [inputId]="category.key" name="category" [value]="category" [(ngModel)]="user.selectedCategory" size="small" required/>
+                                        <p-radiobutton [inputId]="category.key" name="category" [value]="category" [(ngModel)]="user.selectedCategory" size="small" required #category="ngModel"/>
                                         <label [for]="category.key" class="ml-2">{{ category.name }}</label>
                                     </div>
                                 </div>
@@ -53,76 +64,91 @@
                     </div>
                     <div class="input-Element" >
                         <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="dob">Date Of Birth<br/></label>
-                            <input  pInputText type="date" [(ngModel)]="user.dob" inputId="dob"  name="dob" [ngStyle]="{'width':'100%'}" required/>
+                            <label for="dob">Date Of Birth*<br/></label>
+                            <input  pInputText type="date" [(ngModel)]="user.dob" inputId="dob"  name="dob" [ngStyle]="{'width':'100%'}" required #dob="ngModel"/>
+                            <div class="error-text">
+                                <span *ngIf="dob.invalid && dob.touched" >Date Of Birth is required</span>
+                            </div>
                         </div>
                         <div [ngStyle]="{'width':'48%','margin':'5px'}">
                             <label for="phonenumber">Phone Number <br/></label>
                             <div [ngStyle]="{'width':'100%'}">
-                                <p-select [options]="countryPhoneCodes" [(ngModel)]="user.selectedCity" [checkmark]="false" optionLabel="code" [showClear]="false" name="selectedCity" />
-                                <input type="number" pInputText  [(ngModel)]="user.phoneNumber" name="phoneNumber" [ngStyle]="{'width':'65%'}" required/> 
+                                <p-select [options]="countryPhoneCodes" [(ngModel)]="user.selectedCity" [checkmark]="false" optionLabel="code" [showClear]="false" name="selectedCity" class="phone-number"/>
+                                <input type="number" pInputText  [(ngModel)]="user.phoneNumber" name="phoneNumber" pattern="[0-9]{10}" [ngStyle]="{'width':'65%'}" required #phNumber="ngModel"/> 
+                               <div class="error-text">
+                                <span *ngIf="phNumber.invalid && phNumber.touched" >Valid Phone Number is required</span>
+                            </div>
                             </div>
                         </div>
                     </div>
-                    <div class="input-Element" >
+                    <div class="input-Element">
+                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                            <label for="departmentId">Department ID<br/></label>
+                            <p-select 
+                                [(ngModel)]="user.departmentId" 
+                                [options]="departmentList" 
+                                optionLabel="departmentId" 
+                                optionValue="departmentId"
+                                name="departmentId"
+                                class="custom-dropdown"
+                                required #departmentId="ngModel"/>
+                            <div class="error-text">
+                                <span *ngIf="departmentId.invalid && departmentId.touched" >Department ID is required</span>
+                            </div>
+                        </div>
                        
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="departmentId">DepartmentId<br/></label>
-                            <input pInputText [(ngModel)]="user.departmentId" inputId="departmentId" name="departmentId"  required/>
-                        </div>
-                      <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="phonenumber">Department  <br/></label>
-                            <input type="text" pInputText  [(ngModel)]="dept" name="department" disabled="true"/> 
+                    
+                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                            <label for="department">Department <br/></label>
+                            <p-select 
+                                [(ngModel)]="user.department" 
+                                [options]="departmentList" 
+                                optionLabel="departmentName" 
+                                optionValue="departmentName"
+                                name="department"
+                                class="custom-dropdown"
+                                required #department="ngModel"/>
+                            <div class="error-text">
+                                <div *ngIf="department.invalid && department.touched" >Department is required</div>
+                            </div>
                         </div>
                     </div>
+                    
                     <div class="input-Element" >
                         <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="dob">Date Of Joining <br/></label>
-                            <p-datepicker [(ngModel)]="user.dateOfJoining" inputId="dob" [showIcon]="true" name="dateOfJoining" [ngStyle]="{'width':'600px'}" required/>
+                            <label for="dob">Date Of Joining* <br/></label>
+                            <p-datepicker [(ngModel)]="user.dateOfJoining" inputId="dob" [showIcon]="true" name="dateOfJoining" [ngStyle]="{'width':'600px'}" required #dateOfJoining="ngModel"/>
+                           <div>
+                            <div class="error-text">
+                               <p> {{ dateOfJoining?.invalid && dateOfJoining?.touched ? 'Date Of Joining is required' : '      ' }}</p>
+                            </div>
                         </div>
-                    </div>
-                  <div class="input-Element" >
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="createdSourceType">Created Source Type <br/></label>
-                            <input pInputText [(ngModel)]="user.createdSourceType" id="createdSourceType" class="w-full md:w-56"  name="createdSourceType" disabled/>
                         </div>
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="createdDttm">CreatedDttm   <br/></label>
-                            <p-datepicker [(ngModel)]="user.createdDttm" inputId="createdDttm" [showIcon]="true" name="createdDttm" />
-                        </div>
-                    </div>
-                    <div class="input-Element" >
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="modifiedResource">Modified Source <br/></label>
-                            <input type="text" pInputText id="modifiedResource"  [(ngModel)]="user.modifiedResource" name="modifiedResource" disabled/> 
-                        </div>
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="modifiedSourceType">Modified Source Type    <br/></label>
-                            <input type="text" pInputText id="modifiedSourceType"  [(ngModel)]="user.modifiedSourceType" name="modifiedSourceType" disabled/> 
-                        </div>
+                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                            <label for="bloodGroup">Blood Group<br/></label>
+                            <input type="text" pInputText [(ngModel)]="user.bloodGroup" id="bloodGroup" name="bloodGroup" required placeholder="Enter Your Blood Group" #bloodGroup="ngModel"/>
+                            <div class="error-text">
+                              <p>  {{ bloodGroup.invalid && bloodGroup.touched ? 'Blood Group is required' : '' }}</p>
+                            </div>
+                        </div> 
                     </div>
                     <div class="input-Element" >
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="modifiedDttm">Modified Dttm  <br/></label>
-                            <input pInputText id ="modifiedDttm" [(ngModel)]="user.modifiedDttm"   class="w-full md:w-56" [ngStyle]="{'width':'100%'}" name="modifiedDttm"/>
-                        </div>
+                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                            <label for="address">Address<br/></label>
+                            <textarea rows="5" cols="30" pTextarea  [(ngModel)]="user.address" id="address" #address="ngModel" name="address"></textarea>
+                        </div>           
                     </div>
+              
                 </div>
-                <div class="input-Element" >
-                    <div [ngStyle]="{'width':'48%','margin':'5px','height':'10vh'}">
-                       
-                    </div>
-                </div>
-                
-                  
                 </div>
             </div>
             <hr/>
             <div class="buttons-container">
-                <p-button label="Cancel" severity="secondary" (click)="visible = false" class="cancel-btn"/>
-                <p-button label="Save" type="submit"  />
+                <p-button label="Cancel" severity="secondary" (click)="visible = false" class="cancel-modal-btn"/>
+                <p-button label="Save" type="submit" class="submit-model-btn" [disabled]="dialogForm.invalid"/>
             </div>
         </form>
+       
     </p-dialog>
 <!--</div>-->
 

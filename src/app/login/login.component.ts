@@ -80,7 +80,7 @@ export class LoginComponent {
           if(this.username === 'admin'){
           this.userError = "User Login Successfully";
           this.messageService.add({ severity: 'success', summary: 'Success', detail: this.userError })
-          this.router.navigate(['home']);
+          this.router.navigate(['home/graph']);
           }
         },
       });

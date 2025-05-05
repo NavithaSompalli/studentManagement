@@ -1,0 +1,39 @@
+<p-dialog header="Department Details" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }" class="depart-modal">
+    <hr/>
+    <div class="details-container">
+        <div class="detail-row">
+            <strong>Department ID</strong>: <span>{{ selectedDepartment?.departmentId }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Department Name</strong> :<span>{{ selectedDepartment?.departmentName }}</span>
+        </div>
+        <div class="detail-row" *ngIf="selectedDepartment?.noOfStudents !== 0">
+            <strong>Number of Students</strong> :<span>{{ selectedDepartment?.noOfStudents }}</span>
+        </div>
+        <div class="detail-row" *ngIf="selectedDepartment?.noOfStudents === 0">
+            <strong>Number of Students</strong> :<span>No Students Available</span>
+        </div>
+        <div class="detail-row">
+            <strong>Created Source</strong> :<span>{{ selectedDepartment?.createdSource }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Created Date</strong> :<span>{{ selectedDepartment?.createdDttm | date:'medium' }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Created Source Type</strong>: <span>{{ selectedDepartment?.createdSourceType }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Modified Source</strong> :<span>{{ selectedDepartment?.modifiedSource }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Modified Date</strong> :<span>{{ selectedDepartment?.modifiedDttm | date:'medium' }}</span>
+        </div>
+        <div class="detail-row">
+            <strong>Modified Source Type</strong> :<span>{{ selectedDepartment?.modifiedSourceType }}</span>
+        </div>
+    </div>
+
+    <div class="buttons-container">
+        <p-button label="Back" severity="secondary" (click)="visible = false" class="back-dept-button" />
+    </div>
+</p-dialog>

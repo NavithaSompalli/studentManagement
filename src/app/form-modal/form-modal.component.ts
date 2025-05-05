@@ -1,160 +1,157 @@
 import { Component, Input, OnInit, OnChanges } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { MenuItem } from 'primeng/api';
-import { ViewChild } from '@angular/core';
 import { LoginServiceService } from '../login-service.service';
 import { HttpClient } from '@angular/common/http';
-
-
+import { ChartDataService } from '../chart-data.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-form-modal',
   templateUrl: './form-modal.component.html',
   styleUrl: './form-modal.component.css',
-  standalone:false
+  standalone: false
 })
-export class FormModalComponent implements OnInit,OnChanges {
-  constructor(private service: LoginServiceService, private http:HttpClient){}
+export class FormModalComponent implements OnInit, OnChanges {
+  constructor(
+    private service: LoginServiceService, 
+    private http: HttpClient,
+    private chartDataService: ChartDataService, // Correct way to inject service
+    private router: Router
+  ) {}
 
- @Input() visible: boolean = false;
- @Input() stuId: string = "";
- @Input() dept: string = "";
+  departmentList: any;
 
-    showDialog() {
-        this.visible = true;
-    }
-    categories = [
-      {
-        name: "Female", key:'F'
-      },
-      {
-        name: "Male", key:'M'
-      },
-      {
-        name: "TransGender", key:"T"
-      }
-    ]
-    
-    student : object;
+  @Input() visible: boolean = false;
+  @Input() stuId: string = "";
+  @Input() dept: string = "";
 
-    ngOnInit(){
-      this.student = this.service.user;
-      console.log('services :',this.student);
-    }
-    ngOnChanges(){
-      this.student = this.service.user;
-      console.log('services :',this.student);
-    }
+  deptCode?: string = "";
 
-    userTypes = [
-      {
-        name: 'User'
-      },
-      {
-        name: 'Admin'
-      }
-    ]
 
-    selectedUserType : string;
-    
-     date = new Date();
-     hours = this.date.getHours() % 12 || 12; // Converts 24-hour format to 12-hour
-     minutes = this.date.getMinutes();
-    seconds = this.date.getSeconds();
-    ampm = this.date.getHours() >= 12 ? 'PM' : 'AM'; // Determines AM/PM
-    
-    dateFormat = `${this.date.getDate()}-${this.date.getMonth() + 1}-${this.date.getFullYear()} ${this.hours}:${this.minutes}:${this.seconds} ${this.ampm}`;
-    
-     imageUrl!: string;
-     
-     user = {
-      id:'ITO2025'+`${Math.floor(Math.random() * 90)+10}`,
-      firstname:'',
-      lastname:'',
-      dob:'',
-      email:'',
-      phoneNumber:'',
-      selectedCity:{ code: "+91", country: "India" },
-      selectedCategory:'',
-      image:this.imageUrl,
-      modifiedResource:'Admin',
-      modifiedSourceType:'Admin',
-      modifiedDttm:this.dateFormat,
-      createdDttm: new Date(),
-      createdSourceType:'Admin',
-      createdSource:'Admin',
-      dateOfJoining:'',
-      department:'',
-      departmentId:''
-    }
-
-   
-     countryPhoneCodes = [
-      { country: "USA", code: "+1" },
-      { country: "UK", code: "+44" },
-      { country: "India", code: "+91" },
-      { country: "Australia", code: "+61" },
-      { country: "Canada", code: "+1" },
-      { country: "Germany", code: "+49" },
-      { country: "France", code: "+33" },
-      { country: "Japan", code: "+81" },
-      { country: "China", code: "+86" },
-      { country: "Brazil", code: "+55" },
-      { country: "Russia", code: "+7" },
-      { country: "South Africa", code: "+27" },
-      { country: "Mexico", code: "+52" },
-      { country: "Italy", code: "+39" },
-      { country: "Spain", code: "+34" },
-      { country: "Saudi Arabia", code: "+966" },
-      { country: "UAE", code: "+971" },
-      { country: "Singapore", code: "+65" },
-      { country: "South Korea", code: "+82" },
-      { country: "Netherlands", code: "+31" }
+  categories = [
+    { name: "Female", key: 'F' },
+    { name: "Male", key: 'M' },
+    { name: "TransGender", key: "T" }
   ];
-    @ViewChild('dialogForm') form!: NgForm;
 
-    onSubmitDialogue(){
-     // console.log(this)
-     // console.log(this.form);
-     // console.log(this.imageUrl);
+  student: object;
 
-     // console.log(this.user.id)
-      this.service.findStudent(this.user.id).subscribe({
-        next: (response) =>{
-          console.log("Response :" , response);
-          if(!response){
-            alert("student already exit");
-          }else{
-            this.http.post('http://localhost:3000/studentList', this.user).subscribe({
-              next: (response) => console.log('Success:', response),
-              error: (error) => console.log("error", error ),
-              complete: () => console.log("Student deatails add successfully")
-            });
+  imageUrl: string = "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png";
+
+   // Date Formatting
+   date = new Date();
+   hours = this.date.getHours() % 12 || 12; 
+   minutes = this.date.getMinutes();
+   seconds = this.date.getSeconds();
+   ampm = this.date.getHours() >= 12 ? 'PM' : 'AM';
+   dateFormat = `${this.date.getDate()}-${this.date.getMonth() + 1}-${this.date.getFullYear()} ${this.hours}:${this.minutes}:${this.seconds} ${this.ampm}`;
+ 
+  
+  user = {
+    id: 'ITO2025' + `${Math.floor(Math.random() * 90) + 10}`,
+    firstname: '',
+    lastname: '',
+    dob: '',
+    email: '',
+    phoneNumber: '',
+    selectedCity: { code: "+91", country: "India" },
+    selectedCategory: { name: "Female", key: 'F' },
+    image: this.imageUrl,
+    modifiedResource: 'Admin',
+    modifiedSourceType: 'Admin',
+    modifiedDttm: this.dateFormat,
+    createdDttm: this.dateFormat,
+    createdSourceType: 'Admin',
+    createdSource: 'Admin',
+    dateOfJoining: '',
+    department: this.dept,
+    departmentId: this.deptCode,
+    bloodGroup: '',
+    address: ''
+  };
+
+  countryPhoneCodes = [
+    { country: "USA", code: "+1" },
+    { country: "UK", code: "+44" },
+    { country: "India", code: "+91" }
+  ];
 
 
-            this.service.getStudentDetails().subscribe({
-              next: (response) => console.log('success:', response),
-              error: (error) =>console.log("error", error),
-              complete:()=>console.log("Student Details")
-            })
-          }
-        }
-      })  
+  ngOnInit() {
+    this.departmentList = this.chartDataService.departmentList; // Access service data
+  //  console.log('Department List:', this.departmentList);
+    this.student = this.service.user;
+   
+    this.user["department"] = this.dept;
+    this.user["departmentId"] = this.deptCode;
+    console.log(this.user);
+   
+  }
+
+  ngOnChanges() {
+    if (!this.departmentList || this.departmentList.length === 0) {
+        console.warn('departmentList is undefined or empty.');
+        return;
     }
 
+    this.student = this.service.user;
+    
+    let index = this.departmentList.filter(depart => depart["departmentName"] === this.dept);
+    
+    if (index.length > 0) {
+        this.deptCode = index[0]["departmentId"];
+    } else {
+        console.warn('No matching department found.');
+        this.deptCode = null; // Assign default value
+    }
 
-    openUploadDialog() {
-      document.getElementById('fileInput')?.click();
-  }
+    console.log("departmentCode", this.deptCode);
+    console.log("upadted user object", this.user);
+}
+
+  selectedUserType: string;
+
+ 
   
-  onFileSelected(event: any) {
-      const file: File = event.target.files[0];
-  
-      if (file) {
-          const reader = new FileReader();
-          reader.readAsDataURL(file);
-          reader.onload = () => {
-              this.imageUrl = reader.result as string;
-          };
+  onSubmitDialogue() {
+    this.service.findStudent(this.user.id).subscribe({
+      next: (response) => {
+     //   console.log("Response :", response);
+        if (response) {
+          alert("Student already exists");
+        } else {
+          this.http.post('http://localhost:3000/studentList', this.user).subscribe({
+            next: (response) => console.log(response),
+            error: (error) => console.log("Error:", error),
+            complete: () => console.log("Student details added successfully")
+          });
+
+          this.service.getStudentDetails().subscribe({
+            next: (response) => console.log('Success:', response),
+            error: (error) => console.log("Error:", error),
+            complete: () => console.log("Student Details")
+          });
+
+          this.router.navigate(['home/student'])
+        }
       }
+    });
   }
+
+  openUploadDialog() {
+    document.getElementById('fileInput')?.click();
+  }
+
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageUrl = reader.result as string;
+        //console.log(this.imageUrl);
+       // this.user["image"] = this.imageUrl;
+      };
+      reader.readAsDataURL(file);
+     // console.log(this.imageUrl);
+    }
+  }
+
 }

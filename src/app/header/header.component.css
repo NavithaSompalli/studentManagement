@@ -36,17 +36,16 @@
     align-self: center;
 }
 
-.active {
-  background-color: #0099cc;
+::ng-deep .active{
+  background-color: #0099cc !important;
   color: white;
   font-weight: bold;
   height: 100%;
   width: 100px;
   text-align: center;
   align-self: center;
-
   display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

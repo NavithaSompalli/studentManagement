@@ -58,12 +58,12 @@
   ],
   "studentList": [
     {
-      "id": "ITO202574",
-      "firstname": "Mamatha",
-      "lastname": "Sompalli",
-      "dob": "2025-04-24",
-      "email": "mamatha2024@gmail.com",
-      "phoneNumber": 9876543221,
+      "id": "ITO202591",
+      "firstname": "Gayathri",
+      "lastname": "Venkateshulu",
+      "dob": "2014-01-04",
+      "email": "gayathri1234@gmail.com",
+      "phoneNumber": 9876654321,
       "selectedCity": {
         "code": "+91",
         "country": "India"
@@ -74,19 +74,23 @@
       },
       "modifiedResource": "Admin",
       "modifiedSourceType": "Admin",
-      "modifiedDttm": "3-3-2025 12:26 ",
-      "createdDttm": "3-3-2025 12:26 ",
+      "modifiedDttm": "4-5-2025 12:6:32 PM",
+      "createdDttm": "2025-05-04T06:36:32.270Z",
       "createdSourceType": "Admin",
       "createdSource": "Admin",
-      "dateOfJoining": "2025-04-22T18:30:00.000Z"
+      "dateOfJoining": "2025-05-03T18:30:00.000Z",
+      "department": "Chemical Engineering",
+      "departmentId": "CH006",
+      "bloodGroup": "B+",
+      "address": "Bnagalore"
     },
     {
-      "id": "ITO20254",
-      "firstname": "Navitha",
-      "lastname": "Sompalli",
-      "dob": "2025-04-29",
-      "email": "navitha098765@gmail.com",
-      "phoneNumber": 9018765432,
+      "id": "ITO202548",
+      "firstname": "Gayathri",
+      "lastname": "Venkateshulu",
+      "dob": "2014-01-04",
+      "email": "gayathri1234@gmail.com",
+      "phoneNumber": 9876654321,
       "selectedCity": {
         "code": "+91",
         "country": "India"
@@ -97,18 +101,22 @@
       },
       "modifiedResource": "Admin",
       "modifiedSourceType": "Admin",
-      "modifiedDttm": "3-3-2025 13:54 ",
-      "createdDttm": "3-3-2025 13:54 ",
+      "modifiedDttm": "4-5-2025 2:48:46 PM",
+      "createdDttm": "2025-05-04T18:30:00.000Z",
       "createdSourceType": "Admin",
       "createdSource": "Admin",
-      "dateOfJoining": "2025-04-20T18:30:00.000Z"
+      "dateOfJoining": "2025-05-03T18:30:00.000Z",
+      "department": "Civil Engineering",
+      "departmentId": "CIVIL003",
+      "bloodGroup": "B+",
+      "address": "Bangalore, Karnataka"
     },
     {
-      "id": "ITO202578",
-      "firstname": "Navitha",
-      "lastname": "Sompalli",
-      "dob": "2025-04-10",
-      "email": "navitha098765@gmail.com",
+      "id": "ITO202550",
+      "firstname": "Gayathri",
+      "lastname": "Venkateshulu",
+      "dob": "2012-01-05",
+      "email": "gayathri1234@gmail.com",
       "phoneNumber": 9876543211,
       "selectedCity": {
         "code": "+91",
@@ -118,80 +126,74 @@
         "name": "Female",
         "key": "F"
       },
+      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
       "modifiedResource": "Admin",
       "modifiedSourceType": "Admin",
-      "modifiedDttm": "3-3-2025 14:7 ",
-      "createdDttm": "3-3-2025 14:7 ",
+      "modifiedDttm": "4-5-2025 11:25:13 PM",
+      "createdDttm": "2025-05-04T18:30:00.000Z",
       "createdSourceType": "Admin",
       "createdSource": "Admin",
-      "dateOfJoining": "2025-04-15T18:30:00.000Z"
+      "dateOfJoining": "2025-05-03T18:30:00.000Z",
+      "department": "Mechanical Engineering",
+      "departmentId": "ME005",
+      "bloodGroup": "B+",
+      "address": "Bnagalore,Karnataka"
     },
     {
-      "id": "ITO202536",
-      "firstname": "Navitha",
-      "lastname": "Sompalli",
-      "dob": "2025-04-23",
-      "email": "navitha098765@gmail.com",
+      "id": "ITO202566",
+      "firstname": "Sai",
+      "lastname": "Nalla",
+      "dob": "2002-01-05",
+      "email": "sainalla123@gmail.com",
       "phoneNumber": 9876543211,
       "selectedCity": {
         "code": "+91",
         "country": "India"
       },
       "selectedCategory": {
-        "name": "Female",
-        "key": "F"
+        "name": "Male",
+        "key": "M"
       },
+      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
       "modifiedResource": "Admin",
       "modifiedSourceType": "Admin",
-      "modifiedDttm": "3-3-2025 14:27 ",
-      "createdDttm": "3-3-2025 14:27 ",
+      "modifiedDttm": "5-5-2025 10:18:16 AM",
+      "createdDttm": "2025-05-04T18:30:00.000Z",
       "createdSourceType": "Admin",
       "createdSource": "Admin",
-      "dateOfJoining": "2025-04-23T18:30:00.000Z"
+      "dateOfJoining": "2025-05-01T18:30:00.000Z",
+      "department": "Computer Science",
+      "departmentId": "CSE001",
+      "bloodGroup": "O+",
+      "address": "Bnagalore,Karnataka"
     },
     {
-      "id": "ITO202597",
-      "firstname": "Navitha",
-      "lastname": "Sompalli",
-      "dob": "2025-04-30",
-      "email": "navitha098765@gmail.com",
-      "phoneNumber": 9018765432,
+      "id": "ITO202539",
+      "firstname": "Sai",
+      "lastname": "Nalla",
+      "dob": "2010-01-05",
+      "email": "sainalla123@gmail.com",
+      "phoneNumber": 9876543211,
       "selectedCity": {
         "code": "+91",
         "country": "India"
       },
       "selectedCategory": {
-        "name": "Female",
-        "key": "F"
+        "name": "Male",
+        "key": "M"
       },
+      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
       "modifiedResource": "Admin",
       "modifiedSourceType": "Admin",
-      "modifiedDttm": "3-3-2025 14:1 ",
-      "createdDttm": "3-3-2025 14:1 ",
+      "modifiedDttm": "5-5-2025 10:25:39 AM",
+      "createdDttm": "2025-05-05T04:55:39.663Z",
       "createdSourceType": "Admin",
       "createdSource": "Admin",
-      "dateOfJoining": "2025-04-14T18:30:00.000Z"
-    },
-    {
-      "id": "ITO202577",
-      "firstname": "Navitha",
-      "lastname": "Sompalli",
-      "dob": "2025-04-23",
-      "email": "navitha098765@gmail.com",
-      "phoneNumber": 9018765432,
-      "selectedCity": {
-        "code": "+91",
-        "country": "India"
-      },
-      "selectedCategory": "",
-      "modifiedResource": "Admin",
-      "modifiedSourceType": "Admin",
-      "modifiedDttm": "3-3-2025 17:25 ",
-      "createdDttm": "3-3-2025 17:25 ",
-      "createdSourceType": "Admin",
-      "createdSource": "Admin",
-      "dateOfJoining": "2025-04-15T18:30:00.000Z",
-      "department": "CSE"
+      "dateOfJoining": "2021-12-02T18:30:00.000Z",
+      "department": "Electronics and Communication Engineering",
+      "departmentId": "ECE002",
+      "bloodGroup": "A+",
+      "address": "Bnagalore,Karnataka"
     }
   ]
 }

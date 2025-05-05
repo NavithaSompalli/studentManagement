@@ -6,6 +6,7 @@ import { ViewChild } from '@angular/core';
 import { LoginServiceService } from '../login-service.service';
 import { HttpClient } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { ChartDataService } from '../chart-data.service';
 @Component({
   selector: 'app-student',
  
@@ -14,13 +15,17 @@ import { ConfirmationService, MessageService } from 'primeng/api';
   standalone:false
 })
 export class StudentComponent {
-  position: 'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright' = 'center';
+  position:  'top' | 'center' | 'topleft' | 'topright'  = 'center';
 
  visible: boolean = false;
  stuId: string= "";
  dept:string = "";
+ isViewDetailsActive: boolean = false;
+ studentDetailsObject: object;
+// selectedDepartment: any = null;
 
-  constructor(private service: LoginServiceService, private http:HttpClient, private confirmService: ConfirmationService, private messageService:MessageService ){}
+
+  constructor(private service: LoginServiceService, private http:HttpClient, private confirmService: ConfirmationService, private messageService:MessageService, private departmentObject: ChartDataService){}
   
   studentList: object[];
   paginator: boolean= false;
@@ -45,48 +50,56 @@ export class StudentComponent {
       }
   ]
 
+  departmentList: object[];
+
+ 
 
   ngOnChanges(){
     this.service.getStudentDetails().subscribe({
       next: (response) => {
         this.studentList = response
-        console.log(this.studentList)
+       // console.log(this.studentList)
       },
       error: (error) => console.log(error),
       complete: ()=>console.log("completed")
     })
   }
 
-  getStudentDetails(){
+  getStudentDetails(){ // this function return total records from the jsonserver
     this.service.getStudentDetails().subscribe({
       next: (response) => {
         this.studentList = response
-        console.log(this.studentList)
+       // console.log(this.studentList)
         if(this.studentList.length >=5){
           this.paginator = true;
         }
       },
       error: (error) => console.log(error),
       complete: ()=>{
-        console.log("completed");
+      //  console.log("completed");
         this.totalPages = Array(Math.ceil(this.studentList.length / this.rowsPerPage.value)).fill(0);
-      console.log("total pages " + this.totalPages);
+     // console.log("total pages " + this.totalPages);
       }
     })
   }
 
   ngOnInit(){
     this.getStudentDetails();
+    this.studentList = this.studentList || [];
+    this.departmentList = this.departmentObject.departmentList;
+    this.visible = false;
+    this.isViewDetailsActive = false;
   }
 
 
-  onDeleteRecord(id:number, position:'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright'){
+  onDeleteRecord(id:number, position: 'center' | 'topleft' | 'topright' ){
+    
     this.position = position;
 
     this.confirmService.confirm({
-        message: 'Are you sure you want to proceed?',
+        message: `Are you sure you want to remove ${id}? Confirm to Delete.`,
         header: 'Confirmation',
-        icon: 'pi pi-info-circle',
+        icon: '<i class="fa-solid fa-circle-question"></i>',
         rejectButtonStyleClass: 'p-button-text',
         rejectButtonProps: {
             label: 'Cancel',
@@ -99,7 +112,7 @@ export class StudentComponent {
         },
         accept: () => {
             this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Request submitted' });
-            console.log(id);
+           // console.log(id);
             this.service.deleteStudentDetails(id).subscribe({
               next: (response) => console.log(id),
               error: (error) => console.log(error),
@@ -121,32 +134,23 @@ export class StudentComponent {
     });
   }
 
-  onClickAddData(position:'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright'){
+  onClickAddData(position: 'center' | 'topleft' | 'topright' ){
     this.visible = !this.visible;
     this.position = position;
   }
 
-  /*OnCreateRecord(){
-    this.isAddBtnActive = !this.isAddBtnActive;
-    this.visible = !this.visible;
-  }*/
+// pagination logic  
 
   updatePagination(){
     this.currentPage = 0; // Reset to first page whenever rows per page changes
     this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i);
   }
 
-  get paginatedStudents() {
+  get paginatedStudents() { // this method returns rows(based on the rowsperpage)
     const start = this.currentPage * this.rowsPerPage.value;
     const end = start + this.rowsPerPage.value;
     return this.studentList.slice(start, end);
 }
-
-onViewDetails(id){
-  console.log(id);
-}
-
-
 
 prevPage() {
     if (this.currentPage > 0) this.currentPage--;
@@ -171,19 +175,19 @@ studentValidateObj = {
 
 @ViewChild('miniDialog') mindialogueForm : NgForm;
 
-onsumbitDialogue(){
+onsubmitDialogue(){
  //  console.log(this.mindialogueForm.controls["studentId"].value);
  //  console.log(this.mindialogueForm.controls["department"].value);
    let id = this.mindialogueForm.controls["studentId"].value;
    let dept = this.mindialogueForm.controls["department"].value;
-   console.log(id,dept);
+   //console.log("validate",id,dept);
 
    if(id !== undefined && dept !== undefined){
 
    this.service.findStudent(id).subscribe({
     next: (response) => {
-      console.log(response, "onsubmitDialogue");
-      console.log(response[0].studentId === id , response[0].department === dept)
+    //  console.log(response, "onsubmitDialogue");
+    //  console.log(response[0].studentId === id , response[0].department === dept)
       if(response[0].id === id && response[0].department === dept){
         alert("Student Already registered in this department");
       }else{
@@ -193,7 +197,7 @@ onsumbitDialogue(){
     },
     error: (error) => console.log(error),
     complete: ()=>{
-      console.log("completed");
+     // console.log("completed");
     }
   })
    
@@ -202,5 +206,27 @@ onsumbitDialogue(){
 }
 
 }
+
+// displaying each student record
+viewStudentDetails(product:any){
+  this.isViewDetailsActive = !this.isViewDetailsActive;
+ // console.log(product, this.isViewDetailsActive);
+  this.studentDetailsObject = product;
+  
+}
+
+
+//filteredDepartment
+/*filteredDepartments: any[] = [];
+
+filterDepartment(event) {
+  this.filteredDepartments = this.departmentList.filter(dept =>{
+    console.log(dept["departmentName"]);
+    dept["departmentName"].toLowerCase().includes(event.query.toLowerCase())
+  }
+    
+  );
+}*/
+
 
 }

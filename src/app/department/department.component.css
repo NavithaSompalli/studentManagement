@@ -7,7 +7,7 @@ body {
 }
 
 /* Card Container */
-.card {
+.graph-card {
     position: absolute !important;
     z-index: 2 !important;
     top: 22vh;
@@ -42,7 +42,7 @@ body {
     background-color: #0077aa;
     margin: 5px !important;
     border-radius: 5px !important;
-   /* width: 150px !important;*/
+    width: 150px !important;
     font-weight: bold !important;
 }
 
@@ -129,14 +129,11 @@ td{
 ::ng-deep .flex-auto{
     width:100%;
     margin-bottom: 10px;
-    background-color: #f0f0f0 !important;
-    margin-top:5px;
-    margin-bottom: 10px;
 }
 
 ::ng-deep .validate-student-dialog .p-dialog{
     font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: ghostwhite;
     width:30% !important;
 }
 
@@ -147,42 +144,35 @@ td{
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.add-btn-container[_ngcontent-ng-c523017971] {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding-top:5px;
-    border: 1px solid #000 !important;
-}
-
 ::ng-deep .cancel-btn .p-button {
-    color: #000 !important;
+ /*   background-color: red !important;*/
+    color: white !important;
     border-radius: 5px;
     padding: 10px;
     margin-right: 10px;
-    border: 1px solid #d9dbde !important;
-    margin-top:10px;
 }
 
 ::ng-deep .submit-btn .p-button  {
     background-color: #0077aa !important;
     color: white !important;
     border-radius: 5px;
-    margin-top:10px;
+    padding: 10px;
+    
 }
 
 ::ng-deep .error-text{
     color:red;
 }
 
-.custom-dropdown {
-    width: 100% !important;
-    margin-top:5px;
-    margin-bottom: 10px;
-    background-color: #f0f0f0 !important;
-    border-radius: 0px;
-  }
-  
+.dept-pagi-selector{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 5px;
+   
+}
+
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
     .card {
@@ -200,7 +190,7 @@ td{
     }
 
     .add-btn {
-      /*  width: 120px !important;*/
+        width: 120px !important;
         font-size: 12px;
     }
 
@@ -226,7 +216,7 @@ td{
     }
 
     .add-btn {
-      /*  width: 100px !important;*/
+        width: 100px !important;
         font-size: 10px;
     }
 
@@ -242,17 +232,9 @@ td{
     .confirm-box-card {
         width: 50% !important;
     }
-
-    ::ng-deep .validate-student-dialog .p-dialog{
-        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-       /* background-color: ghostwhite;*/
-        width:100% !important;
-        padding:5px;
-    }
-    
 }
 
-@media (max-width: 480px) and (min-width:767px){
+@media (max-width: 480px) {
     .card {
         width: 95% !important;
         margin-left: 5px !important;
@@ -270,14 +252,13 @@ td{
     }
 
     .add-btn {
-      /*  width: 80px !important;*/
+        width: 80px !important;
         font-size: 9px;
     }
 
     .custom-paginator button {
         font-size: 9px;
         padding: 4px 6px;
-        width: auto;
     }
 
     .confirm-box-card {
@@ -289,14 +270,8 @@ td{
     }
 
     .paginator-btn{
-     /*   width: 80px !important;*/
+        width: 80px !important;
         font-size: 9px;
         border-radius: 5px;
-    }
-
-    ::ng-deep .validate-student-dialog .p-dialog{
-        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-        background-color: ghostwhite;
-        width:100% !important;
     }
 }

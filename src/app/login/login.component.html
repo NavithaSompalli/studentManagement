@@ -9,7 +9,7 @@
         <form #myForm="ngForm" (ngSubmit)="onSubmitLogin()">
             <div class="card flex justify-center">
                 <div class="flex flex-col gap-2" [ngStyle]="{'margin':'5px'}">
-                    <label for="username" >Username<sup  [ngStyle]="{'color':'red'}">*</sup></label>
+                    <label for="username" >User Name<sup  [ngStyle]="{'color':'red'}">*</sup></label>
                     <div [ngStyle]="{'margin-top':'5px'}">
                         <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="username" name="username"  placeholder="Username" [ngStyle]="{'width': '100%'}" required/>
                     </div>
@@ -40,7 +40,7 @@
         <form #myFormSignup="ngForm" (ngSubmit)="onSubmitSignUp()">
             <div class="card flex justify-center">
                 <div class="flex flex-col gap-2" [ngStyle]="{'margin':'5px'}">
-                    <label for="username">Username<sup  [ngStyle]="{'color':'red'}">*</sup></label>
+                    <label for="username">User Name<sup  [ngStyle]="{'color':'red'}">*</sup></label>
                     <div [ngStyle]="{'margin-top':'5px'}">
                         <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="username" name="username"  placeholder="Username" [ngStyle]="{'width': '100%'}" required/>
                     </div>

@@ -89,7 +89,7 @@ input{
 }
 
 .upload-placeholder {
-    color: #666;
+   
     color:#fff;
     background-color: #0099cc;
     width:40px;
@@ -111,6 +111,7 @@ input{
     overflow-x: hidden; /* Prevents horizontal scrolling */
     scrollbar-width: none;
     margin-bottom: 50%;
+    margin-top:5px;
 }
 
 .input-Element{
@@ -135,10 +136,12 @@ input{
     bottom: 0;
     width: 98%;
     background: white; /* Ensure it doesn't overlap with content */
-    padding: 10px;
+   /* padding: 10px;*/
     border-top: 1px solid #ccc; /* Optional: adds a separator */
+    gap:0px;
   }
 
+  
 ::ng-deep .p-select, ::ng-deep .p-inputtext {
     border-radius: 0 !important;
     border-top-right-radius: 0px !important;
@@ -147,18 +150,21 @@ input{
 }
 
 ::ng-deep .p-select{
-    background-color: #0099cc !important;
+   /* background-color: #0099cc !important;*/
     border-bottom-left-radius: 5px !important;
     border-top-left-radius: 5px !important;
     color:#fff !important;
     outline: none !important;
-    color:#fff !important;
    /* background-color: #f0f0f0 !important; */
+}
+
+::ng-deep .phone-number .p-select-label{
+    color:#000 !important;
 }
 
 
 ::ng-deep .p-dialog-content {
-    max-height: 60vh !important; /* Adjust based on preference */
+    max-height: 70vh !important; /* Adjust based on preference */
     overflow-y: hidden !important; /* Enables vertical scrolling */
     overflow-x: hidden !important;
   }
@@ -180,3 +186,77 @@ input{
     width: 100% !important;
   }
 
+ ::ng-deep .p-textarea{
+    background-color: #f0f0f0 !important;
+  }
+
+
+  ::ng-deep .submit-model-btn .p-button{
+    background-color: #0077aa !important;
+    color: white !important;
+    border-radius: 5px;
+    /*padding: 10px;*/
+   
+    
+  }
+
+  ::ng-deep p-button[_ngcontent-ng-c3216660951] {
+    padding:0px !important;
+  }
+
+
+  ::ng-deep .buttons-container[_ngcontent-ng-c3439807804]{
+    gap:0px !important;
+    padding:0px !important;
+  }
+
+  ::ng-deep .cancel-modal-btn .p-button{
+  /*  background-color: red !important;*/
+  border: 1px solid #d9dbde;
+    color: #000 !important;
+    border-radius: 5px;
+    /*padding: 10px;*/
+   /* width: 150px;*/
+  }
+
+
+  ::ng-deep .add-form-modal .p-dialog-header{
+    padding:10px;
+    padding-left:20px;
+   /* background-color: #0099cc;*/
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  /*  color:#fff;*/
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color:#0077aa;
+  }
+
+
+.custom-dropdown {
+  width: 100% !important;
+  background-color: #f0f0f0 !important;
+  margin-bottom: 10px;
+}
+
+.phone-number .p-select-label {
+  color: #000 !important;
+}
+
+p-button[_ngcontent-ng-c2645148613] {
+  /* padding: 10px 20px; */
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.input-Element {
+  min-height: 80px; /* Adjust based on design needs */
+  position: relative;
+  margin-bottom: 10px;
+}
+.error-text {
+  color: red;
+  font-size: 15px;
+  position: absolute;
+  bottom: -10px; /* Keeps error message fixed in place */
+  
+}

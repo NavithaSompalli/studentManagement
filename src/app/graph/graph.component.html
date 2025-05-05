@@ -3,11 +3,8 @@
     <h1 [ngStyle]="{'margin-left':'4%', 'color':'#fff','font-family':'Bree Serif', 'padding-top':'10px'}">Dashboard</h1>
 </div>
 
-<div class="mb-4 p-8 graph-card" >
-    <p-card header="Simple Card">
-        <p class="m-0">
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore sed consequuntur error repudiandae numquam deserunt quisquam repellat libero asperiores earum nam nobis, culpa ratione quam perferendis esse, cupiditate neque
-            quas!
-        </p>
+<div class="mb-4 p-8 graph-card bargraph-container" >
+    <p-card header="Trends" class="p-card-container">
+        <p-chart type="bar" [data]="data" [options]="options" class="h-[30rem]" />
     </p-card>
 </div>

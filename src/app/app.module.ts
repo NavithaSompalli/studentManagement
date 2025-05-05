@@ -10,6 +10,10 @@ import { StudentComponent } from "./student/student.component";
 import { GraphComponent } from "./graph/graph.component";
 import { FooterComponent } from "./footer/footer.component";
 import { FormModalComponent } from "./form-modal/form-modal.component";
+import { StudentDetailsComponent } from "./student-details/student-details.component";
+import {DepartmentComponent} from "./department/department.component";
+import { AttendanceComponent } from "./attendence/attendence.component";
+import { DepartmentDetailsComponent } from "./department-details/department-details.component";
 
 
 import { BrowserModule } from "@angular/platform-browser";
@@ -29,12 +33,13 @@ import { LoginComponent } from "./login/login.component";
 import { LoginServiceService } from "./login-service.service";
 import { MessageService } from 'primeng/api'; // toast modules
 import { ConfirmationService } from 'primeng/api';
+import { ChartDataService } from "./chart-data.service";
+
 import { Toast } from 'primeng/toast';
 import { Ripple } from 'primeng/ripple';
 import { RouterModule } from "@angular/router"; 
 import { Routes } from "@angular/router";
-import { CUSTOM_ELEMENTS_SCHEMA } from "@angular/core";
-import { NO_ERRORS_SCHEMA } from "@angular/core";
+
 
 import { MenubarModule } from 'primeng/menubar';
 import { CommonModule } from "@angular/common";
@@ -49,25 +54,73 @@ import { Select } from 'primeng/select';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 import { ConfirmDialog } from 'primeng/confirmdialog';
-
-
-
-
-
-
+import { TextareaModule } from 'primeng/textarea';
+import { ChartModule } from 'primeng/chart';
+import { AutoCompleteModule } from 'primeng/autocomplete';
+import { DropdownModule } from 'primeng/dropdown'
 
 
 const routes: Routes = [
-    { path: '', component: LoginComponent },
-    {path:'home', component: HomeComponent},
-    {path:'admin', component:AdminComponent}
-  ];
-
+  { path: '', component: LoginComponent },
+  { path: 'home', component: HomeComponent, 
+    children: [
+      { path: 'student', component: StudentComponent },
+      { path: 'department', component: DepartmentComponent },
+      {path:'graph', component: GraphComponent},
+      {path:'attendance', component: AttendanceComponent}
+    ] 
+  },
+  { path: 'admin', component: AdminComponent }
+];
 @NgModule({
-    declarations:[FormModalComponent,FooterComponent,AppComponent,LoginComponent,HomeComponent,HeaderComponent,AdminComponent,StudentComponent,GraphComponent],
-    imports:[ConfirmDialog,ConfirmDialogModule,Select,InputNumberModule,RadioButton,RadioButtonModule,DatePickerModule,TableModule,CommonModule,MenubarModule,RouterModule.forRoot(routes),Toast,Ripple,BrowserModule,ButtonModule,ButtonModule,CardModule,FormsModule,PasswordModule,InputTextModule,DialogModule,Dialog,HttpClientModule],
+    declarations:[DepartmentComponent,
+      StudentDetailsComponent,
+      FormModalComponent,
+      FooterComponent,
+      AppComponent,
+      LoginComponent,
+      HomeComponent,
+      HeaderComponent,
+      AdminComponent,
+      StudentComponent,
+      GraphComponent,
+      AttendanceComponent,
+      DepartmentDetailsComponent
+    ],
+    imports:[
+      DropdownModule,
+      AutoCompleteModule,
+      ChartModule,
+      TextareaModule,
+      ConfirmDialog,
+      ConfirmDialogModule,
+      Select,
+      InputNumberModule,
+      RadioButton,
+      RadioButtonModule,
+      DatePickerModule,
+      TableModule,
+      CommonModule,
+      MenubarModule,
+      RouterModule.forRoot(routes),
+      Toast,
+      Ripple,
+      BrowserModule,
+      ButtonModule,
+      ButtonModule,
+      CardModule,
+      FormsModule,
+      PasswordModule,
+      InputTextModule,
+      DialogModule,
+      Dialog,
+      HttpClientModule],
     bootstrap:[AppComponent],
-    providers:[provideAnimationsAsync(),providePrimeNG({theme :{preset :Aura}}), LoginServiceService,MessageService,ConfirmationService],
+    providers:[ChartDataService,
+      provideAnimationsAsync(),providePrimeNG({theme :{preset :Aura}}), 
+      LoginServiceService,
+      MessageService,
+      ConfirmationService],
     exports:[RouterModule]
 })
 

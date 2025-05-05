@@ -123,7 +123,7 @@ p-button {
 }
 
 ::ng-deep .p-select{
-    background-color: #0099cc;
+   /* background-color: #0099cc;*/
     border-bottom-left-radius: 5px !important;
     border-top-left-radius: 5px !important;
     color:#fff !important;

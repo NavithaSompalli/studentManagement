@@ -1,0 +1,65 @@
+
+<div [ngStyle]="{'background-color':'#0099cc', 'height':'15vh'}">
+    <h1 [ngStyle]="{'margin-left':'4%', 'color':'#fff','font-family':'Bree Serif', 'padding-top':'10px'}">Department</h1>
+</div>
+
+<div class="mb-4 p-8 graph-card" >
+    <p-card>
+        <div class="dept-pagi-selector">
+            <h3>Departments</h3>
+            <p-select [options]="rowsPerPageArray" [(ngModel)]="rowsPerPage" optionLabel="name" 
+        class="w-full md:w-56 paginator-btn" *ngIf="studentList.length !== 0" (ngModelChange)="updatePagination()" />
+        </div>
+        <hr/>
+        <div class="table-container">
+            <div *ngIf="studentList?.length === 0" class="no-records-container">
+                <h2>No records found.</h2>
+            </div>
+
+            <p-table [value]="paginatedStudents" stripedRows *ngIf="studentList?.length !== 0"
+                     [rows]="rowsPerPage.value" responsiveLayout="scroll"> 
+                <ng-template #header>
+                    <tr>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="departmentId">departmentID <i class="fa-solid fa-sort" field="id"></i></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="department">departmentName <i class="fa-solid fa-sort" field="firstname"></i></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="noOfStudent ">noOfStudents <i class="fa-solid fa-sort" field="lastname"></i></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="createdSource">createdSource <i class="fa-solid fa-sort" field="dob"></i></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="createdSourceType">createdSourceType <i class="fa-solid fa-sort" field="dob"></i></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="createdDttm">createdDttm  <i class="fa-solid fa-sort" field="phoneNumber"></i></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedSource">modifiedSource <i class="fa-solid fa-sort" field="dateOfJoining"></i></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedSourceType">modifiedSourceType<i class="fa-solid fa-sort" field="createdSource"></i></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedDttm">modifiedDttm <i class="fa-solid fa-sort" field="createdSourceType"></i></th>
+                       
+                    </tr>
+                </ng-template>
+
+                <ng-template #body let-product>
+                    <tr (click)="viewStudentDetails(product)">
+                        <td style="white-space: nowrap;">{{ product.departmentId }}</td>
+                        <td style="white-space: nowrap;">{{ product.departmentName }}</td>
+                        <td style="white-space: nowrap;" *ngIf="product.noOfStudents === 0 "> No Students Available </td>
+                        <td style="white-space: nowrap;" *ngIf="product.noOfStudents !== 0">{{product.noOfStudents}}</td>
+                        <td style="white-space: nowrap;">{{ product.createdSource }}</td>
+                        <td style="white-space: nowrap;">{{ product.createdSourceType }}</td>
+                        <td style="white-space: nowrap;">{{ product.createdDttm | date: 'medium' }}</td>
+                        <td style="white-space: nowrap;">{{ product.modifiedSource }}</td>
+                        <td style="white-space: nowrap;">{{ product.modifiedSourceType }}</td>
+                        <td style="white-space: nowrap;">{{ product.modifiedDttm | date: 'medium' }}</td>
+                    </tr>
+                </ng-template>                
+            </p-table>
+            </div>
+
+            <div class="custom-paginator" *ngIf="studentList?.length >= rowsPerPage.value">
+                <button (click)="prevPage()" [disabled]="currentPage === 0">Previous</button>
+                <span *ngFor="let page of totalPages; let i = index">
+                    <button (click)="goToPage(i)" [ngClass]="{'active': currentPage === i}">
+                        {{ i + 1 }}
+                    </button>
+                </span>
+                <button (click)="nextPage()" [disabled]="currentPage === totalPages.length - 1">Next</button>
+            </div>
+    </p-card>
+</div>
+
+<app-department-details [selectedDepartment]="selectedDepartment"  [visible]="visible"></app-department-details>
