@@ -64,15 +64,12 @@
         <div class="detail-row">
             <strong>Modified Source Type</strong> :<span>{{ studentDetailsObject?.modifiedSourceType }}</span>
         </div>
-       
     </div>
-
-    
     </div>
     <div class="buttons-container">
         <div>
-            <p-button label="Back" severity="secondary" (click)="isViewDetailsActive = false" class="back-dept-button" />
-            <p-button label="Edit" type="submit" class="submit-model-btn" (click) = "OnEditOption()"/>
+            <p-button label="Cancel" severity="secondary" (click)="isViewDetailsActive = false" class="back-dept-button" />
+            <p-button label="Edit" type="submit" class="submit-model-btn" (click) = "OnEditOption()" *ngIf="studentActive"/>
         </div>
     </div>
     </div>
@@ -86,7 +83,7 @@
 
 
 
-<p-dialog header="Edit Student Information" [modal]="true" [(visible)]="isUpdateActive" [style]="{ width: '25rem' }" class="student-details-modal">
+<p-dialog header="Edit Student Information" [modal]="true" [(visible)]="isUpdateActive" [style]="{ width: '25rem' }" class="student-details-modal" *ngIf="studentActive">
     <form #dialogForm="ngForm"  [ngStyle]="{'height':'50%'}">
        <hr/>
         <!-- Form Container -->
@@ -172,33 +169,33 @@
               <div class="input-Element" >
                 <div [ngStyle]="{'width':'48%','margin':'5px'}">
                     <label for="createdSource">Created Source Type <br/></label>
-                    <input pInputText [(ngModel)]="studentDetailsObject.createdSource" id="createdSource" class="w-full md:w-56"  name="createdSource" />
+                    <input pInputText [(ngModel)]="studentDetailsObject.createdSource" id="createdSource" class="w-full md:w-56"  name="createdSource" [disabled]="true"/>
                 </div>
                     <div [ngStyle]="{'width':'48%','margin':'5px'}">
                         <label for="createdSourceType">Created Source <br/></label>
-                        <input pInputText [(ngModel)]="studentDetailsObject.createdSourceType" id="createdSourceType" class="w-full md:w-56"  name="createdSourceType" />
+                        <input pInputText [(ngModel)]="studentDetailsObject.createdSourceType" id="createdSourceType" class="w-full md:w-56"  name="createdSourceType" [disabled]="true"/>
                     </div>
                     
                 </div>
                 <div class="input-Element" >
                     <div [ngStyle]="{'width':'48%','margin':'5px'}">
                         <label for="createdDttm">Created DateTime   <br/></label>
-                        <input  pInputText  [(ngModel)]="studentDetailsObject.createdDttm" inputId="createdDttm"  name="createdDttm" />
+                        <input  pInputText  [(ngModel)]="studentDetailsObject.createdDttm" inputId="createdDttm"  name="createdDttm" [disabled]="true"/>
                     </div>
                     <div [ngStyle]="{'width':'48%','margin':'5px'}">
                         <label for="modifiedResource">Modified Source <br/></label>
-                        <input type="text" pInputText id="modifiedResource"  [(ngModel)]="studentDetailsObject.modifiedResource" name="modifiedResource"/> 
+                        <input type="text" pInputText id="modifiedResource"  [(ngModel)]="studentDetailsObject.modifiedResource" name="modifiedResource" [disabled]="true"/> 
                     </div>
                    
                 </div>
                 <div class="input-Element" >
                     <div [ngStyle]="{'width':'48%','margin':'5px'}">
                         <label for="modifiedSourceType">Modified Source Type <br/></label>
-                        <input type="text" pInputText id="modifiedSourceType"  [(ngModel)]="studentDetailsObject.modifiedSourceType" name="modifiedSourceType" /> 
+                        <input type="text" pInputText id="modifiedSourceType"  [(ngModel)]="studentDetailsObject.modifiedSourceType" name="modifiedSourceType" [disabled]="true"/> 
                     </div>
                     <div [ngStyle]="{'width':'48%','margin':'5px'}">
                         <label for="modifiedDttm">Modified Datetime  <br/></label>
-                        <input pInputText id ="modifiedDttm" [(ngModel)]="studentDetailsObject.modifiedDttm"   class="w-full md:w-56" [ngStyle]="{'width':'100%'}" name="modifiedDttm" />
+                        <input pInputText id ="modifiedDttm" [(ngModel)]="studentDetailsObject.modifiedDttm"   class="w-full md:w-56" [ngStyle]="{'width':'100%'}" name="modifiedDttm" [disabled]="true"/>
                     </div>
                 </div>
             </div>
@@ -208,7 +205,6 @@
         <div class="buttons-container">
             <div>
                 <p-button label="Back" severity="secondary" (click)="onBackClick()" class="back-dept-button"/>
-
             </div>
             <div>
                 <p-button label="Update" type="submit" class="submit-model-btn" (click) = "OnUpdateOption(studentDetailsObject.id)"/>
@@ -216,3 +212,8 @@
         </div>
     </form>
 </p-dialog>
+
+
+<!--Toast-->
+
+<p-toast />

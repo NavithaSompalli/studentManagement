@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output,AfterViewChecked, OnInit } from '@angular/core';
 import { LoginServiceService } from '../login-service.service';
+import { MessageService } from 'primeng/api';
 
 
 @Component({
@@ -10,17 +11,15 @@ import { LoginServiceService } from '../login-service.service';
 })
 export class StudentDetailsComponent implements AfterViewChecked, OnInit{
 
-  constructor(private service: LoginServiceService){}
+  studentActive: boolean = false;
 
+  studentData = JSON.parse(localStorage.getItem('student'));
+
+  constructor(private service: LoginServiceService,private messageService: MessageService){}
   
- 
   isUpdateActive:boolean = true;
   @Input() studentDetailsObject: any; // Receive selected department
   @Input() isViewDetailsActive: boolean = false; // Receive dialog visibility state
-  
-
-  
- 
   @Input() product: { 
     id: string; 
     firstname: string; 
@@ -65,10 +64,16 @@ export class StudentDetailsComponent implements AfterViewChecked, OnInit{
     address:''
   };
   
+  
 
   ngOnInit(){
     this.studentDetailsObject = this.product;
     this.isUpdateActive = false;
+    if(this.studentData){
+      this.studentActive = false;
+    }else{
+      this.studentActive = true;
+    }
   }
   ngAfterViewChecked(){
       this.product = this.product;
@@ -94,12 +99,13 @@ export class StudentDetailsComponent implements AfterViewChecked, OnInit{
   
     this.service.updateStudent(id, this.studentDetailsObject).subscribe(
       response => {
-       // console.log('Student updated successfully', response); // Display the response object
-        alert('Updated successfully');
+      
+        this.messageService.add({ severity: 'success', detail: 'Updated successfully', life: 3000 });
       },
       error => {
-       // console.error('Error updating student', error);
-        alert('Failed to update student. Please try again.');
+      
+       
+        this.messageService.add({ severity: 'warn', detail: 'Failed to update student. Please try again.', life: 3000 });
       }
     );
   }

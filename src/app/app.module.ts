@@ -14,6 +14,8 @@ import { StudentDetailsComponent } from "./student-details/student-details.compo
 import {DepartmentComponent} from "./department/department.component";
 import { AttendanceComponent } from "./attendence/attendence.component";
 import { DepartmentDetailsComponent } from "./department-details/department-details.component";
+import { AttendanceFormComponent } from "./attendance-form/attendance-form.component";
+import { AttendanceDetailsComponent } from "./attendance-details/attendance-details.component";
 
 
 import { BrowserModule } from "@angular/platform-browser";
@@ -34,6 +36,7 @@ import { LoginServiceService } from "./login-service.service";
 import { MessageService } from 'primeng/api'; // toast modules
 import { ConfirmationService } from 'primeng/api';
 import { ChartDataService } from "./chart-data.service";
+import { SortServiceService } from "./sort-service.service";
 
 import { Toast } from 'primeng/toast';
 import { Ripple } from 'primeng/ripple';
@@ -57,21 +60,30 @@ import { ConfirmDialog } from 'primeng/confirmdialog';
 import { TextareaModule } from 'primeng/textarea';
 import { ChartModule } from 'primeng/chart';
 import { AutoCompleteModule } from 'primeng/autocomplete';
-import { DropdownModule } from 'primeng/dropdown'
+import { DropdownModule } from 'primeng/dropdown';
+import { IconFieldModule } from 'primeng/iconfield';
+import { InputIconModule } from 'primeng/inputicon';
 
+import { AuthGuardService } from "./auth.guard";
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'home', component: HomeComponent, 
+  {path:'',component:GraphComponent},
+  { 
+    path: 'home', 
+    component: HomeComponent, 
+    canActivate: [AuthGuardService], // Protects the main route
+    canActivateChild: [AuthGuardService], // Protects child routes
     children: [
       { path: 'student', component: StudentComponent },
       { path: 'department', component: DepartmentComponent },
-      {path:'graph', component: GraphComponent},
-      {path:'attendance', component: AttendanceComponent}
+      { path: 'graph', component: GraphComponent },
+      { path: 'attendance', component: AttendanceComponent }
     ] 
   },
-  { path: 'admin', component: AdminComponent }
+  { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService] } // Protects admin route
 ];
+
 @NgModule({
     declarations:[DepartmentComponent,
       StudentDetailsComponent,
@@ -85,7 +97,9 @@ const routes: Routes = [
       StudentComponent,
       GraphComponent,
       AttendanceComponent,
-      DepartmentDetailsComponent
+      DepartmentDetailsComponent,
+      AttendanceFormComponent,
+      AttendanceDetailsComponent,
     ],
     imports:[
       DropdownModule,
@@ -120,7 +134,13 @@ const routes: Routes = [
       provideAnimationsAsync(),providePrimeNG({theme :{preset :Aura}}), 
       LoginServiceService,
       MessageService,
-      ConfirmationService],
+      ConfirmationService,
+      SortServiceService,
+      InputIconModule,
+      IconFieldModule,
+      AuthGuardService
+
+    ],
     exports:[RouterModule]
 })
 

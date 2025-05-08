@@ -1,7 +1,7 @@
 <div [ngStyle]="{'background-color':'#0099cc', 'height':'15vh'}">
-    <h1 [ngStyle]="{'margin-left':'4%', 'color':'#fff','font-family':'Roboto', 'padding-top':'20px', 'font-size':'26px'}">
+    <h2 [ngStyle]="{'margin-left':'3%', 'color':'#fff','font-family':'Roboto', 'padding-top':'5px', 'font-size':'2rem'}">
         <i class="fa-solid fa-users" [ngStyle]="{'font-size':'25px', 'margin-right':'10px'}"></i>Student List
-    </h1>
+    </h2>
 </div>
 
 <div class="card">
@@ -11,7 +11,7 @@
             <div class="student-form-elements">
                 <p-select [options]="rowsPerPageArray" [(ngModel)]="rowsPerPage" optionLabel="name" 
                           class="w-full md:w-56 paginator-btn" *ngIf="studentList.length !== 0" (ngModelChange)="updatePagination()"/>
-                <button type="button" class="p-button add-btn" (click)="onClickAddData('center')">+Add</button>
+                <button type="button" class="p-button add-btn" (click)="onClickAddData('center')" *ngIf="studentActive">+Add</button>
             </div>
         </div>
         <hr/>
@@ -24,40 +24,39 @@
                      [rows]="rowsPerPage.value" responsiveLayout="scroll"> 
                 <ng-template #header>
                     <tr>
-                        <th style="white-space: nowrap;" pSortableColumn="id">Student ID <i class="fa-solid fa-sort" field="id"></i></th>
-                        <th style="white-space: nowrap;" pSortableColumn="firstname">First Name <i class="fa-solid fa-sort" field="firstname"></i></th>
-                        <th style="white-space: nowrap;" pSortableColumn="lastname">Last Name <i class="fa-solid fa-sort" field="lastname"></i></th>
-                        <th style="white-space: nowrap;" pSortableColumn="dob">DOB <i class="fa-solid fa-sort" field="dob"></i></th>
-                        <th style="white-space: nowrap;" pSortableColumn="dob">Gender <i class="fa-solid fa-sort" field="dob"></i></th>
-                        <th style="white-space: nowrap;" pSortableColumn="phoneNumber">Phone Number <i class="fa-solid fa-sort" field="phoneNumber"></i></th>
-                        <th style="white-space: nowrap;" pSortableColumn="dateOfJoining">Date Of Joining <i class="fa-solid fa-sort" field="dateOfJoining"></i></th>
-                        <th style="white-space: nowrap;" pSortableColumn="createdSource">Created Source <i class="fa-solid fa-sort" field="createdSource"></i></th>
-                        <th style="white-space: nowrap;" pSortableColumn="createdSourceType">Created Source Type <i class="fa-solid fa-sort" field="createdSourceType"></i></th>
-                        <th style="white-space: nowrap;" pSortableColumn="createdDttm">Created Datetime <i class="fa-solid fa-sort" field="createdDttm"></i></th>
-                        <th style="white-space: nowrap;" pSortableColumn="modifiedResource">Modified Resource <i class="fa-solid fa-sort" field="modifiedResource"></i></th>
-                        <th style="white-space: nowrap;" pSortableColumn="modifiedSourceType">Modified Resource Type <i class="fa-solid fa-sort" field="modifiedSourceType"></i></th>
-                        <th style="white-space: nowrap;" pSortableColumn="modifiedDttm">Modified Datetime <i class="fa-solid fa-sort" field="modifiedDttm"></i></th>
-                        <th></th>
-                        <th></th>
+                        <th style="white-space: nowrap;" pSortableColumn="id" (click)="sortColumn('id')">Student ID <i class="fa-solid fa-sort" field="id"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="firstname" (click)="sortColumn('firstname')">First Name <i class="fa-solid fa-sort" field="firstname"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="lastname" (click)="sortColumn('lastname')">Last Name <i class="fa-solid fa-sort" field="lastname"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="dob" (click)="sortColumn('dob')">DOB <i class="fa-solid fa-sort" field="dob"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="gender" (click)="sortColumn('gender')">Gender <i class="fa-solid fa-sort" field="dob"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="phoneNumber" (click)="sortColumn('phoneNumber')">Phone Number <i class="fa-solid fa-sort" field="phoneNumber"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="dateOfJoining" (click)="sortColumn('dateOfJoining')">Date Of Joining <i class="fa-solid fa-sort" field="dateOfJoining"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="createdSource" (click)="sortColumn('createdSource')">Created Source <i class="fa-solid fa-sort" field="createdSource"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="createdSourceType" (click)="sortColumn('createdSourceType')">Created Source Type <i class="fa-solid fa-sort" field="createdSourceType"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="createdDttm" (click)="sortColumn('createdDttm')">Created Datetime <i class="fa-solid fa-sort" field="createdDttm"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="modifiedResource" (click)="sortColumn('modifiedResource')">Modified Resource <i class="fa-solid fa-sort" field="modifiedResource"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="modifiedSourceType" (click)="sortColumn('modifiedSourceType')">Modified Resource Type <i class="fa-solid fa-sort" field="modifiedSourceType"></i></th>
+                        <th style="white-space: nowrap;" pSortableColumn="modifiedDttm" (click)="sortColumn('modifiedDttm')">Modified Datetime <i class="fa-solid fa-sort" field="modifiedDttm"></i></th>
+                        <th *ngIf="studentActive"></th>
                     </tr>
                 </ng-template>
 
                 <ng-template #body let-product>
                     <tr (dblclick)="viewStudentDetails(product)">
-                        <td style="white-space: nowrap;">{{ product.id }}</td>
-                        <td style="white-space: nowrap;">{{ product.firstname }}</td>
-                        <td style="white-space: nowrap;">{{ product.lastname }}</td>
-                        <td style="white-space: nowrap;">{{ product.dob }}</td>
-                        <td style="white-space: nowrap;">{{ product.selectedCategory['name'] }}</td>
-                        <td style="white-space: nowrap;">{{ product.phoneNumber }}</td>
-                        <td style="white-space: nowrap;">{{ product.dateOfJoining | date }}</td>
-                        <td style="white-space: nowrap;">{{ product.createdSource }}</td>
-                        <td style="white-space: nowrap;">{{ product.createdSourceType }}</td>
-                        <td style="white-space: nowrap;">{{ product.createdDttm | date: 'medium' }}</td>
-                        <td style="white-space: nowrap;">{{ product.modifiedResource }}</td>
-                        <td style="white-space: nowrap;">{{ product.modifiedSourceType }}</td>
-                        <td style="white-space: nowrap;">{{ product.modifiedDttm | date: 'medium' }}</td>
-                        <td style="white-space: nowrap;"><button type="button" (click)="onDeleteRecord(product.id,'topright')" class="delete-btn">
+                        <td style="white-space: nowrap;">{{ product?.id }}</td>
+                        <td style="white-space: nowrap;">{{ product?.firstname }}</td>
+                        <td style="white-space: nowrap;">{{ product?.lastname }}</td>
+                        <td style="white-space: nowrap;">{{ product?.dob }}</td>
+                        <td style="white-space: nowrap;">{{ product?.selectedCategory?.name }}</td>
+                        <td style="white-space: nowrap;">{{ product?.phoneNumber }}</td>
+                        <td style="white-space: nowrap;">{{ product?.dateOfJoining | date }}</td>
+                        <td style="white-space: nowrap;">{{ product?.createdSource }}</td>
+                        <td style="white-space: nowrap;">{{ product?.createdSourceType }}</td>
+                        <td style="white-space: nowrap;">{{ product?.createdDttm | date: 'medium' }}</td>
+                        <td style="white-space: nowrap;">{{ product?.modifiedResource }}</td>
+                        <td style="white-space: nowrap;">{{ product?.modifiedSourceType }}</td>
+                        <td style="white-space: nowrap;">{{ product?.modifiedDttm | date: 'medium' }}</td>
+                        <td style="white-space: nowrap;"><button type="button" (click)="onDeleteRecord(product?.id,'topright')" class="delete-btn" *ngIf="studentActive">
                             <i class="fa-solid fa-trash" style="color:red; font-size:20px;"></i></button>
                         </td>
                     </tr>
@@ -65,26 +64,29 @@
             </p-table>
         </div>
 
-        <div class="custom-paginator" *ngIf="studentList?.length >= rowsPerPage.value">
-            <button (click)="prevPage()" [disabled]="currentPage === 0">Previous</button>
-            <span *ngFor="let page of totalPages; let i = index">
-                <button (click)="goToPage(i)" [ngClass]="{'active': currentPage === i}">
-                    {{ i + 1 }}
+        <div class="custom-paginator" *ngIf="studentList?.length >= rowsPerPage?.value">
+            
+                <button (click)="prevPage()" [disabled]="currentPage === 0" class="previous-btn">Previous</button>
+                <button *ngFor="let page of totalPages; let i = index" class="paginator-container" (click)="goToPage(i)" [ngClass]="{'active': currentPage === i}">
+                    
+                        {{ i + 1 }}
+                   
                 </button>
-            </span>
-            <button (click)="nextPage()" [disabled]="currentPage === totalPages.length - 1">Next</button>
-        </div>
+                <button (click)="nextPage()" [disabled]="currentPage === totalPages.length - 1" class="next-btn">Next</button>
+            
+            </div>
+        
     </p-card>
 </div>
 
-<app-form-modal [visible]="isAddBtnActive" [stuId]="studentValidateObj.studentId" [dept]="studentValidateObj.department"></app-form-modal>
+<app-form-modal [visible]="isAddBtnActive" [stuId]="studentValidateObj.studentId" [dept]="studentValidateObj.department" *ngIf="studentActive"></app-form-modal>
 
 <div class="card confirm-box-card">
     <p-toast />
     <p-confirmdialog key="positionDialog" [position]="position" />
 </div>
 
-<p-dialog header="Validate Student" [modal]="true" [(visible)]="visible" [position]="position" class="validate-student-dialog">
+<p-dialog header="Validate Student" [modal]="true" [(visible)]="visible" [position]="position" class="validate-student-dialog" *ngIf="studentActive">
 
 <form #miniDialog="ngForm" (ngSubmit)="onsubmitDialogue()" >
     <div class="flex items-center gap-4 mb-4">

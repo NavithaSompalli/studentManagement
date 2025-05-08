@@ -74,7 +74,7 @@ body {
     color: #0077aa;
     border: none;
     cursor: pointer;
-    border: 1px solid #ccc;
+    border: 1px solid #ccc
 }
 
 .custom-paginator button.active {
@@ -123,8 +123,16 @@ body {
 
 td{
     text-align: center !important;
+    font-family: "Roboto";
 }
 
+th{
+    font-family: "Roboto";
+}
+
+h3{
+    font-family: "Roboto";
+}
 
 ::ng-deep .flex-auto{
     width:100%;
@@ -275,3 +283,14 @@ td{
         border-radius: 5px;
     }
 }
+
+
+.p-select {
+    /* border-bottom-left-radius: 5px !important; */
+    /* border-top-left-radius: 5px !important; */
+    color: #fff !important;
+    outline: none !important;
+    border-radius: 5px !important;
+    /* width: auto !important; */
+    background-color: transparent !important;
+  }

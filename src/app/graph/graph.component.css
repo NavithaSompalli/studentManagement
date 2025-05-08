@@ -21,3 +21,17 @@
 ::ng-deep .p-card-container{
     width:98% !important;
 }
+
+@media (max-width: 600px){
+    .graph-card[_ngcontent-ng-c1752484099] {
+        position: absolute !important;
+        z-index: index 1 !important;
+        top: 22vh;
+        margin: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 92% !important;
+        height: 100%;
+    }
+}

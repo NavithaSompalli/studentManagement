@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
 import { ViewChild } from '@angular/core';
@@ -11,8 +11,10 @@ import { HttpClient } from '@angular/common/http';
   styleUrl: './home.component.css',
   standalone: false
 })
-export class HomeComponent{
+export class HomeComponent {
   
+ 
+
 
   selectedComponent: string = 'home'
 

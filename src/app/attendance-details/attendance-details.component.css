@@ -1,0 +1,287 @@
+body{
+  font-family: "Roboto" !important;
+}
+
+::ng-deep .student-details-modal .p-dialog {
+    width: 80% !important;
+    height: 80vh !important;
+
+  }
+  
+  .card {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    height: 60vh;
+    
+  }
+  
+  label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  input, textarea, p-datepicker {
+    width: 100%;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    background-color: #dde2eb;
+  }
+  
+  p-select {
+    height: 40px;
+    width: 35%;
+  }
+  
+  p-button {
+    border-radius: 4px;
+    font-weight: bold;
+  }
+  
+  .flex {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .flex-auto {
+    flex: 1;
+    margin-bottom: 15px;
+  }
+  
+  .avatar-container {
+    text-align: center;
+    width: 100%;
+    height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #dadbd9;
+    padding: 5px;
+  }
+  
+  .avatar-upload {
+    width: 120px;
+    height: 120px;
+    border: 2px solid #ccc;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+  }
+  
+  .avatar-preview {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  }
+  
+  .upload-placeholder {
+    color: #fff;
+    background-color: #0099cc;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    position: relative;
+    top: 50%;
+  }
+  
+  .form-container {
+    flex: 1;
+    margin-left: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .custom-dropdown {
+    width: 100% !important;
+    background-color: #f0f0f0 !important;
+    margin-bottom: 10px;
+  }
+  
+  ::ng-deep .form-elements-container {
+    max-height: 60vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    width: 100%;
+  }
+  
+  .image-container {
+    width: 30%;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+  }
+  
+  .input-Element {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  
+  .buttons-container {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+    padding: 10px;
+    border-top: 1px solid #ccc;
+    position: absolute;
+    bottom: 0;
+    width: 97%;
+    background: white;
+  }
+  
+  ::ng-deep .p-select, ::ng-deep .p-inputtext {
+    border-radius: 0 !important;
+  }
+  
+  ::ng-deep .p-select {
+    border-bottom-left-radius: 5px !important;
+    border-top-left-radius: 5px !important;
+    color: #fff !important;
+    outline: none !important;
+  }
+  
+  ::ng-deep .phone-number .p-select-label {
+    color: #fff !important;
+  }
+  
+  ::ng-deep .p-dialog-content {
+    max-height: 70vh !important;
+    overflow-y: hidden !important;
+    overflow-x: hidden !important;
+  }
+  
+  ::ng-deep input[type="date"], ::ng-deep .p-datepicker {
+    width: 100% !important;
+  }
+  
+  ::ng-deep input.p-inputtext, ::ng-deep .p-textarea {
+    background-color: #f0f0f0 !important;
+    color: #000;
+  }
+  
+  ::ng-deep .submit-model-btn .p-button, ::ng-deep .cancel-modal-btn .p-button {
+    color: white !important;
+    border-radius: 5px;
+    margin-left: 10px;
+  }
+  
+  ::ng-deep .add-form-modal .p-dialog-header {
+    padding: 10px 20px;
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    color: #0077aa;
+  }
+
+  .input-Element {
+    min-height: 80px; /* Adjust based on design needs */
+    position: relative;
+    margin-bottom: 10px;
+  }
+  .error-text {
+    color: red;
+    font-size: 15px;
+    position: absolute;
+    bottom: -10px; /* Keeps error message fixed in place */
+  }
+  
+  ::ng-deep .student-details-image {
+    height: 150px;
+    width: 150px;
+    border-radius: 50%;
+  }
+  
+  ::ng-deep .depart-modal .p-dialog {
+    width: 70rem !important;
+    max-width: 100%;
+    height: 70vh;
+    font-family: "Roboto";
+  }
+  
+  .department-details strong {
+    color: #0077aa;
+  }
+  
+  .details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    overflow-y: auto;
+    max-height: 400px;
+    scrollbar-width: none;
+    font-family: "Roboto";
+  }
+  
+  ::ng-deep .back-dept-button .p-button {
+    color: #000;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-weight: bold;
+    border: 1px solid #dadbd9;
+    font-family: "Roboto";
+  }
+  
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    border-bottom: 1px solid #ddd;
+    padding: 5px 0;
+    font-weight: bold;
+  }
+  
+  .detail-row strong {
+    width: 50%;
+    text-align: left;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  }
+  
+  .detail-row span {
+    width: 50%;
+    text-align: left;
+    padding-left: 10px;
+    font-weight: 500 !important;
+  }
+  
+  ::ng-deep .p-dialog .p-dialog-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0099cc !important;
+    text-align: center;
+    padding: 10px;
+    background-color: #f4f4f4;
+  }
+  
+  @media screen and (max-width: 1024px) {
+    .department-details {
+        width: 80%;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .department-details {
+        width: 100%;
+        padding: 15px;
+    }
+  
+    .department-details h2 {
+        font-size: 18px;
+    }
+  
+    .department-details p {
+        font-size: 14px;
+    }
+  }
+  

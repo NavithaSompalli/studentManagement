@@ -5,6 +5,25 @@
 
 <div class="mb-4 p-8 graph-card bargraph-container" >
     <p-card header="Trends" class="p-card-container">
+        <div>
+            <select [(ngModel)]="studentId" (change)="onStudentChange($event)" placeholder="Select Your studentId">
+                <option disabled selected>{{studentId}}</option>
+                <option *ngFor="let student of deptOptionsList" [value]="student.studentId">
+                  {{ student.studentId }} - {{ student.departmentId }}
+                </option>
+              </select>
+
+            <!--   <p-dropdown 
+                     [(ngModel)]="studentId" 
+                    [options]="deptOptionsList" 
+                    (onChange)="onStudentChange($event.value)" 
+                    placeholder="Select Your Student ID"
+                    optionLabel="studentId"
+                     optionValue="studentId">
+                </p-dropdown>
+                --> 
+            
+        </div>
         <p-chart type="bar" [data]="data" [options]="options" class="h-[30rem]" />
     </p-card>
 </div>

@@ -27,7 +27,7 @@ input, textarea, p-datepicker{
 }
 
 p-select{
-    height: 40px;
+   
     width:35%;
 }
 
@@ -50,9 +50,7 @@ p-button {
     margin-bottom: 15px;
 }
 
-/*::ng-deep .p-dialog{
-    width:70% !important;
-}*/
+
 
 .avatar-container {
     text-align: center;
@@ -63,7 +61,7 @@ p-button {
     justify-content: center;
     align-items: center;
     background-color: #dadbd9;
-    padding: 5px; 
+    padding: 10px; 
 }
 
 .avatar-upload {
@@ -112,6 +110,7 @@ input{
     scrollbar-width: none;
     margin-bottom: 50%;
     margin-top:5px;
+    flex-wrap: wrap;
 }
 
 .input-Element{
@@ -125,9 +124,9 @@ input{
 
 .buttons-container{
     display: flex;
-    gap: 10px;
+    padding:0px;
     justify-content: flex-end;
-    padding: 10px;
+  
     border-top: 1px solid #ccc;
 }
 
@@ -142,21 +141,17 @@ input{
   }
 
   
-::ng-deep .p-select, ::ng-deep .p-inputtext {
+ ::ng-deep .p-inputtext {
     border-radius: 0 !important;
     border-top-right-radius: 0px !important;
     border-bottom-right-radius: 0px !important;
    /* background-color: 300 !important;*/
 }
 
-::ng-deep .p-select{
-   /* background-color: #0099cc !important;*/
-    border-bottom-left-radius: 5px !important;
-    border-top-left-radius: 5px !important;
-    color:#fff !important;
-    outline: none !important;
-   /* background-color: #f0f0f0 !important; */
+span > label {
+  color: red;
 }
+
 
 ::ng-deep .phone-number .p-select-label{
     color:#000 !important;
@@ -174,9 +169,7 @@ input{
     width: 100% !important;
   }
 
-  ::ng-deep p-datepicker {
-    width: 48% !important;
-  }
+  
   
   ::ng-deep input.p-inputtext {
     background-color: #f0f0f0 !important; /* Light gray */
@@ -196,8 +189,13 @@ input{
     color: white !important;
     border-radius: 5px;
     /*padding: 10px;*/
-   
-    
+  }
+
+  ::ng-deep .cancel-model-btn .p-button{
+    background-color: #0077aa !important;
+    color: #000 !important;
+    border-radius: 5px;
+    /*padding: 10px;*/
   }
 
   ::ng-deep p-button[_ngcontent-ng-c3216660951] {
@@ -210,14 +208,7 @@ input{
     padding:0px !important;
   }
 
-  ::ng-deep .cancel-modal-btn .p-button{
-  /*  background-color: red !important;*/
-  border: 1px solid #d9dbde;
-    color: #000 !important;
-    border-radius: 5px;
-    /*padding: 10px;*/
-   /* width: 150px;*/
-  }
+  
 
 
   ::ng-deep .add-form-modal .p-dialog-header{
@@ -236,6 +227,9 @@ input{
   width: 100% !important;
   background-color: #f0f0f0 !important;
   margin-bottom: 10px;
+  align-items: center;
+  padding-left:10px;
+  height: 40px;
 }
 
 .phone-number .p-select-label {
@@ -258,5 +252,23 @@ p-button[_ngcontent-ng-c2645148613] {
   font-size: 15px;
   position: absolute;
   bottom: -10px; /* Keeps error message fixed in place */
-  
+}
+
+
+
+.phone-number-container{
+  display: flex;
+  width:100%;
+}
+
+.phone-number{
+  width:20% !important;
+  border-top-left-radius: 5px !important;
+  border-bottom-left-radius: 5px !important;
+  /* width: auto !important; */
+  background-color: transparent !important;
+  padding:1px;
+  outline: none !important;
+  align-items: center;
+   height: 40px;
 }

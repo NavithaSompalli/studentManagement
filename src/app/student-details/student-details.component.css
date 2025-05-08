@@ -158,12 +158,19 @@ p-button {
   color: #000;
 }
 
-::ng-deep .submit-model-btn .p-button, ::ng-deep .cancel-modal-btn .p-button {
+
+::ng-deep .submit-model-btn .p-button  {
   color: white !important;
   border-radius: 5px;
-  margin-left: 10px;
+ 
 }
 
+::ng-deep .cancel-modal-btn .p-button {
+  color: #000 !important;
+  border-radius: 5px;
+  margin-left: 5px;
+  
+}
 ::ng-deep .add-form-modal .p-dialog-header {
   padding: 10px 20px;
   border-top-right-radius: 10px;
@@ -256,4 +263,15 @@ p-button {
   .department-details p {
       font-size: 14px;
   }
+}
+
+
+.p-select {
+  /* border-bottom-left-radius: 5px !important; */
+  /* border-top-left-radius: 5px !important; */
+  color: #fff !important;
+  outline: none !important;
+  border-radius: 5px !important;
+  /* width: auto !important; */
+  background-color: transparent !important;
 }

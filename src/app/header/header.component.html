@@ -2,8 +2,11 @@
     
     <img alt="Card" class="header-image" src="https://higherlogicdownload.s3.amazonaws.com/OAUG/8c16d9fc-6910-4bca-9dce-e05462995493/UploadedImages/GeoSIG/Logos/cropped-itorizon.png" />
 <div>
-    <div>
-    <i class="fa-regular fa-bell" [ngStyle]="{'font-size':'25px','color':'#0099cc'}"></i>
+    <div class="profile-elements-container">
+    <i class="fa-regular fa-bell" [ngStyle]="{'font-size':'35px','color':'#0099cc'}"></i>
+    <img src="https://th.bing.com/th/id/OIP.AQtvP5FcfiEMQpu14ueJCgHaGU?cb=iwc1&rs=1&pid=ImgDetMain" class="hearder-profile-image"/>
+    <p [ngStyle]="{'margin-right':'5px'}">John M</p>
+    <p-button type="button" class="logout-btn" (click)="onLogout()">Logout</p-button>
 
     </div>
 
@@ -18,9 +21,9 @@
 </ul>-->
 
 <ul class="ul-container container-fluid">
-    <li routerLink="graph" routerLinkActive="active" [ngClass]="'active'">Home</li>
+    <li routerLink="graph" routerLinkActive="active" [ngClass]="'active'" >Home</li>
     <li routerLink="student" routerLinkActive="active" [ngClass]="'active'">Student</li>
     <li routerLink="attendance" routerLinkActive="active" [ngClass]="'active'">Attendance</li>
-    <li routerLink="department" routerLinkActive="active" [ngClass]="'active'">Department</li>
+    <li routerLink="department" routerLinkActive="active" [ngClass]="'active'" *ngIf = "studentActive">Department</li>
 </ul>
 

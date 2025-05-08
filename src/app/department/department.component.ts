@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from '../login-service.service';
 import { HttpClient } from '@angular/common/http';
 import { ChartDataService } from '../chart-data.service';
+import { SortServiceService } from '../sort-service.service';
 
 @Component({
   selector: 'app-department',
@@ -27,7 +28,11 @@ export class DepartmentComponent implements OnInit {
 
   selectedDepartment: any = null;
 
-  constructor(private service: LoginServiceService, private http: HttpClient, private chartDataService: ChartDataService) {}
+  constructor(private service: LoginServiceService, 
+    private http: HttpClient, 
+    private chartDataService: ChartDataService,
+    private sortSerivce: SortServiceService
+  ) {}
 
   ngOnInit() {
     this.departmentList = this.chartDataService.departmentList; // Fetching department data from the service
@@ -88,5 +93,12 @@ export class DepartmentComponent implements OnInit {
     // Implement view logic
     this.selectedDepartment = department;
     this.visible = !this.visible;
+  }
+
+
+  
+
+  sortColumn(field: string) {
+    this.departmentList = this.sortSerivce.sortData(this.departmentList, field);
   }
 }

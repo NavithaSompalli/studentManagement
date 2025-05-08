@@ -8,7 +8,7 @@
     justify-content: center;
     
     width:98% !important;
-    height:60vh !important;
+  
 }
 
 
@@ -38,7 +38,7 @@
 ::ng-deep .table-container{
     width: 100%;
     overflow-x: auto;
-    height: 50vh !important;
+    height: 45vh !important;
     border: none;
     scrollbar-width: none;
 }
@@ -48,33 +48,6 @@
     background-color: transparent;
     border: none;
     cursor: pointer;
-}
-
-/* Pagination */
-.custom-paginator {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px;
-}
-
-.custom-paginator button {
-    padding: 6px 12px;
-    color: #0077aa;
-    border: none;
-    cursor: pointer;
-    border: 1px solid #ccc;
-}
-
-.custom-paginator button.active {
-    background-color: #0077aa;
-    font-weight: bold;
-    color: #fff;
-    width:auto;
-}
-
-.custom-paginator button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
 }
 
 
@@ -120,7 +93,7 @@ body {
 .no-records-container {
     text-align: center;
     padding-top: 30px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: "Roboto";
     font-weight: bold;
     font-style: italic;
 }
@@ -140,22 +113,38 @@ body {
 }
 
 .custom-paginator button {
-    padding: 6px 12px;
+    padding: 10px 12px;
     color: #0077aa;
     border: none;
     cursor: pointer;
     border: 1px solid #ccc;
+    width:auto;
+    height:40px;
+    font-family: "Roboto";
+    width:5%;
 }
 
 .custom-paginator button.active {
     background-color: #0077aa;
     font-weight: bold;
     color: #fff;
+    width:auto;
+    padding: 6px 12px;
+     width:5%;
 }
 
 .custom-paginator button:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+}
+.previous-btn {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.next-btn{
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
 }
 
 /* Confirmation Box */
@@ -192,6 +181,11 @@ body {
 
 td{
     text-align: center !important;
+    font-family: "Roboto";
+}
+th{
+    text-align: center !important;
+    font-family: "Roboto";
 }
 
 
@@ -201,7 +195,7 @@ td{
 }
 
 ::ng-deep .validate-student-dialog .p-dialog{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:"Roboto";
    /* background-color: ghostwhite;*/
     width:30% !important;
 }
@@ -210,7 +204,7 @@ td{
     color: white;
     font-weight: bold;
     color:#0077aa;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family:"Roboto";
 }
 
 ::ng-deep .cancel-btn .p-button {
@@ -231,6 +225,9 @@ td{
 ::ng-deep .error-text{
     color:red;
 }
+
+
+
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
@@ -291,6 +288,13 @@ td{
     .confirm-box-card {
         width: 50% !important;
     }
+
+    ::ng-deep .p-confirmdialog {
+        width: 100% !important;
+        margin:10px !important;
+        padding:0px !important;
+    }
+    
 }
 
 @media (max-width: 480px) {
@@ -304,6 +308,13 @@ td{
     .table-container {
         height: 30vh;
     }
+
+    ::ng-deep .p-confirmdialog {
+        width: 100% !important;
+        margin:10px !important;
+        padding:0px !important;
+    }
+    
 
     th, td {
         font-size: 10px;
@@ -332,5 +343,32 @@ td{
         width: 80px !important;
         font-size: 9px;
         border-radius: 5px;
+       
     }
 }
+
+.p-select {
+    /* border-bottom-left-radius: 5px !important; */
+    /* border-top-left-radius: 5px !important; */
+    color: #fff !important;
+    outline: none !important;
+    border-radius: 5px !important;
+    /* width: auto !important; */
+    background-color: transparent !important;
+    margin-bottom: 5px !important;
+  }
+
+  .input-Element {
+    min-height: 50px; /* Adjust based on design needs */
+    position: relative;
+    margin-bottom: 10px;
+
+  }
+  .error-text {
+    color: red;
+    font-size: 15px;
+    position: absolute;
+    bottom: -5px; /* Keeps error message fixed in place */
+    margin-top:10px;
+    width:100%;
+  }

@@ -1,12 +1,12 @@
 
 <div [ngStyle]="{'background-color':'#0099cc', 'height':'15vh'}">
-    <h1 [ngStyle]="{'margin-left':'4%', 'color':'#fff','font-family':'Bree Serif', 'padding-top':'10px'}">Department</h1>
+    <h2 [ngStyle]="{'margin-left':'3%', 'color':'#fff','font-family':'Roboto', 'padding-top':'10px'}"><i class="fa-solid fa-building-columns" [ngStyle]="{'margin-right':'5px'}"></i>Department</h2>
 </div>
 
 <div class="mb-4 p-8 graph-card" >
     <p-card>
         <div class="dept-pagi-selector">
-            <h3>Departments</h3>
+            <h3><i class="fa-solid fa-building-columns"></i> Departments</h3>
             <p-select [options]="rowsPerPageArray" [(ngModel)]="rowsPerPage" optionLabel="name" 
         class="w-full md:w-56 paginator-btn" *ngIf="studentList.length !== 0" (ngModelChange)="updatePagination()" />
         </div>
@@ -20,16 +20,41 @@
                      [rows]="rowsPerPage.value" responsiveLayout="scroll"> 
                 <ng-template #header>
                     <tr>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="departmentId">departmentID <i class="fa-solid fa-sort" field="id"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="department">departmentName <i class="fa-solid fa-sort" field="firstname"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="noOfStudent ">noOfStudents <i class="fa-solid fa-sort" field="lastname"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="createdSource">createdSource <i class="fa-solid fa-sort" field="dob"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="createdSourceType">createdSourceType <i class="fa-solid fa-sort" field="dob"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="createdDttm">createdDttm  <i class="fa-solid fa-sort" field="phoneNumber"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedSource">modifiedSource <i class="fa-solid fa-sort" field="dateOfJoining"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedSourceType">modifiedSourceType<i class="fa-solid fa-sort" field="createdSource"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedDttm">modifiedDttm <i class="fa-solid fa-sort" field="createdSourceType"></i></th>
-                       
+                        <th (click)="sortColumn('departmentId')" style="white-space: nowrap; text-align: center;" pSortableColumn="departmentId">
+                            Department Id <i class="fa-solid fa-sort"></i>
+                          </th>
+                          
+                          <th (click)="sortColumn('departmentName')" style="white-space: nowrap; text-align: center;" pSortableColumn="department">
+                            Department Name <i class="fa-solid fa-sort"></i>
+                          </th>
+                          
+                          <th (click)="sortColumn('noOfStudents')" style="white-space: nowrap; text-align: center;" pSortableColumn="noOfStudents">
+                            Number Of Students <i class="fa-solid fa-sort"></i>
+                          </th>
+                          
+                          <th (click)="sortColumn('createdSource')" style="white-space: nowrap; text-align: center;" pSortableColumn="createdSource">
+                            Created Source <i class="fa-solid fa-sort"></i>
+                          </th>
+                          
+                          <th (click)="sortColumn('createdSourceType')" style="white-space: nowrap; text-align: center;" pSortableColumn="createdSourceType">
+                            Created Source Type <i class="fa-solid fa-sort"></i>
+                          </th>
+                          
+                          <th (click)="sortColumn('createdDttm')" style="white-space: nowrap; text-align: center;" pSortableColumn="createdDttm">
+                            Created Datetime <i class="fa-solid fa-sort"></i>
+                          </th>
+                          
+                          <th (click)="sortColumn('modifiedSource')" style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedSource">
+                            Modified Source <i class="fa-solid fa-sort"></i>
+                          </th>
+                          
+                          <th (click)="sortColumn('modifiedSourceType')" style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedSourceType">
+                            Modified Source Type <i class="fa-solid fa-sort"></i>
+                          </th>
+                          
+                          <th (click)="sortColumn('modifiedDttm')" style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedDttm">
+                            Modified Datetime <i class="fa-solid fa-sort"></i>
+                          </th>
                     </tr>
                 </ng-template>
 

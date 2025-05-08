@@ -7,6 +7,7 @@ import { LoginServiceService } from '../login-service.service';
 import { HttpClient } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ChartDataService } from '../chart-data.service';
+import { SortServiceService } from '../sort-service.service';
 @Component({
   selector: 'app-student',
  
@@ -15,6 +16,10 @@ import { ChartDataService } from '../chart-data.service';
   standalone:false
 })
 export class StudentComponent {
+
+  studentActive: boolean = false;
+
+  studentData = JSON.parse(localStorage.getItem('student'));
   position:  'top' | 'center' | 'topleft' | 'topright'  = 'center';
 
  visible: boolean = false;
@@ -25,7 +30,13 @@ export class StudentComponent {
 // selectedDepartment: any = null;
 
 
-  constructor(private service: LoginServiceService, private http:HttpClient, private confirmService: ConfirmationService, private messageService:MessageService, private departmentObject: ChartDataService){}
+  constructor(private service: LoginServiceService,
+     private http:HttpClient, 
+     private confirmService: ConfirmationService, 
+     private messageService:MessageService, 
+     private departmentObject: ChartDataService,
+     private sortService: SortServiceService
+    ){}
   
   studentList: object[];
   paginator: boolean= false;
@@ -89,6 +100,12 @@ export class StudentComponent {
     this.departmentList = this.departmentObject.departmentList;
     this.visible = false;
     this.isViewDetailsActive = false;
+    if(this.studentData){
+      this.studentActive = false;
+    }else{
+      this.studentActive = true;
+    }
+   
   }
 
 
@@ -99,15 +116,14 @@ export class StudentComponent {
     this.confirmService.confirm({
         message: `Are you sure you want to remove ${id}? Confirm to Delete.`,
         header: 'Confirmation',
-        icon: '<i class="fa-solid fa-circle-question"></i>',
         rejectButtonStyleClass: 'p-button-text',
         rejectButtonProps: {
-            label: 'Cancel',
+            label: 'No',
             severity: 'secondary',
             text: true,
         },
         acceptButtonProps: {
-            label: 'Delete',
+            label: 'Yes',
             text: true,
         },
         accept: () => {
@@ -176,8 +192,7 @@ studentValidateObj = {
 @ViewChild('miniDialog') mindialogueForm : NgForm;
 
 onsubmitDialogue(){
- //  console.log(this.mindialogueForm.controls["studentId"].value);
- //  console.log(this.mindialogueForm.controls["department"].value);
+
    let id = this.mindialogueForm.controls["studentId"].value;
    let dept = this.mindialogueForm.controls["department"].value;
    //console.log("validate",id,dept);
@@ -186,8 +201,7 @@ onsubmitDialogue(){
 
    this.service.findStudent(id).subscribe({
     next: (response) => {
-    //  console.log(response, "onsubmitDialogue");
-    //  console.log(response[0].studentId === id , response[0].department === dept)
+  
       if(response[0].id === id && response[0].department === dept){
         alert("Student Already registered in this department");
       }else{
@@ -216,17 +230,12 @@ viewStudentDetails(product:any){
 }
 
 
-//filteredDepartment
-/*filteredDepartments: any[] = [];
+sortColumn(field: string) {
+  this.studentList = this.sortService.sortData(this.studentList, field);
+}
 
-filterDepartment(event) {
-  this.filteredDepartments = this.departmentList.filter(dept =>{
-    console.log(dept["departmentName"]);
-    dept["departmentName"].toLowerCase().includes(event.query.toLowerCase())
-  }
-    
-  );
-}*/
+
+
 
 
 }

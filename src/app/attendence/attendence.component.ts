@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from '../login-service.service';
+import { SortServiceService } from '../sort-service.service';
 
 import { NgForm } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
@@ -8,6 +9,7 @@ import { ViewChild } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ChartDataService } from '../chart-data.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-attendance', // Fixed typo in "attendance"
@@ -17,6 +19,12 @@ import { ChartDataService } from '../chart-data.service';
 })
 export class AttendanceComponent implements OnInit {
 
+  studentActive: boolean = false;
+
+  studentData = JSON.parse(localStorage.getItem('student'));
+
+
+
   position:  'top' | 'center' | 'topleft' | 'topright'  = 'center';
 
   visible: boolean = false;
@@ -25,7 +33,14 @@ export class AttendanceComponent implements OnInit {
   isViewDetailsActive: boolean = false;
   studentDetailsObject: object;
  
-   constructor(private service: LoginServiceService, private http:HttpClient, private confirmService: ConfirmationService, private messageService:MessageService, private departmentObject: ChartDataService){}
+   constructor(private service: LoginServiceService, 
+    private http:HttpClient, 
+    private confirmService: ConfirmationService, 
+    private messageService:MessageService, 
+    private departmentObject: ChartDataService,
+    private sortService: SortServiceService,
+    private router:Router
+  ){}
    
    studentList: object[];
    paginator: boolean= false;
@@ -65,8 +80,8 @@ export class AttendanceComponent implements OnInit {
      })
    }
  
-   getStudentDetails(){ // this function return total records from the jsonserver
-     this.service.getStudentDetails().subscribe({
+   getAttendanceStudentDetails(){ // this function return total records from the jsonserver
+     this.service.getAttendanceDetails().subscribe({
        next: (response) => {
          this.studentList = response
         // console.log(this.studentList)
@@ -84,9 +99,14 @@ export class AttendanceComponent implements OnInit {
    }
  
    ngOnInit(){
-     this.getStudentDetails();
+     this.getAttendanceStudentDetails();
      this.studentList = this.studentList || [];
      this.departmentList = this.departmentObject.departmentList;
+     if(this.studentData){
+      this.studentActive = false;
+    }else{
+      this.studentActive = true;
+    }
    }
  
  
@@ -96,26 +116,29 @@ export class AttendanceComponent implements OnInit {
      this.confirmService.confirm({
          message: `Are you sure you want to remove ${id}? Confirm to Delete.`,
          header: 'Confirmation',
-         icon: '<i class="fa-solid fa-circle-question"></i>',
+       
          rejectButtonStyleClass: 'p-button-text',
          rejectButtonProps: {
-             label: 'Cancel',
+             label: 'No',
              severity: 'secondary',
              text: true,
          },
          acceptButtonProps: {
-             label: 'Delete',
+             label: 'Yes',
              text: true,
          },
          accept: () => {
              this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'Request submitted' });
             // console.log(id);
-             this.service.deleteStudentDetails(id).subscribe({
+             this.service.deleteAttendanceDetails(id).subscribe({
                next: (response) => console.log(id),
                error: (error) => console.log(error),
                complete: ()=>{
                  console.log("completed");
-                 this.getStudentDetails();
+                 this.getAttendanceStudentDetails();
+                 this.router.navigate(['home/attendance']).then(() => {
+                  window.location.reload(); // Forces page refresh
+                });
                }
              })
          },
@@ -167,17 +190,23 @@ export class AttendanceComponent implements OnInit {
  
  studentValidateObj = {
    studentId:'',
-   department:''
+   department:'',
+
  }
  
  @ViewChild('miniDialog') mindialogueForm : NgForm;
  
  onsubmitDialogue(){
+
+  console.log(this.mindialogueForm);
   //  console.log(this.mindialogueForm.controls["studentId"].value);
   //  console.log(this.mindialogueForm.controls["department"].value);
+
     let id = this.mindialogueForm.controls["studentId"].value;
     let dept = this.mindialogueForm.controls["department"].value;
     console.log(id,dept);
+
+  // console.log(this.studentValidateObj);
  
     if(id !== undefined && dept !== undefined){
  
@@ -185,12 +214,14 @@ export class AttendanceComponent implements OnInit {
      next: (response) => {
      //  console.log(response, "onsubmitDialogue");
      //  console.log(response[0].studentId === id , response[0].department === dept)
-       if(response[0].id === id && response[0].department === dept){
-         alert("Student Already registered in this department");
-       }else{
-         this.isAddBtnActive = !this.isAddBtnActive;
+        console.log(response);
+        if(response){
+        this.isAddBtnActive = !this.isAddBtnActive;
          this.visible = !this.visible;
-       }
+        }else{
+          alert("Student Id doesn't exit in the Student List")
+        }
+       
      },
      error: (error) => console.log(error),
      complete: ()=>{
@@ -211,7 +242,7 @@ export class AttendanceComponent implements OnInit {
    this.studentDetailsObject = product;
  }
  
- 
+
  //filteredDepartment
  filteredDepartments: any[] = [];
  
@@ -222,6 +253,11 @@ export class AttendanceComponent implements OnInit {
    }
      
    );
+  }
+
+
+  sortColumn(field: string) {
+    this.studentList = this.sortService.sortData(this.studentList, field);
   }
 
 }

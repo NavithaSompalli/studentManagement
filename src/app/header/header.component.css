@@ -49,3 +49,27 @@
   justify-content: center;
   align-items: center;
 }
+
+.hearder-profile-image{
+  height: 40px;
+  width:40px;
+  border-radius: 50%;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.profile-elements-container{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+::ng-deep .logout-btn .p-button{
+  background-color: #0077aa !important;
+    color: white !important;
+    border-radius: 5px;
+    margin-top:10px;
+    border:none;
+    border-radius: 5px;
+}
+

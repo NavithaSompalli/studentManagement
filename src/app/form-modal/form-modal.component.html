@@ -64,7 +64,7 @@
                     </div>
                     <div class="input-Element" >
                         <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                            <label for="dob">Date Of Birth*<br/></label>
+                            <label for="dob">Date Of Birth<span>*</span><br/></label>
                             <input  pInputText type="date" [(ngModel)]="user.dob" inputId="dob"  name="dob" [ngStyle]="{'width':'100%'}" required #dob="ngModel"/>
                             <div class="error-text">
                                 <span *ngIf="dob.invalid && dob.touched" >Date Of Birth is required</span>
@@ -72,9 +72,9 @@
                         </div>
                         <div [ngStyle]="{'width':'48%','margin':'5px'}">
                             <label for="phonenumber">Phone Number <br/></label>
-                            <div [ngStyle]="{'width':'100%'}">
+                            <div class="phone-number-container">
                                 <p-select [options]="countryPhoneCodes" [(ngModel)]="user.selectedCity" [checkmark]="false" optionLabel="code" [showClear]="false" name="selectedCity" class="phone-number"/>
-                                <input type="number" pInputText  [(ngModel)]="user.phoneNumber" name="phoneNumber" pattern="[0-9]{10}" [ngStyle]="{'width':'65%'}" required #phNumber="ngModel"/> 
+                                <input type="number" pInputText  [(ngModel)]="user.phoneNumber" name="phoneNumber" pattern="[0-9]{10}" [ngStyle]="{'width':'100%'}" required #phNumber="ngModel"/> 
                                <div class="error-text">
                                 <span *ngIf="phNumber.invalid && phNumber.touched" >Valid Phone Number is required</span>
                             </div>
@@ -138,7 +138,6 @@
                             <textarea rows="5" cols="30" pTextarea  [(ngModel)]="user.address" id="address" #address="ngModel" name="address"></textarea>
                         </div>           
                     </div>
-              
                 </div>
                 </div>
             </div>
@@ -152,3 +151,7 @@
     </p-dialog>
 <!--</div>-->
 
+
+<!--Toast and Confirmation popup-->
+
+<p-toast />

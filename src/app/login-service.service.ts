@@ -98,6 +98,31 @@ export class LoginServiceService {
 
     updateStudent(studentId: string, studentData: any): Observable<any> {
       return this.http.put(`http://localhost:3000/studentList/${studentId}`, studentData);
-      ;
+      
     }
+
+
+    addAttendanceStudentDetails(obj: any): Observable<any> {
+      return this.http.post('http://localhost:3000/departmentList', obj);
+    }
+
+    getAttendanceDetails():Observable<any>{
+      return this.http.get('http://localhost:3000/departmentList')
+    }
+
+    deleteAttendanceDetails(id):Observable<any>{
+      return this.http.delete(`http://localhost:3000/departmentList/${id}`);
+    }
+
+    updateStudentAttendance(studentId: string, studentData: any): Observable<any> {
+      return this.http.put(`http://localhost:3000/studentList/${studentId}`, studentData);
+      
+    }
+
+    getAttendanceDetailsID(studentId):Observable<any>{
+      return this.http.get(`http://localhost:3000/departmentList/${studentId}`)
+    }
+
+
+
 }

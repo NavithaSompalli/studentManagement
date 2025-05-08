@@ -5,7 +5,7 @@
             <img alt="Card" class="w-full" src="https://higherlogicdownload.s3.amazonaws.com/OAUG/8c16d9fc-6910-4bca-9dce-e05462995493/UploadedImages/GeoSIG/Logos/cropped-itorizon.png" />
         </ng-template>
         <h1 class="heading-elements" [ngStyle]="{'font-size': '20px'}">Welcome</h1>
-        <p class="heading-elements" [ngStyle]="{'font-size': '15px', 'font-family': 'Bree Serif'}">Please use Registered Username and Password to login your account</p>
+        <p class="heading-elements" [ngStyle]="{'font-size': '15px'}">Please use Registered Username and Password to login your account</p>
         <form #myForm="ngForm" (ngSubmit)="onSubmitLogin()">
             <div class="card flex justify-center">
                 <div class="flex flex-col gap-2" [ngStyle]="{'margin':'5px'}">
@@ -36,7 +36,7 @@
             <img alt="Card" class="w-full" src="https://higherlogicdownload.s3.amazonaws.com/OAUG/8c16d9fc-6910-4bca-9dce-e05462995493/UploadedImages/GeoSIG/Logos/cropped-itorizon.png" />
         </ng-template>
         <h1 class="heading-elements" [ngStyle]="{'font-size': '20px'}">Welcome</h1>
-        <p class="heading-elements" [ngStyle]="{'font-size': '15px','font-family': 'Bree Serif'}">Please Register with your Username and Password to Sign up into application</p>
+        <p class="heading-elements" [ngStyle]="{'font-size': '15px'}">Please Register with your Username and Password to Sign up into application</p>
         <form #myFormSignup="ngForm" (ngSubmit)="onSubmitSignUp()">
             <div class="card flex justify-center">
                 <div class="flex flex-col gap-2" [ngStyle]="{'margin':'5px'}">
@@ -61,7 +61,7 @@
            <!--<span>{{userError}}</span>--> 
             <p-button label="Submit" [raised]="true" severity="info" type="submit" [ngStyle]="{'margin':'5px'}"/>
         </form>
-        <p [ngStyle]="{'margin': '5px', 'font-family':'Bree Serif'}">Back to Login page: <button type = "button" class="signup-btn" (click) = "showDialog()">Login</button></p>
+        <p [ngStyle]="{'margin': '5px'}">Back to Login page: <button type = "button" class="signup-btn" (click) = "showDialog()">Login</button></p>
     </p-card>
 </ng-template>
 
@@ -71,7 +71,7 @@
 </div>
 
 <!--Modal-->
-<p-dialog header="Reset Password" [modal]="true" [(visible)]="visible" [position]="position" [style]="{ width: '25rem'}" [ngStyle]="{'font-family':'Bree Serif'}">
+<!--<p-dialog header="Reset Password" [modal]="true" [(visible)]="visible" [position]="position" [style]="{ width: '25rem'}" [ngStyle]="{'font-family':'Bree Serif'}">
     <span class="text-surface-500 dark:text-surface-400 block mb-8">Update your password.</span>
     <div class="flex items-center gap-4 mb-4" [ngStyle]="{'margin-top': '5px'}">
         <label for="username" class="font-semibold w-24" >New Password</label>
@@ -83,6 +83,22 @@
     </div>
     <div class="flex justify-end gap-2">
         <p-button label="Cancel" severity="secondary" (click)="visible = false" />
-        <p-button label="Save" (click) = "onUpdatePassword()"/><!--(click)="visible = false"-->
+        <p-button label="Save" (click) = "onUpdatePassword()"/>--><!--(click)="visible = false"
     </div>
-</p-dialog>
+</p-dialog>-->
+
+<div class="card flex justify-center">
+    <p-dialog header="Edit Profile" [modal]="true" [(visible)]="visible2" [style]="{ width: '25rem' }">
+        <form #miniDialogStudent="ngForm" (ngSubmit)="onSubmitStudent()">
+            <div class="flex items-center gap-4 mb-4">
+                <label for="studentId" class="font-semibold w-24">Student ID</label>
+                <input pInputText id="studentId" class="flex-auto" autocomplete="off" placeholder="Enter your student ID" name="studentId" [(ngModel)]="studentIdObj.studentId"/>
+            </div>
+            
+            <div class="flex justify-end gap-2">
+                <p-button label="Cancel" severity="secondary" (click)="visible = false" />
+                <p-button label="Save" type="submit" />
+            </div>
+        </form>
+    </p-dialog>
+</div>

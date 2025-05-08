@@ -1,4 +1,4 @@
-import { Component, Inject, Input, ViewChild } from '@angular/core';
+import { Component, Inject, Input, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { LoginServiceService } from '../login-service.service';
@@ -11,8 +11,11 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'], // Corrected property
   standalone: false
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   @Input() isSignUpActive: boolean = true;
+  studentId:string = "";
+  visible2:boolean;
+  
 
   constructor(private http: HttpClient, private loginService: LoginServiceService, private messageService: MessageService, private router: Router) {} 
   //loginService: LoginServiceService = Inject(LoginServiceService);
@@ -29,6 +32,10 @@ export class LoginComponent {
   password!: string;
   confirmpassword!: string;
   userError: string = ''; 
+ ngOnInit(): void {
+   
+ }
+  
 
   @ViewChild('myForm') form!: NgForm;
 
@@ -79,8 +86,14 @@ export class LoginComponent {
         complete: () => {
           if(this.username === 'admin'){
           this.userError = "User Login Successfully";
+          localStorage.clear();
+          localStorage.setItem("jwtToken", JSON.stringify(true));
           this.messageService.add({ severity: 'success', summary: 'Success', detail: this.userError })
           this.router.navigate(['home/graph']);
+          }else{
+            this.visible2 = !this.visible2
+          /*  this.router.navigate(['home/graph']);
+            localStorage.setItem('student', JSON.stringify({"student": "true"}));*/
           }
         },
       });
@@ -92,6 +105,8 @@ export class LoginComponent {
   }
   
   @ViewChild('myFormSignup') signup!: NgForm;
+
+  
 
   onSubmitSignUp() {
     let apiUrl = 'http://localhost:3000/users';
@@ -127,8 +142,6 @@ export class LoginComponent {
             }
       }
      })
-
-    
     }
   }
 
@@ -139,7 +152,32 @@ export class LoginComponent {
     this.position = position;
     this.visible = !this.visible
   }
-  onUpdatePassword(){
 
+  @ViewChild('miniDialogStudent') studentIDDialog: NgForm;
+  studentIdObj = {
+    studentId:''
+  }
+  onSubmitStudent(){
+    console.log(this.studentIdObj);
+    this.loginService.findStudent(this.studentIdObj.studentId).subscribe({
+      next: (response) => {
+    
+        if(response[0].id === this.studentIdObj.studentId){
+          localStorage.setItem('student', JSON.stringify({"student": "true"}));
+          localStorage.setItem("jwtToken", JSON.stringify(true));
+          this.router.navigate(['home/student']);
+            localStorage.setItem('student', JSON.stringify({"student": "true"}));
+          this.visible2 = !this.visible2;
+        }else{
+          alert(`${this.studentIdObj.studentId} does not exits.`)
+        }
+      },
+      error: (error) => console.log(error),
+      complete: ()=>{
+       // console.log("completed");
+      }
+    })
+     
   }
 }
+
