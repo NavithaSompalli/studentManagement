@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from '../login-service.service';
 import { SortServiceService } from '../sort-service.service';
+import { PaginatorState } from 'primeng/paginator';
 
 import { NgForm } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
@@ -22,8 +23,8 @@ export class AttendanceComponent implements OnInit {
   studentActive: boolean = false;
 
   studentData = JSON.parse(localStorage.getItem('student'));
-
-
+  
+   noOfpagesCurrentPagination:any[] = []
 
   position:  'top' | 'center' | 'topleft' | 'topright'  = 'center';
 
@@ -88,12 +89,20 @@ export class AttendanceComponent implements OnInit {
          if(this.studentList.length >=5){
            this.paginator = true;
          }
+
+         if(localStorage.getItem("studentId") !== null){
+          this.studentList = this.studentList.filter((obj)=> obj["studentId"] === localStorage.getItem("studentId"))
+       }
+
        },
        error: (error) => console.log(error),
        complete: ()=>{
        //  console.log("completed");
-         this.totalPages = Array(Math.ceil(this.studentList.length / this.rowsPerPage.value)).fill(0);
+       this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i + 1);
+
       // console.log("total pages " + this.totalPages);
+         this.noOfpagesCurrentPagination = this.displayedPages1();
+    
        }
      })
    }
@@ -161,31 +170,66 @@ export class AttendanceComponent implements OnInit {
  
  // pagination logic  
  
-   updatePagination(){
-     this.currentPage = 0; // Reset to first page whenever rows per page changes
-     this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i);
-   }
  
-   get paginatedStudents() { // this method returns rows(based on the rowsperpage)
-     const start = this.currentPage * this.rowsPerPage.value;
-     const end = start + this.rowsPerPage.value;
-     return this.studentList.slice(start, end);
- }
- 
- prevPage() {
-     if (this.currentPage > 0) this.currentPage--;
- }
- 
- nextPage() {
-     if (this.currentPage < this.totalPages.length - 1) this.currentPage++;
- }
- 
- goToPage(index: number) {
-     this.currentPage = index;
- }
- 
- 
- 
+   updatePagination() {
+    this.currentPage = 0; // Reset to first page whenever rows per page changes
+    this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i);
+}
+
+get paginatedStudents() {
+    const start = this.currentPage * this.rowsPerPage.value;
+    const end = start + this.rowsPerPage.value;
+    return this.studentList.slice(start, end);
+}
+
+// This function controls the pages displayed within the pagination
+ get displayedPages() {
+    let startPage = Math.max(this.currentPage - 1, 0); // Ensure it doesn't go below 0
+    let endPage = Math.min(startPage + 3, this.totalPages.length); // Display up to 3 pages
+
+    // Ensure minimum three pages are displayed
+    if (this.totalPages.length < 3) {
+        return this.totalPages.slice(0, this.totalPages.length); 
+    }
+
+    return this.totalPages.slice(startPage, endPage);
+}
+
+ displayedPages1() {
+    let startPage = Math.max(this.currentPage - 1, 0); // Ensure it doesn't go below 0
+    let endPage = Math.min(startPage + 3, this.totalPages.length); // Display up to 3 pages
+
+    // Ensure minimum three pages are displayed
+    if (this.totalPages.length < 3) {
+        return this.totalPages.slice(0, this.totalPages.length); // Show all available pages
+    }
+
+    return this.totalPages.slice(startPage, endPage);
+}
+
+
+prevPage() {
+    if (this.currentPage > 0) {
+        this.currentPage--; // Move to the previous page
+    }
+
+    console.log(this.displayedPages1());
+    this.noOfpagesCurrentPagination = this.displayedPages1();
+}
+
+nextPage() {
+    if (this.currentPage < this.totalPages.length - 1) {
+        this.currentPage++; // Move to the next page
+    }
+    console.log(this.displayedPages1());
+    this.noOfpagesCurrentPagination = this.displayedPages1();
+}
+
+
+goToPage(index: number) {
+    this.currentPage = index;
+}
+
  // mini dialogue box logic
  
  studentValidateObj = {
@@ -259,5 +303,15 @@ export class AttendanceComponent implements OnInit {
   sortColumn(field: string) {
     this.studentList = this.sortService.sortData(this.studentList, field);
   }
+
+
+   first: number = 0;
+
+    rows: number = 3;
+
+    onPageChange(event: PaginatorState) {
+        this.first = event.first ?? 0;
+        this.rows = event.rows ?? 3;
+    }
 
 }

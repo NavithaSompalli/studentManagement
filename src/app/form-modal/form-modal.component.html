@@ -44,7 +44,7 @@
                     <div class="input-Element">
                         <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
                             <label for="email">Email*<br/></label>
-                            <input type="email" pInputText [(ngModel)]="user.email" id="firstname" name="email" email required placeholder="abcd@gmail.com" #email="ngModel"/>
+                            <input type="email" pInputText [(ngModel)]="user.email" id="firstname" name="email" email required placeholder="abcd@gmail.com" #email="ngModel" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"/>
                             <div class="error-text">
                             
                                 <span *ngIf="email.invalid && email.touched" >Email is required</span>
@@ -55,8 +55,10 @@
                             <div class=" flex justify-center">
                                 <div class="flex flex-col gap-4">
                                     <div *ngFor="let category of categories" class="field-checkbox flex">
+                                        <div class="radio-container">
                                         <p-radiobutton [inputId]="category.key" name="category" [value]="category" [(ngModel)]="user.selectedCategory" size="small" required #category="ngModel"/>
-                                        <label [for]="category.key" class="ml-2">{{ category.name }}</label>
+                                        <label [for]="category.key" class="radio-label">{{ category.name }}</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>

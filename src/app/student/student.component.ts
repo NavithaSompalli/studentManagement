@@ -41,6 +41,7 @@ export class StudentComponent {
   studentList: object[];
   paginator: boolean= false;
   isAddBtnActive:boolean = false;
+
   currentPage = 0;
   rowsPerPage = {
     name:"show 5",
@@ -74,6 +75,8 @@ export class StudentComponent {
       error: (error) => console.log(error),
       complete: ()=>console.log("completed")
     })
+
+    
   }
 
   getStudentDetails(){ // this function return total records from the jsonserver
@@ -81,9 +84,19 @@ export class StudentComponent {
       next: (response) => {
         this.studentList = response
        // console.log(this.studentList)
-        if(this.studentList.length >=5){
+
+       if(localStorage.getItem("studentId") !== null){
+          this.studentList = this.studentList.filter((obj)=> obj["id"] === localStorage.getItem("studentId"))
+       }else{
+
+         if(this.studentList.length >=5){
           this.paginator = true;
         }
+        
+       }
+
+
+       
       },
       error: (error) => console.log(error),
       complete: ()=>{
@@ -105,6 +118,8 @@ export class StudentComponent {
     }else{
       this.studentActive = true;
     }
+
+    console.log("this id form service", localStorage.getItem("studentId"));
    
   }
 
@@ -157,23 +172,35 @@ export class StudentComponent {
 
 // pagination logic  
 
-  updatePagination(){
+  updatePagination() {
     this.currentPage = 0; // Reset to first page whenever rows per page changes
     this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i);
-  }
+}
 
-  get paginatedStudents() { // this method returns rows(based on the rowsperpage)
+get paginatedStudents() {
     const start = this.currentPage * this.rowsPerPage.value;
     const end = start + this.rowsPerPage.value;
     return this.studentList.slice(start, end);
 }
 
+// This function controls the pages displayed within the pagination
+get displayedPages() {
+    const startPage = Math.max(this.currentPage - 1, 0); // Ensure it never goes below 0
+    const endPage = Math.min(startPage + 3, this.totalPages.length); // Display up to 3 pages at a time
+    return this.totalPages.slice(startPage, endPage);
+
+}
+
 prevPage() {
-    if (this.currentPage > 0) this.currentPage--;
+    if (this.currentPage > 0) {
+        this.currentPage--;
+    }
 }
 
 nextPage() {
-    if (this.currentPage < this.totalPages.length - 1) this.currentPage++;
+    if (this.currentPage < this.totalPages.length - 1) {
+        this.currentPage++;
+    }
 }
 
 goToPage(index: number) {
@@ -201,6 +228,12 @@ onsubmitDialogue(){
 
    this.service.findStudent(id).subscribe({
     next: (response) => {
+
+      if (!response || response.length === 0) {
+         this.isAddBtnActive = !this.isAddBtnActive;
+        this.visible = !this.visible;
+      return
+    }
   
       if(response[0].id === id && response[0].department === dept){
         alert("Student Already registered in this department");

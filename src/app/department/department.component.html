@@ -6,7 +6,7 @@
 <div class="mb-4 p-8 graph-card" >
     <p-card>
         <div class="dept-pagi-selector">
-            <h3><i class="fa-solid fa-building-columns"></i> Departments</h3>
+            <h3> Departments</h3>
             <p-select [options]="rowsPerPageArray" [(ngModel)]="rowsPerPage" optionLabel="name" 
         class="w-full md:w-56 paginator-btn" *ngIf="studentList.length !== 0" (ngModelChange)="updatePagination()" />
         </div>

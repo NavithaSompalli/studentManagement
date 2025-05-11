@@ -32,4 +32,27 @@ export class ChartDataService {
     }
   ]
 
+ departmentCodeGenerate(dept: string): string {
+    switch (dept) {
+        case "Automobile Engineering":
+            return "AE";
+        case "Chemical Engineering":
+            return "CH";
+        case "Mechanical Engineering":
+            return "ME";
+        case "Electrical Engineering":
+            return "EE";
+        case "Civil Engineering":
+            return "CE";
+        case "Electronics and Communication Engineering":
+            return "ECE";
+        case "Computer Science":
+            return "CSE";
+        case "Artificial Intelligence and Machine Learning":
+            return "AI";
+        default:
+            throw new Error("Department does not exist");
+    }
+}
+
 }

@@ -8,22 +8,35 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
   constructor(private router: Router) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.checkAuthentication();
+    return this.isAuthenticated();
   }
 
   canActivateChild(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
-    return this.checkAuthentication();
+    return this.isAuthenticated();
   }
 
-  private checkAuthentication(): boolean {
-    const token = localStorage.getItem("jwtToken");
-    const isValidToken = token ? JSON.parse(token) : null;
+  // Standalone authentication function
+  private isAuthenticated(): boolean {
+    return checkAuthentication(this.router);
+  }
 
-    if (isValidToken) {
-      return true;
-    } else {
-      this.router.navigate(['']);
-      return false;
-    }
+  
+}
+
+
+
+
+
+
+// Separate function for authentication logic
+export function checkAuthentication(router: Router): boolean {
+  const token = localStorage.getItem("jwtToken");
+  const isValidToken = token ? JSON.parse(token) : null;
+
+  if (isValidToken) {
+    return true;
+  } else {
+    router.navigate(['']);
+    return false;
   }
 }

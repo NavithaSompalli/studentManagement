@@ -97,12 +97,18 @@
     </div>
 
     <div class="flex items-center gap-4 mb-8">
-        <label for="department" class="font-semibold w-24" >Department</label>
-        <div class="input-Element">
-            <input pInputText id="department" class="flex-auto" autocomplete="off" [(ngModel)]="studentValidateObj.department" name="department" #department="ngModel" required />
-            <div class="error-text">
-                <div *ngIf="department.invalid && department.touched" class="error-text">Department is required</div>
-            </div>
+          <label for="department" class="font-semibold w-24">Department</label>
+        <div>
+            <p-select 
+                [(ngModel)]="studentValidateObj.department" 
+                [options]="departmentList" 
+                optionLabel="departmentName" 
+                optionValue="departmentName"
+                name="department"
+                class="custom-dropdown"
+                [appendTo]="'body'" 
+                required #department="ngModel"/>
+            <div *ngIf="department.invalid && department.touched" class="error-text">Department is required</div>
         </div>
     </div>
     <div class="flex justify-end gap-2 add-btn-container">

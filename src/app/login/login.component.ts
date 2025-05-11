@@ -32,7 +32,27 @@ export class LoginComponent implements OnInit{
   password!: string;
   confirmpassword!: string;
   userError: string = ''; 
+  userType:boolean = false;
  ngOnInit(): void {
+    const token = localStorage.getItem("jwtToken");
+  const isValidToken = token ? JSON.parse(token) : null;
+   this.userType =  JSON.parse(localStorage.getItem('student'));
+
+   if(isValidToken !== null && this.userType !== undefined  ){
+  if (isValidToken) {
+    if(this.userType === true){
+      this.router.navigate(['home/graph'])
+    }else{
+      this.router.navigate(['home/graph'])
+    }
+    
+  } else {
+    this.router.navigate(['']);
+  }
+}else{
+   this.router.navigate(['']);
+}
+ 
    
  }
   
@@ -78,12 +98,7 @@ export class LoginComponent implements OnInit{
       });*/
 
       this.loginService.login(this.username, this.password).subscribe({
-        next: (response) => console.log('Success:', response),
-        error: (error) => {
-          this.userError = error
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: this.userError })
-        },
-        complete: () => {
+        next: (response) => {console.log('Success:', response)
           if(this.username === 'admin'){
           this.userError = "User Login Successfully";
           localStorage.clear();
@@ -91,11 +106,25 @@ export class LoginComponent implements OnInit{
           this.messageService.add({ severity: 'success', summary: 'Success', detail: this.userError })
           this.router.navigate(['home/graph']);
           }else{
-            this.visible2 = !this.visible2
+           // this.visible2 = !this.visible2
           /*  this.router.navigate(['home/graph']);
             localStorage.setItem('student', JSON.stringify({"student": "true"}));*/
+           // this.onStudentLoginDetails(response.user.id)
+           console.log(response)
+           let results = response.user.id;
+           localStorage.setItem('studentId', results);
+           this.loginService.studentId = response.user.id;
+          // console.log(results);
+            localStorage.setItem('student', JSON.stringify({"student": "true"}));
+            localStorage.setItem("jwtToken", JSON.stringify(true));
+            this.router.navigate(['home','graph']);
           }
         },
+        error: (error) => {
+          this.userError = error
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: this.userError })
+        },
+        complete: () => {}
       });
 
     } else {
@@ -106,30 +135,37 @@ export class LoginComponent implements OnInit{
   
   @ViewChild('myFormSignup') signup!: NgForm;
 
-  
+  userData = {
+    id:'',
+    username:'',
+    password:'',
+    confirmpassword:''
+  }
 
   onSubmitSignUp() {
     let apiUrl = 'http://localhost:3000/users';
-    let userData = {
+    /*let userData = {
       username: this.username,
       password: this.password,
-    };
+    };*/
 
    // let response = false
-    if (!this.username || !this.password || !this.confirmpassword) {
+
+   console.log(this.userData);
+    if (!this.userData.username || !this.userData.password || !this.userData.confirmpassword) {
       this.userError = 'Please enter all the fields';
       this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError })
-    } else if (this.password !== this.confirmpassword) {
+    } else if (this.userData.password !== this.userData.confirmpassword) {
       this.userError = 'Password and Confirm Password must match';
       this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError })
     } else {
-     // console.log('User created successfully');
+     // console.log('User created successfully'); 
       
      this.loginService.getUser(this.username, this.password).subscribe({
       next: (response) => {
         if(response){
           console.log(`Get User true :  ${response}`);
-              this.http.post(apiUrl, userData).subscribe({
+              this.http.post(apiUrl, this.userData).subscribe({
                 next: (response) => console.log('Success:', response),
                 error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
                 complete: () => this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User created successfully' }),
@@ -137,7 +173,7 @@ export class LoginComponent implements OnInit{
     
               this.isSignUpActive = !this.isSignUpActive;
             }else{
-              console.log(`Get User false:  ${response}`);
+            //  console.log(`Get User false:  ${response}`);
               this.messageService.add({severity: 'error', summary: 'Warning', detail: 'User already Exits'});
             }
       }
@@ -152,6 +188,11 @@ export class LoginComponent implements OnInit{
     this.position = position;
     this.visible = !this.visible
   }
+
+
+  onStudentLoginDetails(){}
+
+
 
   @ViewChild('miniDialogStudent') studentIDDialog: NgForm;
   studentIdObj = {

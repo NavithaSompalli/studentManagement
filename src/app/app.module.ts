@@ -63,27 +63,27 @@ import { AutoCompleteModule } from 'primeng/autocomplete';
 import { DropdownModule } from 'primeng/dropdown';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
+import { PaginatorModule } from 'primeng/paginator';
 
 import { AuthGuardService } from "./auth.guard";
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  {path:'',component:GraphComponent},
-  { 
-    path: 'home', 
-    component: HomeComponent, 
-    canActivate: [AuthGuardService], // Protects the main route
-    canActivateChild: [AuthGuardService], // Protects child routes
+  { path: '', component: LoginComponent},
+ { path: 'home', component: HomeComponent,canActivateChild: [AuthGuardService],
     children: [
-      { path: 'student', component: StudentComponent },
-      { path: 'department', component: DepartmentComponent },
-      { path: 'graph', component: GraphComponent },
-      { path: 'attendance', component: AttendanceComponent }
+      { path: 'student', component: StudentComponent ,canActivate:[AuthGuardService]},
+      { path: 'department', component: DepartmentComponent},
+      {path:'graph', component: GraphComponent },
+      {path:'attendance', component: AttendanceComponent }
     ] 
   },
-  { path: 'admin', component: AdminComponent, canActivate: [AuthGuardService] } // Protects admin route
-];
+  /*{path:'home/student', component: HomeComponent},
+  {path:'home/graph', component: HomeComponent},
+  {path:'home/department', component: HomeComponent},
+  {path:'home/attendance', component: HomeComponent},*/
 
+  { path: 'admin', component: AdminComponent }
+];
 @NgModule({
     declarations:[DepartmentComponent,
       StudentDetailsComponent,
@@ -128,7 +128,9 @@ const routes: Routes = [
       InputTextModule,
       DialogModule,
       Dialog,
-      HttpClientModule],
+      HttpClientModule,
+      PaginatorModule
+    ],
     bootstrap:[AppComponent],
     providers:[ChartDataService,
       provideAnimationsAsync(),providePrimeNG({theme :{preset :Aura}}), 

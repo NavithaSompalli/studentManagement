@@ -6,112 +6,31 @@
       "password": "admin"
     },
     {
-      "id": "c6b1",
-      "username": "Navitha",
-      "password": "Navitha@123"
-    },
-    {
-      "id": "528b",
-      "username": "Navithasompalli",
-      "password": "Navitha@123"
-    },
-    {
-      "id": "3b6c",
-      "username": "Navitha",
-      "password": "12345"
-    },
-    {
-      "id": "ec61",
-      "username": "Navitha",
-      "password": "12345"
-    },
-    {
-      "id": "a072",
-      "username": "Mamatha",
-      "password": "12345"
-    },
-    {
-      "id": "743e",
-      "username": "Mamatha",
-      "password": "1234"
-    },
-    {
-      "id": "4813",
-      "username": "Mamatha",
-      "password": "1234"
-    },
-    {
-      "id": "fe17",
-      "username": "Navitha",
-      "password": "1234567"
-    },
-    {
-      "id": "f730",
+      "id": "ITO202550",
       "username": "Gayathri",
-      "password": "gaya@123"
+      "password": "gayathri@123",
+      "confirmpassword": "gayathri@123"
     },
     {
-      "id": "dad8",
-      "username": "Kavitha",
-      "password": "kavi2123"
+      "id": "ITO202550",
+      "username": "Gayathri",
+      "password": "gayathri@123",
+      "confirmpassword": "gayathri@123"
+    },
+    {
+      "id": "ITO202550",
+      "username": "Gayathri",
+      "password": "gayathri@123",
+      "confirmpassword": "gayathri@123"
+    },
+    {
+      "id": "ITO202580",
+      "username": "Sainath",
+      "password": "sainath@123",
+      "confirmpassword": "sainath@123"
     }
   ],
   "studentList": [
-    {
-      "id": "ITO202548",
-      "firstname": "Vijaya",
-      "lastname": "Lakshmi",
-      "dob": "2014-01-04",
-      "email": "gayathri1234@gmail.com",
-      "phoneNumber": 9876654321,
-      "selectedCity": {
-        "code": "+91",
-        "country": "India"
-      },
-      "selectedCategory": {
-        "name": "Female",
-        "key": "F"
-      },
-      "modifiedResource": "Admin",
-      "modifiedSourceType": "Admin",
-      "modifiedDttm": "4-5-2025 2:48:46 PM",
-      "createdDttm": "2025-05-04T18:30:00.000Z",
-      "createdSourceType": "Admin",
-      "createdSource": "Admin",
-      "dateOfJoining": "2025-05-03T18:30:00.000Z",
-      "department": "Civil Engineering",
-      "departmentId": "CIVIL003",
-      "bloodGroup": "B+",
-      "address": "Bangalore, Karnataka"
-    },
-    {
-      "id": "ITO202566",
-      "firstname": "Sai",
-      "lastname": "Nalla",
-      "dob": "2002-01-05",
-      "email": "sainalla123@gmail.com",
-      "phoneNumber": 9876543211,
-      "selectedCity": {
-        "code": "+91",
-        "country": "India"
-      },
-      "selectedCategory": {
-        "name": "Male",
-        "key": "M"
-      },
-      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
-      "modifiedResource": "Admin",
-      "modifiedSourceType": "Admin",
-      "modifiedDttm": "5-5-2025 10:18:16 AM",
-      "createdDttm": "2025-05-04T18:30:00.000Z",
-      "createdSourceType": "Admin",
-      "createdSource": "Admin",
-      "dateOfJoining": "2025-05-01T18:30:00.000Z",
-      "department": "Computer Science",
-      "departmentId": "CSE001",
-      "bloodGroup": "O+",
-      "address": "Bnagalore,Karnataka"
-    },
     {
       "id": "ITO202550",
       "firstname": "Gayathri",
@@ -137,118 +56,6 @@
       "dateOfJoining": "2025-04-30T18:30:00.000Z",
       "department": "Electronics and Communication Engineering",
       "departmentId": "ECE002",
-      "bloodGroup": "O+",
-      "address": "Bnagalore,Karnataka"
-    },
-    {
-      "id": "ITO202580",
-      "firstname": "Sainath",
-      "lastname": "Nalla",
-      "dob": "2009-01-07",
-      "email": "sainalla123@gmail.com",
-      "phoneNumber": 8765432198,
-      "selectedCity": {
-        "code": "+91",
-        "country": "India"
-      },
-      "selectedCategory": {
-        "name": "Male",
-        "key": "M"
-      },
-      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
-      "modifiedResource": "Admin",
-      "modifiedSourceType": "Admin",
-      "modifiedDttm": "5-6-2025 11:57:11 PM",
-      "createdDttm": "5-6-2025 11:57:11 PM",
-      "createdSourceType": "Admin",
-      "createdSource": "Admin",
-      "dateOfJoining": "2025-04-30T18:30:00.000Z",
-      "department": "Electronics and Communication Engineering",
-      "departmentId": "ECE002",
-      "bloodGroup": "O+",
-      "address": "Bnagalore,Karnataka"
-    },
-    {
-      "id": "ITO202548",
-      "firstname": "Mamatha",
-      "lastname": "Honnur",
-      "dob": "2003-01-07",
-      "email": "mamatha2024@gmail.com",
-      "phoneNumber": 8976543212,
-      "selectedCity": {
-        "code": "+91",
-        "country": "India"
-      },
-      "selectedCategory": {
-        "name": "Female",
-        "key": "F"
-      },
-      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
-      "modifiedResource": "Admin",
-      "modifiedSourceType": "Admin",
-      "modifiedDttm": "2025-05-07 03:33:01 PM",
-      "createdDttm": "2025-05-07 03:33:01 PM",
-      "createdSourceType": "Admin",
-      "createdSource": "Admin",
-      "dateOfJoining": "2025-05-06T18:30:00.000Z",
-      "department": "Electrical Engineering",
-      "departmentId": "EE004",
-      "bloodGroup": "O+",
-      "address": "Bangalore, Karnataka"
-    },
-    {
-      "id": "ITO202566",
-      "firstname": "Venkat",
-      "lastname": "Swamy",
-      "dob": "2003-01-07",
-      "email": "venkatswamy123@gmail.com",
-      "phoneNumber": 8765432198,
-      "selectedCity": {
-        "code": "+91",
-        "country": "India"
-      },
-      "selectedCategory": {
-        "name": "Female",
-        "key": "F"
-      },
-      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
-      "modifiedResource": "Admin",
-      "modifiedSourceType": "Admin",
-      "modifiedDttm": "2025-05-07 03:44:57 PM",
-      "createdDttm": "2025-05-07 03:44:57 PM",
-      "createdSourceType": "Admin",
-      "createdSource": "Admin",
-      "dateOfJoining": "2025-05-06T18:30:00.000Z",
-      "department": "Civil Engineering",
-      "departmentId": "CIVIL003",
-      "bloodGroup": "O+",
-      "address": "Bangalore, Karnataka"
-    },
-    {
-      "id": "ITO202580",
-      "firstname": "jai",
-      "lastname": "sriram",
-      "dob": "2025-05-06",
-      "email": "jaiSreeRam123@gmail.com",
-      "phoneNumber": 1234567899,
-      "selectedCity": {
-        "country": "India",
-        "code": "+91"
-      },
-      "selectedCategory": {
-        "name": "Female",
-        "key": "F"
-      },
-      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
-      "modifiedResource": "Admin",
-      "modifiedSourceType": "Admin",
-      "modifiedDttm": "2025-05-07 08:35:38 PM",
-      "createdDttm": "2025-05-07 08:35:38 PM",
-      "createdSourceType": "Admin",
-      "createdSource": "Admin",
-      "dateOfJoining": "2025-04-30T18:30:00.000Z",
-      "department": "Electrical Engineering",
-      "departmentId": "EE004",
       "bloodGroup": "O+",
       "address": "Bnagalore,Karnataka"
     },
@@ -281,6 +88,34 @@
       "address": "Bangalore, Karnataka"
     },
     {
+      "id": "ITO202581",
+      "firstname": "Mani",
+      "lastname": "Kanta",
+      "dob": "2004-01-10",
+      "email": "manikanta123@gmail.com",
+      "phoneNumber": 8976543213,
+      "selectedCity": {
+        "code": "+91",
+        "country": "India"
+      },
+      "selectedCategory": {
+        "name": "Male",
+        "key": "M"
+      },
+      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
+      "modifiedResource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-10 07:20:10 PM",
+      "createdDttm": "2025-05-10 07:20:10 PM",
+      "createdSourceType": "Admin",
+      "createdSource": "Admin",
+      "dateOfJoining": "2025-05-10 12:00:00 AM",
+      "department": "Civil Engineering",
+      "departmentId": "CIVIL003",
+      "bloodGroup": "O+",
+      "address": "Bnagalore,Karnataka"
+    },
+    {
       "id": "ITO202580",
       "firstname": "Venkat",
       "lastname": "Swamy",
@@ -292,8 +127,8 @@
         "country": "India"
       },
       "selectedCategory": {
-        "name": "Female",
-        "key": "F"
+        "name": "Male",
+        "key": "M"
       },
       "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
       "modifiedResource": "Admin",
@@ -302,11 +137,95 @@
       "createdDttm": "2025-05-08 09:59:56 AM",
       "createdSourceType": "Admin",
       "createdSource": "Admin",
-      "dateOfJoining": "2025-05-08 12:00:00 AM",
-      "department": "Electrical Engineering",
-      "departmentId": "EE004",
+      "dateOfJoining": "2025-05-10 12:00:00 AM",
+      "department": "Civil Engineering",
+      "departmentId": "CIVIL003",
       "bloodGroup": "O+",
       "address": "Bnagalore,Karnataka"
+    },
+    {
+      "id": "ITO202580",
+      "firstname": "Venkat",
+      "lastname": "Swamy",
+      "dob": "2004-01-08",
+      "email": "venkatswamy123@gmail.com",
+      "phoneNumber": 8765432198,
+      "selectedCity": {
+        "code": "+91",
+        "country": "India"
+      },
+      "selectedCategory": {
+        "name": "Male",
+        "key": "M"
+      },
+      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
+      "modifiedResource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-08 09:59:56 AM",
+      "createdDttm": "2025-05-08 09:59:56 AM",
+      "createdSourceType": "Admin",
+      "createdSource": "Admin",
+      "dateOfJoining": "2025-05-10 12:00:00 AM",
+      "department": "Electronics and Communication Engineering",
+      "departmentId": "ECE002",
+      "bloodGroup": "O+",
+      "address": "Bnagalore,Karnataka"
+    },
+    {
+      "id": "ITO202598",
+      "firstname": "Anji",
+      "lastname": "Swamy",
+      "dob": "2025-05-03",
+      "email": "anjiswamy123@gmail.com",
+      "phoneNumber": 9876543212,
+      "selectedCity": {
+        "code": "+91",
+        "country": "India"
+      },
+      "selectedCategory": {
+        "name": "Male",
+        "key": "M"
+      },
+      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
+      "modifiedResource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-10 08:44:10 PM",
+      "createdDttm": "2025-05-10 08:44:10 PM",
+      "createdSourceType": "Admin",
+      "createdSource": "Admin",
+      "dateOfJoining": "2025-05-10 12:00:00 AM",
+      "department": "Electronics and Communication Engineering",
+      "departmentId": "ECE002",
+      "bloodGroup": "O+",
+      "address": "Bangalore, Karnataka"
+    },
+    {
+      "id": "ITO202598",
+      "firstname": "Anji",
+      "lastname": "Swamy",
+      "dob": "2025-05-03",
+      "email": "anjiswamy123@gmail.com",
+      "phoneNumber": 9876543212,
+      "selectedCity": {
+        "code": "+91",
+        "country": "India"
+      },
+      "selectedCategory": {
+        "name": "Male",
+        "key": "M"
+      },
+      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
+      "modifiedResource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-10 08:44:10 PM",
+      "createdDttm": "2025-05-10 08:44:10 PM",
+      "createdSourceType": "Admin",
+      "createdSource": "Admin",
+      "dateOfJoining": "2025-05-10 12:00:00 AM",
+      "department": "Civil Engineering",
+      "departmentId": "CIVIL003",
+      "bloodGroup": "O+",
+      "address": "Bangalore, Karnataka"
     }
   ],
   "departmentList": [
@@ -504,6 +423,201 @@
       "modifiedSource": "Admin",
       "modifiedSourceType": "Admin",
       "modifiedDttm": "2025-05-09 12:54:39 AM"
+    },
+    {
+      "id": "abaa",
+      "studentId": "ITO202580",
+      "month": "February",
+      "year": "2024",
+      "departmentId": "ECE002",
+      "departmentName": "Electronics and Communication Engineering",
+      "attendanceCount": "29",
+      "createdSource": "Admin",
+      "createdSourceType": "Admin",
+      "createdDttm": "2025-05-09 09:44:13 AM",
+      "modifiedSource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-09 09:44:13 AM"
+    },
+    {
+      "id": "f2d2",
+      "studentId": "ITO202580",
+      "month": "March",
+      "year": "2024",
+      "departmentId": "ECE002",
+      "departmentName": "Electronics and Communication Engineering",
+      "attendanceCount": "29",
+      "createdSource": "Admin",
+      "createdSourceType": "Admin",
+      "createdDttm": "2025-05-09 10:39:34 AM",
+      "modifiedSource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-09 10:39:34 AM"
+    },
+    {
+      "id": "b71c",
+      "studentId": "ITO202580",
+      "month": "April",
+      "year": "2024",
+      "departmentId": "ECE002",
+      "departmentName": "Electronics and Communication Engineering",
+      "attendanceCount": "20",
+      "createdSource": "Admin",
+      "createdSourceType": "Admin",
+      "createdDttm": "2025-05-09 10:39:34 AM",
+      "modifiedSource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-09 10:39:34 AM"
+    },
+    {
+      "id": "75e7",
+      "studentId": "ITO202580",
+      "month": "May",
+      "year": "2024",
+      "departmentId": "ECE002",
+      "departmentName": "Electronics and Communication Engineering",
+      "attendanceCount": "30",
+      "createdSource": "Admin",
+      "createdSourceType": "Admin",
+      "createdDttm": "2025-05-09 10:39:34 AM",
+      "modifiedSource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-09 10:39:34 AM"
+    },
+    {
+      "id": "e8ad",
+      "studentId": "ITO202580",
+      "month": "June",
+      "year": "2024",
+      "departmentId": "ECE002",
+      "departmentName": "Electronics and Communication Engineering",
+      "attendanceCount": "30",
+      "createdSource": "Admin",
+      "createdSourceType": "Admin",
+      "createdDttm": "2025-05-09 10:39:34 AM",
+      "modifiedSource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-09 10:39:34 AM"
+    },
+    {
+      "id": "d160",
+      "studentId": "ITO202580",
+      "month": "July",
+      "year": "2024",
+      "departmentId": "ECE002",
+      "departmentName": "Electronics and Communication Engineering",
+      "attendanceCount": "15",
+      "createdSource": "Admin",
+      "createdSourceType": "Admin",
+      "createdDttm": "2025-05-09 10:39:34 AM",
+      "modifiedSource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-09 10:39:34 AM"
+    },
+    {
+      "id": "d60a",
+      "studentId": "ITO202580",
+      "month": "August",
+      "year": "2024",
+      "departmentId": "ECE002",
+      "departmentName": "Electronics and Communication Engineering",
+      "attendanceCount": "26",
+      "createdSource": "Admin",
+      "createdSourceType": "Admin",
+      "createdDttm": "2025-05-09 10:39:34 AM",
+      "modifiedSource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-09 10:39:34 AM"
+    },
+    {
+      "id": "9338",
+      "studentId": "ITO202580",
+      "month": "September",
+      "year": "2024",
+      "departmentId": "ECE002",
+      "departmentName": "Electronics and Communication Engineering",
+      "attendanceCount": "30",
+      "createdSource": "Admin",
+      "createdSourceType": "Admin",
+      "createdDttm": "2025-05-09 10:39:34 AM",
+      "modifiedSource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-09 10:39:34 AM"
+    },
+    {
+      "id": "21e3",
+      "studentId": "ITO202580",
+      "month": "November",
+      "year": "2024",
+      "departmentId": "ECE002",
+      "departmentName": "Electronics and Communication Engineering",
+      "attendanceCount": "23",
+      "createdSource": "Admin",
+      "createdSourceType": "Admin",
+      "createdDttm": "2025-05-09 10:39:34 AM",
+      "modifiedSource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-09 10:39:34 AM"
+    },
+    {
+      "id": "f1e2",
+      "studentId": "ITO202580",
+      "month": "November",
+      "year": "2024",
+      "departmentId": "ECE002",
+      "departmentName": "Electronics and Communication Engineering",
+      "attendanceCount": "30",
+      "createdSource": "Admin",
+      "createdSourceType": "Admin",
+      "createdDttm": "2025-05-09 10:39:34 AM",
+      "modifiedSource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-09 10:39:34 AM"
+    },
+    {
+      "id": "606d",
+      "studentId": "ITO202580",
+      "month": "October",
+      "year": "2024",
+      "departmentId": "ECE002",
+      "departmentName": "Electronics and Communication Engineering",
+      "attendanceCount": "20",
+      "createdSource": "Admin",
+      "createdSourceType": "Admin",
+      "createdDttm": "2025-05-09 10:39:34 AM",
+      "modifiedSource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-09 10:39:34 AM"
+    },
+    {
+      "id": "a64d",
+      "studentId": "ITO202548",
+      "month": "January",
+      "year": "2024",
+      "departmentId": "ME005",
+      "departmentName": "Mechanical Engineering",
+      "attendanceCount": "31",
+      "createdSource": "Admin",
+      "createdSourceType": "Admin",
+      "createdDttm": "2025-05-10 11:51:00 PM",
+      "modifiedSource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-10 11:51:00 PM"
+    },
+    {
+      "id": "d373",
+      "studentId": "ITO202548",
+      "month": "February",
+      "year": "2024",
+      "departmentId": "ME005",
+      "departmentName": "Mechanical Engineering",
+      "attendanceCount": "29",
+      "createdSource": "Admin",
+      "createdSourceType": "Admin",
+      "createdDttm": "2025-05-10 11:51:00 PM",
+      "modifiedSource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-10 11:51:00 PM"
     }
   ]
 }

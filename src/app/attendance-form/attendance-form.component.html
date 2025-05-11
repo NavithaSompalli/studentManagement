@@ -48,15 +48,14 @@
                 <div class="input-Element">
                     <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
                         <label for="departmentName">Department Name<br/></label>
-                        <input type="text" pInputText [(ngModel)]="user.departmentName" id="departmentName" name="departmentName" required placeholder="Enter Your year" #departmentName="ngModel"/>
+                        <input type="text" pInputText [(ngModel)]="user.departmentName" id="departmentName" name="departmentName" required placeholder="Enter Your Department Name" #departmentName="ngModel"/>
                         <div class="error-text">
                             <span *ngIf="departmentName.invalid && departmentName.touched" >departmentName is required</span>
-                        </div>
-                       
+                        </div> 
                     </div>
                     <div [ngStyle]="{'width':'48%','margin':'5px'}">
                         <label for="attendanceCount">Attendance Count <br/></label>
-                        <input type="text" pInputText [(ngModel)]="user.attendanceCount" id="attendanceCount" name="attendanceCount" required placeholder="Enter Your Last Name" #attendanceCount="ngModel" />
+                        <input type="text" pInputText [(ngModel)]="user.attendanceCount" id="attendanceCount" name="attendanceCount" required placeholder="Enter Your Attendance count" #attendanceCount="ngModel" />
                        <div class="error-text">
                         <span *ngIf="attendanceCount.invalid && attendanceCount.touched" >Attendance Count is required</span>
                         <span *ngIf = "user.attendanceCount > attendanceDays">Attendance Count cannot exceed {{ attendanceDays }} days</span>
@@ -66,14 +65,14 @@
                 <div class="input-Element">
                     <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
                         <label for="createdSource">Created Source<br/></label>
-                        <input type="text" pInputText [(ngModel)]="user.createdSource" id="createdSource" name="createdSource" required placeholder="Enter Your createdSource" #createdSource="ngModel"  disabled="true"/>
+                        <input type="text" pInputText [(ngModel)]="user.createdSource" id="createdSource" name="createdSource" required placeholder="Enter Your Created Source" #createdSource="ngModel"  disabled="true"/>
                         <div class="error-text">
                             <span *ngIf="createdSource.invalid && createdSource.touched" >Created Datetime is required</span>
                         </div>
                     </div>
                     <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
                         <label for="createdSourceType">Created Source Type<br/></label>
-                        <input type="text" pInputText [(ngModel)]="user.createdSourceType" id="createdSourceType" name="createdSourceType" required placeholder="Enter Your createdSourceType" #createdSourceType="ngModel"  disabled="true"/>
+                        <input type="text" pInputText [(ngModel)]="user.createdSourceType" id="createdSourceType" name="createdSourceType" required placeholder="Enter Your Created Source Type" #createdSourceType="ngModel"  disabled="true"/>
                         <div class="error-text">
                             <span *ngIf="createdSourceType.invalid && createdSourceType.touched" >Created Source Type is required</span>
                         </div>
@@ -83,7 +82,7 @@
 
                     <div [ngStyle]="{'width':'48%','margin':'5px'}">
                         <label for="createdDttm">Created Datetime <br/></label>
-                        <input type="text" pInputText [(ngModel)]="user.createdDttm" id="createdDttm" name="createdDttm" required placeholder="Enter Your createdDttm" #createdDttm="ngModel"  disabled="true"/>
+                        <input type="text" pInputText [(ngModel)]="user.createdDttm" id="createdDttm" name="createdDttm" required placeholder="Enter Your Created Datetime" #createdDttm="ngModel"  disabled="true"/>
                        <div class="error-text">
                         <span *ngIf="createdDttm.invalid && createdDttm.touched" >createdDttm is required</span>
                         </div>
@@ -91,7 +90,7 @@
 
                     <div [ngStyle]="{'width':'48%','margin':'5px'}">
                         <label for="modifiedSource">Modified Source <br/></label>
-                        <input type="text" pInputText [(ngModel)]="user.modifiedSource" id="modifiedSource" name="modifiedSource" required placeholder="Enter Your modifiedSource" #modifiedSource="ngModel"  disabled="true"/>
+                        <input type="text" pInputText [(ngModel)]="user.modifiedSource" id="modifiedSource" name="modifiedSource" required placeholder="Enter Your Modified Source" #modifiedSource="ngModel"  disabled="true"/>
                        <div class="error-text">
                         <span *ngIf="modifiedSource.invalid && modifiedSource.touched" >modifiedSource is required</span>
                         </div>
@@ -128,3 +127,4 @@
     </p-dialog>
 <!--</div>-->
 
+<p-toast/>

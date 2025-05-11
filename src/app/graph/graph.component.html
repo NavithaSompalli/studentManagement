@@ -1,17 +1,23 @@
 
 <div [ngStyle]="{'background-color':'#0099cc', 'height':'15vh'}">
-    <h1 [ngStyle]="{'margin-left':'4%', 'color':'#fff','font-family':'Bree Serif', 'padding-top':'10px'}">Dashboard</h1>
+    <h1 [ngStyle]="{'margin-left':'4%', 'color':'#fff','font-family':'Bree Serif', 'padding-top':'10px'}">
+     
+      Dashboard
+    </h1>
 </div>
 
 <div class="mb-4 p-8 graph-card bargraph-container" >
-    <p-card header="Trends" class="p-card-container">
-        <div>
-            <select [(ngModel)]="studentId" (change)="onStudentChange($event)" placeholder="Select Your studentId">
-                <option disabled selected>{{studentId}}</option>
-                <option *ngFor="let student of deptOptionsList" [value]="student.studentId">
-                  {{ student.studentId }} - {{ student.departmentId }}
-                </option>
-              </select>
+    <p-card header="Attendance Count Analysis" class="p-card-container">
+        <div class="select-elements-container">
+         <p-dropdown [(ngModel)]="studentId" [options]="deptOptionsList" optionLabel="studentId" class="custom-dropdown"
+            placeholder="Select Student ID" (onChange)="onStudentChange($event.value)" optionValue="studentId">
+        </p-dropdown>
+
+        <p-dropdown [(ngModel)]="departmentId" [options]="deptCodeOptionsList" optionLabel="departmentId" class="custom-dropdown"
+            placeholder="Select Department ID" (onChange)="onDepartmentChange($event.value)"  optionValue="departmentId">
+        </p-dropdown>
+
+
 
             <!--   <p-dropdown 
                      [(ngModel)]="studentId" 

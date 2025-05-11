@@ -9,8 +9,10 @@ import { map } from 'rxjs/operators';
 export class LoginServiceService {
   private apiUrl = 'http://localhost:3000/users';
 
+  studentId:string = '';
+
   date = new Date();
-  dateFormat = `${this.date.getDay()}-${this.date.getMonth()}-${this.date.getFullYear()} ${this.date.getHours()}:${this.date.getSeconds()} `
+ dateFormat = `${this.date.getDate()}-${this.date.getMonth() + 1}-${this.date.getFullYear()} ${this.date.getHours()}:${this.date.getMinutes()}:${this.date.getSeconds()}`;
   imageUrl!: string;
   
 
@@ -61,6 +63,22 @@ export class LoginServiceService {
         }
       })
     )}
+
+    getUserDetails(id): Observable<any> {
+ 
+   return this.http.get<any[]>(`http://localhost:3000/users?id=${id}`).pipe(
+        map((users) =>{
+        //  console.log(users);
+          if(users.length !== 0){
+            return users
+          }else{
+            return false
+          }
+        })
+      )
+}
+
+
 
 
     /*userData(object: Object){
@@ -120,6 +138,7 @@ export class LoginServiceService {
     }
 
     getAttendanceDetailsID(studentId):Observable<any>{
+      console.log(studentId);
       return this.http.get(`http://localhost:3000/departmentList/${studentId}`)
     }
 

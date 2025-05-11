@@ -5,7 +5,7 @@ import { ChartDataService } from '../chart-data.service';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { NgForm } from '@angular/forms';
-
+import { ConfirmationService, MessageService } from 'primeng/api';
 @Component({
   selector: 'app-attendance-form',
   
@@ -18,10 +18,14 @@ export class AttendanceFormComponent implements OnInit,  OnChanges, AfterViewChe
     @Input() stuId!: string;
     @Input() deptCode!: string;
     departmentId!: string;
+    existingRecord:any[] = [];
+    
+    
 
     constructor(private dataService: ChartDataService,
       private service: LoginServiceService,
-      private router: Router
+      private router: Router,
+      private message:MessageService
     ){}
 
   
@@ -42,6 +46,8 @@ export class AttendanceFormComponent implements OnInit,  OnChanges, AfterViewChe
     
     ngOnInit(){
      // console.log(this.dataService.departmentList);
+
+     this.getAttendanceStudentDetails();
     
     }
 
@@ -108,7 +114,8 @@ export class AttendanceFormComponent implements OnInit,  OnChanges, AfterViewChe
       this.service.getAttendanceDetails().subscribe({
         next: (response) => {
           this.attendanceList = response
-          console.log(this.attendanceList)
+          console.log("getting Student details",this.attendanceList)
+        
           
         },
         error: (error) => console.log(error),
@@ -131,53 +138,61 @@ export class AttendanceFormComponent implements OnInit,  OnChanges, AfterViewChe
      // console.log(month, year, this.user["month"],this.user["year"]);
     
       this.getAttendanceStudentDetails(); // Ensure attendanceList is populated
-
-   /* let currentStudent = this.service.getAttendanceDetailsID(this.form.controls["studentId"]).subscribe({
-      next: (response) => {
-        console.log(response);
-        
-      },
-      error: (error) => console.log(error),
      
-    })
-    
-      // Check if the studentId, year, and month already exist
-
-      let recordBool = currentStudent["studentId"] === stu && currentStudent[]*/
-     
-      const existingRecord = this.attendanceList.filter((record: any) =>{
+       this.existingRecord = this.attendanceList.filter((record: any) =>{
       
-     if(record.studentId === this.user.studentId &&
-        record.month === this.user.month &&
-        record.year === this.user.year){
-          return true
-        }else{
-          return false
-        }
-      }
+        if(record.studentId === this.user.studentId &&
+            record.month === this.user.month &&
+            record.year === this.user.year){
+              return true
+            }else{
+              return false
+            }
+          }
       );
-      console.log(existingRecord);
+  
+     
+      
+    //  console.log("exting Record",this.existingRecord);
     
      
 
-      if(existingRecord.length === 0){
+      if(this.existingRecord.length === 0){
     
       // Proceed with adding attendance
       this.service.addAttendanceStudentDetails(this.user).subscribe({
         next: (response) => {
           console.log("Attendance submitted successfully!", response);
+          this.message.add({
+                 severity: 'success',
+                 summary: 'Success',
+                 detail: 'Attendance submitted successfully!',
+                 life: 3000,
+             });
         },
         error: (error) => {
           console.error("Failed to submit attendance", error);
+           this.message.add({
+                 severity: 'success',
+                 summary: 'Rejected',
+                 detail: 'Failed to submit attendance',
+                 life: 3000,
+             });
         },
         complete: () => {
-          this.router.navigate(["home/attendance"]).then(() => {
+        /*  this.router.navigate(["home/attendance"]).then(() => {
             window.location.reload(); // Forces page refresh
-          });
+          });*/
         }
       });
     }else{
-      alert("Attendance record for this student and month already exists.");
+      
+       this.message.add({
+                 severity: 'error',
+                 summary: 'Rejected',
+                 detail: 'Attendance record for this student and month already exists.',
+                 life: 3000,
+             });
     }
     }
     

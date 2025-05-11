@@ -372,3 +372,12 @@ th{
     margin-top:10px;
     width:100%;
   }
+
+
+  .custom-dropdown {
+    width: 100% !important;
+    margin-top:5px;
+    margin-bottom: 10px;
+    background-color: #f0f0f0 !important;
+    border-radius: 0px;
+  }
