@@ -170,13 +170,15 @@ export class FormModalComponent implements OnInit, OnChanges {
   }
 
   onFileSelected(event: any) {
-    const file: File = event.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onload = () => {
-        this.imageUrl = reader.result as string;
-      };
-      reader.readAsDataURL(file);
-    }
+  const file: File = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageUrl = reader.result as string;
+      this.user.image = this.imageUrl; // Ensure this is inside the onload function
+    };
+    reader.readAsDataURL(file);
   }
+}
+
 }

@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output,AfterViewChecked, OnInit, ViewChild } from '@angular/core';
 import { LoginServiceService } from '../login-service.service';
+import { MessageService } from 'primeng/api';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -13,7 +14,10 @@ export class AttendanceDetailsComponent implements AfterViewChecked, OnInit{
 
   studentData = JSON.parse(localStorage.getItem('student'));
 
-  constructor(private service: LoginServiceService){}
+  constructor(private service: LoginServiceService,
+    private messageService: MessageService
+
+  ){}
 
   
  
@@ -84,7 +88,7 @@ ngOnChanges() {
   if (this.studentDetailsObject && Object.keys(this.studentDetailsObject).length > 0) {
     this.studentDetailsObject = this.studentDetailsObject;
   } else {
-    console.warn("studentDetailsObject is missing or empty!");
+   // console.warn("studentDetailsObject is missing or empty!");
     this.studentDetailsObject = {
       studentId: '',
       month: '',
@@ -119,10 +123,11 @@ ngOnChanges() {
   @ViewChild('ngAttendanceForm') form : NgForm;
   
   ngAfterViewChecked() {
-    if (this.form?.controls?.["year"] && this.form.controls["month"]) {
+    if (this.form) {  // Ensure form exists
+    if (this.form.controls && this.form.controls["year"] && this.form.controls["month"]) {
       let year = this.form.controls["year"].value;
       let month = this.form.controls["month"].value;
-  
+
       let monthIndex = this.months.find((obj) => obj.name === month);
       if (monthIndex) {
         this.attendanceDays = this.getDaysInMonth(monthIndex.value, Number(year));
@@ -130,6 +135,9 @@ ngOnChanges() {
     } else {
       console.warn("Form controls are missing in ngAfterViewChecked!");
     }
+  } else {
+    console.warn("Form is undefined in ngAfterViewChecked!");
+  }
   }
   
 
@@ -145,21 +153,25 @@ ngOnChanges() {
       return;
     }
   
-    
+   // console.log(Object.values(this.studentDetailsObject));
 
-    
-
-    this.service.updateStudentAttendance(this.studentDetailsObject.studentId, this.studentDetailsObject).subscribe(
+    let isEmpty = Object.values(this.studentDetailsObject).includes('');
+   // console.log(isEmpty);
+    if(!isEmpty && this.studentDetailsObject.attendanceCount <= this.attendanceDays ){
+    this.service.updateStudentAttendance(this.studentDetailsObject.id, this.studentDetailsObject).subscribe(
       response => {
        // console.log('Student updated successfully', response); // Display the response object
-        alert('Updated successfully');
+       // alert('Updated successfully');
+        this.messageService.add({ severity: 'success', detail: `Updated successfully` });
         this.isUpdateActive = false;
       },
       error => {
        // console.error('Error updating student', error);
-        alert('Failed to update student. Please try again.');
+       // alert('Failed to update student. Please try again.');
+         this.messageService.add({ severity: 'warn', detail: `Failed to update student. Please try again` });
       }
     );
+    }
   }
 
   onBackClick(){

@@ -67,6 +67,13 @@
     border: none;
 }
 
+.icon-size{
+      font-size:30px;
+      color:#0099cc;
+
+    }
+   
+
 /* Responsive styles for smaller screens */
 @media (max-width: 768px) {
   

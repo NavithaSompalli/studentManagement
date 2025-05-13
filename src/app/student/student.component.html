@@ -1,12 +1,12 @@
 <div [ngStyle]="{'background-color':'#0099cc', 'height':'15vh'}">
-    <h2 [ngStyle]="{'margin-left':'3%', 'color':'#fff','font-family':'Roboto', 'padding-top':'5px', 'font-size':'2rem'}">
+    <h2 class="header-element" [ngStyle]="{'color':'#fff'}">
         <i class="fa-solid fa-users" [ngStyle]="{'font-size':'25px', 'margin-right':'10px'}"></i>Student List
     </h2>
 </div>
 
 <div class="card">
-    <p-card [ngStyle]="{'width':'100%'}">
-        <div [ngStyle]="{'display':'flex','justify-content':'space-between','align-items':'center'}">
+    <p-card>
+        <div class="card-header">
             <h1 class="student-heading">Student List</h1>
             <div class="student-form-elements">
                 <p-select [options]="rowsPerPageArray" [(ngModel)]="rowsPerPage" optionLabel="name" 
@@ -20,8 +20,26 @@
                 <h2>No records found.</h2>
             </div>
 
-            <p-table [value]="paginatedStudents" stripedRows *ngIf="studentList?.length !== 0"
-                     [rows]="rowsPerPage.value" responsiveLayout="scroll"> 
+            <p-table  #dt2 [value]="studentList" dataKey="id" [loading]="loading" stripedRows *ngIf="studentList?.length !== 0"
+                     [rows]="rowsPerPage.value" responsiveLayout="scroll"  [paginator]="true" [globalFilterFields]="['id', 'department','firstname']"
+                     [tableStyle]="{ 'min-width': '75rem' }"> 
+                     <ng-template #caption>
+                            <div class="flex">
+                        <!-- Search Input Field -->
+                        <div class="search-container">
+                            <i class="pi pi-search"></i> <!-- Search Icon -->
+                            <input
+                                type="text"
+                                pInputText
+                                #searchBox
+                            (input)="dt2.filterGlobal(searchBox.value, 'contains')"
+
+                                placeholder="Search keyword"
+                            />
+                                </div>
+                            </div>
+                        </ng-template>
+
                 <ng-template #header>
                     <tr>
                         <th style="white-space: nowrap;" pSortableColumn="id" (click)="sortColumn('id')">Student ID <i class="fa-solid fa-sort" field="id"></i></th>
@@ -64,18 +82,17 @@
             </p-table>
         </div>
 
-        <div class="custom-paginator" *ngIf="studentList?.length >= rowsPerPage?.value">
+   <!--    <div class="custom-paginator" *ngIf="studentList?.length >= rowsPerPage?.value">
             
-                <button (click)="prevPage()" [disabled]="currentPage === 0" class="previous-btn">Previous</button>
-                <button *ngFor="let page of totalPages; let i = index" class="paginator-container" (click)="goToPage(i)" [ngClass]="{'active': currentPage === i}">
-                    
-                        {{ i + 1 }}
-                   
-                </button>
-                <button (click)="nextPage()" [disabled]="currentPage === totalPages.length - 1" class="next-btn">Next</button>
-            
-            </div>
+            <button (click)="prevPage()" [disabled]="currentPage === 0" class="previous-btn">Previous</button>
+            <button *ngFor="let page of displayedPages; let i = index" class="paginator-container" (click)="goToPage(page)" [ngClass]="{'active': currentPage === page}">
+                
+                    {{ page }}
+               
+            </button>
+            <button (click)="nextPage()" [disabled]="currentPage === totalPages.length - 1" class="next-btn">Next</button>
         
+        </div>--> 
     </p-card>
 </div>
 
@@ -86,18 +103,20 @@
     <p-confirmdialog key="positionDialog" [position]="position" />
 </div>
 
-<p-dialog header="Validate Student" [modal]="true" [(visible)]="visible" [position]="position" class="validate-student-dialog" *ngIf="studentActive">
+<p-dialog  [modal]="true" [(visible)]="visible" [position]="position" class="validate-student-dialog" *ngIf="studentActive">
 
 <form #miniDialog="ngForm" (ngSubmit)="onsubmitDialogue()" >
-    <div class="flex items-center gap-4 mb-4">
+    <div class="flex items-center gap-4 mb-4 input-Element">
         <label for="studentId" class="font-semibold w-24">Student ID</label>
         <div>
-            <input pInputText id="studentId" class="flex-auto" autocomplete="off" [(ngModel)]="studentValidateObj.studentId" name="studentId" #studentId="ngModel" required />
-            <div *ngIf="studentId.invalid && studentId.touched" class="error-text">Student ID is required</div>
+            <input pInputText id="studentId" class="flex-auto" autocomplete="off" [(ngModel)]="studentValidateObj.studentId" name="studentId" #studentId="ngModel" required [ngStyle]="{'background-color':'f0f0f0'}"/>
+            <div class="error-text">
+                <span *ngIf="studentId.invalid && studentId.touched" class="error-text">Student ID is required</span>
+            </div>
         </div>
     </div>
 
-    <div class="flex items-center gap-4 mb-8">
+    <div class="flex items-center gap-4 mb-8 input-Element">
         <label for="department" class="font-semibold w-24">Department</label>
         <div>
             <p-select 
@@ -109,7 +128,10 @@
                 class="custom-dropdown"
                 [appendTo]="'body'" 
                 required #department="ngModel"/>
-            <div *ngIf="department.invalid && department.touched" class="error-text">Department is required</div>
+            <div class="error-text">
+                 <span *ngIf="department.invalid && department.touched" >Department is required</span>
+            </div>
+           
         </div>
     </div>
 

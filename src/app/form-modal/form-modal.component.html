@@ -1,20 +1,20 @@
 
 
 <!--<div class="card flex justify-center">-->
-    <p-dialog header="Add New User" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '100vh', '575px': '100%' }" [style]="{width:'80%' }" [draggable]="false" [resizable]="false" class="add-form-modal">
+    <p-dialog header="Add New User" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '100vh', '575px': '100%' }" [style]="{width:'90%' }" [draggable]="false" [resizable]="false" class="add-form-modal">
         <hr/>
       <!--  <img [src]="imageUrl" alt="imageElement"/>-->
         <form #dialogForm="ngForm" (ngSubmit)="onSubmitDialogue()" [ngStyle]="{'height':'50%'}">
             <div class="flex gap-4 form-elements-container">
             <!-- Avatar Upload Container -->
-            <div [ngStyle]="{'padding':'5px'}">
+            <div [ngStyle]="{'padding':'5px'}" class="avatar-pg-container">
                 <div class="avatar-container">
                     <div class="avatar-upload" (click)="openUploadDialog()">
                         <img *ngIf="imageUrl" [src]="imageUrl" alt="Avatar" class="avatar-preview"/>
                         <div *ngIf="!imageUrl" class="upload-placeholder">+</div>
                     </div>
                     <label [ngStyle]="{'margin-top':'15px'}">Max file 2MB<br/> Supporting formats: JPG, PNG</label>
-                    <input type="file" id="fileInput" (change)="onFileSelected($event)" accept="image/png, image/jpeg" hidden name="image" required/>
+                    <input type="file" id="fileInput"  (change)="onFileSelected($event)" accept="image/png, image/jpeg" hidden name="image" required/>
                 </div>
             </div>
             <!-- Form Container -->
@@ -25,7 +25,7 @@
                         <input type="text" pInputText [(ngModel)]="stuId" id="username" name="id" required disabled="true"/>
                     </div>
                     <div class="input-Element">
-                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                        <div class="form-input-element-container">
                             <label for="firstname">First Name*<br/></label>
                             <input type="text" pInputText [(ngModel)]="user.firstname" id="firstname" name="firstname" required placeholder="Enter Your First Name" #firstname="ngModel"/>
                             <div class="error-text">
@@ -33,7 +33,7 @@
                             </div>
                            
                         </div>
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <div class="form-input-element-container">
                             <label for="lastname">Last Name* <br/></label>
                             <input type="text" pInputText [(ngModel)]="user.lastname" id="lastname" name="lastname" required placeholder="Enter Your Last Name" #lastname="ngModel"/>
                            <div class="error-text">
@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="input-Element">
-                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                        <div class="form-input-element-container">
                             <label for="email">Email*<br/></label>
                             <input type="email" pInputText [(ngModel)]="user.email" id="firstname" name="email" email required placeholder="abcd@gmail.com" #email="ngModel" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$"/>
                             <div class="error-text">
@@ -50,7 +50,7 @@
                                 <span *ngIf="email.invalid && email.touched" >Email is required</span>
                             </div>
                         </div>
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <div class="form-input-element-container">
                             <label for="lastname">Gender* <br/></label>
                             <div class=" flex justify-center">
                                 <div class="flex flex-col gap-4">
@@ -65,26 +65,27 @@
                         </div>
                     </div>
                     <div class="input-Element" >
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <div class="form-input-element-container">
                             <label for="dob">Date Of Birth<span>*</span><br/></label>
                             <input  pInputText type="date" [(ngModel)]="user.dob" inputId="dob"  name="dob" [ngStyle]="{'width':'100%'}" required #dob="ngModel"/>
                             <div class="error-text">
                                 <span *ngIf="dob.invalid && dob.touched" >Date Of Birth is required</span>
                             </div>
                         </div>
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <div class="form-input-element-container">
                             <label for="phonenumber">Phone Number <br/></label>
                             <div class="phone-number-container">
                                 <p-select [options]="countryPhoneCodes" [(ngModel)]="user.selectedCity" [checkmark]="false" optionLabel="code" [showClear]="false" name="selectedCity" class="phone-number"/>
                                 <input type="number" pInputText  [(ngModel)]="user.phoneNumber" name="phoneNumber" pattern="[0-9]{10}" [ngStyle]="{'width':'100%'}" required #phNumber="ngModel"/> 
-                               <div class="error-text">
+                                   <div class="error-text" >
                                 <span *ngIf="phNumber.invalid && phNumber.touched" >Valid Phone Number is required</span>
                             </div>
                             </div>
+                          
                         </div>
                     </div>
                     <div class="input-Element">
-                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                        <div class="form-input-element-container">
                             <label for="departmentId">Department ID<br/></label>
                             <p-select 
                                 [(ngModel)]="user.departmentId" 
@@ -100,7 +101,7 @@
                         </div>
                        
                     
-                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                        <div class="form-input-element-container">
                             <label for="department">Department <br/></label>
                             <p-select 
                                 [(ngModel)]="user.department" 
@@ -117,7 +118,7 @@
                     </div>
                     
                     <div class="input-Element" >
-                        <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                        <div class="form-input-element-container">
                             <label for="dob">Date Of Joining* <br/></label>
                             <p-datepicker [(ngModel)]="user.dateOfJoining" inputId="dob" [showIcon]="true" name="dateOfJoining" [ngStyle]="{'width':'600px'}" required #dateOfJoining="ngModel"/>
                            <div>
@@ -126,7 +127,7 @@
                             </div>
                         </div>
                         </div>
-                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                        <div class="form-input-element-container">
                             <label for="bloodGroup">Blood Group<br/></label>
                             <input type="text" pInputText [(ngModel)]="user.bloodGroup" id="bloodGroup" name="bloodGroup" required placeholder="Enter Your Blood Group" #bloodGroup="ngModel"/>
                             <div class="error-text">
@@ -135,7 +136,7 @@
                         </div> 
                     </div>
                     <div class="input-Element" >
-                        <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                        <div class="form-input-element-container">
                             <label for="address">Address<br/></label>
                             <textarea rows="5" cols="30" pTextarea  [(ngModel)]="user.address" id="address" #address="ngModel" name="address"></textarea>
                         </div>           

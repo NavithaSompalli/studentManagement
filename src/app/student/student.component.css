@@ -15,7 +15,7 @@ body {
     margin: 20px;
     margin-left: 40px !important;
     width: 95% !important;
-    
+    background-color: transparent;
 }
 
 /* Table Container */
@@ -30,7 +30,8 @@ body {
 /* Table Styles */
 ::ng-deep .p-card {
     border-radius: 0px !important;
-    width: 100% !important;
+    width: 100% ;
+    height:65vh;
 }
 
 ::ng-deep .p-table {
@@ -40,10 +41,12 @@ body {
 /* Buttons */
 .add-btn {
     background-color: #0077aa;
-    margin: 5px !important;
+    margin-bottom: 5px !important;
     border-radius: 5px !important;
+    margin-left:5px !important;
    /* width: 150px !important;*/
     font-weight: bold !important;
+    height: 40px;
 }
 
 /* No Records Message */
@@ -179,6 +182,7 @@ th{
     margin-right: 10px;
     border: 1px solid #d9dbde !important;
     margin-top:10px;
+    height: 40px;
 }
 
 ::ng-deep .submit-btn .p-button  {
@@ -186,6 +190,7 @@ th{
     color: white !important;
     border-radius: 5px;
     margin-top:10px;
+    height: 40px;
 }
 
 ::ng-deep .error-text{
@@ -196,7 +201,7 @@ th{
     width: 100% !important;
     margin-top:5px;
     margin-bottom: 10px;
-    background-color: #f0f0f0 !important;
+   /* background-color: #f0f0f0 !important;*/
     border-radius: 0px;
   }
 
@@ -222,6 +227,16 @@ th{
     padding-right:10px;
 }
 
+tr:hover{
+  background-color: cadetblue;
+  color:#fff;
+}
+
+tr:nth-child(odd):hover{
+    background-color: cadetblue !important;
+    color:#fff;
+}
+
 
 .p-select {
     /* border-bottom-left-radius: 5px !important; */
@@ -232,6 +247,12 @@ th{
     /* width: auto !important; */
     background-color: transparent !important;
     
+  }
+
+  input{
+    height: 40px !important;
+    border-radius: 5px !important;
+     background-color: #f0f0f0 !important;
   }
 
   .paginator-btn{
@@ -246,16 +267,88 @@ th{
        background-color: transparent !important;
        
    }
+
+   .card-header{
+        display:flex;
+        flex-direction: row;
+        justify-content:space-between;
+        flex-wrap: wrap;
+    }
+
+    .p-dialog-header{
+        padding:10px;
+        padding-left: 20px;
+    }
+   
+.input-Element {
+  min-height: 90px; /* Adjust based on design needs */
+  position: relative;
+  margin-bottom: 10px;
+  font-family: "Roboto";
+  font-weight: bold;
+}
+.error-text {
+  color: red;
+  font-size: 15px;
+  position: absolute;
+  bottom: -10px; /* Keeps error message fixed in place */
+  width:100%;
+ 
+}
+
+.p-dialog-header {
+    display: flex
+;
+    align-items: center;
+    justify-content: space-between;
+    flex-shrink: 0;
+    padding: 5px;
+}
+
+ ::ng-deep .p-paginator{
+    position: fixed !important;
+    top:80vh !important;
+    right:5% !important;
+}
+
+::ng-deep .p-paginator-page{
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    margin:0px !important;
+    border-radius: 5px !important;
+}
+
+::ng-deep .p-paginator-page.p-paginator-page-selected {
+    background-color: #0077aa !important;;
+    color: #fff !important;
+}
+
+.header-element{
+   margin-left:3%;
+    color:#fff !important;
+    font-family:'Roboto';
+    font-size:2rem;
+    margin-left: 30px;
+}
+
   
 /* Responsive Adjustments */
-@media (max-width: 1024px) {
+@media (min-width:768px)and (max-width: 1024px) {
     .card {
-        width: 90% !important;
+        width: 95% !important;
         margin-left: 20px !important;
+        top:20vh;
     }
 
     .table-container {
         height: 40vh;
+    }
+
+     .card-header{
+        display:flex;
+        flex-direction: row;
+        justify-content:space-between;
+        flex-wrap: wrap;
     }
 
     th, td {
@@ -272,17 +365,36 @@ th{
         font-size: 12px;
         background-color: transparent;
     }
+
+    ::ng-deep .p-paginator{
+    position: fixed !important;
+    top:75vh !important;
+    right:5% !important;
 }
 
-@media (max-width: 768px) {
+::ng-deep .p-paginator-page{
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    margin:0px !important;
+    border-radius: 5px !important;
+}
+
+::ng-deep .p-paginator-page.p-paginator-page-selected {
+    background-color: #0077aa !important;;
+    color: #fff !important;
+}
+
+}
+
+@media (max-width: 701px) {
     .card {
-        width: 85% !important;
-        margin-left: 10px !important;
-        
+        width: 92% !important;
+        margin: 20px !important;
+        top:22vh !important;
     }
 
     .table-container {
-        height: 35vh;
+        height: 45vh;
     }
 
     th, td {
@@ -293,6 +405,7 @@ th{
     .add-btn {
       /*  width: 100px !important;*/
         font-size: 10px;
+        height: 40px;
     }
 
     .custom-paginator {
@@ -309,24 +422,33 @@ th{
     }
 
     ::ng-deep .validate-student-dialog .p-dialog{
-        font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        font-family:'Roboto';
        /* background-color: ghostwhite;*/
-        width:100% !important;
+        width:80% !important;
         padding:5px;
     }
     
+.p-card {
+    border-radius: 0px !important;
+    width: 90% !important;
+    margin-left: 14px;
+    margin-top: 10px;
 }
 
-@media (max-width: 480px) and (min-width:767px){
+
+}
+
+@media (max-width: 480px) and (min-width:700px){
     .card {
-        width: 95% !important;
+        width: 90% !important;
         margin-left: 5px !important;
         top: 0;
         margin-top:15vh;
+        
     }
 
     .table-container {
-        height: 30vh;
+      height: 45vh !important;
     }
 
     th, td {
@@ -334,6 +456,7 @@ th{
         padding: 5px;
     }
 
+   
     .add-btn {
       /*  width: 80px !important;*/
         font-size: 9px;
@@ -353,13 +476,110 @@ th{
         font-size:15px;
     }
 
-    
+    ::ng-deep  .card-header{
+        display:flex !important;
+        flex-direction: column !important;
+        justify-content:flex-start !important;
+    }
 
     ::ng-deep .validate-student-dialog .p-dialog{
         font-family:"Roboto";
         background-color: ghostwhite;
-        width:100% !important;
+        width:80% !important;
     }
+
+ ::ng-deep .p-card {
+    border-radius: 0px !important;
+    width: 90% !important;
+    margin-left: 14px !important;
+    margin-top: 10px !important;
 }
 
+p-card-body {
+    padding: var(--p-card-body-padding);
+    display: flex;
+    flex-direction: column;
+    gap: var(--p-card-body-gap);
+    height: 65vh;
+}
+
+::ng-deep .p-paginator{
+    position: fixed !important;
+    top:80vh !important;
+    right:5% !important;
+    height: 20px !important;
+}
+
+::ng-deep .p-paginator-page{
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    margin:0px !important;
+    border-radius: 5px !important;
+      height: 20px !important;
+}
+
+::ng-deep .p-paginator-page.p-paginator-page-selected {
+    background-color: #0077aa !important;;
+    color: #fff !important;
+}
+  
+
+.header-element{
+   margin-left:3%;
+    color:#fff !important;
+    font-family:'Roboto';
+   
+    font-size:1rem;
+    margin-left: 10px;
+}
+
+::ng-deep .header-element[_ngcontent-ng-c1266205125] {
+    margin-left: 3%;
+    color: #fff !important;
+    font-family: "Roboto";
+    /* padding-top: 10px; */
+    font-size: 2rem;
+    margin-left: 10px;
+}
+
+
+
+}
+
+
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    width: 250px;
+}
+
+.search-container i {
+    margin-right: 8px;
+    color: #555;
+}
+
+.search-container input {
+    border: none;
+    outline: none;
+    width: 100%;
+}
+
+::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd) {
+    background: #F0F0F0 !important;
+    border-color: #F2F2F2 !important;
+}
+
+::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd):hover {
+    background: #F0F0F0 !important;
+    border-color: #F2F2F2 !important;
+   background-color: cadetblue !important;
+   padding:10px !important;
+    color: #fff;
+}
+
+
+/* paginator */
 

@@ -16,6 +16,8 @@
     flex-direction: column;
     gap: 10px;
     padding: 10px;
+    overflow-y: scroll;
+    scrollbar-width: none;
 }
 
 .buttons-container {
@@ -49,7 +51,7 @@
 .detail-row strong {
     width: 50%;
     text-align: left;
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+    font-family:'Roboto';
 }
 
 .detail-row span {
@@ -68,6 +70,20 @@
     background-color: #f4f4f4; /* Light background */
    /* border-bottom: 2px solid #0099cc;  Add a subtle border */
 }
+
+
+::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd) {
+    background: #F0F0F0 !important;
+    border-color: #F2F2F2 !important;
+}
+
+::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd):hover {
+    background: #F0F0F0 !important;
+    border-color: #F2F2F2 !important;
+   background-color: cadetblue !important;
+    color: #fff;
+}
+
 /* Responsive Design */
 @media screen and (max-width: 1024px) {
     .department-details {
@@ -88,4 +104,23 @@
     .department-details p {
         font-size: 14px;
     }
+
+    .buttons-container {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 15px;
+    width:93%;
+  
+}
+
+.details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    overflow-y: scroll;
+    height: 50vh;
+
+}
 }

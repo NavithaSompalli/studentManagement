@@ -22,20 +22,12 @@
     width:98% !important;
 }
 
-@media (max-width: 600px){
-    .graph-card[_ngcontent-ng-c1752484099] {
-        position: absolute !important;
-        z-index: index 1 !important;
-        top: 22vh;
-        margin: 20px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        width: 92% !important;
-        height: 100%;
-    }
-}
 
+::ng-deep .p-card-title {
+    /* font-size: var(--p-card-title-font-size); */
+    font-weight: bold;
+    font-size: 20px !important;
+}
 
 .select-elements-container{
     position: absolute;
@@ -51,10 +43,70 @@
     box-shadow: 2px 2px 2px 2px #8a8988 !important;
 }
 
+
+
+@media (min-width:601px) and (max-width: 769px){
+         .graph-card {
+        position: absolute !important;
+        z-index: index 1 !important;
+        top: 20vh;
+        margin: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 95% !important;
+        height: 100%;
+    }
+
+   
+
+
+    .p-card-title {
+        font-size: 15px;
+    }
+  
+    .select-elements-container {
+        top: 3%;
+        right: 5%;
+        flex-direction: row;
+    }
+
+    .custom-dropdown {
+        font-size: 10px;
+        width: auto;
+    }
+    .p-card-title {
+    /* font-size: var(--p-card-title-font-size); */
+    font-weight: var(--p-card-title-font-weight);
+    font-size: 15px;
+}
+}
+
+
+
+
+
 /* Mobile devices (max-width: 600px) */
 @media (max-width: 600px) {
+       .graph-card[_ngcontent-ng-c1752484099] {
+        position: absolute !important;
+        z-index: index 1 !important;
+        top: 22vh;
+        margin: 20px;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        width: 92% !important;
+        height: 100%;
+    }
+
+
+    .p-card-title {
+  
+    font-size: 15px;
+}
     .graph-card {
-        width: 90% !important;
+        width: 98% !important;
         height: 50%;
         top: 20vh;
         flex-direction: column;
@@ -81,13 +133,16 @@
 /* Extra small screens (max-width: 480px) */
 @media (max-width: 480px) {
     .graph-card {
-        width: 85% !important;
+        width: 90% !important;
         top: 40vh;
         height:30vh;
     }
 
     .bargraph-container {
-        width: 80% !important;
+        width: 95% !important;
+        padding: 10px;
+        margin-left:10px;
+       
     }
 
     .select-elements-container {
@@ -104,9 +159,17 @@
         font-size:8px;
     }
 
-    .p-card-title {
+   ::ng-deep .p-card-title {
     /* font-size: var(--p-card-title-font-size); */
-    font-weight: var(--p-card-title-font-weight);
-    font-size: 15px;
+    font-weight: bold;
+    font-size: 15px !important;
+}
+
+
+
+::ng-deep p-chart div {
+   
+    height: 48vh;
+
 }
 }

@@ -124,7 +124,10 @@ export class LoginComponent implements OnInit{
           this.userError = error
           this.messageService.add({ severity: 'error', summary: 'Error', detail: this.userError })
         },
-        complete: () => {}
+        complete: () => {
+          this.username = "";
+          this.password = "";
+        }
       });
 
     } else {
@@ -160,24 +163,36 @@ export class LoginComponent implements OnInit{
       this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError })
     } else {
      // console.log('User created successfully'); 
-      
-     this.loginService.getUser(this.username, this.password).subscribe({
-      next: (response) => {
+     this.loginService.findStudent(this.userData.id).subscribe({
+      next: (response) =>{
+        console.log("findStudent", response);
         if(response){
-          console.log(`Get User true :  ${response}`);
-              this.http.post(apiUrl, this.userData).subscribe({
-                next: (response) => console.log('Success:', response),
-                error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
-                complete: () => this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User created successfully' }),
-              });
-    
-              this.isSignUpActive = !this.isSignUpActive;
-            }else{
-            //  console.log(`Get User false:  ${response}`);
-              this.messageService.add({severity: 'error', summary: 'Warning', detail: 'User already Exits'});
-            }
+           this.loginService.getUser(this.username, this.password, this.userData.id).subscribe({
+                    next: (response) => {
+                    // console.log("response",response);
+                      if(response[0] === null){
+                      //  console.log(`Get User true :  ${response}`);
+                            
+                            this.http.post(apiUrl, this.userData).subscribe({
+                              next: (response) => console.log('Success:', response),
+                              error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
+                              complete: () => this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User created successfully' }),
+                            });
+                  
+                            this.isSignUpActive = !this.isSignUpActive;
+                          }else{
+                          //  console.log(`Get User false:  ${response}`);
+                            this.messageService.add({severity: 'error', summary: 'Warning', detail: 'User already Exits'});
+                          }
+                        }
+                      })
+             }else{
+               this.messageService.add({severity: 'error', summary: 'Warning', detail: `User doesn't exit in the studentList`});
+             }
       }
      })
+      
+    
     }
   }
 

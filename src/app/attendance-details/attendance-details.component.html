@@ -55,7 +55,7 @@
     <div class="buttons-container">
         <div>
             <p-button label="Cancel" severity="secondary" (click)="isViewDetailsActive = false" class="back-dept-button" />
-            <p-button label="Edit" type="submit" class="submit-model-btn" (click) = "OnEditOption()" *ngIf="studentActive"/>
+            <p-button label="Edit" type="button" class="submit-model-btn" (click) = "OnEditOption()" *ngIf="studentActive"/>
         </div>
     </div>
     </div>
@@ -68,14 +68,14 @@
         <div class="form-container">
             <div class="form-elements-container">
             <div class="input-Element">
-                <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                <div class="attendance-input-container">
                     <label for="studentId">Student ID<br/></label>
                     <input type="text" pInputText [(ngModel)]="studentDetailsObject.studentId" id="studentId" name="studentId" required placeholder="Enter Your First Name" #studentId="ngModel" disabled="true"/>
                     <div class="error-text">
                         <span *ngIf="studentId.invalid && studentId.touched" >Student Id is required</span>
                     </div>
                 </div>
-                <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                <div class="attendance-input-container">
                     <label for="month" class="font-semibold w-24">Month</label>
                     <div>
                         <p-select 
@@ -92,33 +92,33 @@
                 </div>
             </div>
             <div class="input-Element">
-                <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                <div class="attendance-input-container">
                     <label for="year">Year<br/></label>
-                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.year" id="year" name="year" required  #year="ngModel"/>
+                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.year" id="year" name="year" required  #year="ngModel" placeholder="Enter year"/>
                     <div class="error-text">
                         <span *ngIf="year.invalid && year.touched" >Year is required</span>
                     </div>
                 </div>
-                <div [ngStyle]="{'width':'48%','margin':'5px'}">
-                    <label for="departmentId">Department ID* <br/></label>
-                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.departmentId" id="departmentId" name="departmentId" required placeholder="Enter Your departmentId" #departmentId="ngModel"/>
+                <div class="attendance-input-container">
+                    <label for="departmentId">Department ID <br/></label>
+                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.departmentId" id="departmentId" name="departmentId" required placeholder="Enter Your departmentId" #departmentId="ngModel" disabled="true"/>
                    <div class="error-text">
                     <span *ngIf="departmentId.invalid && departmentId.touched" >DepartmentId is required</span>
                     </div>
                 </div>
             </div>
             <div class="input-Element">
-                <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                <div class="attendance-input-container">
                     <label for="departmentName">Department Name<br/></label>
-                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.departmentName" id="departmentName" name="departmentName" required placeholder="Enter Your year" #departmentName="ngModel"/>
+                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.departmentName" id="departmentName" name="departmentName" required placeholder="Enter Department Name" #departmentName="ngModel" disabled="true"/>
                     <div class="error-text">
                         <span *ngIf="departmentName.invalid && departmentName.touched" >DepartmentName is required</span>
                     </div>
                    
                 </div>
-                <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                <div class="attendance-input-container">
                     <label for="attendanceCount">Attendance Count <br/></label>
-                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.attendanceCount" id="attendanceCount" name="attendanceCount" required placeholder="Enter Your Last Name" #attendanceCount="ngModel"/>
+                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.attendanceCount" id="attendanceCount" name="attendanceCount" required placeholder="Enter attendance count" #attendanceCount="ngModel" />
                    <div class="error-text">
                     <span *ngIf="attendanceCount.invalid && attendanceCount.touched" >Attendance Count is required</span>
                     <span *ngIf = "studentDetailsObject.attendanceCount > attendanceDays">Attendance Count cannot exceed {{ attendanceDays }} days</span>
@@ -126,16 +126,16 @@
                 </div>
             </div>
             <div class="input-Element">
-                <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                <div class="attendance-input-container">
                     <label for="createdSource">Created Source<br/></label>
-                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.createdSource" id="createdSource" name="createdSource" required placeholder="Enter Your createdSource" #createdSource="ngModel"/>
+                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.createdSource" id="createdSource" name="createdSource" required placeholder="Enter Your createdSource" #createdSource="ngModel" disabled="true"/>
                     <div class="error-text">
                         <span *ngIf="createdSource.invalid && createdSource.touched" >Created Source is required</span>
                     </div>
                 </div>
-                <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                <div class="attendance-input-container">
                     <label for="createdSourceType">Created Source Type<br/></label>
-                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.createdSourceType" id="createdSourceType" name="createdSourceType" required placeholder="Enter Your createdSourceType" #createdSourceType="ngModel"/>
+                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.createdSourceType" id="createdSourceType" name="createdSourceType" required placeholder="Enter Your createdSourceType" #createdSourceType="ngModel" disabled="true"/>
                     <div class="error-text">
                         <span *ngIf="createdSourceType.invalid && createdSourceType.touched" >CreatedSourceType is required</span>
                     </div>
@@ -143,17 +143,17 @@
             </div>
             <div class="input-Element">
 
-                <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                <div class="attendance-input-container">
                     <label for="createdDttm">Created Datetime <br/></label>
-                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.createdDttm" id="createdDttm" name="createdDttm" required placeholder="Enter Your createdDttm" #createdDttm="ngModel"/>
+                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.createdDttm" id="createdDttm" name="createdDttm" required placeholder="Enter Your createdDttm" #createdDttm="ngModel" disabled="true"/>
                    <div class="error-text">
                     <span *ngIf="createdDttm.invalid && createdDttm.touched" >Created Datetime is required</span>
                     </div>
                 </div>
 
-                <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                <div class="attendance-input-container">
                     <label for="modifiedSource">Modified Source <br/></label>
-                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.modifiedSource" id="modifiedSource" name="modifiedSource" required placeholder="Enter Your modifiedSource" #modifiedSource="ngModel"/>
+                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.modifiedSource" id="modifiedSource" name="modifiedSource" required placeholder="Enter Your modifiedSource" #modifiedSource="ngModel" disabled="true"/>
                    <div class="error-text">
                     <span *ngIf="modifiedSource.invalid && modifiedSource.touched" >ModifiedSource is required</span>
                     </div>
@@ -162,16 +162,16 @@
             </div>
                        
             <div class="input-Element">
-                <div [ngStyle]="{'width':'48%', 'margin':'5px'}">
+                <div class="attendance-input-container">
                     <label for="modifiedSourceType">Modified Source Typee<br/></label>
-                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.modifiedSourceType" id="modifiedSourceType" name="modifiedSourceType" required  #modifiedSourceType="ngModel"/>
+                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.modifiedSourceType" id="modifiedSourceType" name="modifiedSourceType" required  #modifiedSourceType="ngModel" disabled="true"/>
                     <div class="error-text">
                         <span *ngIf="modifiedSourceType.invalid && modifiedSourceType.touched" >Modified Source Type is required</span>
                     </div>
                 </div>
-                <div [ngStyle]="{'width':'48%','margin':'5px'}">
+                <div class="attendance-input-container">
                     <label for="modifiedDttm">Modified Datetime <br/></label>
-                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.modifiedDttm" id="modifiedDttm" name="modifiedDttm" required  #modifiedDttm="ngModel"/>
+                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.modifiedDttm" id="modifiedDttm" name="modifiedDttm" required  #modifiedDttm="ngModel" disabled="true"/>
                    <div class="error-text">
                     <span *ngIf="modifiedDttm.invalid && modifiedDttm.touched" >ModifiedDttm is required</span>
                     </div>
@@ -182,8 +182,12 @@
         <div class="buttons-container">
             <div>
                 <p-button label="Cancel" severity="secondary" (click)="isUpdateActive = false" class="back-dept-button" />
-                <p-button label="Save" type="submit" class="submit-model-btn" (click) = "OnEditOption()"/>
+                <p-button label="Save" type="submit" class="submit-model-btn" [disabled]="ngAttendanceForm.invalid"/>
             </div>
         </div>
     </form>
 </p-dialog>
+
+
+<!--Toast-->
+<p-toast/>

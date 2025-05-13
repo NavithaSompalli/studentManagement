@@ -180,9 +180,10 @@ export class AttendanceFormComponent implements OnInit,  OnChanges, AfterViewChe
              });
         },
         complete: () => {
-        /*  this.router.navigate(["home/attendance"]).then(() => {
+          this.router.navigate(["home/attendance"]).then(() => {
             window.location.reload(); // Forces page refresh
-          });*/
+          });
+          this.visible=false;
         }
       });
     }else{
@@ -193,6 +194,8 @@ export class AttendanceFormComponent implements OnInit,  OnChanges, AfterViewChe
                  detail: 'Attendance record for this student and month already exists.',
                  life: 3000,
              });
+
+             this.visible=false;
     }
     }
     

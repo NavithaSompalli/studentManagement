@@ -16,8 +16,8 @@
                 <h2>No records found.</h2>
             </div>
 
-            <p-table [value]="paginatedStudents" stripedRows *ngIf="studentList?.length !== 0"
-                     [rows]="rowsPerPage.value" responsiveLayout="scroll"> 
+            <p-table [value]="departmentList" stripedRows *ngIf="studentList?.length !== 0"
+                     [rows]="rowsPerPage.value" responsiveLayout="scroll" paginator="true"> 
                 <ng-template #header>
                     <tr>
                         <th (click)="sortColumn('departmentId')" style="white-space: nowrap; text-align: center;" pSortableColumn="departmentId">
@@ -75,7 +75,7 @@
             </p-table>
             </div>
 
-            <div class="custom-paginator" *ngIf="studentList?.length >= rowsPerPage.value">
+       <!--    <div class="custom-paginator" *ngIf="studentList?.length >= rowsPerPage.value">
                 <button (click)="prevPage()" [disabled]="currentPage === 0">Previous</button>
                 <span *ngFor="let page of totalPages; let i = index">
                     <button (click)="goToPage(i)" [ngClass]="{'active': currentPage === i}">
@@ -83,7 +83,7 @@
                     </button>
                 </span>
                 <button (click)="nextPage()" [disabled]="currentPage === totalPages.length - 1">Next</button>
-            </div>
+            </div>--> 
     </p-card>
 </div>
 

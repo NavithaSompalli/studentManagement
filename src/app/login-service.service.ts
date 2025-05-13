@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -53,11 +56,25 @@ export class LoginServiceService {
   }
 
 
-  getUser(username: string, password:string):Observable<any>{
+  getUser(username: string, password : string ,id: string): Observable<any> {
+  return this.http.get<any[]>(`${this.apiUrl}`).pipe(
+    map(users => {
+      const user = users.find(u =>  u.id === id);
+      return user ? user : [null, user];  // Return the user object or null if not found
+    }),
+    catchError((error: HttpErrorResponse) => {
+      console.error("Error fetching user:", error);
+      return throwError(() => new Error(error.message));  // Handle errors properly
+    })
+  );
+}
+
+
+     checkUserCredentialsOccured(username: string, password:string):Observable<any>{
     return this.http.get<any[]>(`${this.apiUrl}?username=${username}`).pipe(
       map((users) =>{
         if(users.length === 0){
-          return true
+          return [true, users]
         }else{
           return false
         }
@@ -121,25 +138,25 @@ export class LoginServiceService {
 
 
     addAttendanceStudentDetails(obj: any): Observable<any> {
-      return this.http.post('http://localhost:3000/departmentList', obj);
+      return this.http.post('http://localhost:3000/attendanceList', obj);
     }
 
     getAttendanceDetails():Observable<any>{
-      return this.http.get('http://localhost:3000/departmentList')
+      return this.http.get('http://localhost:3000/attendanceList')
     }
 
     deleteAttendanceDetails(id):Observable<any>{
-      return this.http.delete(`http://localhost:3000/departmentList/${id}`);
+      return this.http.delete(`http://localhost:3000/attendanceList/${id}`);
     }
 
     updateStudentAttendance(studentId: string, studentData: any): Observable<any> {
-      return this.http.put(`http://localhost:3000/studentList/${studentId}`, studentData);
+      return this.http.put(`http://localhost:3000/attendanceList/${studentId}`, studentData);
       
     }
 
     getAttendanceDetailsID(studentId):Observable<any>{
       console.log(studentId);
-      return this.http.get(`http://localhost:3000/departmentList/${studentId}`)
+      return this.http.get(`http://localhost:3000/attendanceList/${studentId}`)
     }
 
 

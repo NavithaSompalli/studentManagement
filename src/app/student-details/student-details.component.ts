@@ -93,6 +93,8 @@ export class StudentDetailsComponent implements AfterViewChecked, OnInit{
     //  console.error('Invalid ID or product data');
       return;
     }
+
+  
   
     this.isUpdateActive = !this.isUpdateActive;
 

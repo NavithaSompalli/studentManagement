@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from '../login-service.service';
 import { SortServiceService } from '../sort-service.service';
-import { PaginatorState } from 'primeng/paginator';
 
 import { NgForm } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
@@ -23,8 +22,8 @@ export class AttendanceComponent implements OnInit {
   studentActive: boolean = false;
 
   studentData = JSON.parse(localStorage.getItem('student'));
-  
-   noOfpagesCurrentPagination:any[] = []
+
+   displayedPages: number[] = [];
 
   position:  'top' | 'center' | 'topleft' | 'topright'  = 'center';
 
@@ -92,17 +91,21 @@ export class AttendanceComponent implements OnInit {
 
          if(localStorage.getItem("studentId") !== null){
           this.studentList = this.studentList.filter((obj)=> obj["studentId"] === localStorage.getItem("studentId"))
+          
        }
-
+       
        },
        error: (error) => console.log(error),
        complete: ()=>{
        //  console.log("completed");
-       this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i + 1);
+         this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i + 1);
 
       // console.log("total pages " + this.totalPages);
-         this.noOfpagesCurrentPagination = this.displayedPages1();
-    
+          if(this.totalPages.length === 2){
+              this.displayedPages = [1,2];
+            }else{
+              this.displayedPages = [1,2,3];
+            }
        }
      })
    }
@@ -170,66 +173,59 @@ export class AttendanceComponent implements OnInit {
  
  // pagination logic  
  
- 
-   updatePagination() {
-    this.currentPage = 0; // Reset to first page whenever rows per page changes
-    this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i);
+
+
+
+// Update Pagination when rows per page changes
+updatePagination() {
+    this.currentPage = 0; // Reset to first page when pagination is updated
+    this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i + 1);
+    this.updateDisplayedPages();
 }
 
+// Get paginated data based on current page selection
 get paginatedStudents() {
     const start = this.currentPage * this.rowsPerPage.value;
     const end = start + this.rowsPerPage.value;
     return this.studentList.slice(start, end);
 }
 
-// This function controls the pages displayed within the pagination
- get displayedPages() {
-    let startPage = Math.max(this.currentPage - 1, 0); // Ensure it doesn't go below 0
-    let endPage = Math.min(startPage + 3, this.totalPages.length); // Display up to 3 pages
-
-    // Ensure minimum three pages are displayed
-    if (this.totalPages.length < 3) {
-        return this.totalPages.slice(0, this.totalPages.length); 
+// Update displayed pages (Only show 3 at a time dynamically)
+updateDisplayedPages() {
+    let start = Math.max(0, this.currentPage - 1); 
+    let end = Math.min(this.totalPages.length, start + 3);
+    if(this.totalPages.slice(start, end)[this.totalPages.slice(start, end).length-1] !== this.totalPages.length){
+      this.displayedPages = this.totalPages.slice(start, end);
     }
-
-    return this.totalPages.slice(startPage, endPage);
+    
 }
 
- displayedPages1() {
-    let startPage = Math.max(this.currentPage - 1, 0); // Ensure it doesn't go below 0
-    let endPage = Math.min(startPage + 3, this.totalPages.length); // Display up to 3 pages
-
-    // Ensure minimum three pages are displayed
-    if (this.totalPages.length < 3) {
-        return this.totalPages.slice(0, this.totalPages.length); // Show all available pages
-    }
-
-    return this.totalPages.slice(startPage, endPage);
-}
-
-
+// Navigate to previous page
 prevPage() {
     if (this.currentPage > 0) {
-        this.currentPage--; // Move to the previous page
+        this.currentPage--;
+        this.updateDisplayedPages();
     }
-
-    console.log(this.displayedPages1());
-    this.noOfpagesCurrentPagination = this.displayedPages1();
 }
 
+// Navigate to next page
 nextPage() {
     if (this.currentPage < this.totalPages.length - 1) {
-        this.currentPage++; // Move to the next page
+        this.currentPage++;
+        this.updateDisplayedPages();
+        console.log(this.displayedPages, this.totalPages.length);
     }
-    console.log(this.displayedPages1());
-    this.noOfpagesCurrentPagination = this.displayedPages1();
 }
 
-
-goToPage(index: number) {
-    this.currentPage = index;
+// Navigate to a specific page
+goToPage(pageIndex: number) {
+    if (pageIndex >= 0 && pageIndex < this.totalPages.length) {
+        this.currentPage = pageIndex;
+    }
 }
 
+ 
+ 
  // mini dialogue box logic
  
  studentValidateObj = {
@@ -242,7 +238,7 @@ goToPage(index: number) {
  
  onsubmitDialogue(){
 
-  console.log(this.mindialogueForm);
+ // console.log(this.mindialogueForm);
   //  console.log(this.mindialogueForm.controls["studentId"].value);
   //  console.log(this.mindialogueForm.controls["department"].value);
 
@@ -258,23 +254,25 @@ goToPage(index: number) {
      next: (response) => {
      //  console.log(response, "onsubmitDialogue");
      //  console.log(response[0].studentId === id , response[0].department === dept)
-        console.log(response);
+       // console.log(response);
         if(response){
         this.isAddBtnActive = !this.isAddBtnActive;
          this.visible = !this.visible;
         }else{
-          alert("Student Id doesn't exit in the Student List")
+        //  alert("Student Id doesn't exit in the Student List")
+           this.messageService.add({ severity: 'warn', detail: `Student Id doesn't exit in the Student List` });
         }
        
      },
      error: (error) => console.log(error),
      complete: ()=>{
-       console.log("completed");
+      // console.log("completed");
      }
    })
     
  }else{
-   alert("please enter all the fields");
+   // alert("please enter all the fields");
+   this.messageService.add({ severity: 'warn', detail: `please enter all the fields` });
  }
  
  }
@@ -292,7 +290,7 @@ goToPage(index: number) {
  
  filterDepartment(event) {
    this.filteredDepartments = this.departmentList.filter(dept =>{
-     console.log(dept["departmentName"]);
+     // console.log(dept["departmentName"]);
      dept["departmentName"].toLowerCase().includes(event.query.toLowerCase())
    }
      
@@ -303,15 +301,5 @@ goToPage(index: number) {
   sortColumn(field: string) {
     this.studentList = this.sortService.sortData(this.studentList, field);
   }
-
-
-   first: number = 0;
-
-    rows: number = 3;
-
-    onPageChange(event: PaginatorState) {
-        this.first = event.first ?? 0;
-        this.rows = event.rows ?? 3;
-    }
 
 }

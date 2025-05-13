@@ -17,6 +17,9 @@
     justify-content: center !important;
     align-items: center !important;
   /*  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.5) !important;*/
+
+  border-radius: 5px !important;
+
 }
 
 .w-full{
@@ -88,4 +91,28 @@ label{
     cursor: pointer;
     font-weight: bold;
     margin-left:5px;
+}
+
+@media (max-width:500px){
+::ng-deep .p-card{
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+  /*  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.5) !important;*/
+
+  border-radius: 5px !important;
+  width:92% !important;
+  margin-left:10px !important;
+
+}
+
+.w-full{
+    width:30%;
+    height: 10%;
+    margin-left: 35%;
+    margin-top:20px;
+}
+
+
 }

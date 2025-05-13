@@ -65,6 +65,7 @@ import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { PaginatorModule } from 'primeng/paginator';
 
+
 import { AuthGuardService } from "./auth.guard";
 
 const routes: Routes = [
@@ -72,9 +73,9 @@ const routes: Routes = [
  { path: 'home', component: HomeComponent,canActivateChild: [AuthGuardService],
     children: [
       { path: 'student', component: StudentComponent ,canActivate:[AuthGuardService]},
-      { path: 'department', component: DepartmentComponent},
-      {path:'graph', component: GraphComponent },
-      {path:'attendance', component: AttendanceComponent }
+      { path: 'department', component: DepartmentComponent,canActivate:[AuthGuardService]},
+      {path:'graph', component: GraphComponent ,canActivate:[AuthGuardService]},
+      {path:'attendance', component: AttendanceComponent ,canActivate:[AuthGuardService]}
     ] 
   },
   /*{path:'home/student', component: HomeComponent},

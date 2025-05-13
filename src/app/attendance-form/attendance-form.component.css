@@ -20,6 +20,11 @@ p-select{
     width:35%;
 }
 
+.p-select, .p-inputtext{
+  border-radius: 5px !important;
+}
+
+
 
 
 
@@ -32,12 +37,6 @@ p-select{
 /*::ng-deep .p-dialog{
     width:70% !important;
 }*/
-
-
-
-
-
-
 
 .form-container {
     flex: 1;
@@ -92,6 +91,7 @@ p-select{
   
   ::ng-deep input.p-inputtext {
     background-color: #f0f0f0 !important; /* Light gray */
+    border-radius: 5px;
   }
 
   
@@ -134,11 +134,14 @@ p-select{
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
   /*  color:#fff;*/
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Roboto';
     color:#0077aa;
   }
 
-
+input{
+ height:40px !important;
+ border-radius:5px !important;
+}
 .custom-dropdown {
   width: 100% !important;
   background-color: #f0f0f0 !important;
@@ -156,7 +159,7 @@ p-button[_ngcontent-ng-c2645148613] {
 }
 
 .input-Element {
-  min-height: 80px; /* Adjust based on design needs */
+  min-height: 90px; /* Adjust based on design needs */
   position: relative;
   margin-bottom: 10px;
 }
@@ -164,14 +167,50 @@ p-button[_ngcontent-ng-c2645148613] {
   color: red;
   font-size: 15px;
   position: absolute;
-  bottom: -10px; /* Keeps error message fixed in place */
+  bottom: -14px; /* Keeps error message fixed in place */
+  margin-top: 5px;
 }
 
 
-@media (min-width:765px){
+
+.attendance-input-container{
+  width:48% !important;
+  margin-right:5px;
+}
+
+.p-inputtext:disabled{
+  background-color: #94a3b8 !important;
+  height: 40px;
+  border-radius: 5px;
+}
+
+
+@media (max-width:765px){
   .validate-student-dialog .p-dialog {
     font-family: "Roboto";
     width: 100% !important;
     margin: 10px !important;
 }
+
+
+.attendance-input-container{
+  width:100% !important;
+}
+
+::ng-deep .buttons-container {
+   position: absolute;
+        bottom: 0;
+        width: 93%;
+        background: white;
+        border-top: 1px solid #ccc;
+        gap: 0px;
+        display: flex;
+        gap: 10px;
+        justify-content: flex-end;
+        padding: 10px;
+        font-family: "Roboto";
+        border-radius: 5px;
+  }
+
+
 }

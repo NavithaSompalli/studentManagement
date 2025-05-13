@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ChartDataService } from '../chart-data.service';
 import { SortServiceService } from '../sort-service.service';
+
+
 @Component({
   selector: 'app-student',
  
@@ -29,13 +31,17 @@ export class StudentComponent {
  studentDetailsObject: object;
 // selectedDepartment: any = null;
 
+loading: boolean = true;
+
+
 
   constructor(private service: LoginServiceService,
      private http:HttpClient, 
      private confirmService: ConfirmationService, 
      private messageService:MessageService, 
      private departmentObject: ChartDataService,
-     private sortService: SortServiceService
+     private sortService: SortServiceService,
+    
     ){}
   
   studentList: object[];
@@ -101,7 +107,7 @@ export class StudentComponent {
       error: (error) => console.log(error),
       complete: ()=>{
       //  console.log("completed");
-        this.totalPages = Array(Math.ceil(this.studentList.length / this.rowsPerPage.value)).fill(0);
+         this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i + 1);
      // console.log("total pages " + this.totalPages);
       }
     })
@@ -120,6 +126,7 @@ export class StudentComponent {
     }
 
     console.log("this id form service", localStorage.getItem("studentId"));
+    this.loading = false;
    
   }
 
@@ -172,41 +179,64 @@ export class StudentComponent {
 
 // pagination logic  
 
-  updatePagination() {
-    this.currentPage = 0; // Reset to first page whenever rows per page changes
-    this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i);
+  // pagination logic  
+ 
+
+  
+displayedPages: number[] = [1,2,3];
+
+
+
+// Update Pagination when rows per page changes
+updatePagination() {
+    this.currentPage = 0; // Reset to first page when pagination is updated
+    this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i + 1);
+   
+    this.updateDisplayedPages();
 }
 
+// Get paginated data based on current page selection
 get paginatedStudents() {
     const start = this.currentPage * this.rowsPerPage.value;
     const end = start + this.rowsPerPage.value;
     return this.studentList.slice(start, end);
 }
 
-// This function controls the pages displayed within the pagination
-get displayedPages() {
-    const startPage = Math.max(this.currentPage - 1, 0); // Ensure it never goes below 0
-    const endPage = Math.min(startPage + 3, this.totalPages.length); // Display up to 3 pages at a time
-    return this.totalPages.slice(startPage, endPage);
+// Update displayed pages (Only show 3 at a time dynamically)
+updateDisplayedPages() {
+    let start = Math.max(0, this.currentPage - 1); 
+    let end = Math.min(this.totalPages.length, start + 3);
+    if(this.totalPages.slice(start, end)[this.totalPages.slice(start, end).length-1] !== this.totalPages.length){
+      this.displayedPages = this.totalPages.slice(start, end);
+    }
 
+    
+    
 }
 
+// Navigate to previous page
 prevPage() {
     if (this.currentPage > 0) {
         this.currentPage--;
+        this.updateDisplayedPages();
     }
 }
 
+// Navigate to next page
 nextPage() {
     if (this.currentPage < this.totalPages.length - 1) {
         this.currentPage++;
+        this.updateDisplayedPages();
+        console.log(this.displayedPages, this.totalPages.length);
     }
 }
 
-goToPage(index: number) {
-    this.currentPage = index;
+// Navigate to a specific page
+goToPage(pageIndex: number) {
+    if (pageIndex >= 0 && pageIndex < this.totalPages.length) {
+        this.currentPage = pageIndex;
+    }
 }
-
 
 
 // mini dialogue box logic
@@ -236,7 +266,8 @@ onsubmitDialogue(){
     }
   
       if(response[0].id === id && response[0].department === dept){
-        alert("Student Already registered in this department");
+        
+         this.messageService.add({ severity: 'info', detail: 'Student Already registered in this department' });
       }else{
         this.isAddBtnActive = !this.isAddBtnActive;
         this.visible = !this.visible;

@@ -1,6 +1,14 @@
 ::ng-deep .student-details-modal .p-dialog {
-  width: 80% !important;
-  height: 80vh !important;
+  width: 90% !important;
+  height: 90vh !important;
+ /* background-color: #0099cc;
+  background-image: linear-gradient(to left, #0099cc);
+  background-image: url('https://th.bing.com/th/id/R.d820b497cc152184d0f6620a9ec15714?rik=NdJJFHHnyGxSVg&riu=http%3a%2f%2fwallup.net%2fwp-content%2fuploads%2f2015%2f12%2f40105-gradient-simple_background-colorful-abstract.jpg&ehk=HXCvpXoX%2fSQHIUxEUk8uCjhkgJNzA46%2bX6VinvVPLN8%3d&risl=&pid=ImgRaw&r=0');
+   background-image: url('https://media.istockphoto.com/vectors/abstract-form-background-vector-id1160194662?k=6&m=1160194662&s=170667a&w=0&h=GRpZOOskXNOKqAItqLt3m1p1F-qPVIGlfpO187Myhoc=');
+  background-image: url('https://img.freepik.com/free-vector/background-wave-gradient-design-minimalist_483537-5167.jpg?t=st=1746963729~exp=1746967329~hmac=b7f43968ba5890773ca4a794e9813409cd07e2e8705e3d4acb80b74c62a35002&w=1800');
+ */
+   background-size: cover;
+  
 }
 
 .card {
@@ -19,9 +27,11 @@ label {
 
 input, textarea, p-datepicker {
   width: 100%;
-  border-radius: 4px;
+  border-radius: 4px !important;
   margin-bottom: 10px;
   background-color: #dde2eb;
+  height: 40px;
+  
 }
 
 p-select {
@@ -93,7 +103,7 @@ p-button {
 }
 
 ::ng-deep .form-elements-container {
-  max-height: 60vh;
+
   overflow-y: auto;
   overflow-x: hidden;
   scrollbar-width: none;
@@ -105,6 +115,7 @@ p-button {
   display: flex;
   justify-content: center;
   height: 100%;
+  margin-top:20px;
 }
 
 .input-Element {
@@ -125,26 +136,29 @@ p-button {
   position: absolute;
   bottom: 0;
   width: 97%;
-  background: white;
+  background: #fff;
 }
 
 ::ng-deep .p-select, ::ng-deep .p-inputtext {
-  border-radius: 0 !important;
+  border-radius: 5px !important;
 }
 
 ::ng-deep .p-select {
   border-bottom-left-radius: 5px !important;
   border-top-left-radius: 5px !important;
-  color: #fff !important;
+  color: #000 !important;
   outline: none !important;
 }
 
+::ng-deep .phone-number{
+  width:100% !important;
+}
 ::ng-deep .phone-number .p-select-label {
-  color: #fff !important;
+  color: #000 !important;
 }
 
 ::ng-deep .p-dialog-content {
-  max-height: 70vh !important;
+ 
   overflow-y: hidden !important;
   overflow-x: hidden !important;
 }
@@ -162,6 +176,7 @@ p-button {
 ::ng-deep .submit-model-btn .p-button  {
   color: white !important;
   border-radius: 5px;
+  height: 40px;
  
 }
 
@@ -175,7 +190,7 @@ p-button {
   padding: 10px 20px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Roboto';
   color: #0077aa;
 }
 
@@ -186,9 +201,12 @@ p-button {
 }
 
 ::ng-deep .depart-modal .p-dialog {
-  width: 70rem !important;
+  width: 90rem !important;
   max-width: 100%;
-  height: 70vh;
+  height: 80vh;
+ /* background-image: url('https://media.istockphoto.com/vectors/abstract-form-background-vector-id1160194662?k=6&m=1160194662&s=170667a&w=0&h=GRpZOOskXNOKqAItqLt3m1p1F-qPVIGlfpO187Myhoc=');*/
+  background-size: cover;
+  color:#000;
 }
 
 .department-details strong {
@@ -225,7 +243,7 @@ p-button {
 .detail-row strong {
   width: 50%;
   text-align: left;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-family: 'Roboto';
 }
 
 .detail-row span {
@@ -244,10 +262,52 @@ p-button {
   background-color: #f4f4f4;
 }
 
+ .input-element-container{
+  width:48% !important;
+}
+
+.p-iconwrapper {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    color: #000 !important;
+}
+
+
+.input-Element {
+  min-height: 80px; /* Adjust based on design needs */
+  position: relative;
+  margin-bottom: 10px;
+}
+.error-text {
+  color: red;
+  font-size: 15px;
+  position: absolute;
+  bottom: -15px; /* Keeps error message fixed in place */
+  width:48%;
+  margin-bottom: 5px;
+}
+
+
+.p-inputtext:disabled{
+  background-color: #94a3b8 !important;
+  height: 40px;
+  border-radius: 5px;
+}
+
+textarea{
+  height: 50%;
+}
+
+
 @media screen and (max-width: 1024px) {
   .department-details {
       width: 80%;
   }
+
+  .input-element-container{
+  width:48% !important;
+}
 }
 
 @media screen and (max-width: 768px) {
@@ -263,15 +323,76 @@ p-button {
   .department-details p {
       font-size: 14px;
   }
+
+  .form-container {
+  flex: 1;
+ 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom:30px;
+}
+
+::ng-deep .p-dialog .p-dialog-title {
+    font-size: 10px !important;
+    font-weight: bold;
+    color: #0099cc !important;
+    text-align: center;
+    padding: 0px;
+    background-color: #f4f4f4;
+}
+
+::ng-deep .p-dialog-title {
+  font-size:15rem !important;
+}
+
+::ng-deep .student-details-image {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  
+}
+
+.input-element-container{
+  width:100% !important;
+}
+
+.buttons-container{
+  width:90%;
+}
+::ng-deep .form-elements-container {
+ 
+  overflow-y: auto;
+  overflow-x: auto;
+  scrollbar-width: none;
+  width: 100%;
+  
+}
+.form-container {
+  /* Adjust as needed */
+  overflow-y: auto;
+}
+
+.last-input-field{
+  margin-bottom: 80px;
+}
+
+
+input{
+  border-radius: 5px;
+}
+
 }
 
 
 .p-select {
   /* border-bottom-left-radius: 5px !important; */
   /* border-top-left-radius: 5px !important; */
-  color: #fff !important;
+  color: #000 !important;
   outline: none !important;
   border-radius: 5px !important;
   /* width: auto !important; */
   background-color: transparent !important;
 }
+

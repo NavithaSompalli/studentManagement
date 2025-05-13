@@ -12,7 +12,7 @@ body {
     z-index: 2 !important;
     top: 22vh;
     margin: 20px;
-    margin-left: 40px !important;
+    margin-left: 40px;
     width: 95% !important;
 }
 
@@ -140,7 +140,7 @@ h3{
 }
 
 ::ng-deep .validate-student-dialog .p-dialog{
-    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family:'Roboto';
     background-color: ghostwhite;
     width:30% !important;
 }
@@ -149,7 +149,7 @@ h3{
     color: white;
     font-weight: bold;
     color:#0077aa;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-family:'Roboto';
 }
 
 ::ng-deep .cancel-btn .p-button {
@@ -181,10 +181,20 @@ h3{
    
 }
 
+tr:hover{
+  background-color: cadetblue;
+  color:#fff;
+}
+
+tr:nth-child(odd):hover{
+     background-color: cadetblue !important;
+  color:#fff;
+}
+
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
     .card {
-        width: 90% !important;
+        width: 100% !important;
         margin-left: 20px !important;
     }
 
@@ -205,18 +215,69 @@ h3{
     .custom-paginator button {
         font-size: 12px;
     }
+
+     ::ng-deep .p-paginator{
+    position: fixed !important;
+    top:80vh !important;
+    right:5% !important;
+}
+
+::ng-deep .p-paginator-page{
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    margin:0px !important;
+    border-radius: 5px !important;
+}
+
+::ng-deep .p-paginator-page.p-paginator-page-selected {
+    background-color: #0077aa !important;;
+    color: #fff !important;
+}
+
+.p-card {
+    border-radius: 0px !important;
+    width: 100% !important;
+    height: 65vh;
+}
 }
 
 @media (max-width: 768px) {
-    .card {
-        width: 85% !important;
-        margin-left: 10px !important;
-        top: 15vh;
+   
+
+    .graph-card[_ngcontent-ng-c350209301] {
+    position: absolute !important;
+    z-index: 2 !important;
+    top: 22vh;
+    margin: 15px;
+    /* margin-left: 40px !important; */
+   
+    height:60vh;
     }
 
-    .table-container {
-        height: 35vh;
-    }
+    .p-card {
+    border-radius: 0px !important;
+    width: 100% !important;
+    height: 80vh !important;
+}
+
+
+.validate-student-dialog .p-dialog {
+    font-family: "Roboto";
+    width: 100% !important;
+    margin: 5px !important;
+}
+
+.p-card-body {
+    padding: var(--p-card-body-padding);
+    display: flex;
+    flex-direction: column;
+    gap: var(--p-card-body-gap);
+    height: 60vh;
+}
+
+.table-container[_ngcontent-ng-c350209301] {
+    height: 40vh;
+}
 
     th, td {
         font-size: 12px;
@@ -244,7 +305,7 @@ h3{
 
 @media (max-width: 480px) {
     .card {
-        width: 95% !important;
+        width: 90% !important;
         margin-left: 5px !important;
         top: 12vh;
         margin-top:15vh;
@@ -294,3 +355,6 @@ h3{
     /* width: auto !important; */
     background-color: transparent !important;
   }
+
+
+  

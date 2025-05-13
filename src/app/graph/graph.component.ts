@@ -12,7 +12,7 @@ export class GraphComponent implements OnInit {
   options: any;
   studentId: string = '';
   departmentId: string = '';
-  apiUrl = 'http://localhost:3000/departmentList/';
+  apiUrl = 'http://localhost:3000/attendanceList/';
   attendanceList: any[] = [];
   deptOptionsList: any[] = [];
   deptCodeOptionsList:any[] = [];

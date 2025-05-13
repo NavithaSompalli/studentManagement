@@ -168,6 +168,8 @@ body{
   ::ng-deep input.p-inputtext, ::ng-deep .p-textarea {
     background-color: #f0f0f0 !important;
     color: #000;
+    height:40px !important;
+    border-radius: 5px !important;
   }
   
   ::ng-deep .submit-model-btn .p-button, ::ng-deep .cancel-modal-btn .p-button {
@@ -180,7 +182,7 @@ body{
     padding: 10px 20px;
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Roboto';
     color: #0077aa;
   }
 
@@ -203,10 +205,11 @@ body{
   }
   
   ::ng-deep .depart-modal .p-dialog {
-    width: 70rem !important;
+    width: 95rem !important;
     max-width: 100%;
-    height: 70vh;
+    height: 80vh;
     font-family: "Roboto";
+    margin: 5px;
   }
   
   .department-details strong {
@@ -245,7 +248,7 @@ body{
   .detail-row strong {
     width: 50%;
     text-align: left;
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Roboto';
   }
   
   .detail-row span {
@@ -263,6 +266,20 @@ body{
     padding: 10px;
     background-color: #f4f4f4;
   }
+
+ /* strong{
+    font-size:20px;
+  }*/
+
+  .attendance-input-container{
+    width:48% !important;
+  }
+
+  .p-inputtext:disabled{
+  background-color: #94a3b8 !important;
+  height: 40px;
+  border-radius: 5px;
+}
   
   @media screen and (max-width: 1024px) {
     .department-details {
@@ -283,5 +300,35 @@ body{
     .department-details p {
         font-size: 14px;
     }
+
+   /* strong{
+    font-size:15px;
+  }*/
+
+  .attendance-input-container{
+    width:100% !important;
+  }
+
+  .buttons-container{
+    width:90% !important;
+  }
+
+  ::ng-deep .student-details-modal .p-dialog {
+    width: 95% !important;
+    height: 80vh !important;
+
+  }
+
+  ::ng-deep .p-dialog .p-dialog-title {
+    font-size: 15px !important;
+    font-weight: bold;
+    color: #0099cc !important;
+    text-align: left !important; 
+    padding: 5px !important;
+    background-color: #f4f4f4;
+}
+
+
+  
   }
   
