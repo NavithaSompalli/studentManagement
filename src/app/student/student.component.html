@@ -3,14 +3,25 @@
         <i class="fa-solid fa-users" [ngStyle]="{'font-size':'25px', 'margin-right':'10px'}"></i>Student List
     </h2>
 </div>
-
 <div class="card">
     <p-card>
         <div class="card-header">
-            <h1 class="student-heading">Student List</h1>
+            <h1 class="student-heading">Student List</h1>    
             <div class="student-form-elements">
+                        <!-- Search Input Field -->
+                        <div class="search-container">
+                            <i class="fa-solid fa-magnifying-glass"></i> <!-- Search Icon -->
+                            <input
+                                type="text"
+                                pInputText
+                                #searchBox
+                                class="searchBox"
+                                (input)="onSearch($event)"
+                                placeholder="Search keyword"
+                            />
+                                </div>     
                 <p-select [options]="rowsPerPageArray" [(ngModel)]="rowsPerPage" optionLabel="name" 
-                          class="w-full md:w-56 paginator-btn" *ngIf="studentList.length !== 0" (ngModelChange)="updatePagination()"/>
+                          class="w-full md:w-56 paginator-btn" *ngIf="studentList.length !== 0" />
                 <button type="button" class="p-button add-btn" (click)="onClickAddData('center')" *ngIf="studentActive">+Add</button>
             </div>
         </div>
@@ -19,27 +30,9 @@
             <div *ngIf="studentList?.length === 0" class="no-records-container">
                 <h2>No records found.</h2>
             </div>
-
             <p-table  #dt2 [value]="studentList" dataKey="id" [loading]="loading" stripedRows *ngIf="studentList?.length !== 0"
                      [rows]="rowsPerPage.value" responsiveLayout="scroll"  [paginator]="true" [globalFilterFields]="['id', 'department','firstname']"
                      [tableStyle]="{ 'min-width': '75rem' }"> 
-                     <ng-template #caption>
-                            <div class="flex">
-                        <!-- Search Input Field -->
-                        <div class="search-container">
-                            <i class="pi pi-search"></i> <!-- Search Icon -->
-                            <input
-                                type="text"
-                                pInputText
-                                #searchBox
-                            (input)="dt2.filterGlobal(searchBox.value, 'contains')"
-
-                                placeholder="Search keyword"
-                            />
-                                </div>
-                            </div>
-                        </ng-template>
-
                 <ng-template #header>
                     <tr>
                         <th style="white-space: nowrap;" pSortableColumn="id" (click)="sortColumn('id')">Student ID <i class="fa-solid fa-sort" field="id"></i></th>
@@ -64,10 +57,10 @@
                         <td style="white-space: nowrap;">{{ product?.id }}</td>
                         <td style="white-space: nowrap;">{{ product?.firstname }}</td>
                         <td style="white-space: nowrap;">{{ product?.lastname }}</td>
-                        <td style="white-space: nowrap;">{{ product?.dob }}</td>
+                        <td style="white-space: nowrap;">{{ product?.dob| date:'MMMM d, yyyy' }}</td>
                         <td style="white-space: nowrap;">{{ product?.selectedCategory?.name }}</td>
                         <td style="white-space: nowrap;">{{ product?.phoneNumber }}</td>
-                        <td style="white-space: nowrap;">{{ product?.dateOfJoining | date }}</td>
+                        <td style="white-space: nowrap;">{{ product?.dateOfJoining | date:'medium' }}</td>
                         <td style="white-space: nowrap;">{{ product?.createdSource }}</td>
                         <td style="white-space: nowrap;">{{ product?.createdSourceType }}</td>
                         <td style="white-space: nowrap;">{{ product?.createdDttm | date: 'medium' }}</td>
@@ -103,41 +96,36 @@
     <p-confirmdialog key="positionDialog" [position]="position" />
 </div>
 
-<p-dialog  [modal]="true" [(visible)]="visible" [position]="position" class="validate-student-dialog" *ngIf="studentActive">
+<p-dialog header="Student ID Checker" [modal]="true" [(visible)]="visible" [position]="position" class="validate-student-dialog" *ngIf="studentActive">
 
-<form #miniDialog="ngForm" (ngSubmit)="onsubmitDialogue()" >
-    <div class="flex items-center gap-4 mb-4 input-Element">
+<form #miniDialog="ngForm" (ngSubmit)="onsubmitDialogue()" [ngStyle]="{'margin':'10px'}">
+    <div class=" input-Element">
         <label for="studentId" class="font-semibold w-24">Student ID</label>
-        <div>
-            <input pInputText id="studentId" class="flex-auto" autocomplete="off" [(ngModel)]="studentValidateObj.studentId" name="studentId" #studentId="ngModel" required [ngStyle]="{'background-color':'f0f0f0'}"/>
-            <div class="error-text">
+            <input pInputText id="studentId" class="flex-auto" autocomplete="off" [(ngModel)]="copiedObj.studentId" name="studentId" #studentId="ngModel" required [ngStyle]="{'background-color':'transparent'}"/>
+            <div class="error-text" [ngStyle]="{'bottom':'0px'}">
                 <span *ngIf="studentId.invalid && studentId.touched" class="error-text">Student ID is required</span>
             </div>
-        </div>
     </div>
 
     <div class="flex items-center gap-4 mb-8 input-Element">
         <label for="department" class="font-semibold w-24">Department</label>
-        <div>
             <p-select 
-                [(ngModel)]="studentValidateObj.department" 
+                [(ngModel)]="copiedObj.department" 
                 [options]="departmentList" 
                 optionLabel="departmentName" 
                 optionValue="departmentName"
                 name="department"
-                class="custom-dropdown"
+                class="custom-dropdown1"
                 [appendTo]="'body'" 
                 required #department="ngModel"/>
             <div class="error-text">
                  <span *ngIf="department.invalid && department.touched" >Department is required</span>
             </div>
-           
-        </div>
     </div>
 
     <hr/>
     <div class="flex justify-end gap-2 add-btn-container">
-        <p-button label="Cancel" severity="secondary" (click)="visible = false" class="cancel-btn"/>
+        <p-button label="Cancel" severity="secondary" (click)="visible = false" class="cancel-btn" />
         <p-button type="submit" label="Save" class="submit-btn" [disabled]="miniDialog.invalid"/>
     </div>        
 </form>

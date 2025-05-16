@@ -4,12 +4,14 @@ import { MenuItem } from 'primeng/api';
 import { ViewChild } from '@angular/core';
 import { LoginServiceService } from '../login-service.service';
 import { HttpClient } from '@angular/common/http';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
-  standalone: false
+  standalone: false,
+  encapsulation: ViewEncapsulation.Emulated 
 })
 export class HomeComponent {
   

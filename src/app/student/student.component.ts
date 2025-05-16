@@ -8,6 +8,8 @@ import { HttpClient } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ChartDataService } from '../chart-data.service';
 import { SortServiceService } from '../sort-service.service';
+import { Table } from 'primeng/table';
+import { ViewEncapsulation } from '@angular/core';
 
 
 @Component({
@@ -15,7 +17,8 @@ import { SortServiceService } from '../sort-service.service';
  
   templateUrl: './student.component.html',
   styleUrl: './student.component.css',
-  standalone:false
+  standalone:false,
+  encapsulation: ViewEncapsulation.Emulated 
 })
 export class StudentComponent {
 
@@ -50,27 +53,25 @@ loading: boolean = true;
 
   currentPage = 0;
   rowsPerPage = {
-    name:"show 5",
+    name:"Show 5",
     value:5
   };
   totalPages = [];
   rowsPerPageArray = [{
-        name:"show 5",
+        name:"Show 5",
         value:5
       },
       {
-        name:"show 10",
+        name:"Show 10",
         value:10
       },
       {
-        name:"show 20",
+        name:"Show 20",
         value:20
       }
   ]
 
   departmentList: object[];
-
- 
 
   ngOnChanges(){
     this.service.getStudentDetails().subscribe({
@@ -106,9 +107,9 @@ loading: boolean = true;
       },
       error: (error) => console.log(error),
       complete: ()=>{
-      //  console.log("completed");
+    
          this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i + 1);
-     // console.log("total pages " + this.totalPages);
+     
       }
     })
   }
@@ -176,75 +177,20 @@ loading: boolean = true;
     this.visible = !this.visible;
     this.position = position;
   }
-
-// pagination logic  
-
-  // pagination logic  
  
 
-  
-displayedPages: number[] = [1,2,3];
+/*studentValidateObj = {
+  studentId:'',
+  department:''
+}*/
 
-
-
-// Update Pagination when rows per page changes
-updatePagination() {
-    this.currentPage = 0; // Reset to first page when pagination is updated
-    this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i + 1);
-   
-    this.updateDisplayedPages();
-}
-
-// Get paginated data based on current page selection
-get paginatedStudents() {
-    const start = this.currentPage * this.rowsPerPage.value;
-    const end = start + this.rowsPerPage.value;
-    return this.studentList.slice(start, end);
-}
-
-// Update displayed pages (Only show 3 at a time dynamically)
-updateDisplayedPages() {
-    let start = Math.max(0, this.currentPage - 1); 
-    let end = Math.min(this.totalPages.length, start + 3);
-    if(this.totalPages.slice(start, end)[this.totalPages.slice(start, end).length-1] !== this.totalPages.length){
-      this.displayedPages = this.totalPages.slice(start, end);
-    }
-
-    
-    
-}
-
-// Navigate to previous page
-prevPage() {
-    if (this.currentPage > 0) {
-        this.currentPage--;
-        this.updateDisplayedPages();
-    }
-}
-
-// Navigate to next page
-nextPage() {
-    if (this.currentPage < this.totalPages.length - 1) {
-        this.currentPage++;
-        this.updateDisplayedPages();
-        console.log(this.displayedPages, this.totalPages.length);
-    }
-}
-
-// Navigate to a specific page
-goToPage(pageIndex: number) {
-    if (pageIndex >= 0 && pageIndex < this.totalPages.length) {
-        this.currentPage = pageIndex;
-    }
-}
-
-
-// mini dialogue box logic
-
-studentValidateObj = {
+ copiedObj = {
   studentId:'',
   department:''
 }
+ 
+ 
+studentValidateObj =structuredClone(this.copiedObj);
 
 @ViewChild('miniDialog') mindialogueForm : NgForm;
 
@@ -254,6 +200,9 @@ onsubmitDialogue(){
    let dept = this.mindialogueForm.controls["department"].value;
    //console.log("validate",id,dept);
 
+   console.log(id,dept);
+   this.studentValidateObj = structuredClone(this.copiedObj);
+
    if(id !== undefined && dept !== undefined){
 
    this.service.findStudent(id).subscribe({
@@ -262,20 +211,19 @@ onsubmitDialogue(){
       if (!response || response.length === 0) {
          this.isAddBtnActive = !this.isAddBtnActive;
         this.visible = !this.visible;
+         this.mindialogueForm.resetForm();
       return
     }
-  
-      if(response[0].id === id && response[0].department === dept){
+      if(response[0].id === id ){
         
-         this.messageService.add({ severity: 'info', detail: 'Student Already registered in this department' });
-      }else{
-        this.isAddBtnActive = !this.isAddBtnActive;
-        this.visible = !this.visible;
+         this.messageService.add({ severity: 'error', detail: 'Student Already registered in this department' });
       }
     },
     error: (error) => console.log(error),
     complete: ()=>{
      // console.log("completed");
+
+
     }
   })
    
@@ -287,10 +235,9 @@ onsubmitDialogue(){
 
 // displaying each student record
 viewStudentDetails(product:any){
-  this.isViewDetailsActive = !this.isViewDetailsActive;
+  this.isViewDetailsActive = true;
  // console.log(product, this.isViewDetailsActive);
   this.studentDetailsObject = product;
-  
 }
 
 
@@ -298,6 +245,15 @@ sortColumn(field: string) {
   this.studentList = this.sortService.sortData(this.studentList, field);
 }
 
+
+@ViewChild('dt2') dt2!: Table; // Correctly reference the table
+
+   onSearch(event: Event) {
+    const inputValue = (event.target as HTMLInputElement).value; // Get input value
+    if (this.dt2) {
+        this.dt2.filterGlobal(inputValue, 'contains'); // Pass the string value
+    }
+}
 
 
 

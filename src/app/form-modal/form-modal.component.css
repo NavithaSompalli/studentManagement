@@ -1,424 +1,450 @@
+::ng-deep .student-details-modal .p-dialog {
+  width: 90% !important;
+  height: 80vh !important;
+ 
+   background-size: cover;
+}
 
+.card {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  height: 50vh;
+}
 
 label {
-    font-weight: bold;
-    display: block;
-    margin-bottom: 5px;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
 }
 
-input, textarea, p-datepicker{
-    width: 100%;
-   /* padding: 8px;*/
-    border-radius: 4px !important;
-    margin-bottom: 10px;
-    height: 40px;
+input, textarea, p-datepicker {
+  width: 100%;
+  border-radius: 4px !important;
+  margin-bottom: 10px;
+  background-color: transparent !important;
+  height: 40px;
+  
 }
 
-textarea{
-  height: 100px;
-}
-
-::ng-deep .input{
-  border-radius: 0px;
- /* width: 100%;
-   padding: 8px;*/
-   margin-bottom: 10px;
-}
-
-p-select{
-   
-    width:35%;
+p-select {
+  height: 40px;
+  width: 35%;
 }
 
 p-button {
-    padding: 10px 20px;
-    border-radius: 4px;
-    font-weight: bold;
-}
-
-
-
-.flex {
-    display: flex;
-    gap: 10px;
-   /* align-items: center;*/
-}
-
-.flex-auto {
-    flex: 1;
-    margin-bottom: 15px;
-}
-
-
-
-.avatar-container {
-    text-align: center;
-    width:100%;
-    height:40%;
-    display: flex;
-    flex-direction: column;
-   /* justify-content: center;*/
-    align-items: center;
-    background-color: #dadbd9;
-    padding: 10px; 
-}
-
-.avatar-upload {
-    width: 120px;
-    height: 120px;
-    border: 2px solid #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-size: 24px;
-    border-radius: 50%;
-}
-
-input{
-    background-color: #dde2eb;
-}
-
-.avatar-preview {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-}
-
-.upload-placeholder {
-   
-    color:#fff;
-    background-color: #0099cc;
-    width:40px;
-    height: 40px;
-    border-radius: 50%;
-    position: relative;
-    top:50%;
-    
-}
-
-.form-container {
-    flex: 1;
-    margin-left:10px;
-}
-
-::ng-deep .form-elements-container {
-    max-height: 60vh; /* Adjust as needed */
-    overflow-y: auto; /* Enables vertical scrolling */
-    overflow-x: hidden; /* Prevents horizontal scrolling */
-    scrollbar-width: none;
-    margin-bottom: 50%;
-    margin-top:5px;
-    flex-wrap: wrap;
-}
-
-.input-Element{
-    width:100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.buttons-container{
-    display: flex;
-    padding:0px;
-    justify-content: flex-end;
-  
-    border-top: 1px solid #ccc;
-}
-
-::ng-deep .buttons-container {
-    position: absolute;
-    bottom: 0;
-    width: 98%;
-    background: white; /* Ensure it doesn't overlap with content */
-   /* padding: 10px;*/
-    border-top: 1px solid #ccc; /* Optional: adds a separator */
-    gap:0px;
-  }
-
-  
- ::ng-deep .p-inputtext {
-    border-radius: 0 !important;
-    border-top-right-radius: 0px !important;
-    border-bottom-right-radius: 0px !important;
-   /* background-color: 300 !important;*/
-}
-
-span > label {
-  color: red;
-}
-
-
-::ng-deep .phone-number .p-select-label{
-    color:#000 !important;
-}
-
-
-::ng-deep .p-dialog-content {
-    max-height: 70vh !important; /* Adjust based on preference */
-    overflow-y: hidden !important; /* Enables vertical scrolling */
-    overflow-x: hidden !important;
-  }
-
-
-  ::ng-deep input[type="date"] {
-    width: 100% !important;
-  }
-
-  
-  
-  ::ng-deep input.p-inputtext {
-    background-color: #f0f0f0 !important; /* Light gray */
-    
-  }
-
-  ::ng-deep .p-datepicker {
-    width: 100% !important;
-  }
-
- ::ng-deep .p-textarea{
-    background-color: #f0f0f0 !important;
-  }
-
-
-  ::ng-deep .submit-model-btn .p-button{
-    background-color: #0077aa !important;
-    color: white !important;
-    border-radius: 5px;
-    /*padding: 10px;*/
-  }
-
-  ::ng-deep .cancel-model-btn .p-button{
-    background-color: #0077aa !important;
-    color: #000 !important;
-    border-radius: 5px;
-    /*padding: 10px;*/
-  }
-
-  ::ng-deep p-button[_ngcontent-ng-c3216660951] {
-    padding:0px !important;
-  }
-
-
-  ::ng-deep .buttons-container[_ngcontent-ng-c3439807804]{
-    gap:0px !important;
-    padding:0px !important;
-  }
-
-  
-
- /*.add-form-modal{
-     background-image: url('https://media.istockphoto.com/vectors/abstract-form-background-vector-id1160194662?k=6&m=1160194662&s=170667a&w=0&h=GRpZOOskXNOKqAItqLt3m1p1F-qPVIGlfpO187Myhoc=') !important;
-
-  }*/
-
-  
-
-  ::ng-deep .add-form-modal .p-dialog-header{
-    padding:10px;
-    padding-left:20px;
-   /* background-color: #0099cc;*/
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-  /*  color:#fff;*/
-    font-family: 'Roboto';
-    color:#0077aa;
-    
-  }
-
-
-.custom-dropdown {
-  width: 100% !important;
-  background-color: #f0f0f0 !important;
-  margin-bottom: 10px;
-  align-items: center;
-  padding-left:10px;
-  height: 40px;
-}
-
-.phone-number .p-select-label {
-  color: #000 !important;
-}
-
-p-button[_ngcontent-ng-c2645148613] {
-  /* padding: 10px 20px; */
   border-radius: 4px;
   font-weight: bold;
 }
 
-.input-Element {
-  min-height: 80px; /* Adjust based on design needs */
-  position: relative;
-  margin-bottom: 10px;
-}
-.error-text {
-  color: red;
-  font-size: 15px;
-  position: absolute;
-  bottom: -14px; /* Keeps error message fixed in place */
-}
-
-  .avatar-pg-container {
-    text-align: center;
-    width:25%;
-    height:30vh;
-    display: flex;
-    flex-direction: column;
-   /* justify-content: center;*/
-    align-items: center;
-    background-color: #dadbd9;
-    padding: 10px; 
-}
-
-
-
-.phone-number-container{
+.flex {
   display: flex;
-  width:100%;
-   background-color: #dde2eb;
-   height: 40px;
+  gap: 10px;
 }
 
-.phone-number{
-  width:20% !important;
-  border-top-left-radius: 5px !important;
-  border-bottom-left-radius: 5px !important;
-  /* width: auto !important; */
-  background-color: transparent !important;
-  padding:1px;
-  outline: none !important;
-  align-items: center;
-   height: 40px;
+.flex-auto {
+  flex: 1;
+  margin-bottom: 15px;
 }
 
-::ng-deep .p-radiobutton{
+.avatar-container {
+  text-align: center;
+  width: 100%;
+  height: 40%;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border:1px solid #0000;
+  background-color: #dadbd9;
+  padding: 5px;
 }
 
-.radio-container{
+.avatar-upload {
+  width: 120px;
+  height: 120px;
+  border: 2px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 24px;
+  border-radius: 50%;
+}
+
+.avatar-preview {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.upload-placeholder {
+  color: #fff;
+  background-color: #0099cc;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  position: relative;
+  top: 50%;
+}
+
+.form-container {
+  flex: 1;
+  margin-left: 10px;
   display: flex;
   flex-direction: row;
- /* justify-content: center;*/
-  align-items: center;
-  gap:10px;
+  width: 100%;
+  
+  
 }
 
-::ng-deep .p-radiobutton-checked .p-radiobutton-box{
-  border-color: #0099cc !important;
+::ng-deep .form-elements-container {
+
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none;
+  width: 100%;
+  height:80vh;
+}
+
+.image-container {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  margin-top:20px;
+}
+
+.input-Element {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.buttons-container2{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background: #fff;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+::ng-deep .p-select, ::ng-deep .p-inputtext {
+  border-radius: 5px !important;
+}
+
+::ng-deep .p-select {
+  border-bottom-left-radius: 5px !important;
+  border-top-left-radius: 5px !important;
+  color: #000 !important;
+  outline: none !important;
+}
+
+::ng-deep .phone-number{
+  width:100% !important;
+}
+::ng-deep .phone-number .p-select-label {
+  color: #000 !important;
+}
+
+
+
+::ng-deep input[type="date"], ::ng-deep .p-datepicker {
+  width: 100% !important;
+}
+
+::ng-deep input.p-inputtext, ::ng-deep .p-textarea {
+  background-color: transparent !important;
+  color: #000;
+}
+
+::ng-deep .buttons-container2 .submit-model-btn .p-button{
+  background-color: #0099cc !important;
+  color: white; 
+  border-radius: 5px; 
  
 }
 
-.p-inputtext:disabled{
-  background-color: #94a3b8 !important;
+::ng-deep .submit-model-btn1 .p-button  {
+  color: white !important;
+  border-radius: 5px;
+  height: 30px;
+  margin: 0px;
+  margin-top: 5px;
+  background-color: #0099cc !important;
+
+}
+
+::ng-deep .cancel-modal-btn .p-button {
+  color: #000 !important;
+  border-radius: 5px;
+  margin-left: 5px;
+    margin-top: 5px;
+    height: 30px;
+  
+  
+}
+::ng-deep .add-form-modal .p-dialog-header {
+  padding: 10px 20px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  font-family: 'Roboto';
+  color: #0077aa;
+}
+
+::ng-deep .student-details-image {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+}
+
+::ng-deep .p-dialog-header{
+  padding:0px !important;
+  padding-left:10px !important;
+  padding-right:10px !important;
+   background-color: transparent !important;
 }
 
 
-
-
-.radio-label{
-  position: relative;
-  top:5px;
-  font-size:15px;
+::ng-deep .depart-modal .p-dialog {
+  width: 90rem !important;
+  max-width: 100%;
+  height: 80vh;
+ 
+  color:#000;
 }
 
-.form-input-element-container{
-      width: 48%;
-    }
-
-@media (max-width: 1024px) {
-    .card {
-        width: 90%;
-    }
-
-    .table-container {
-        height: 40vh;
-    }
-
-    .add-btn {
-        font-size: 12px;
-    }
+.department-details strong {
+  color: #0077aa;
 }
 
-@media (max-width: 768px) {
-    .card {
-        width: 85%;
-        height: auto;
-        padding: 15px;
-    }
+.details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  overflow-y: auto;
+  width: 100%;
+  max-height: 70vh;
+  padding-bottom: 50px;
+}
 
-    .table-container {
-        height: 35vh;
-    }
+.form1-container{
+  flex: 1;
+  display: flex;
+  flex-direction: row; 
+  width: 100%;
+}
 
-    .add-btn {
-        font-size: 10px;
-    }
+.details-form-container{
+  width:100%;
+  
+  gap: 10px;
+  padding: 10px;
+  overflow-y: auto;
+  width: 100%;
+  max-height: 70vh;
+}
 
-    th, td {
-        font-size: 12px;
-    }
+::ng-deep .back-dept-button .p-button {
+  color: #000;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  border: 1px solid #dadbd9;
+  height: 30px;
+}
 
+.detail-row {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #ddd;
+  padding: 5px 0;
+  font-weight: bold;
+}
 
-    .form-input-element-container{
-      width: 98%;
-      padding-bottom: 150px !important;
-    }
+.detail-row strong {
+  width: 50%;
+  text-align: left;
+  font-family: 'Roboto';
+}
 
-   ::ng-deep .add-form-modal{
-      margin:10px !important;
-    }
+.detail-row span {
+  width: 50%;
+  text-align: left;
+  padding-left: 10px;
+  font-weight: 500 !important;
+}
 
+::ng-deep .p-dialog .p-dialog-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #000 !important;
+  text-align: center;
+  padding: 10px;
+  background-color: transparent !important;
+}
 
-    .avatar-container[_ngcontent-ng-c1430131815] {
-    text-align: center;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
+ .input-element-container{
+  width:48% !important;
+}
+
+.p-iconwrapper {
+    display: inline-flex;
     justify-content: center;
     align-items: center;
-    background-color: #dadbd9;
-    padding: 10px;
+    color: #000 !important;
 }
 
-   .avatar-pg-container {
+
+
+.error-text {
+  color: red;
+  font-size: 15px;
+  
+  width:48%;
+  margin-bottom: 5px;
+}
+
+
+.p-inputtext:disabled{
+    background-color: #d3d3d3 !important;
+  color: #808080 !important;
+  height: 40px;
+  border-radius: 5px;
+}
+
+textarea{
+  height: 50%;
+}
+
+:host ::ng-deep .p-dialog-content {
+        overflow-y: none !important;
+}
+
+
+::ng-deep .p-datepicker-day{
+    justify-content: center !important;
+}
+
+::ng-deep .p-datepicker-today > .p-datepicker-day {
+    background: var(--p-datepicker-today-background);
+    color: var(--p-datepicker-today-color);
+    justify-content: center;
+}
+
+.custom-dropdown{
+  width:100% !important;
+}
+
+.p-datepicker-weekday-cell {
+    padding: var(--p-datepicker-week-day-padding);
     text-align: center;
-    width:100%;
-    height:40%;
-    display: flex;
-    flex-direction: column;
-   /* justify-content: center;*/
-    align-items: center;
-    background-color: #dadbd9;
-    padding: 10px; 
 }
 
-    .avatar-pg-container{
-          margin-left: 30px;
-    }
+
+@media screen and (max-width: 1024px) {
+  .department-details {
+      width: 80%;
+  }
+
+  .input-element-container{
+  width:48% !important;
 }
-@media (max-width: 480px) {
-    .card {
-        width: 95%;
-        padding: 10px;
-    }
-
-    .table-container {
-        height: 30vh;
-    }
-
-    .add-btn {
-        font-size: 9px;
-    }
-
-    th, td {
-        font-size: 10px;
-    }
 }
+
+@media screen and (max-width: 768px) {
+  .department-details {
+      width: 100%;
+      padding: 15px;
+  }
+
+  .department-details h2 {
+      font-size: 18px;
+  }
+
+  .department-details p {
+      font-size: 14px;
+  }
+
+.form1-container {
+  flex: 1;
+  height: 65vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  margin-bottom:30px;
+  /*border: 1px solid #000;*/
+}
+
+::ng-deep .p-dialog .p-dialog-title {
+    font-size: 10px !important;
+    font-weight: bold;
+    color: #000 !important;
+    text-align: center;
+    padding: 0px;
+    
+}
+
+::ng-deep .p-dialog-content {
+     overflow-y: none !important;
+}
+
+::ng-deep .p-dialog-title {
+  font-size:15rem !important;
+}
+
+::ng-deep .student-details-image {
+  height: 5rem;
+  width: 5rem;
+  border-radius: 50%;
+  
+}
+
+.input-element-container{
+  width:100% !important;
+}
+
+.buttons-container2{
+  width:99%;
+  border-bottom-left-radius: 10px;
+   padding-right: 0px;
+}
+
+.form-container {
+  /* Adjust as needed */
+  overflow-y: auto;
+}
+
+input{
+  border-radius: 5px;
+}
+
+
+.error-text{
+  width:100%;
+}
+}
+
+
+.p-select {
+  /* border-bottom-left-radius: 5px !important; */
+  /* border-top-left-radius: 5px !important; */
+  color: #000 !important;
+  outline: none !important;
+  border-radius: 5px !important;
+  /* width: auto !important; */
+  background-color: transparent !important;
+}
+

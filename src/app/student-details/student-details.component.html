@@ -1,12 +1,12 @@
-<p-dialog header="Student Information" [modal]="true" [(visible)]="isViewDetailsActive" [style]="{ width: '25rem' }" class="depart-modal">
+<p-dialog header="Student Information" [modal]="true" [(visible)]="isViewDetailsActive" [style]="{ width: '25rem', margin:'5px' }" class="depart-modal">
     <hr/>
 
-    <div class="form-container">
+    <div class="form-container-student">
         <div class="image-container">
           <img [src]="studentDetailsObject?.image" alt="imageElement" class="student-details-image"/>
       </div>
-      <div class="form-elements-container">
-    <div class="details-container">
+    
+    <div class="details-container-student">
        
         <div class="detail-row">
             <strong>Student ID</strong>: <span>{{ studentDetailsObject?.id }}</span>
@@ -61,52 +61,42 @@
         <div class="detail-row">
             <strong>Modified Date</strong> :<span>{{ studentDetailsObject?.modifiedDttm | date:'medium' }}</span>
         </div>
-        <div class="detail-row">
+        <div class="detail-row" [ngStyle]="{'border-bottom':'none'}">
             <strong>Modified Source Type</strong> :<span>{{ studentDetailsObject?.modifiedSourceType }}</span>
         </div>
     </div>
-    </div>
-    <div class="buttons-container">
+   
+    <div class="buttons-container4">
         <p-button label="Cancel" severity="secondary" (click)="isViewDetailsActive = false" class="back-dept-button" />
-        <p-button label="Edit" type="submit" class="submit-model-btn" (click) = "OnEditOption()" *ngIf="studentActive"/>
+        <p-button label="Edit" type="submit" class=" back-dept-button submit-model-btn" (click) = "OnEditOption()" *ngIf="studentActive" [ngStyle]="{'background-color':'#0099cc'}"/>
     </div>
     </div>
 </p-dialog>
 
-
-
-
-
-
-
-
-
 <p-dialog header="Edit Student Information" [modal]="true" [(visible)]="isUpdateActive" [style]="{ width: '25rem' }" class="student-details-modal" *ngIf="studentActive">
-    <form #dialogForm="ngForm"  [ngStyle]="{'height':'50%'}">
+    <form #dialogForm="ngForm" [ngStyle]="{'height':'80vh'}" >
        <hr/>
         <!-- Form Container -->
-        <div class="form-container">
+        <div class="form1-container">
              <div class="image-container">
                 <img [src]="studentDetailsObject?.image" alt="imageElement" class="student-details-image"/>
             </div>
-            <div class="form-elements-container">
-            <div>
+            <div class="details-form-container">
                 <div [ngStyle]="{  'width':'100%'}">
                     <label for="username">Student ID<br/></label>
-                    <input type="text" pInputText [(ngModel)]="studentDetailsObject.id" id="username" name="id" required [disabled]="true"/>
+                    <input type="text" pInputText [(ngModel)]="storedStudentData.id" id="username" name="id" required [disabled]="true"/>
                 </div>
                 <div class="input-Element">
                     <div  class="input-element-container">
                         <label for="firstname">First Name<br/></label>
-                        <input type="text" pInputText [(ngModel)]="studentDetailsObject.firstname" id="firstname" name="firstname" required placeholder="Enter Your First Name" #firstname="ngModel" />
+                        <input type="text" pInputText [(ngModel)]="storedStudentData.firstname" id="firstname" name="firstname" required placeholder="Enter Your First Name" #firstname="ngModel" />
                        <div class="error-text">
                                  <span *ngIf="firstname.invalid && firstname.touched" class="error-text">First Name is required</span>
-                       </div>
-                       
+                       </div>   
                     </div>
                     <div  class="input-element-container">
                         <label for="lastname">Last Name <br/></label>
-                        <input type="text" pInputText [(ngModel)]="studentDetailsObject.lastname" id="lastname" name="lastname" required placeholder="Enter Your Last Name" #lastname="ngModel" />
+                        <input type="text" pInputText [(ngModel)]="storedStudentData.lastname" id="lastname" name="lastname" required placeholder="Enter Your Last Name" #lastname="ngModel" />
                         <div class="error-text">
                             <span *ngIf="lastname.invalid && lastname.touched" class="error-text">Last Name is required</span>
                         </div>
@@ -115,7 +105,7 @@
                 <div class="input-Element">
                     <div  class="input-element-container">
                         <label for="email">Email<br/></label>
-                        <input type="email" pInputText [(ngModel)]="studentDetailsObject.email" id="firstname" name="email" email required placeholder="abcd@gmail.com" #email="ngModel" />
+                        <input type="email" pInputText [(ngModel)]="storedStudentData.email" id="firstname" name="email" email required placeholder="abcd@gmail.com" #email="ngModel" />
                         <div class="error-text">
                                  <span *ngIf="email.invalid && email.touched" class="error-text">Email is required</span>
                         </div>
@@ -123,7 +113,7 @@
                     </div>
                     <div  class="input-element-container">
                         <label for="gender">Gender <br/></label>
-                        <input pInputText [(ngModel)]="studentDetailsObject.selectedCategory.name" id="gender" name="gender"  required  #gender="ngModel" />
+                        <input pInputText [(ngModel)]="storedStudentData.gender" id="gender" name="gender"  required  #gender="ngModel" />
                          <div class="error-text">
                         <span *ngIf="gender.invalid && gender.touched" class="error-text">Gender is required</span>
                        </div>
@@ -132,14 +122,14 @@
                 <div class="input-Element" >
                     <div  class="input-element-container">
                         <label for="dob">Date Of Birth<br/></label>
-                        <input  pInputText type="date" [(ngModel)]="studentDetailsObject.dob" inputId="dob"  name="dob" [ngStyle]="{'width':'100%'}" required #dob="ngModel" />
+                        <input  pInputText type="date" [(ngModel)]="storedStudentData.dob" inputId="dob"  name="dob" [ngStyle]="{'width':'100%'}" required #dob="ngModel" />
                        <div class="error-text">
                         <span *ngIf="dob.invalid && dob.touched" class="error-text">Date Of Birth is required</span>
                        </div>
                     </div>
                     <div  class="input-element-container">
                         <label for="phonenumber">Phone Number <br/></label>
-                            <input type="number" pInputText  [(ngModel)]="studentDetailsObject.phoneNumber" name="phoneNumber" pattern="[0-9]{10}" [ngStyle]="{'width':'65%'}" required #phNumber="ngModel" class="phone-number" placeholder="Enter 10 digits phone number"/>
+                            <input type="number" pInputText  [(ngModel)]="storedStudentData.phoneNumber" name="phoneNumber" pattern="[0-9]{10}" [ngStyle]="{'width':'65%'}" required #phNumber="ngModel" class="phone-number" placeholder="Enter 10 digits phone number"/>
                             <div class="error-text" [ngStyle]="{'bottom':'-25px'}">
                                     <span *ngIf="phNumber.invalid && phNumber.touched" >Valid Phone Number is required</span>
                             </div>
@@ -150,7 +140,7 @@
                    
                     <div  class="input-element-container">
                         <label for="departmentId">Department ID<br/></label>
-                        <input pInputText [(ngModel)]="studentDetailsObject.departmentId" inputId="departmentId" name="departmentId"  required #departmentId="ngModel" />
+                        <input pInputText [(ngModel)]="storedStudentData.departmentId" inputId="departmentId" name="departmentId"  required #departmentId="ngModel" />
                         <div class="error-text">
                             <span *ngIf="departmentId.invalid && departmentId.touched" class="error-text">Department ID is required</span>
                         </div>
@@ -158,7 +148,7 @@
                     </div>
                   <div  class="input-element-container">
                         <label for="department">Department  <br/></label>
-                        <input type="text" id="department" pInputText  [(ngModel)]="studentDetailsObject.department" name="department"  #department="ngModel" /> 
+                        <input type="text" id="department" pInputText  [(ngModel)]="storedStudentData.department" name="department"  #department="ngModel" /> 
                         <div class="error-text">
                                  <span *ngIf="department.invalid && department.touched" class="error-text">Department is required</span>
                         </div>
@@ -167,14 +157,14 @@
                 <div class="input-Element" >
                     <div  class="input-element-container">
                         <label for="dob">Date Of Joining <br/></label>
-                        <input type="text" id="dateOfJoining" pInputText  [(ngModel)]="studentDetailsObject.dateOfJoining" name="dateOfJoining" disabled="true" #dateOfJoining="ngModel" /> 
+                        <input type="text" id="dateOfJoining" pInputText  [(ngModel)]="storedStudentData.dateOfJoining" name="dateOfJoining" disabled="true" #dateOfJoining="ngModel" /> 
                         <div class="error-text">
                              <span *ngIf="dateOfJoining.invalid && dateOfJoining.touched" class="error-text">Date Of Joining is required</span>
                         </div>
                     </div>
                     <div  class="input-element-container">
                         <label for="bloodGroup">Blood Group<br/></label>
-                        <input type="text" pInputText [(ngModel)]="studentDetailsObject.bloodGroup" id="bloodGroup" name="bloodGroup" required placeholder="Enter Your Blood Group" #bloodGroup="ngModel" />
+                        <input type="text" pInputText [(ngModel)]="storedStudentData.bloodGroup" id="bloodGroup" name="bloodGroup" required placeholder="Enter Your Blood Group" #bloodGroup="ngModel" />
                         <div class="error-text">
                             <span *ngIf="bloodGroup.invalid && bloodGroup.touched" class="error-text">Blood Group is required</span>
                         </div>
@@ -183,7 +173,7 @@
                 <div class="input-Element" >
                     <div  class="input-element-container">
                         <label for="address">Address<br/></label>
-                        <textarea rows="5" cols="30" pTextarea  [(ngModel)]="studentDetailsObject.address" id="address" #address="ngModel" name="address" ></textarea>
+                        <textarea rows="5" cols="30" pTextarea  [(ngModel)]="storedStudentData.address" id="address" #address="ngModel" name="address" ></textarea>
                          <div class="error-text">
                             <span *ngIf="address.invalid && address.touched" class="error-text">Address is required</span>
                         </div>
@@ -192,47 +182,41 @@
               <div class="input-Element" >
                 <div  class="input-element-container">
                     <label for="createdSource">Created Source Type <br/></label>
-                    <input pInputText [(ngModel)]="studentDetailsObject.createdSource" id="createdSource" class="w-full md:w-56"  name="createdSource" [disabled]="true"/>
+                    <input pInputText [(ngModel)]="storedStudentData.createdSource" id="createdSource" class="w-full md:w-56"  name="createdSource" [disabled]="true"/>
                 </div>
                     <div  class="input-element-container">
                         <label for="createdSourceType">Created Source <br/></label>
-                        <input pInputText [(ngModel)]="studentDetailsObject.createdSourceType" id="createdSourceType" class="w-full md:w-56"  name="createdSourceType" [disabled]="true"/>
+                        <input pInputText [(ngModel)]="storedStudentData.createdSourceType" id="createdSourceType" class="w-full md:w-56"  name="createdSourceType" [disabled]="true"/>
                     </div>
                     
                 </div>
                 <div class="input-Element" >
                     <div  class="input-element-container">
-                        <label for="createdDttm">Created DateTime   <br/></label>
-                        <input  pInputText  [(ngModel)]="studentDetailsObject.createdDttm" inputId="createdDttm"  name="createdDttm" [disabled]="true"/>
+                        <label for="createdDttm">Created Datetime   <br/></label>
+                        <input  pInputText  [(ngModel)]="storedStudentData.createdDttm" inputId="createdDttm"  name="createdDttm" [disabled]="true"/>
                     </div>
                     <div  class="input-element-container">
                         <label for="modifiedResource">Modified Source <br/></label>
-                        <input type="text" pInputText id="modifiedResource"  [(ngModel)]="studentDetailsObject.modifiedResource" name="modifiedResource" [disabled]="true"/> 
+                        <input type="text" pInputText id="modifiedResource"  [(ngModel)]="storedStudentData.modifiedResource" name="modifiedResource" [disabled]="true"/> 
                     </div>
                 </div>
                 <div class="input-Element" >
                     <div  class="input-element-container">
                         <label for="modifiedSourceType">Modified Source Type <br/></label>
-                        <input type="text" pInputText id="modifiedSourceType"  [(ngModel)]="studentDetailsObject.modifiedSourceType" name="modifiedSourceType" [disabled]="true"/> 
+                        <input type="text" pInputText id="modifiedSourceType"  [(ngModel)]="storedStudentData.modifiedSourceType" name="modifiedSourceType" [disabled]="true"/> 
                     </div>
                     <div  class="input-element-container last-input-field" >
                         <label for="modifiedDttm">Modified Datetime  <br/></label>
-                        <input pInputText id ="modifiedDttm" [(ngModel)]="studentDetailsObject.modifiedDttm"   class="w-full md:w-56" [ngStyle]="{'width':'100%'}" name="modifiedDttm" [disabled]="true"/>
+                        <input pInputText id ="modifiedDttm" [(ngModel)]="storedStudentData.modifiedDttm"   class="w-full md:w-56" [ngStyle]="{'width':'100%'}" name="modifiedDttm" [disabled]="true"/>
                     </div>
                 </div>
-
             </div>
             </div>
              
-            </div>
-       <hr/>
-        <div class="buttons-container">
-            <div>
-                <p-button label="Back" severity="secondary" (click)="onBackClick()" class="back-dept-button"/>
-            </div>
-            <div>
-                <p-button label="Update" type="submit" class="submit-model-btn" (click) = "OnUpdateOption(studentDetailsObject.id)" [disabled]="dialogForm.invalid"/>
-            </div>
+    
+        <div class="buttons-container3">
+            <p-button label="Back" severity="secondary" (click)="onBackClick()" class="back-dept-button"/>
+            <p-button label="Update" type="submit" class="back-dept-button submit-model-btn" (click) = "OnUpdateOption(studentDetailsObject.id)" [disabled]="dialogForm.invalid" [ngStyle]="{'background':'#0099cc'}"/>
         </div>
     </form>
 </p-dialog>

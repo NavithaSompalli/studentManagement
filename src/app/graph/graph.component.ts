@@ -1,11 +1,13 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-graph',
   templateUrl: './graph.component.html',
   styleUrls: ['./graph.component.css'], // Fixed property name
-  standalone: false
+  standalone: false,
+  encapsulation: ViewEncapsulation.Emulated 
 })
 export class GraphComponent implements OnInit {
   data: any;

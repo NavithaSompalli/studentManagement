@@ -45,6 +45,7 @@
 
 
 
+
 @media (min-width:601px) and (max-width: 769px){
          .graph-card {
         position: absolute !important;
@@ -57,6 +58,7 @@
         width: 95% !important;
         height: 100%;
     }
+
 
    
 
@@ -134,7 +136,7 @@
 @media (max-width: 480px) {
     .graph-card {
         width: 90% !important;
-        top: 40vh;
+        top: 43vh;
         height:30vh;
     }
 
@@ -172,4 +174,6 @@
     height: 48vh;
 
 }
+
+
 }

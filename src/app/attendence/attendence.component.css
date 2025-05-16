@@ -1,4 +1,4 @@
-.graph-card{
+.graph-card1{
     position: absolute !important;
     z-index: index 1 !important;
     top:23vh;
@@ -6,7 +6,6 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
-    
     width:98% !important;
   
 }
@@ -107,52 +106,7 @@ body {
     cursor: pointer;
 }
 
-/* Pagination */
-.custom-paginator {
-    display: flex;
-    justify-content: flex-end;
-    padding: 10px;
-   
-}
 
-.custom-paginator button {
-    padding: 10px 12px;
-    color: #0077aa;
-    border: none;
-    cursor: pointer;
-    border: 1px solid #ccc;
-     border:2px solid #f0f0f0;
-    padding: 10px 12px;
-    height: 40px;
-    font-family: "Roboto";
-}
-
-.custom-paginator div.activePage {
-    background-color: #0077aa;
-    font-weight: bold;
-    color: #fff;
-    border:2px solid #f0f0f0;
-    padding: 9px 12px;
-    height: 40px;
-}
-
-.custom-paginator button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-     height: 40px;
-    padding: 10px 12px;
-}
-.previous-btn {
-    border-top-left-radius: 5px;
-    border-bottom-left-radius: 5px;
-    background-color: transparent;
-}
-
-.next-btn{
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    background-color: transparent;
-}
 
 /* Confirmation Box */
 .confirm-box-card {
@@ -204,14 +158,33 @@ th{
 ::ng-deep .validate-student-dialog .p-dialog{
     font-family:"Roboto";
    /* background-color: ghostwhite;*/
-    width:30% !important;
+    width:35% !important;
+    padding:5px !important;
 }
 
 ::ng-deep .validate-student-dialog .p-dialog-title {
-    color: white;
     font-weight: bold;
-    color:#0077aa;
+    color:#000;
     font-family:"Roboto";
+    margin: 0px;
+    padding: 0px;
+    font-size:20px;
+}
+
+::ng-deep .validate-student-dialog .p-dialog-header {
+    padding: 0px !important;
+    padding-left: 0px !important;
+    /* padding-right: 10px !important; */
+    background-color: transparent !important;
+}
+
+::ng-deep .p-select-overlay {
+    width:100% !important;
+}
+
+ ::ng-deep .p-overlay-content {
+    transform-origin: inherit;
+    width: 100% !important;
 }
 
 ::ng-deep .cancel-btn .p-button {
@@ -246,26 +219,25 @@ tr:nth-child(odd):hover{
 
 
 
-.input-Element {
-  min-height: 150px; 
-  position: relative;
-  margin-bottom: 10px;
+.input-Element2 {
+ /* position: relative;*/
+  margin-bottom: 5px;
 }
 .error-text {
   color: red;
     font-size: 15px;
-    position: absolute;
+   /* position: absolute;
     /* bottom: -1px; */
     /* margin-top: 10px; */
     width: 100%;
     /* margin-bottom: 10px; */
-    top: 60px;
- 
+  /*  top: 60px;*/
 }
 
 
 input, .pInputText{
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    color:#000 !important;
 }
 
 
@@ -278,16 +250,7 @@ input, .pInputText{
 }
 
 
-.paginator-container{
-   /* height:40px;
-    width:40px;
-    text-align: center;*/
-    border:2px solid #f0f0f0;
-    padding: 9px 12px;
-    height: 40px;
-    cursor:pointer;
-   
-}
+
 
 ::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd) {
     background: #F0F0F0 !important;
@@ -301,6 +264,10 @@ input, .pInputText{
     color: #fff;
 }
 
+
+::ng-deep .p-datatable-tbody > tr > td {
+    padding:8px !important;
+}
 
 /* Responsive Adjustments */
 @media (max-width: 1024px) {
@@ -351,15 +318,6 @@ input, .pInputText{
         height: 40px;
     }
 
-    .custom-paginator {
-        justify-content: center;
-    }
-
-    .custom-paginator button {
-        font-size: 10px;
-        padding: 5px 8px;
-    }
-
     .confirm-box-card {
         width: 50% !important;
     }
@@ -373,7 +331,7 @@ input, .pInputText{
     ::ng-deep .validate-student-dialog .p-dialog{
     font-family:"Roboto";
    /* background-color: ghostwhite;*/
-    width:90% !important;
+    width:40% !important;
 }
 
 
@@ -385,9 +343,27 @@ input, .pInputText{
     .card {
         width: 95% !important;
         margin-left: 5px !important;
-        top: 10vh;
+      /*  top: 12vh;*/
         margin-top:15vh;
     }
+
+    ::ng-deep .p-overlay-content {
+    transform-origin: inherit;
+    width: 80% !important;
+}
+
+    .graph-card1{
+    position: absolute !important;
+    z-index: index 1 !important;
+    top:25vh;
+    margin:20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height:40vh;
+    width:98% !important;
+  
+}
 
     .table-container {
         height: 20vh;
@@ -408,13 +384,10 @@ input, .pInputText{
     .add-btn {
       /*  width: 80px !important;*/
         font-size: 9px;
-        height: 40px;
+        height: 30px !important;
     }
 
-    .custom-paginator button {
-        font-size: 9px;
-        padding: 4px 6px;
-    }
+   
 
     .confirm-box-card {
         width: 70% !important;
@@ -428,8 +401,19 @@ input, .pInputText{
         width: 80px !important;
         font-size: 9px;
         border-radius: 5px;
+        height:30px !important;
        
     }
+
+      ::ng-deep .validate-student-dialog .p-dialog{
+    font-family:"Roboto";
+   /* background-color: ghostwhite;*/
+    width:90% !important;
+}
+
+
+
+
 }
 
 .p-select {
@@ -444,8 +428,8 @@ input, .pInputText{
     height: 40px;
   }
 
-  .input-Element {
-    min-height: 50px; /* Adjust based on design needs */
+ /* .input-Element {
+    min-height: 50px; /* Adjust based on design needs 
     position: relative;
     margin-bottom: 10px;
 
@@ -454,16 +438,78 @@ input, .pInputText{
     color: red;
     font-size: 15px;
     position: absolute;
-    bottom: -5px; /* Keeps error message fixed in place */
+    bottom: -5px; /* Keeps error message fixed in place 
     margin-top:10px;
     width:100%;
-  }
+  }*/
 
 
   .custom-dropdown {
     width: 100% !important;
     margin-top:5px;
     margin-bottom: 10px;
-    background-color: #f0f0f0 !important;
+    background-color:transparent !important;
     border-radius: 0px;
   }
+
+
+  :host ::ng-deep .p-paginator{
+        gap:0px !important;
+  }
+  
+  
+:host ::ng-deep .p-paginator-page,
+ .p-paginator-next, 
+ .p-paginator-last, 
+ .p-paginator-first, 
+ .p-paginator-prev{
+   border: 1px solid #000 !important;
+   border-radius: 0px !important;
+}
+ 
+
+:host ::ng-deep .p-paginator-first{
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    border-right: none !important;
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+
+
+}
+
+:host ::ng-deep .p-paginator-prev,.p-paginator-next{
+     border: 1px solid #000 !important;
+     border-radius: 0px !important;
+      border-right: none !important;
+
+}
+
+:host ::ng-deep .p-paginator-page{
+    gap:none !important;
+    border-right: 0px !important;
+    
+}
+
+:host ::ng-deep .p-paginator-pages{
+    gap:0px !important;
+   
+    
+}
+:host ::ng-deep .p-paginator-next{
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    border-right:none !important
+}
+
+:host ::ng-deep .p-paginator-last{
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+}
+
+:host ::ng-deep .p-paginator-page.p-paginator-page-selected {
+    background-color: #0077aa !important;
+    color: #FFFF !important;
+}

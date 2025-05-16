@@ -6,12 +6,14 @@ import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { NgForm } from '@angular/forms';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-form-modal',
   templateUrl: './form-modal.component.html',
   styleUrls: ['./form-modal.component.css'],
-  standalone: false
+  standalone: false,
+  encapsulation: ViewEncapsulation.Emulated 
 })
 export class FormModalComponent implements OnInit, OnChanges {
   constructor(
@@ -35,7 +37,7 @@ export class FormModalComponent implements OnInit, OnChanges {
   categories = [
     { name: 'Female', key: 'F' },
     { name: 'Male', key: 'M' },
-    { name: 'TransGender', key: 'T' }
+    { name: 'Transgender', key: 'T' }
   ];
 
   student: object = {};
@@ -101,9 +103,9 @@ export class FormModalComponent implements OnInit, OnChanges {
 
      this.service.findStudent(this.stuId).subscribe({
       next: (response) => {
-       console.log(response);
+      // console.log(response);
         if (response) {
-        this.user.firstname = response[0].firstname;
+       /* this.user.firstname = response[0].firstname;
          this.user.lastname = response[0].lastname;
          this.user.dob = response[0].dob;
          this.user.selectedCategory = response[0].selectedCategory,
@@ -113,9 +115,9 @@ export class FormModalComponent implements OnInit, OnChanges {
          this.user.bloodGroup = response[0].bloodGroup,
          this.user = response[0]
          this.user.departmentId = this.deptCode;
-         this.user.department = this.dept;
+         this.user.department = this.dept;*/
         }else{
-          console.log(response);
+        //  console.log(response);
 
           this.user = this.user;
           this.user.department = this.dept;
@@ -131,6 +133,9 @@ export class FormModalComponent implements OnInit, OnChanges {
           this.user.departmentId = this.deptCode;
   }
 
+
+  @ViewChild('dialogForm') dialogForm:NgForm;
+
   onSubmitDialogue() {
     if (!this.user.dateOfJoining) {
       alert('Please provide a valid joining date.');
@@ -143,8 +148,8 @@ export class FormModalComponent implements OnInit, OnChanges {
 
     this.service.findStudent(this.user.id).subscribe({
       next: (response) => {
-    console.log("User",this.user);
-    console.log(response);
+   // console.log("User",this.user);
+   // console.log(response);
 
         
           this.http.post('http://localhost:3000/studentList', this.user).pipe(
@@ -156,7 +161,9 @@ export class FormModalComponent implements OnInit, OnChanges {
             },
             error: (error) => console.error('Error:', error),
             complete: () => {
+               this.dialogForm.resetForm();
               this.messageService.add({ severity: 'success', detail: 'Student details added successfully', life: 3000 });
+             
             }
           });
         
@@ -180,5 +187,9 @@ export class FormModalComponent implements OnInit, OnChanges {
     reader.readAsDataURL(file);
   }
 }
+
+ today: Date = new Date();
+
+
 
 }

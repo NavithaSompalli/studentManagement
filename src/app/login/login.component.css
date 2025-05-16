@@ -1,4 +1,4 @@
-.form-container{
+.form-login-container{
     height: 100vh;
     width: 100%;
     display: flex;
@@ -11,7 +11,7 @@
     
 }
 
-::ng-deep .p-card{
+ :host ::ng-deep .p-card{
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
@@ -19,10 +19,11 @@
   /*  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.5) !important;*/
 
   border-radius: 5px !important;
+  height: 100%;
 
 }
 
-.w-full{
+.login-image{
     width:40%;
     height: 10%;
     margin-left: 30%;

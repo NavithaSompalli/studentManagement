@@ -3,12 +3,14 @@ import { LoginServiceService } from '../login-service.service';
 import { HttpClient } from '@angular/common/http';
 import { ChartDataService } from '../chart-data.service';
 import { SortServiceService } from '../sort-service.service';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-department',
   templateUrl: './department.component.html',
   styleUrls: ['./department.component.css'], // Fixed `styleUrl` to `styleUrls`
-  standalone: false
+  standalone: false,
+  encapsulation: ViewEncapsulation.Emulated 
 })
 export class DepartmentComponent implements OnInit {
 
@@ -17,13 +19,13 @@ export class DepartmentComponent implements OnInit {
   paginator: boolean = false;
   isAddBtnActive: boolean = false;
   currentPage = 0;
-  rowsPerPage = { name: "show 5", value: 5 };
+  rowsPerPage = { name: "Show 5", value: 5 };
   totalPages = [];
   visible:boolean = false;
   rowsPerPageArray = [
-    { name: "show 5", value: 5 },
-    { name: "show 10", value: 10 },
-    { name: "show 20", value: 20 }
+    { name: "Show 5", value: 5 },
+    { name: "Show 10", value: 10 },
+    { name: "Show 20", value: 20 }
   ];
 
   selectedDepartment: any = null;
@@ -66,37 +68,12 @@ export class DepartmentComponent implements OnInit {
     });
   }
 
-  updatePagination() {
-    this.currentPage = 0; // Reset to first page whenever rows per page changes
-    this.totalPages = Array.from({ length: Math.ceil(this.departmentList.length / this.rowsPerPage.value) }, (_, i) => i);
-  }
-
-  get paginatedStudents() { 
-    const start = this.currentPage * this.rowsPerPage.value;
-    const end = start + this.rowsPerPage.value;
-    return this.departmentList.slice(start, end);
-  }
-
-  prevPage() {
-    if (this.currentPage > 0) this.currentPage--;
-  }
-
-  nextPage() {
-    if (this.currentPage < this.totalPages.length - 1) this.currentPage++;
-  }
-
-  goToPage(index: number) {
-    this.currentPage = index;
-  }
-
+ 
   viewStudentDetails(department) {
     // Implement view logic
     this.selectedDepartment = department;
     this.visible = !this.visible;
   }
-
-
-  
 
   sortColumn(field: string) {
     this.departmentList = this.sortSerivce.sortData(this.departmentList, field);

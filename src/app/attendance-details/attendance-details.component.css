@@ -2,6 +2,9 @@ body{
   font-family: "Roboto" !important;
 }
 
+::ng-deep .p-dialog .p-dialog-title{
+  color:#000 !important;
+}
 ::ng-deep .student-details-modal .p-dialog {
     width: 80% !important;
     height: 80vh !important;
@@ -27,88 +30,45 @@ body{
     width: 100%;
     border-radius: 4px;
     margin-bottom: 10px;
-    background-color: #dde2eb;
+    background-color: transparent !important;
   }
   
-  p-select {
-    height: 40px;
-    width: 35%;
-  }
   
-  p-button {
-    border-radius: 4px;
-    font-weight: bold;
-  }
   
-  .flex {
-    display: flex;
-    gap: 10px;
-  }
-  
-  .flex-auto {
+  .form-container-attendance {
     flex: 1;
-    margin-bottom: 15px;
-  }
-  
-  .avatar-container {
-    text-align: center;
-    width: 100%;
-    height: 40%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: #dadbd9;
-    padding: 5px;
-  }
-  
-  .avatar-upload {
-    width: 120px;
-    height: 120px;
-    border: 2px solid #ccc;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    font-size: 24px;
-    border-radius: 50%;
-  }
-  
-  .avatar-preview {
-    width: 100%;
-    height: 100%;
-    border-radius: 50%;
-  }
-  
-  .upload-placeholder {
-    color: #fff;
-    background-color: #0099cc;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    position: relative;
-    top: 50%;
-  }
-  
-  .form-container {
-    flex: 1;
-    margin-left: 10px;
     display: flex;
     flex-direction: row;
     width: 100%;
   }
 
-  .custom-dropdown {
+  .form-container1-attendance{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    overflow-y: auto;
+    height:66vh;
+    
+    font-family: "Roboto";
+    width:100%;
+
+  }
+
+  .custom-dropdownAttendance {
     width: 100% !important;
-    background-color: #f0f0f0 !important;
+    background-color: transparent !important;
     margin-bottom: 10px;
+    height:40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
   
-  ::ng-deep .form-elements-container {
-    max-height: 60vh;
+  ::ng-deep .form-elements-container3 {
+    max-height: 65vh;
     overflow-y: auto;
     overflow-x: hidden;
-    scrollbar-width: none;
     width: 100%;
   }
   
@@ -128,20 +88,28 @@ body{
     flex-wrap: wrap;
   }
   
-  .buttons-container {
+  .buttons-container3 {
     display: flex;
-    gap: 10px;
+    padding:0px;
+    gap:5px;
+    padding-top:8px;
+    padding-bottom: 8px;
     justify-content: flex-end;
-    padding: 10px;
+    padding-right:10px;
     border-top: 1px solid #ccc;
     position: absolute;
     bottom: 0;
-    width: 97%;
+    width: 97.8%;
     background: white;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+   
   }
   
   ::ng-deep .p-select, ::ng-deep .p-inputtext {
-    border-radius: 0 !important;
+    border-radius: 5px !important;
+    background-color: transparent !important;
+
   }
   
   ::ng-deep .p-select {
@@ -166,28 +134,29 @@ body{
   }
   
   ::ng-deep input.p-inputtext, ::ng-deep .p-textarea {
-    background-color: #f0f0f0 !important;
+    background-color: transparent !important;
     color: #000;
     height:40px !important;
     border-radius: 5px !important;
   }
   
-  ::ng-deep .submit-model-btn .p-button, ::ng-deep .cancel-modal-btn .p-button {
-    color: white !important;
-    border-radius: 5px;
-    margin-left: 10px;
+  
+  ::ng-deep .p-dialog-title{
+    background-color: transparent !important;
+    color:#000 !important;
   }
   
   ::ng-deep .add-form-modal .p-dialog-header {
-    padding: 10px 20px;
+  
     border-top-right-radius: 10px;
     border-top-left-radius: 10px;
     font-family: 'Roboto';
     color: #0077aa;
+    padding: 0px !important;
   }
 
   .input-Element {
-    min-height: 80px; /* Adjust based on design needs */
+    min-height: 85px; /* Adjust based on design needs */
     position: relative;
     margin-bottom: 10px;
   }
@@ -230,10 +199,21 @@ body{
   ::ng-deep .back-dept-button .p-button {
     color: #000;
     border-radius: 5px;
-    padding: 10px 20px;
+    padding: 5px 10px;
     font-weight: bold;
     border: 1px solid #dadbd9;
     font-family: "Roboto";
+    height: 30px;
+  }
+
+  ::ng-deep .submit-model-btn .p-button{
+     color: #000;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-weight: bold;
+    border: 1px solid #dadbd9;
+    font-family: "Roboto";
+     height: 30px;
   }
   
   .detail-row {
@@ -245,6 +225,13 @@ body{
     font-weight: bold;
   }
   
+
+  ::ng-deep .p-dialog-header{
+  padding:0px !important;
+  padding-left:10px !important;
+  padding-right:10px !important;
+   background-color: transparent !important;
+}
   .detail-row strong {
     width: 50%;
     text-align: left;
@@ -261,7 +248,7 @@ body{
   ::ng-deep .p-dialog .p-dialog-title {
     font-size: 20px;
     font-weight: bold;
-    color: #0099cc !important;
+    
     text-align: center;
     padding: 10px;
     background-color: #f4f4f4;
@@ -275,11 +262,15 @@ body{
     width:48% !important;
   }
 
-  .p-inputtext:disabled{
-  background-color: #94a3b8 !important;
+
+
+.p-inputtext:disabled{
+    background-color: #d3d3d3 !important;
+  color: #808080 !important;
   height: 40px;
   border-radius: 5px;
 }
+
   
   @media screen and (max-width: 1024px) {
     .department-details {
@@ -309,8 +300,17 @@ body{
     width:100% !important;
   }
 
-  .buttons-container{
+  .buttons-container3{
     width:90% !important;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+     padding:0px;
+    gap:5px;
+    padding-top:5px;
+    padding-bottom: 5px;
+   
   }
 
   ::ng-deep .student-details-modal .p-dialog {
@@ -322,11 +322,18 @@ body{
   ::ng-deep .p-dialog .p-dialog-title {
     font-size: 15px !important;
     font-weight: bold;
-    color: #0099cc !important;
+    color: #000 !important;
     text-align: left !important; 
     padding: 5px !important;
     background-color: #f4f4f4;
 }
+
+::ng-deep .submit-model-btn .p-button, ::ng-deep .cancel-modal-btn .p-button {
+    color: white !important;
+    border-radius: 5px;
+    height:30px !important;
+   
+  }
 
 
   

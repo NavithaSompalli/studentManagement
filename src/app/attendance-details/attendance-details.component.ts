@@ -2,14 +2,17 @@ import { Component, EventEmitter, Input, Output,AfterViewChecked, OnInit, ViewCh
 import { LoginServiceService } from '../login-service.service';
 import { MessageService } from 'primeng/api';
 import { NgForm } from '@angular/forms';
+import { OnChanges, SimpleChanges} from '@angular/core';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-attendance-details',
   templateUrl: './attendance-details.component.html',
   styleUrl: './attendance-details.component.css',
-  standalone:false
+  standalone:false,
+  encapsulation: ViewEncapsulation.Emulated 
 })
-export class AttendanceDetailsComponent implements AfterViewChecked, OnInit{
+export class AttendanceDetailsComponent implements AfterViewChecked, OnInit,OnChanges,AfterViewChecked{
   studentActive: boolean = false;
 
   studentData = JSON.parse(localStorage.getItem('student'));
@@ -22,23 +25,10 @@ export class AttendanceDetailsComponent implements AfterViewChecked, OnInit{
   
  
   isUpdateActive:boolean = true;
-  @Input() studentDetailsObject: any ={
-    studentId:'ITO202521',
-    month:'March',
-    year:'2025',
-    departmentId:'CSE001',
-    departmentName:'Computer Science',
-    attendanceCount:31,
-    createdSource:'',
-    createdSourceType:'',
-    createdDttm:'',
-    modifiedSource:'',
-    modifiedSourceType:'',
-    modifiedDttm:''
-  }; // Receive selected department
-
+  @Input() studentDetailsObject: any ;
 
   @Input() isViewDetailsActive: boolean = false; // Receive dialog visibility state
+  storedStudentData:any;
   
   months = [
     { name: "January", value: 1 },
@@ -56,7 +46,8 @@ export class AttendanceDetailsComponent implements AfterViewChecked, OnInit{
 ];
 
 
- 
+  
+
 
   attendanceDays = 0;
   attendanceList: object[] = []
@@ -84,29 +75,16 @@ export class AttendanceDetailsComponent implements AfterViewChecked, OnInit{
 
 studentDetailsObjects:any = {}
 
-ngOnChanges() {
-  if (this.studentDetailsObject && Object.keys(this.studentDetailsObject).length > 0) {
-    this.studentDetailsObject = this.studentDetailsObject;
-  } else {
-   // console.warn("studentDetailsObject is missing or empty!");
-    this.studentDetailsObject = {
-      studentId: '',
-      month: '',
-      year: '',
-      departmentId: '',
-      departmentName: '',
-      attendanceCount: 0,
-      createdSource: '',
-      createdSourceType: '',
-      createdDttm: '',
-      modifiedSource: '',
-      modifiedSourceType: '',
-      modifiedDttm: ''
-    };
-  }
-}
 
-  
+ ngOnChanges(changes: SimpleChanges) {
+    if (changes['studentDetailsObject']) {
+      this.storedStudentData = { ...changes['studentDetailsObject'].currentValue };
+      this.storedStudentData['gender'] = this.storedStudentData.selectedCategory?.name
+    }
+
+     console.log(this.storedStudentData);
+  }
+ 
 
   ngOnInit(){
    
@@ -123,6 +101,8 @@ ngOnChanges() {
   @ViewChild('ngAttendanceForm') form : NgForm;
   
   ngAfterViewChecked() {
+
+    this.storedStudentData = { ...this.storedStudentData };
     if (this.form) {  // Ensure form exists
     if (this.form.controls && this.form.controls["year"] && this.form.controls["month"]) {
       let year = this.form.controls["year"].value;
@@ -148,17 +128,18 @@ ngOnChanges() {
 
   onSubmitAttendanceDetails(event) {
      event.preventDefault();
-    if ( !this.studentDetailsObject) {
+    if ( !this.storedStudentData) {
     //  console.error('Invalid ID or product data');
       return;
     }
   
+    console.log(event);
    // console.log(Object.values(this.studentDetailsObject));
 
-    let isEmpty = Object.values(this.studentDetailsObject).includes('');
+    let isEmpty = Object.values(this.storedStudentData).includes('');
    // console.log(isEmpty);
-    if(!isEmpty && this.studentDetailsObject.attendanceCount <= this.attendanceDays ){
-    this.service.updateStudentAttendance(this.studentDetailsObject.id, this.studentDetailsObject).subscribe(
+    if(!isEmpty && this.storedStudentData.attendanceCount <= this.attendanceDays ){
+    this.service.updateStudentAttendance(this.storedStudentData.id, this.storedStudentData).subscribe(
       response => {
        // console.log('Student updated successfully', response); // Display the response object
        // alert('Updated successfully');

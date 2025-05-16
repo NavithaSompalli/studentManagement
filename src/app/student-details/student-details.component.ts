@@ -1,119 +1,104 @@
-import { Component, EventEmitter, Input, Output,AfterViewChecked, OnInit } from '@angular/core';
+import { Component, Input, AfterViewChecked, OnInit, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { LoginServiceService } from '../login-service.service';
 import { MessageService } from 'primeng/api';
-
+import { Router } from '@angular/router';
+import { NgForm } from '@angular/forms';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-student-details',
   templateUrl: './student-details.component.html',
   styleUrl: './student-details.component.css',
-  standalone:false
+  standalone: false,
+  encapsulation: ViewEncapsulation.Emulated 
 })
-export class StudentDetailsComponent implements AfterViewChecked, OnInit{
-
+export class StudentDetailsComponent implements AfterViewChecked, OnInit, OnChanges {
   studentActive: boolean = false;
-
   studentData = JSON.parse(localStorage.getItem('student'));
 
-  constructor(private service: LoginServiceService,private messageService: MessageService){}
-  
-  isUpdateActive:boolean = true;
-  @Input() studentDetailsObject: any; // Receive selected department
-  @Input() isViewDetailsActive: boolean = false; // Receive dialog visibility state
-  @Input() product: { 
-    id: string; 
-    firstname: string; 
-    lastname: string; 
-    dob: string;
-    email: string;
-    phoneNumber: string;
-    selectedCity: string;
-    selectedCategory: string;
-    image: string;
-    modifiedResource: string;
-    modifiedSourceType: string;
-    modifiedDttm: string;
-    createdDttm: string,
-    createdSourceType:string,
-    createdSource:string,
-    dateOfJoining:string;
-    department: string,
-    departmentId:string,
-    bloodGroup:string,
-    address:string
-  } = {
-    id: '',
-    firstname: '',
-    lastname: '',
-    dob: '',
-    email: '',
-    phoneNumber: '',
-    selectedCity: '',
-    selectedCategory: '',
-    image: '',
-    modifiedResource: '',
-    modifiedSourceType: '',
-    modifiedDttm: '',
-    createdDttm: '',
-    createdSourceType:'',
-    createdSource:'',
-    dateOfJoining:'',
-    department:'',
-    departmentId:'',
-    bloodGroup:'',
-    address:''
-  };
-  
-  
+  constructor(private service: LoginServiceService, 
+    private messageService: MessageService,
+    private Router: Router
+  ) {}
 
-  ngOnInit(){
-    this.studentDetailsObject = this.product;
+  isUpdateActive: boolean = true;
+
+  @Input() studentDetailsObject: any; // Data received from parent
+  @Input() isViewDetailsActive: boolean = false; // Dialog visibility state
+
+  storedStudentData: any = {
+    id:'ITO2025'+`${Math.floor(Math.random() * 90)+10}`,
+    firstname:'',
+    lastname:'',
+    dob:'',
+    email:'',
+    phoneNumber:'',
+    selectedCity:{ code: "+91", country: "India" },
+    selectedCategory:{name:'Female', key:'F'},
+    image:'',
+    modifiedResource:'Admin',
+    modifiedSourceType:'Admin',
+    modifiedDttm:'',
+    createdDttm:'',
+    createdSourceType:'Admin',
+    createdSource:'Admin',
+    dateOfJoining:''
+
+  }; // Separate object for rendering
+
+  ngOnInit() {
     this.isUpdateActive = false;
-    if(this.studentData){
+    if (this.studentData) {
       this.studentActive = false;
-    }else{
+    } else {
       this.studentActive = true;
     }
   }
-  ngAfterViewChecked(){
-      this.product = this.product;
-      //console.log("student", this.product)
-     // console.log(this.product);
-      //console.log(this.studentDetailsObject);
+
+  ngOnChanges(changes: SimpleChanges) {
+    if (changes['studentDetailsObject']) {
+      this.storedStudentData = { ...changes['studentDetailsObject'].currentValue };
+      this.storedStudentData['gender'] = this.storedStudentData?.selectedCategory?.name
+    }
+
+  //  console.log(this.storedStudentData);
   }
 
-  OnEditOption(){
-       this.isUpdateActive = !this.isUpdateActive;
-       this.isViewDetailsActive = false; 
-       
+  ngAfterViewChecked() {
+    // Ensure UI renders storedStudentData instead of modifying Input directly
+    this.storedStudentData = { ...this.storedStudentData };
   }
 
+  OnEditOption() {
+    this.isUpdateActive = !this.isUpdateActive;
+    this.isViewDetailsActive = false;
+  }
+
+
+  @ViewChild('dialogForm') detailsForm : NgForm;
   OnUpdateOption(id: string) {
-    if (!id || !this.studentDetailsObject) {
-    //  console.error('Invalid ID or product data');
+    if (!id || !this.storedStudentData) {
       return;
     }
 
-  
-  
+  //  console.log(this.detailsForm);
+
     this.isUpdateActive = !this.isUpdateActive;
 
-  
-    this.service.updateStudent(id, this.studentDetailsObject).subscribe(
+    this.service.updateStudent(id, this.storedStudentData).subscribe(
       response => {
-      
         this.messageService.add({ severity: 'success', detail: 'Updated successfully', life: 3000 });
+       /* this.Router.navigate['/home/student'];*/
+        this.Router.navigate(['home/student']).then(() => window.location.reload());
+        this.detailsForm.resetForm();
       },
       error => {
-      
-       
         this.messageService.add({ severity: 'warn', detail: 'Failed to update student. Please try again.', life: 3000 });
       }
     );
   }
 
-  onBackClick(){
+  onBackClick() {
     this.isUpdateActive = false;
   }
-  
 }

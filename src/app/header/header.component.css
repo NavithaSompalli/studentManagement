@@ -10,8 +10,8 @@
 }
 
 .header-image {
-    height: 10%;
-    width: 12%;
+    height: 9%;
+    width: 9%;
     margin-left: 20px;
 }
 
@@ -24,6 +24,7 @@
     color: #fff;
     background-color: #2a566b;
     height: 8vh;
+    padding-left:20px;
 }
 
 .ul-container > li {
@@ -57,22 +58,56 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+  
+    height: 8vh;
+    width:100%;
 }
 
 ::ng-deep .logout-btn .p-button {
     background-color: #0077aa !important;
     color: white !important;
     border-radius: 5px;
-    margin-top: 10px;
+    margin-right:10px;
     border: none;
 }
 
 .icon-size{
       font-size:30px;
       color:#0099cc;
+}
 
-    }
+
+.profilename{
+    border:1px solid #0099cc;
    
+    border-radius: 50%;
+    margin-left:10px;
+    margin-right:10px;
+    background-color:#0099cc;
+    color:#fff;
+    font-size:13px;
+    height:40px;
+    width:40px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.header-profile-image{
+    height: 30px;
+    width:30px;
+    border-radius: 50%;
+    margin:10px;
+}
+
+::ng-deep {
+   background-color: #0099cc !important;
+}
+
+::ng-deep .p-confirmpopup .p-confirmpopup-accept-button .p-button{
+    background-color: #0099cc !important;
+}
 
 /* Responsive styles for smaller screens */
 @media (max-width: 768px) {

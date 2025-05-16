@@ -1,29 +1,55 @@
 <div class="card-container flex justify-center">
+    <img alt="Card" class="header-image" 
+        src="https://higherlogicdownload.s3.amazonaws.com/OAUG/8c16d9fc-6910-4bca-9dce-e05462995493/UploadedImages/GeoSIG/Logos/cropped-itorizon.png" />
     
-    <img alt="Card" class="header-image" src="https://higherlogicdownload.s3.amazonaws.com/OAUG/8c16d9fc-6910-4bca-9dce-e05462995493/UploadedImages/GeoSIG/Logos/cropped-itorizon.png" />
-<div>
-    <div class="profile-elements-container">
-    <i class="fa-regular fa-bell icon-size"></i>
-    <img src="https://th.bing.com/th/id/OIP.AQtvP5FcfiEMQpu14ueJCgHaGU?cb=iwc1&rs=1&pid=ImgDetMain" class="hearder-profile-image"/>
-    <p [ngStyle]="{'margin-right':'5px'}">John M</p>
-    <p-button type="button" class="logout-btn" (click)="onLogout()">Logout</p-button>
+    <div>
+        <div class="profile-elements-container">
+            <i class="fa-regular fa-bell icon-size"></i>
+            
+            <!-- Profile Image Rendering -->
+            <ng-container *ngIf="studentObj?.image; else noImage">
+                <img [src]='imageUrl' alt="profile" 
+                    *ngIf="!studentActive" class="header-profile-image"/>
+            </ng-container>
 
+            <ng-template #noImage>
+                <div class="profilename" *ngIf="!studentActive" [pTooltip]="`${firstname} ${lastname}`" tooltipPosition="bottom">
+                    <h4>{{firstname[0] }}{{ lastname[0] }}</h4>
+                </div>
+            </ng-template>
+
+            <!-- Default Profile Image -->
+           <!-- <img src="https://th.bing.com/th/id/OIP.AQtvP5FcfiEMQpu14ueJCgHaGU?cb=iwc1&rs=1&pid=ImgDetMain"
+                class="header-profile-image" *ngIf="studentActive"/>-->
+             <div class="profilename" *ngIf="studentActive" pTooltip="Jhon M" tooltipPosition="bottom">
+                    <h4>JM</h4>
+            </div>
+            
+            
+          <!-- <p *ngIf="studentActive" [ngStyle]="{'margin-right':'5px'}">
+               John M
+            </p>--> 
+
+            <!-- Student Name Display 
+           <p *ngIf="!studentActive" [ngStyle]="{'margin-right':'5px'}">
+                {{ firstname }} {{ lastname[0] }}
+            </p>-->
+
+            <!-- Logout Button -->
+            <p-button type="button" class="logout-btn" (click)="onLogout()">Logout</p-button>
+        </div>
     </div>
-
 </div>
-</div>
-<!--<ul class="ul-container container-fluid">
-    <li (click) = "loadComponent('home')" [ngClass]="{'active': selectedComponent === 'home'}">Home</li>
-   <li (click) = "loadComponent('admin')" [ngClass]="{'active': selectedComponent === 'admin'}">Admin</li>--> 
- <!-- <li (click) = "loadComponent('student')" [ngClass]="{'active': selectedComponent === 'student'}">Student</li>
-    <li (click) = "loadComponent('Attendence')" [ngClass]="{'active': selectedComponent === 'Attendence'}">Attendence</li>
-    <li (click) = "loadComponent('Department')" [ngClass]="{'active': selectedComponent === 'Department'}">Department</li>
-</ul>-->
 
+<!-- Navigation Menu -->
 <ul class="ul-container container-fluid">
-    <li routerLink="graph" routerLinkActive="active" [ngClass]="'active'" >Home</li>
-    <li routerLink="student" routerLinkActive="active" [ngClass]="'active'">Student</li>
-    <li routerLink="attendance" routerLinkActive="active" [ngClass]="'active'">Attendance</li>
-    <li routerLink="department" routerLinkActive="active" [ngClass]="'active'" *ngIf = "studentActive">Department</li>
+    <li routerLink="graph" routerLinkActive="active">Home</li>
+    <li routerLink="student" routerLinkActive="active">Student</li>
+    <li routerLink="attendance" routerLinkActive="active">Attendance</li>
+    <li routerLink="department" routerLinkActive="active" *ngIf="studentActive">Department</li>
 </ul>
 
+<!--Confirmation popup-->
+
+<p-toast />
+<p-confirmpopup />

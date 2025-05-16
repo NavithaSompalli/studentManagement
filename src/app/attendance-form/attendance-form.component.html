@@ -4,7 +4,7 @@
     <p-dialog header="Add Attendance" [(visible)]="visible" [modal]="true" [breakpoints]="{ '1199px': '100vh', '575px': '100%' }" [style]="{width:'90%', margin:'5px' }" [draggable]="false" [resizable]="false" class="add-attendance-form-modal"> 
         <hr/>
         <form #ngAttendanceForm = "ngForm" (ngSubmit) = "OnSubmitAttendance()">
-            <div class="form-container">
+            <div class="form-container6">
                 <div class="input-Element">
                     <div  class="attendance-input-container">
                         <label for="studentId">Student ID<br/></label>
@@ -22,8 +22,9 @@
                                 optionLabel="name" 
                                 optionValue="value"
                                 name="month"
-                                class="custom-dropdown"
+                                class="custom-dropdownA"
                                 [appendTo]="'body'" 
+                                placeholder="Enter your attendance month"
                                 required #month="ngModel"/>
                             <div *ngIf="month.invalid && month.touched" class="error-text">Month is required</div>
                         </div>
@@ -32,14 +33,14 @@
                 <div class="input-Element">
                     <div class="attendance-input-container">
                         <label for="year">Year<span [ngStyle]="{'color':'red'}">*</span><br/></label>
-                        <input type="text" pInputText [(ngModel)]="user.year" id="year" name="year" required  #year="ngModel"/>
+                        <input type="text" pInputText [(ngModel)]="user.year" id="year" name="year" required  #year="ngModel" placeholder="Enter your attendace year"/>
                         <div class="error-text">
                             <span *ngIf="year.invalid && year.touched" >Year is required</span>
                         </div>
                     </div>
                     <div class="attendance-input-container">
                         <label for="departmentId">Department ID* <br/></label>
-                        <input type="text" pInputText [(ngModel)]="user.departmentId" id="departmentId" name="departmentId" required placeholder="Enter Your departmentId" #departmentId="ngModel"  disabled="true"/>
+                        <input type="text" pInputText [(ngModel)]="user.departmentId" id="departmentId" name="departmentId" required placeholder="Enter our departmentId" #departmentId="ngModel"  disabled="true"/>
                        <div class="error-text">
                         <span *ngIf="departmentId.invalid && departmentId.touched" >DepartmentId is required</span>
                         </div>
@@ -48,7 +49,7 @@
                 <div class="input-Element">
                     <div class="attendance-input-container">
                         <label for="departmentName">Department Name<br/></label>
-                        <input type="text" pInputText [(ngModel)]="user.departmentName" id="departmentName" name="departmentName" required placeholder="Enter Your Department Name" #departmentName="ngModel"/>
+                        <input type="text" pInputText [(ngModel)]="user.departmentName" id="departmentName" name="departmentName" required placeholder="Enter Your Department Name" #departmentName="ngModel" disabled="true"/>
                         <div class="error-text">
                             <span *ngIf="departmentName.invalid && departmentName.touched" >departmentName is required</span>
                         </div> 
@@ -119,7 +120,7 @@
                 </div>  
             </div>
             <hr/>
-            <div class="buttons-container">
+            <div class="buttons-containerA">
                 <p-button label="Save" type="submit" class="submit-model-btn" [disabled]="ngAttendanceForm.invalid"></p-button>
             </div>
             

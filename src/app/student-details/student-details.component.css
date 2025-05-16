@@ -1,14 +1,9 @@
 ::ng-deep .student-details-modal .p-dialog {
   width: 90% !important;
-  height: 90vh !important;
- /* background-color: #0099cc;
-  background-image: linear-gradient(to left, #0099cc);
-  background-image: url('https://th.bing.com/th/id/R.d820b497cc152184d0f6620a9ec15714?rik=NdJJFHHnyGxSVg&riu=http%3a%2f%2fwallup.net%2fwp-content%2fuploads%2f2015%2f12%2f40105-gradient-simple_background-colorful-abstract.jpg&ehk=HXCvpXoX%2fSQHIUxEUk8uCjhkgJNzA46%2bX6VinvVPLN8%3d&risl=&pid=ImgRaw&r=0');
-   background-image: url('https://media.istockphoto.com/vectors/abstract-form-background-vector-id1160194662?k=6&m=1160194662&s=170667a&w=0&h=GRpZOOskXNOKqAItqLt3m1p1F-qPVIGlfpO187Myhoc=');
-  background-image: url('https://img.freepik.com/free-vector/background-wave-gradient-design-minimalist_483537-5167.jpg?t=st=1746963729~exp=1746967329~hmac=b7f43968ba5890773ca4a794e9813409cd07e2e8705e3d4acb80b74c62a35002&w=1800');
- */
+  height: 80vh !important;
+ 
    background-size: cover;
-  
+   margin:5px !important;
 }
 
 .card {
@@ -16,7 +11,7 @@
   background-color: #f9f9f9;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  height: 60vh;
+  height: 50vh;
 }
 
 label {
@@ -29,7 +24,7 @@ input, textarea, p-datepicker {
   width: 100%;
   border-radius: 4px !important;
   margin-bottom: 10px;
-  background-color: #dde2eb;
+  background-color: transparent !important;
   height: 40px;
   
 }
@@ -94,12 +89,19 @@ p-button {
   top: 50%;
 }
 
-.form-container {
+.form-container-student {
   flex: 1;
   margin-left: 10px;
   display: flex;
-  flex-direction: row;
-  width: 100%;
+  flex-direction: row !important;
+  width: 98%;
+}
+
+::ng-deep .p-dialog-content {
+    overflow-y: hidden !important;
+    overflow: hidden !important;
+    padding: 0px !important;
+    flex-grow: 1;
 }
 
 ::ng-deep .form-elements-container {
@@ -108,6 +110,7 @@ p-button {
   overflow-x: hidden;
   scrollbar-width: none;
   width: 100%;
+  height:80vh;
 }
 
 .image-container {
@@ -127,7 +130,7 @@ p-button {
   flex-wrap: wrap;
 }
 
-.buttons-container {
+.buttons-container3 {
   display: flex;
   gap: 10px;
   justify-content: flex-end;
@@ -135,8 +138,24 @@ p-button {
   border-top: 1px solid #ccc;
   position: absolute;
   bottom: 0;
-  width: 97%;
+  width: 100%;
   background: #fff;
+  border-bottom-left-radius:10px;
+  border-bottom-right-radius:10px;
+}
+
+.buttons-container4{
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+  padding: 10px;
+  border-top: 1px solid #ccc;
+  position: absolute;
+  bottom: 0;
+  width: 99%;
+  background: #fff;
+  border-bottom-left-radius:10px;
+  border-bottom-right-radius:10px;
 }
 
 ::ng-deep .p-select, ::ng-deep .p-inputtext {
@@ -157,33 +176,53 @@ p-button {
   color: #000 !important;
 }
 
-::ng-deep .p-dialog-content {
- 
-  overflow-y: hidden !important;
-  overflow-x: hidden !important;
-}
+
 
 ::ng-deep input[type="date"], ::ng-deep .p-datepicker {
   width: 100% !important;
 }
 
 ::ng-deep input.p-inputtext, ::ng-deep .p-textarea {
-  background-color: #f0f0f0 !important;
+  background-color: transparent !important;
   color: #000;
 }
 
 
-::ng-deep .submit-model-btn .p-button  {
+
+::ng-deep .submit-model-btn1 .p-button  {
   color: white !important;
   border-radius: 5px;
-  height: 40px;
- 
+  height: 30px;
+  margin: 0px;
+  margin-top: 5px;
+  background-color: #0099cc !important;
+
 }
+
+::ng-deep .buttons-container4 .submit-model-btn .p-button{
+  background-color: #0099cc !important;
+  color: white; 
+ 
+  border-radius: 5px; 
+}
+
+
+::ng-deep .buttons-container3 .submit-model-btn .p-button{
+  background-color: #0099cc !important;
+  color: white; 
+ 
+  border-radius: 5px; 
+}
+
+
 
 ::ng-deep .cancel-modal-btn .p-button {
   color: #000 !important;
   border-radius: 5px;
   margin-left: 5px;
+    margin-top: 5px;
+    height: 30px;
+  
   
 }
 ::ng-deep .add-form-modal .p-dialog-header {
@@ -191,7 +230,7 @@ p-button {
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   font-family: 'Roboto';
-  color: #0077aa;
+  color: #000;
 }
 
 ::ng-deep .student-details-image {
@@ -200,27 +239,56 @@ p-button {
   border-radius: 50%;
 }
 
+::ng-deep .p-dialog-header{
+  padding:0px !important;
+  padding-left:10px !important;
+  padding-right:10px !important;
+   background-color: transparent !important;
+   color:#000 !important;
+}
+
+
 ::ng-deep .depart-modal .p-dialog {
   width: 90rem !important;
   max-width: 100%;
   height: 80vh;
- /* background-image: url('https://media.istockphoto.com/vectors/abstract-form-background-vector-id1160194662?k=6&m=1160194662&s=170667a&w=0&h=GRpZOOskXNOKqAItqLt3m1p1F-qPVIGlfpO187Myhoc=');*/
-  background-size: cover;
+  margin: 5px;
   color:#000;
 }
+
+
 
 .department-details strong {
   color: #0077aa;
 }
 
-.details-container {
+.details-container-student {
   display: flex;
   flex-direction: column;
   gap: 10px;
   padding: 10px;
   overflow-y: auto;
-  max-height: 400px;
-  scrollbar-width: none;
+  width: 100%;
+  max-height: 70vh;
+  padding-bottom: 50px;
+}
+
+.form1-container{
+  flex: 1;
+  display: flex;
+  flex-direction: row; 
+  width: 100%;
+}
+
+
+.details-form-container{
+  width:100%;
+  
+  gap: 10px;
+  padding: 10px;
+  overflow-y: auto;
+  width: 100%;
+  max-height: 70vh;
 }
 
 ::ng-deep .back-dept-button .p-button {
@@ -229,6 +297,7 @@ p-button {
   padding: 10px 20px;
   font-weight: bold;
   border: 1px solid #dadbd9;
+  height: 30px;
 }
 
 .detail-row {
@@ -256,10 +325,10 @@ p-button {
 ::ng-deep .p-dialog .p-dialog-title {
   font-size: 20px;
   font-weight: bold;
-  color: #0099cc !important;
+  color: #000 !important;
   text-align: center;
   padding: 10px;
-  background-color: #f4f4f4;
+  background-color: transparent !important;
 }
 
  .input-element-container{
@@ -275,7 +344,7 @@ p-button {
 
 
 .input-Element {
-  min-height: 80px; /* Adjust based on design needs */
+  min-height: 80px; 
   position: relative;
   margin-bottom: 10px;
 }
@@ -283,14 +352,15 @@ p-button {
   color: red;
   font-size: 15px;
   position: absolute;
-  bottom: -15px; /* Keeps error message fixed in place */
+  bottom: -15px; 
   width:48%;
   margin-bottom: 5px;
 }
 
 
 .p-inputtext:disabled{
-  background-color: #94a3b8 !important;
+    background-color: #d3d3d3 !important;
+  color: #808080 !important;
   height: 40px;
   border-radius: 5px;
 }
@@ -298,6 +368,7 @@ p-button {
 textarea{
   height: 50%;
 }
+
 
 
 @media screen and (max-width: 1024px) {
@@ -324,24 +395,37 @@ textarea{
       font-size: 14px;
   }
 
-  .form-container {
+  .image-container{
+    align-self: center;
+  }
+
+  .detail-row{
+    width: 100%;
+  }
+
+  .form1-container {
   flex: 1;
- 
+  height: 65vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   width: 100%;
   margin-bottom:30px;
+  /*border: 1px solid #000;*/
 }
 
+
+
 ::ng-deep .p-dialog .p-dialog-title {
-    font-size: 10px !important;
+    font-size: 15px !important;
     font-weight: bold;
-    color: #0099cc !important;
+    color: #000 !important;
     text-align: center;
     padding: 0px;
-    background-color: #f4f4f4;
+    
 }
+
+
 
 ::ng-deep .p-dialog-title {
   font-size:15rem !important;
@@ -350,37 +434,41 @@ textarea{
 ::ng-deep .student-details-image {
   height: 5rem;
   width: 5rem;
-  border-radius: 50%;
-  
+  border-radius: 50%; 
 }
 
 .input-element-container{
   width:100% !important;
 }
 
-.buttons-container{
-  width:90%;
-}
-::ng-deep .form-elements-container {
- 
-  overflow-y: auto;
-  overflow-x: auto;
-  scrollbar-width: none;
-  width: 100%;
-  
-}
-.form-container {
-  /* Adjust as needed */
-  overflow-y: auto;
+.buttons-container4{
+  width:95%;
+  border-bottom-right-radius: 5px;
 }
 
-.last-input-field{
-  margin-bottom: 80px;
+.buttons-container3{
+  width:99%;
+  border-bottom-right-radius: 5px;
 }
+
+.form-container-student {
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column !important;
+}
+
 
 
 input{
   border-radius: 5px;
+}
+
+::ng-deep .depart-modal .p-dialog {
+  width: 90rem !important;
+  max-width: 100%;
+  height: 85vh;
+  color:#000;
+  margin:5px;
 }
 
 }

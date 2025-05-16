@@ -1,8 +1,8 @@
-<div class="form-container">
+<div class="form-login-container">
     <p-card [style]="{ width: '25rem' }" *ngIf = "isSignUpActive; else signUpTemplate">
         <!--<img src="https://itorizon.com/wp-content/uploads/2023/03/ITOWebL.png" alt="image"/>-->
         <ng-template #header>
-            <img alt="Card" class="w-full" src="https://higherlogicdownload.s3.amazonaws.com/OAUG/8c16d9fc-6910-4bca-9dce-e05462995493/UploadedImages/GeoSIG/Logos/cropped-itorizon.png" />
+            <img alt="Card" [ngStyle]="{'width':'40%', 'margin-left':'30%','margin-top':'5%'}" src="https://higherlogicdownload.s3.amazonaws.com/OAUG/8c16d9fc-6910-4bca-9dce-e05462995493/UploadedImages/GeoSIG/Logos/cropped-itorizon.png" />
         </ng-template>
         <h1 class="heading-elements" [ngStyle]="{'font-size': '20px'}">Welcome</h1>
         <p class="heading-elements" [ngStyle]="{'font-size': '15px'}">Please use Registered Username and Password to login your account</p>
@@ -25,22 +25,22 @@
            <button type="button" (click)="onForgotPassword('topright')" class="forgot-password" >Forgot Password?</button>
             <p-button label="Login" [raised]="true" severity="info" type="submit" [ngStyle]="{'margin':'5px'}"/>
         </form>
-        <p [ngStyle]="{'margin': '5px', 'font-family':'Bree Serif'}">You Don't have Account? <button type = "button" class="signup-btn" (click) = "showDialog()">Sign Up</button></p>
+        <p [ngStyle]="{'margin': '5px', 'font-family':'Roboto'}">You Don't have Account? <button type = "button" class="signup-btn" (click) = "showDialog()">Sign Up</button></p>
     </p-card>
 </div>
 
 <ng-template #signUpTemplate>
-    <p-card [style]="{ width: '25rem' }">
+    <p-card [style]="{ width: '25rem'}">
         <!--<img src="https://itorizon.com/wp-content/uploads/2023/03/ITOWebL.png" alt="image"/>-->
         <ng-template #header>
-            <img alt="Card" class="w-full" src="https://higherlogicdownload.s3.amazonaws.com/OAUG/8c16d9fc-6910-4bca-9dce-e05462995493/UploadedImages/GeoSIG/Logos/cropped-itorizon.png" />
+            <img alt="Card" [ngStyle]="{'width':'40%', 'margin-left':'30%','margin-top':'5%'}" src="https://higherlogicdownload.s3.amazonaws.com/OAUG/8c16d9fc-6910-4bca-9dce-e05462995493/UploadedImages/GeoSIG/Logos/cropped-itorizon.png" />
         </ng-template>
         <h1 class="heading-elements" [ngStyle]="{'font-size': '20px'}">Welcome</h1>
         <p class="heading-elements" [ngStyle]="{'font-size': '15px'}">Please Register with your Username and Password to Sign up into application</p>
         <form #myFormSignup="ngForm" (ngSubmit)="onSubmitSignUp()">
             <div class="card flex justify-center">
                 <div class="flex flex-col gap-2" [ngStyle]="{'margin':'5px'}">
-                    <label for="username">User Name<sup  [ngStyle]="{'color':'red'}">*</sup></label>
+                    <label for="username">Username<sup  [ngStyle]="{'color':'red'}">*</sup></label>
                     <div [ngStyle]="{'margin-top':'5px'}">
                         <input pInputText id="username" aria-describedby="username-help" [(ngModel)]="userData.username" name="username"  placeholder="Username" [ngStyle]="{'width': '100%'}" required/>
                     </div>
@@ -54,7 +54,7 @@
                 <div class="card flex justify-center" [ngStyle]="{'margin':'5px'}">
                     <label for="password">Password<sup  [ngStyle]="{'color':'red'}">*</sup></label>
                     <div>
-                        <p-password [(ngModel)]="userData.password" [toggleMask]="true" [feedback]="false" id="password" placeholder="Password" [ngStyle]="{'width': '100%'}" name="password" required/>
+                        <p-password [(ngModel)]="userData.password" [toggleMask]="true" [feedback]="false" id="password" placeholder="Password" [ngStyle]="{'width': '100%'}" name="password" required pattern="/^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{1,9}$/"/>
                     </div>
                 </div>
                 <div class="card flex justify-center" [ngStyle]="{'margin':'5px'}">

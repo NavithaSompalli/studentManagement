@@ -1,16 +1,16 @@
 <div [ngStyle]="{'background-color':'#0099cc', 'height':'15vh'}">
     <h1 [ngStyle]="{'margin-left':'3%', 'color':'#fff','font-family':'Roboto', 'padding-top':'10px', 'font-size':'26px'}">
-        <i class="fa-solid fa-building-columns" [ngStyle]="{'margin-right':'5px'}"></i>Attendance
+       Attendance
     </h1>
 </div>
 
-<div class=" card mb-4 p-8 graph-card bargraph-container">
+<div class=" card mb-4 p-8 graph-card1 bargraph-container">
     <p-card class="p-card-container">
         <div class="form-header-container">
             <h3 class="student-heading">Attendance</h3>
             <div class="student-form-elements">
                 <p-select [options]="rowsPerPageArray" [(ngModel)]="rowsPerPage" optionLabel="name" 
-                          class="w-full md:w-56 paginator-btn" *ngIf="studentList.length !== 0" (ngModelChange)="updatePagination()"/>
+                          class="w-full md:w-56 paginator-btn" *ngIf="studentList.length !== 0" />
                 <button type="button" class="p-button add-btn" (click)="onClickAddData('center')" *ngIf="studentActive">+Add</button>
             </div>
         </div>
@@ -22,8 +22,8 @@
                 <h2>No records found.</h2>
             </div>
 
-            <p-table [value]="paginatedStudents" stripedRows *ngIf="studentList?.length !== 0"
-                     [rows]="rowsPerPage.value" responsiveLayout="scroll" paginator="false"> 
+            <p-table [value]="studentList" stripedRows *ngIf="studentList?.length !== 0"
+                     [rows]="rowsPerPage.value" responsiveLayout="scroll" paginator="true"> 
                 <ng-template #header>
                     <tr>
                         <th style="white-space: nowrap; text-align: center;" pSortableColumn="id" (click)="sortColumn('studentId')">Student ID <i class="fa-solid fa-sort" field="id"></i></th>
@@ -63,7 +63,7 @@
             </p-table>
         </div>
 
-       <div class="custom-paginator" *ngIf="studentList?.length >= rowsPerPage?.value">
+ <!--    <div class="custom-paginator" *ngIf="studentList?.length >= rowsPerPage?.value">
             
             <button (click)="prevPage()" [disabled]="currentPage === 0" class="previous-btn">Previous</button>
             <div *ngFor="let page of displayedPages; let i = index" class="paginator-container" (click)="goToPage(page)" [ngClass]="{'activePage': currentPage === page}">
@@ -75,30 +75,30 @@
         
         </div>
     </p-card>
-</div>
+</div>-->  
 
 <!--<app-attendance-form [visible]="isAddBtnActive" [stuId]="studentValidateObj.studentId" [dept]="studentValidateObj.department"></app-attendance-form>-->
 
 <app-attendance-form [visible]="isAddBtnActive" [stuId] = "studentValidateObj.studentId" [deptCode]="studentValidateObj.department" *ngIf="studentActive"></app-attendance-form>
 
-<p-dialog  [modal]="true" [(visible)]="visible" [position]="position" class="validate-student-dialog" *ngIf="studentActive">
+<p-dialog header="Student ID Checker" [modal]="true" [(visible)]="visible" [position]="position" class="validate-student-dialog" *ngIf="studentActive">
 
-<form #miniDialog="ngForm" (ngSubmit)="onsubmitDialogue()" >
-    <div class="input-Element" >
+<form #miniDialog="ngForm" (ngSubmit)="onsubmitDialogue()" [ngStyle]="{'margin':'5px'}">
+    <div class="input-Element2" >
         <label for="studentId" class="font-semibold w-24">Student ID</label>
        
-            <input pInputText id="studentId" class="flex-auto" autocomplete="off" [(ngModel)]="studentValidateObj.studentId" name="studentId" #studentId="ngModel" required />
+            <input pInputText id="studentId" class="flex-auto" autocomplete="off" [(ngModel)]="studentValidateModalObject.studentId" name="studentId" #studentId="ngModel" required />
             <div class="error-text">
             <div *ngIf="studentId.invalid && studentId.touched" >Student ID is required</div>
       
         </div>
     </div>
 
-    <div class=" input-Element" >
+    <div class=" input-Element2" >
           <label for="department" class="font-semibold w-24">Department</label>
        <div>
         <p-select 
-                [(ngModel)]="studentValidateObj.department" 
+                [(ngModel)]="studentValidateModalObject.department" 
                 [options]="departmentList" 
                 optionLabel="departmentName" 
                 optionValue="departmentName"

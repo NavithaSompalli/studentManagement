@@ -1,4 +1,27 @@
+::ng-deep .p-dialog-content {
+    max-height: 70vh !important; /* Adjust based on preference */
+    overflow-y: hidden !important; /* Enables vertical scrolling */
+    overflow-x: hidden !important;
+    font-family: "Roboto";
+}
 
+
+
+
+::ng-deep .add-attendance-form-modal .p-dialog-header{
+    padding:10px;
+    padding-left:0px;
+   /* background-color: #0099cc;*/
+    border-top-right-radius: 10px;
+    border-top-left-radius: 10px;
+  /*  color:#fff;*/
+    font-family: 'Roboto';
+    color:#000;
+  }
+
+::ng-deep .p-dialog .p-dialog-title{
+  color:#000;
+}
 
 label {
     font-weight: bold;
@@ -6,28 +29,15 @@ label {
     margin-bottom: 5px;
 }
 
-input, textarea, p-datepicker{
-    width: 100%;
+.p-select, .p-inputtext{
+  border-radius: 5px !important;
+  background-color: transparent !important;
+   width: 100%;
    /* padding: 8px;*/
     border-radius: 4px;
     margin-bottom: 10px;
+    color:#000 !important;
 }
-
-
-
-p-select{
-    height: 40px;
-    width:35%;
-}
-
-.p-select, .p-inputtext{
-  border-radius: 5px !important;
-}
-
-
-
-
-
 
 .flex-auto {
     flex: 1;
@@ -38,13 +48,14 @@ p-select{
     width:70% !important;
 }*/
 
-.form-container {
+.form-container6{
     flex: 1;
     overflow-y: auto;
     height: 100%;
     max-height: 60vh;
     scrollbar-width: none;
     margin-bottom: 40px;
+    padding:10px;
 }
 
 .input-Element{
@@ -57,11 +68,11 @@ p-select{
 }
 
 
-::ng-deep .buttons-container {
+::ng-deep .buttons-containerA {
     position: absolute;
     bottom: 0;
-    width: 98%;
-    background: white; /* Ensure it doesn't overlap with content */
+    width: 99%;
+    background: white; 
    /* padding: 10px;*/
     border-top: 1px solid #ccc; /* Optional: adds a separator */
     gap:0px;
@@ -70,29 +81,16 @@ p-select{
     justify-content: flex-end;
     padding: 10px;
     font-family: "Roboto";
+    border-bottom-left-radius: 10px;
+    border-bottom-right-radius: 10px;
     
   }
 
   
-
-
-
-
-::ng-deep .p-dialog-content {
-    max-height: 70vh !important; /* Adjust based on preference */
-    overflow-y: hidden !important; /* Enables vertical scrolling */
-    overflow-x: hidden !important;
-    font-family: "Roboto";
-  }
-
-
-  
-
-  
-  ::ng-deep input.p-inputtext {
-    background-color: #f0f0f0 !important; /* Light gray */
+ /* ::ng-deep input.p-inputtext {
+    background-color: #f0f0f0 !important; 
     border-radius: 5px;
-  }
+  }*/
 
   
  
@@ -112,7 +110,7 @@ p-select{
   }
 
 
-  ::ng-deep .buttons-container[_ngcontent-ng-c3439807804]{
+  ::ng-deep .buttons-containerA[_ngcontent-ng-c3439807804]{
     gap:0px !important;
     padding:0px !important;
   }
@@ -127,25 +125,21 @@ p-select{
   }
 
 
-  ::ng-deep .add-attendance-form-modal .p-dialog-header{
-    padding:10px;
-    padding-left:20px;
-   /* background-color: #0099cc;*/
-    border-top-right-radius: 10px;
-    border-top-left-radius: 10px;
-  /*  color:#fff;*/
-    font-family: 'Roboto';
-    color:#0077aa;
-  }
-
+  
 input{
  height:40px !important;
  border-radius:5px !important;
 }
-.custom-dropdown {
+.custom-dropdownA {
   width: 100% !important;
-  background-color: #f0f0f0 !important;
+  background-color: transparent !important;
   margin-bottom: 10px;
+  border-radius: 5px !important;
+  height:40px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding-left:5px;
 }
 
 .phone-number .p-select-label {
@@ -159,7 +153,7 @@ p-button[_ngcontent-ng-c2645148613] {
 }
 
 .input-Element {
-  min-height: 90px; /* Adjust based on design needs */
+  min-height: 90px !important;
   position: relative;
   margin-bottom: 10px;
 }
@@ -167,7 +161,7 @@ p-button[_ngcontent-ng-c2645148613] {
   color: red;
   font-size: 15px;
   position: absolute;
-  bottom: -14px; /* Keeps error message fixed in place */
+  bottom: -14px; 
   margin-top: 5px;
 }
 
@@ -179,7 +173,8 @@ p-button[_ngcontent-ng-c2645148613] {
 }
 
 .p-inputtext:disabled{
-  background-color: #94a3b8 !important;
+  background-color: #d3d3d3 !important;
+  color: #808080 !important;
   height: 40px;
   border-radius: 5px;
 }
@@ -197,7 +192,7 @@ p-button[_ngcontent-ng-c2645148613] {
   width:100% !important;
 }
 
-::ng-deep .buttons-container {
+::ng-deep .buttons-containerA {
    position: absolute;
         bottom: 0;
         width: 93%;

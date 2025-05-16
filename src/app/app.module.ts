@@ -64,13 +64,18 @@ import { DropdownModule } from 'primeng/dropdown';
 import { IconFieldModule } from 'primeng/iconfield';
 import { InputIconModule } from 'primeng/inputicon';
 import { PaginatorModule } from 'primeng/paginator';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { Tooltip } from 'primeng/tooltip';
+
+
+import { CanDeactivateGuard } from "./can-deactivate-guard.guard";
 
 
 import { AuthGuardService } from "./auth.guard";
 
 const routes: Routes = [
   { path: '', component: LoginComponent},
- { path: 'home', component: HomeComponent,canActivateChild: [AuthGuardService],
+ { path: 'home', component: HomeComponent,canActivateChild: [AuthGuardService], canDeactivate:[CanDeactivateGuard],
     children: [
       { path: 'student', component: StudentComponent ,canActivate:[AuthGuardService]},
       { path: 'department', component: DepartmentComponent,canActivate:[AuthGuardService]},
@@ -130,7 +135,9 @@ const routes: Routes = [
       DialogModule,
       Dialog,
       HttpClientModule,
-      PaginatorModule
+      PaginatorModule,
+      ConfirmPopupModule,
+      Tooltip
     ],
     bootstrap:[AppComponent],
     providers:[ChartDataService,

@@ -88,10 +88,6 @@ export class AttendanceFormComponent implements OnInit,  OnChanges, AfterViewChe
   }
   
   
-  
-
-  
-  
 
     ngOnChanges() {
       let index = this.dataService.departmentList.filter(depart => depart["departmentName"] === this.deptCode);

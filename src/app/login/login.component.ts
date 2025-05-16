@@ -4,12 +4,14 @@ import { HttpClient } from '@angular/common/http';
 import { LoginServiceService } from '../login-service.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'], // Corrected property
-  standalone: false
+  standalone: false,
+  encapsulation: ViewEncapsulation.Emulated 
 })
 export class LoginComponent implements OnInit{
   @Input() isSignUpActive: boolean = true;
@@ -103,14 +105,14 @@ export class LoginComponent implements OnInit{
           this.userError = "User Login Successfully";
           localStorage.clear();
           localStorage.setItem("jwtToken", JSON.stringify(true));
-          this.messageService.add({ severity: 'success', summary: 'Success', detail: this.userError })
+         this.messageService.add({ severity: 'success', summary: 'Success', detail: this.userError })
           this.router.navigate(['home/graph']);
           }else{
            // this.visible2 = !this.visible2
           /*  this.router.navigate(['home/graph']);
             localStorage.setItem('student', JSON.stringify({"student": "true"}));*/
            // this.onStudentLoginDetails(response.user.id)
-           console.log(response)
+         //  console.log(response)
            let results = response.user.id;
            localStorage.setItem('studentId', results);
            this.loginService.studentId = response.user.id;
@@ -153,19 +155,23 @@ export class LoginComponent implements OnInit{
     };*/
 
    // let response = false
+   const regex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{1,9}$/;
 
    console.log(this.userData);
     if (!this.userData.username || !this.userData.password || !this.userData.confirmpassword) {
       this.userError = 'Please enter all the fields';
       this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError })
-    } else if (this.userData.password !== this.userData.confirmpassword) {
-      this.userError = 'Password and Confirm Password must match';
-      this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError })
-    } else {
+    }else if(regex.test(this.userData.password)){
+        this.messageService.add({ severity: 'error', summary: 'Warn', detail: 'Your password must be less than 10 characters and include at least one letter, one number, and one special character.' })
+    }else if(this.userData.password !== this.userData.confirmpassword){
+           this.userError = 'Password and Confirm Password must match';
+        this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError })
+
+    }else {
      // console.log('User created successfully'); 
      this.loginService.findStudent(this.userData.id).subscribe({
       next: (response) =>{
-        console.log("findStudent", response);
+       // console.log("findStudent", response);
         if(response){
            this.loginService.getUser(this.username, this.password, this.userData.id).subscribe({
                     next: (response) => {
@@ -176,7 +182,9 @@ export class LoginComponent implements OnInit{
                             this.http.post(apiUrl, this.userData).subscribe({
                               next: (response) => console.log('Success:', response),
                               error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
-                              complete: () => this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User created successfully' }),
+                              complete: () => {this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User created successfully' })
+                              this.signup.resetForm();
+                            },
                             });
                   
                             this.isSignUpActive = !this.isSignUpActive;

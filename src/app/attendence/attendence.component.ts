@@ -10,12 +10,13 @@ import { HttpClient } from '@angular/common/http';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { ChartDataService } from '../chart-data.service';
 import { Router } from '@angular/router';
-
+import { ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'app-attendance', // Fixed typo in "attendance"
   templateUrl: './attendence.component.html',
   styleUrls: ['./attendence.component.css'], // `styleUrls` should be an array
-  standalone:false
+  standalone:false,
+  encapsulation: ViewEncapsulation.Emulated 
 })
 export class AttendanceComponent implements OnInit {
 
@@ -171,7 +172,7 @@ export class AttendanceComponent implements OnInit {
      this.position = position;
    }
  
- // pagination logic  
+ 
  
 
 
@@ -227,12 +228,14 @@ goToPage(pageIndex: number) {
  
  
  // mini dialogue box logic
- 
- studentValidateObj = {
+ studentValidateModalObject = {
    studentId:'',
    department:'',
-
  }
+ 
+ 
+ studentValidateObj = structuredClone(this.studentValidateModalObject);
+ 
  
  @ViewChild('miniDialog') mindialogueForm : NgForm;
  
@@ -247,6 +250,8 @@ goToPage(pageIndex: number) {
     console.log(id,dept);
 
   // console.log(this.studentValidateObj);
+  this.studentValidateObj = structuredClone(this.studentValidateModalObject);
+  // console.log(this.studentValidateObj);
  
     if(id !== undefined && dept !== undefined){
  
@@ -258,8 +263,9 @@ goToPage(pageIndex: number) {
         if(response){
         this.isAddBtnActive = !this.isAddBtnActive;
          this.visible = !this.visible;
+        
         }else{
-        //  alert("Student Id doesn't exit in the Student List")
+       
            this.messageService.add({ severity: 'warn', detail: `Student Id doesn't exit in the Student List` });
         }
        
@@ -267,11 +273,12 @@ goToPage(pageIndex: number) {
      error: (error) => console.log(error),
      complete: ()=>{
       // console.log("completed");
+       this.mindialogueForm.resetForm();
      }
    })
     
  }else{
-   // alert("please enter all the fields");
+   
    this.messageService.add({ severity: 'warn', detail: `please enter all the fields` });
  }
  

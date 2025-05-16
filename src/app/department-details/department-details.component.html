@@ -17,7 +17,7 @@
             <strong>Created Source</strong> :<span>{{ selectedDepartment?.createdSource }}</span>
         </div>
         <div class="detail-row">
-            <strong>Created Date</strong> :<span>{{ selectedDepartment?.createdDttm | date:'medium' }}</span>
+            <strong>Created Datetime</strong> :<span>{{ selectedDepartment?.createdDttm | date:'medium' }}</span>
         </div>
         <div class="detail-row">
             <strong>Created Source Type</strong>: <span>{{ selectedDepartment?.createdSourceType }}</span>
@@ -26,14 +26,14 @@
             <strong>Modified Source</strong> :<span>{{ selectedDepartment?.modifiedSource }}</span>
         </div>
         <div class="detail-row">
-            <strong>Modified Date</strong> :<span>{{ selectedDepartment?.modifiedDttm | date:'medium' }}</span>
+            <strong>Modified Datetime</strong> :<span>{{ selectedDepartment?.modifiedDttm | date:'medium' }}</span>
         </div>
-        <div class="detail-row">
+        <div class="detail-row" [ngStyle]="{'border-bottom':'0px'}">
             <strong>Modified Source Type</strong> :<span>{{ selectedDepartment?.modifiedSourceType }}</span>
         </div>
     </div>
 
-    <div class="buttons-container">
+    <div class="buttons-container5">
         <p-button label="Back" severity="secondary" (click)="visible = false" class="back-dept-button" />
     </div>
 </p-dialog>
