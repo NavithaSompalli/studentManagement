@@ -44,37 +44,8 @@
   ],
   "studentList": [
     {
-      "id": "ITO202548",
-      "firstname": "Mamatha",
-      "lastname": "Honnur",
-      "dob": "2003-01-07",
-      "email": "mamatha2025@gmail.com",
-      "phoneNumber": 9876543211,
-      "selectedCity": {
-        "code": "+91",
-        "country": "India"
-      },
-      "selectedCategory": {
-        "name": "Female",
-        "key": "F"
-      },
-      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
-      "modifiedResource": "Admin",
-      "modifiedSourceType": "Admin",
-      "modifiedDttm": "2025-05-07 09:18:00 PM",
-      "createdDttm": "2025-05-07 09:18:00 PM",
-      "createdSourceType": "Admin",
-      "createdSource": "Admin",
-      "dateOfJoining": "2025-05-06T18:30:00.000Z",
-      "department": "Mechanical Engineering",
-      "departmentId": "ME005",
-      "bloodGroup": "O+",
-      "address": "Bangalore, Karnataka",
-      "gender": "Female"
-    },
-    {
       "id": "ITO202581",
-      "firstname": "ManiKanth",
+      "firstname": "Mani",
       "lastname": "Kanta",
       "dob": "2004-01-10",
       "email": "manikanta123@gmail.com",
@@ -158,34 +129,6 @@
       "bloodGroup": "O+",
       "address": "Bangalore, Karnataka",
       "gender": "Male"
-    },
-    {
-      "id": "ITO202598",
-      "firstname": "Anji",
-      "lastname": "Swamy",
-      "dob": "2025-05-03",
-      "email": "anjiswamy123@gmail.com",
-      "phoneNumber": 9876543212,
-      "selectedCity": {
-        "code": "+91",
-        "country": "India"
-      },
-      "selectedCategory": {
-        "name": "Male",
-        "key": "M"
-      },
-      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
-      "modifiedResource": "Admin",
-      "modifiedSourceType": "Admin",
-      "modifiedDttm": "2025-05-10 08:44:10 PM",
-      "createdDttm": "2025-05-10 08:44:10 PM",
-      "createdSourceType": "Admin",
-      "createdSource": "Admin",
-      "dateOfJoining": "2025-05-10 12:00:00 AM",
-      "department": "Civil Engineering",
-      "departmentId": "CIVIL003",
-      "bloodGroup": "O+",
-      "address": "Bangalore, Karnataka"
     },
     {
       "id": "ITO202590",
@@ -476,6 +419,35 @@
       "departmentId": "ECE002",
       "bloodGroup": "O+",
       "address": "Bnagalore,Karnataka"
+    },
+    {
+      "id": "ITO202535",
+      "firstname": "Anjali",
+      "lastname": "ABCD",
+      "dob": "2023-01-19",
+      "email": "anjali123@gmail.com",
+      "phoneNumber": "8765432145",
+      "selectedCity": {
+        "code": "+91",
+        "country": "India"
+      },
+      "selectedCategory": {
+        "name": "Female",
+        "key": "F"
+      },
+      "image": "https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png",
+      "modifiedResource": "Admin",
+      "modifiedSourceType": "Admin",
+      "modifiedDttm": "2025-05-19 10:05:47 AM",
+      "createdDttm": "2025-05-19 10:05:47 AM",
+      "createdSourceType": "Admin",
+      "createdSource": "Admin",
+      "dateOfJoining": "2025-05-19 10:10:22 AM",
+      "department": "Computer Science",
+      "departmentId": "CSE001",
+      "bloodGroup": "A+",
+      "address": "Bangalore",
+      "gender": "Female"
     }
   ],
   "attendanceList": [
@@ -516,7 +488,7 @@
       "year": "2024",
       "departmentId": "ECE002",
       "departmentName": "Electronics and Communication Engineering",
-      "attendanceCount": "30",
+      "attendanceCount": "29",
       "createdSource": "Admin",
       "createdSourceType": "Admin",
       "createdDttm": "2025-05-08 11:27:52 PM",
@@ -711,7 +683,7 @@
       "year": "2024",
       "departmentId": "ECE002",
       "departmentName": "Electronics and Communication Engineering",
-      "attendanceCount": "30",
+      "attendanceCount": "29",
       "createdSource": "Admin",
       "createdSourceType": "Admin",
       "createdDttm": "2025-05-09 10:39:34 AM",
@@ -816,43 +788,13 @@
       "year": "2024",
       "departmentId": "ECE002",
       "departmentName": "Electronics and Communication Engineering",
-      "attendanceCount": "20",
+      "attendanceCount": "24",
       "createdSource": "Admin",
       "createdSourceType": "Admin",
       "createdDttm": "2025-05-09 10:39:34 AM",
       "modifiedSource": "Admin",
       "modifiedSourceType": "Admin",
       "modifiedDttm": "2025-05-09 10:39:34 AM"
-    },
-    {
-      "id": "a64d",
-      "studentId": "ITO202548",
-      "month": "January",
-      "year": "2024",
-      "departmentId": "ME005",
-      "departmentName": "Mechanical Engineering",
-      "attendanceCount": "31",
-      "createdSource": "Admin",
-      "createdSourceType": "Admin",
-      "createdDttm": "2025-05-10 11:51:00 PM",
-      "modifiedSource": "Admin",
-      "modifiedSourceType": "Admin",
-      "modifiedDttm": "2025-05-10 11:51:00 PM"
-    },
-    {
-      "id": "d373",
-      "studentId": "ITO202548",
-      "month": "February",
-      "year": "2024",
-      "departmentId": "ME005",
-      "departmentName": "Mechanical Engineering",
-      "attendanceCount": "29",
-      "createdSource": "Admin",
-      "createdSourceType": "Admin",
-      "createdDttm": "2025-05-10 11:51:00 PM",
-      "modifiedSource": "Admin",
-      "modifiedSourceType": "Admin",
-      "modifiedDttm": "2025-05-10 11:51:00 PM"
     },
     {
       "id": "0698",
@@ -900,34 +842,19 @@
       "modifiedDttm": "2025-05-12 11:27:38 AM"
     },
     {
-      "id": "88e3",
-      "studentId": "ITO202548",
-      "month": "March",
+      "id": "8a26",
+      "studentId": "ITO202567",
+      "month": "January",
       "year": "2024",
-      "departmentId": "ME005",
-      "departmentName": "Mechanical Engineering",
-      "attendanceCount": "31",
-      "createdSource": "Admin",
-      "createdSourceType": "Admin",
-      "createdDttm": "2025-05-12 04:36:36 PM",
-      "modifiedSource": "Admin",
-      "modifiedSourceType": "Admin",
-      "modifiedDttm": "2025-05-12 04:36:36 PM"
-    },
-    {
-      "id": "8f71",
-      "studentId": "ITO202548",
-      "month": "April",
-      "year": "2024",
-      "departmentId": "ECE002",
-      "departmentName": "Electronics and Communication Engineering",
+      "departmentId": "CSE001",
+      "departmentName": "Computer Science",
       "attendanceCount": "29",
       "createdSource": "Admin",
       "createdSourceType": "Admin",
-      "createdDttm": "2025-05-15 07:28:18 AM",
+      "createdDttm": "2025-05-19 10:14:17 AM",
       "modifiedSource": "Admin",
       "modifiedSourceType": "Admin",
-      "modifiedDttm": "2025-05-15 07:28:18 AM"
+      "modifiedDttm": "2025-05-19 10:14:17 AM"
     }
   ]
 }

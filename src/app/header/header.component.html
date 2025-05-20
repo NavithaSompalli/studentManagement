@@ -7,22 +7,25 @@
             <i class="fa-regular fa-bell icon-size"></i>
             
             <!-- Profile Image Rendering -->
-            <ng-container *ngIf="studentObj?.image; else noImage">
+       <!--    <ng-container *ngIf="studentObj?.image; else noImage">
                 <img [src]='imageUrl' alt="profile" 
                     *ngIf="!studentActive" class="header-profile-image"/>
             </ng-container>
 
             <ng-template #noImage>
-                <div class="profilename" *ngIf="!studentActive" [pTooltip]="`${firstname} ${lastname}`" tooltipPosition="bottom">
+                <div class="profilename" *ngIf="!studentActive" [pTooltip]="`${firstname} ${lastname}`" tooltipPosition="bottom" [ngStyle]="{'cursor':'pointer'}">
                     <h4>{{firstname[0] }}{{ lastname[0] }}</h4>
                 </div>
-            </ng-template>
+            </ng-template>-->
+             <div class="profilename" *ngIf="!studentActive" [pTooltip]="`${firstname} ${lastname}`" tooltipPosition="bottom" [ngStyle]="{'cursor':'pointer'}">
+                <h4>{{firstname[0] }}{{ lastname[0] }}</h4>
+            </div>
 
             <!-- Default Profile Image -->
            <!-- <img src="https://th.bing.com/th/id/OIP.AQtvP5FcfiEMQpu14ueJCgHaGU?cb=iwc1&rs=1&pid=ImgDetMain"
                 class="header-profile-image" *ngIf="studentActive"/>-->
-             <div class="profilename" *ngIf="studentActive" pTooltip="Jhon M" tooltipPosition="bottom">
-                    <h4>JM</h4>
+             <div class="profilename" *ngIf="studentActive" pTooltip="Admin" tooltipPosition="bottom" [ngStyle]="{'cursor':'pointer'}">
+                    <h4>A</h4>
             </div>
             
             
@@ -36,7 +39,7 @@
             </p>-->
 
             <!-- Logout Button -->
-            <p-button type="button" class="logout-btn" (click)="onLogout()">Logout</p-button>
+            <p-button type="button" class="logout-btn" (click)="onLogout('center')">Logout</p-button>
         </div>
     </div>
 </div>
@@ -52,4 +55,5 @@
 <!--Confirmation popup-->
 
 <p-toast />
-<p-confirmpopup />
+<!--<p-confirmpopup/>-->
+<p-confirmdialog [position]="position1"/>

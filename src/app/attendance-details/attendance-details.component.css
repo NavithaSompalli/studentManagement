@@ -265,7 +265,7 @@ body{
 
 
 .p-inputtext:disabled{
-    background-color: #d3d3d3 !important;
+    background-color: #e3e2e1 !important;
   color: #808080 !important;
   height: 40px;
   border-radius: 5px;

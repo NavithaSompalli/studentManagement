@@ -1,7 +1,7 @@
 .graph-card{
     position: absolute !important;
     z-index: index 1 !important;
-    top:25vh;
+    top:23vh;
     margin:20px;
     display: flex;
     flex-direction: row;
@@ -43,6 +43,19 @@
     box-shadow: 2px 2px 2px 2px #8a8988 !important;
 }
 
+.header-element{
+    color:#fff !important;
+    font-family:'Roboto';
+    font-size:1.5rem;
+    margin-left: 30px;
+    padding-top:10px;
+}
+
+.fa-solid{
+    font-size:1.5rem;
+    margin-right:5px;
+}
+
 
 
 
@@ -50,7 +63,7 @@
          .graph-card {
         position: absolute !important;
         z-index: index 1 !important;
-        top: 20vh;
+        top: 23vh;
         margin: 20px;
         display: flex;
         flex-direction: row;
@@ -89,7 +102,7 @@
 
 
 /* Mobile devices (max-width: 600px) */
-@media (max-width: 600px) {
+@media (max-width: 481px) and (min-width: 600px) {
        .graph-card[_ngcontent-ng-c1752484099] {
         position: absolute !important;
         z-index: index 1 !important;
@@ -135,15 +148,13 @@
 /* Extra small screens (max-width: 480px) */
 @media (max-width: 480px) {
     .graph-card {
-        width: 90% !important;
-        top: 43vh;
-        height:30vh;
+        top:32vh;
     }
 
     .bargraph-container {
-        width: 95% !important;
+        width: 99.5% !important;
         padding: 10px;
-        margin-left:10px;
+        margin-left:0px;
        
     }
 
@@ -167,12 +178,22 @@
     font-size: 15px !important;
 }
 
+.header-element{
+    color:#fff !important;
+    font-family:'Roboto';
+    font-size:1rem;
+    margin-left: 30px;
+    padding-top:10px;
+}
+
+.fa-solid{
+    font-size:15px;
+    margin-right:5px;
+}
 
 
 ::ng-deep p-chart div {
-   
     height: 48vh;
-
 }
 
 

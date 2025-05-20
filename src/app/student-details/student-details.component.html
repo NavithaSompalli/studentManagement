@@ -83,15 +83,15 @@
             </div>
             <div class="details-form-container">
                 <div [ngStyle]="{  'width':'100%'}">
-                    <label for="username">Student ID<br/></label>
-                    <input type="text" pInputText [(ngModel)]="storedStudentData.id" id="username" name="id" required [disabled]="true"/>
+                    <label for="id">Student ID<br/></label>
+                    <input type="text" pInputText [(ngModel)]="storedStudentData.id" id="id" name="id" required [disabled]="true"/>
                 </div>
                 <div class="input-Element">
                     <div  class="input-element-container">
                         <label for="firstname">First Name<br/></label>
                         <input type="text" pInputText [(ngModel)]="storedStudentData.firstname" id="firstname" name="firstname" required placeholder="Enter Your First Name" #firstname="ngModel" />
                        <div class="error-text">
-                                 <span *ngIf="firstname.invalid && firstname.touched" class="error-text">First Name is required</span>
+                            <span *ngIf="firstname.invalid && firstname.touched" class="error-text">First Name is required</span>
                        </div>   
                     </div>
                     <div  class="input-element-container">
@@ -105,7 +105,7 @@
                 <div class="input-Element">
                     <div  class="input-element-container">
                         <label for="email">Email<br/></label>
-                        <input type="email" pInputText [(ngModel)]="storedStudentData.email" id="firstname" name="email" email required placeholder="abcd@gmail.com" #email="ngModel" />
+                        <input type="email" pInputText [(ngModel)]="storedStudentData.email" id="email" name="email" email required placeholder="abcd@gmail.com" #email="ngModel" />
                         <div class="error-text">
                                  <span *ngIf="email.invalid && email.touched" class="error-text">Email is required</span>
                         </div>
@@ -122,44 +122,41 @@
                 <div class="input-Element" >
                     <div  class="input-element-container">
                         <label for="dob">Date Of Birth<br/></label>
-                        <input  pInputText type="date" [(ngModel)]="storedStudentData.dob" inputId="dob"  name="dob" [ngStyle]="{'width':'100%'}" required #dob="ngModel" />
+                        <input  pInputText  [(ngModel)]="storedStudentData.dob" id="dob"  name="dob" [ngStyle]="{'width':'100%'}" required #dob="ngModel" [disabled]="true"/>
                        <div class="error-text">
                         <span *ngIf="dob.invalid && dob.touched" class="error-text">Date Of Birth is required</span>
                        </div>
                     </div>
                     <div  class="input-element-container">
                         <label for="phonenumber">Phone Number <br/></label>
-                            <input type="number" pInputText  [(ngModel)]="storedStudentData.phoneNumber" name="phoneNumber" pattern="[0-9]{10}" [ngStyle]="{'width':'65%'}" required #phNumber="ngModel" class="phone-number" placeholder="Enter 10 digits phone number"/>
+                            <input type="number" pInputText  [(ngModel)]="storedStudentData.phoneNumber" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" [ngStyle]="{'width':'65%'}" required #phNumber="ngModel" class="phone-number" placeholder="Enter 10 digits phone number"/>
                             <div class="error-text" [ngStyle]="{'bottom':'-25px'}">
-                                    <span *ngIf="phNumber.invalid && phNumber.touched" >Valid Phone Number is required</span>
+                                <span *ngIf="phNumber.invalid && phNumber.touched" >Valid Phone Number is required</span>
                             </div>
-                           
                     </div>
                 </div>
                 <div class="input-Element" >
-                   
                     <div  class="input-element-container">
                         <label for="departmentId">Department ID<br/></label>
-                        <input pInputText [(ngModel)]="storedStudentData.departmentId" inputId="departmentId" name="departmentId"  required #departmentId="ngModel" />
+                        <input pInputText [(ngModel)]="storedStudentData.departmentId" id="departmentId" name="departmentId"  required #departmentId="ngModel" />
                         <div class="error-text">
                             <span *ngIf="departmentId.invalid && departmentId.touched" class="error-text">Department ID is required</span>
-                        </div>
-                        
+                        </div> 
                     </div>
                   <div  class="input-element-container">
                         <label for="department">Department  <br/></label>
                         <input type="text" id="department" pInputText  [(ngModel)]="storedStudentData.department" name="department"  #department="ngModel" /> 
                         <div class="error-text">
-                                 <span *ngIf="department.invalid && department.touched" class="error-text">Department is required</span>
+                            <span *ngIf="department.invalid && department.touched" class="error-text">Department is required</span>
                         </div>
                     </div>
                 </div>
                 <div class="input-Element" >
                     <div  class="input-element-container">
-                        <label for="dob">Date Of Joining <br/></label>
-                        <input type="text" id="dateOfJoining" pInputText  [(ngModel)]="storedStudentData.dateOfJoining" name="dateOfJoining" disabled="true" #dateOfJoining="ngModel" /> 
+                        <label for="dateOfJoining">Date Of Joining <br/></label>
+                        <input type="text" id="dateOfJoining" pInputText  [(ngModel)]="storedStudentData.dateOfJoining"  name="dateOfJoining" disabled="true" #dateOfJoining="ngModel" /> 
                         <div class="error-text">
-                             <span *ngIf="dateOfJoining.invalid && dateOfJoining.touched" class="error-text">Date Of Joining is required</span>
+                            <span *ngIf="dateOfJoining.invalid && dateOfJoining.touched" class="error-text">Date Of Joining is required</span>
                         </div>
                     </div>
                     <div  class="input-element-container">
@@ -193,7 +190,7 @@
                 <div class="input-Element" >
                     <div  class="input-element-container">
                         <label for="createdDttm">Created Datetime   <br/></label>
-                        <input  pInputText  [(ngModel)]="storedStudentData.createdDttm" inputId="createdDttm"  name="createdDttm" [disabled]="true"/>
+                        <input  pInputText  [(ngModel)]="storedStudentData.createdDttm" id="createdDttm"  name="createdDttm" [disabled]="true"/>
                     </div>
                     <div  class="input-element-container">
                         <label for="modifiedResource">Modified Source <br/></label>
@@ -216,7 +213,7 @@
     
         <div class="buttons-container3">
             <p-button label="Back" severity="secondary" (click)="onBackClick()" class="back-dept-button"/>
-            <p-button label="Update" type="submit" class="back-dept-button submit-model-btn" (click) = "OnUpdateOption(studentDetailsObject.id)" [disabled]="dialogForm.invalid" [ngStyle]="{'background':'#0099cc'}"/>
+            <p-button label="Update" type="submit" class="back-dept-button submit-model-btn" (click) = "OnUpdateOption(studentDetailsObject.id)" [disabled]="dialogForm.invalid" [ngStyle]="{'background':'#0099cc', 'opacity': dialogForm.invalid ? '0.5' : '1'}"/>
         </div>
     </form>
 </p-dialog>

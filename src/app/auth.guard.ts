@@ -23,17 +23,13 @@ export class AuthGuardService implements CanActivate, CanActivateChild {
   
 }
 
-
-
-
-
-
-// Separate function for authentication logic
+// authentication logic
 export function checkAuthentication(router: Router): boolean {
   const token = localStorage.getItem("jwtToken");
   const isValidToken = token ? JSON.parse(token) : null;
 
   if (isValidToken) {
+    console.log("Auth Guard");
     return true;
   } else {
     router.navigate(['']);

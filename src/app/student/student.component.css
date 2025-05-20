@@ -1,4 +1,3 @@
-/* Global Styles */
 body {
     font-family: 'Roboto', sans-serif;
     margin: 0;
@@ -8,14 +7,15 @@ body {
 }
 
 /* Card Container */
-.card {
+.card1 {
     position: absolute !important;
     z-index: 2 !important;
     top: 25vh;
-    margin: 20px;
-    margin-left: 40px !important;
-    width: 95% !important;
+    width: calc(100% - 50px);
     background-color: transparent;
+    margin-left: calc(10px + 1%);
+    margin-right: calc(10px + 2%);
+    padding-bottom: 5px !important;
 }
 
 /* Table Container */
@@ -25,13 +25,15 @@ body {
     height: 45vh;
     border: none;
     scrollbar-width: none;
+  
 }
 
-/* Table Styles */
+/* Table & Card Styles */
 ::ng-deep .p-card {
     border-radius: 0px !important;
-    width: 100% ;
-    height:65vh;
+    width: 100%;
+    height: 61.5vh;
+   
 }
 
 ::ng-deep .p-table {
@@ -43,8 +45,7 @@ body {
     background-color: #0077aa;
     margin-bottom: 5px !important;
     border-radius: 5px !important;
-    margin-left:5px !important;
-   /* width: 150px !important;*/
+    margin-left: 5px !important;
     font-weight: bold !important;
     height: 40px;
 }
@@ -53,7 +54,7 @@ body {
 .no-records-container {
     text-align: center;
     padding-top: 30px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: "Roboto";
     font-weight: bold;
     font-style: italic;
 }
@@ -80,14 +81,23 @@ body {
     font-weight: bold;
 }
 
-::ng-deep .p-dialog-topright .p-dialog {
-    background-color: ghostwhite;
-    width:30% !important;
+/* Dialog Styling */
+::ng-deep .p-dialog {
+    background-color: #fff;
 }
 
-::ng-deep .p-dialog-center .p-dialog {
-    background-color: ghostwhite;
-    width:30% !important;
+::ng-deep .validate-student-dialog1 .p-dialog {
+    font-family: "Roboto";
+    background-color: #fff;
+    width: 35% !important;
+}
+
+::ng-deep .validate-student-dialog1 .p-dialog-title {
+    font-weight: bold;
+    color: #0077aa;
+    font-family: "Roboto";
+    font-size: 18px !important;
+   /* margin-left: 10px;*/
 }
 
 /* Button Container */
@@ -97,202 +107,41 @@ body {
     justify-content: flex-end;
 }
 
-td{
+/* Text Alignment */
+td, th {
     text-align: center !important;
     font-family: "Roboto";
 }
 
-th{
-    text-align: center !important;
-    font-family: "Roboto";
-}
-
-::ng-deep .flex-auto{
-    width:100%;
-    margin-bottom: 10px;
-    background-color: #f0f0f0 !important;
-    margin-top:5px;
-    margin-bottom: 10px;
-}
-
-::ng-deep .validate-student-dialog .p-dialog{
-    font-family:"Roboto";
-    background-color: #f9f9f9;
-    width:30% !important;
-}
-
-::ng-deep .validate-student-dialog .p-dialog-title {
-    color: white;
-    font-weight: bold;
-    color:#0077aa;
-    font-family:"Roboto";
-    font-size:18px;
-    margin-left: 10px;
-}
-
-.add-btn-container[_ngcontent-ng-c523017971] {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    padding-top:5px;
-    border: 1px solid #000 !important;
-}
-
-::ng-deep .cancel-btn .p-button {
-    color: #000 !important;
+/* Paginator */
+:host ::ng-deep .paginator-btn {
     border-radius: 5px;
-    padding: 10px;
-    margin-right: 10px;
-    border: 1px solid #d9dbde !important;
-    margin-top:10px;
-    height: 30px;
-}
-
-::ng-deep .submit-btn .p-button  {
-    background-color: #0077aa !important;
-    color: white !important;
-    border-radius: 5px;
-    margin-top:10px;
-    height: 30px;
-}
-
-::ng-deep .error-text{
-    color:red;
-}
-
-.custom-dropdown1 {
-    width: 100% !important;
-    margin-top:5px;
-    margin-bottom: 10px;
-   /* background-color: #f0f0f0 !important;*/
-    border-radius: 0px;
-    background-color: transparent !important;
-    height: 40px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-}
-
-
-.student-heading{
-    font-size:20px;
-  }
-
-.student-form-elements{
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-
-.previous-btn{
-    border-top-left-radius:5px;
-    border-bottom-left-radius:5px;
-}
-
-.next-btn{
-    border-top-right-radius:5px;
-    border-bottom-right-radius:5px;
-    padding-right:10px;
-}
-
-tr:hover{
-  background-color: cadetblue;
-  color:#fff;
-}
-
-tr:nth-child(odd):hover{
-    background-color: cadetblue !important;
-    color:#fff;
-}
-
-
-.p-select {
-    /* border-bottom-left-radius: 5px !important; */
-    /* border-top-left-radius: 5px !important; */
+    height: 39px;
     color: #fff !important;
-    outline: none !important;
-    border-radius: 5px !important;
-    /* width: auto !important; */
     background-color: transparent !important;
-    margin-bottom: 5px !important;
-    
-  }
-
-  input{
-    height: 40px !important;
-    border-radius: 5px !important;
-     background-color: transparent !important;
-     color:#000 !important;
-  }
-
-  .paginator-btn{
-    /*   width: 80px !important;*/
-       
-       border-radius: 5px;
-       height: 39px;
-       color: #fff !important;
-       outline: none !important;
-       border-radius: 5px !important;
-       /* width: auto !important; */
-       background-color: transparent !important;
-       
-   }
-
-   .card-header{
-        display:flex;
-        flex-direction: row;
-        justify-content:space-between;
-        flex-wrap: wrap;
-    }
-
-   
-   
-/*.input-Element {
-  min-height: 90px; 
-  position: relative;
-  margin-bottom: 10px;
-  font-family: "Roboto";
-  font-weight: bold;
-}*/
-.error-text {
-  color: red;
-  font-size: 15px;
- /* position: absolute;
-  bottom: -10px; */
-  width:100%;
- 
+    margin-bottom: 5px;
 }
 
-.p-dialog-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-shrink: 0;
-    padding: 5px;
-    padding:0px;
-    padding-left: 20px !important;
+:host ::ng-deep .p-paginator-page,
+:host ::ng-deep .p-paginator-next,
+:host ::ng-deep .p-paginator-last,
+:host ::ng-deep .p-paginator-first,
+:host ::ng-deep .p-paginator-prev {
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    height: 30px !important;
 }
 
- 
-
-.header-element{
-   margin-left:3%;
-    color:#fff !important;
-    font-family:'Roboto';
-    font-size:2rem;
+/* Header */
+.header-element {
+    margin-left: 3%;
+    color: #fff !important;
+    font-family: "Roboto";
+    font-size: 2rem;
     margin-left: 30px;
 }
 
-::ng-deep .p-datatable-tbody > tr > td {
-    padding:8px !important;
-}
-
-::ng-deep .p-datatable-thead > tr > th {
-    padding:8px !important;
-}
-
-
+/* Search Container */
 .search-container {
     display: flex;
     align-items: center;
@@ -309,53 +158,30 @@ tr:nth-child(odd):hover{
 .search-container i {
     margin-right: 10px;
     color: #555;
-    align-self: center;
-    font-size:18px;
-    margin-left:10px;
-
+    font-size: 18px;
+    margin-left: 10px;
 }
-
-
 
 .search-container input {
     border: none;
     outline: none;
     width: 100%;
-    
 }
 
-::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd) {
-    background: #F0F0F0 !important;
-    border-color: #F2F2F2 !important;
+ .card-header{
+        display:flex;
+        flex-direction: row;
+        justify-content:space-between;
+        flex-wrap: wrap;
+    }
+
+::ng-deep .p-paginator{
+    gap:0px !important;
+    padding-right:0px !important;
+   
 }
 
-::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd):hover {
-    background: #F0F0F0 !important;
-    border-color: #F2F2F2 !important;
-   background-color: cadetblue !important;
-   padding:10px !important;
-    color: #fff;
-}
-
-
-.searchBox{
-    background-color: transparent !important;
-    height:30px !important;
-    margin-right: 5px !important;
-}
-/* paginator */
-
-
-:host ::ng-deep .p-paginator{
-        gap:0px !important;
-        height: 30px;
-        padding:0px;
-        margin:0px; 
-        margin-top:10px;
-  }
-  
-  
-:host ::ng-deep .p-paginator-page,
+    :host ::ng-deep .p-paginator-page,
  .p-paginator-next, 
  .p-paginator-last, 
  .p-paginator-first, 
@@ -363,16 +189,18 @@ tr:nth-child(odd):hover{
    border: 1px solid #000 !important;
    border-radius: 0px !important;
    height: 30px !important;
+   padding: 0px !important;
+
 }
  
-
 :host ::ng-deep .p-paginator-first{
     border: 1px solid #000 !important;
     border-radius: 0px !important;
     border-right: none !important;
     border-top-left-radius: 5px !important;
     border-bottom-left-radius: 5px !important;
-     height: 30px !important;
+    height: 30px !important;
+    padding:0px !important;
 }
 
 :host ::ng-deep .p-paginator-prev,.p-paginator-next{
@@ -380,6 +208,7 @@ tr:nth-child(odd):hover{
      border-radius: 0px !important;
      border-right: none !important;
       height: 30px !important;
+      padding:0px !important;
 
 }
 
@@ -416,13 +245,166 @@ tr:nth-child(odd):hover{
 }
 
 
-  
+
+:host ::ng-deep .paginatorFormElement{
+ /*   position: absolute;
+    right:2%;*/
+    height: 30px !important;
+    padding:0px;
+    margin:5px; 
+    margin-top:5px !important;
+    width:35px;
+    padding:5px;
+    text-align: center;
+    border: 1px solid #000;
+}
+
+::ng-deep .p-datatable-tbody > tr:hover{
+    background-color: #d5ddeb !important;
+    color:#000 !important;
+}
+
+::ng-deep .p-datatable-tbody > tr > td {
+    padding: 8px !important;
+}
+
+::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd) {
+    background: #F0F0F0 !important;
+    border-color: #F2F2F2 !important;
+}
+
+::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd):hover {
+    background: #F0F0F0 !important;
+    border-color: #F2F2F2 !important;
+   background-color: #d5ddeb !important;
+   padding:0px !important;
+   color: #fff;
+}
+
+::ng-deep .p-confirmdialog-accept-button{
+        height: 30px !important;
+        background-color: #0077aa !important;
+        color:#fff !important;
+        
+    }
+
+::ng-deep .custom-paginator{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+}
+
+::ng-deep .go-btn .p-button{
+    height: 30px !important;
+    background-color: #0077aa !important;
+}
+
+::ng-deep .p-inputtext.ng-invalid.ng-dirty {
+    border-color: #d9dbde !important;
+}
+
+.student-form-elements{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.input-element{
+  display: flex;
+  flex-direction: column;
+  width:100%;
+  margin:5px;
+  font-family: "Roboto";
+  padding-bottom: 5px;
+  }
+
+.flex-auto{
+    width:100%;
+    height: 40px;
+}
+
+.custom-dropdown1 {
+    width: 100% !important;
+    margin-top:5px;
+    margin-bottom: 10px;
+   /* background-color: #f0f0f0 !important;*/
+    border-radius: 0px;
+    background-color: transparent !important;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.error-text{
+    color: red;
+}
+
+::ng-deep .validate-student-dialog1 .p-dialog .p-dialog-header{
+    padding-left:0px !important;
+}
+
+::ng-deep .cancel-btn .p-button {
+    color: #000 !important;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #d9dbde !important;
+    margin-top:10px;
+    height: 30px;
+}
+
+::ng-deep .submit-btn .p-button  {
+    background-color: #0077aa !important;
+    color: white !important;
+    border-radius: 5px;
+    margin-top:10px;
+    height: 30px;
+}
+
+::ng-deep .p-confirmdialog .p-dialog-content {
+        font-family: "Roboto";
+        color: #34baeb;
+        font-weight: bold;
+        font-size: 15px;
+        margin-left:15px;
+}
+
+::ng-deep .p-sortIcon{
+    height: 10px !important;
+}
+
+
+.header-element{
+    color:#fff !important;
+    font-family:'Roboto';
+    font-size:1.5rem;
+    margin-left: 30px;
+    padding-top:10px;
+}
+
+.fa-solid{
+    font-size:1.5rem;
+    margin-right:5px;
+}
+
 /* Responsive Adjustments */
-@media (min-width:768px)and (max-width: 1024px) {
-    .card {
-        width: 95% !important;
-        margin-left: 20px !important;
-        top:25vh;
+@media (max-width:770px) and (min-width: 1024px) {
+    .card1 {
+      position: absolute !important;
+    z-index: 2 !important;
+    top: 25vh;
+    width: calc(100% - 50px);
+    background-color: transparent;
+    margin-left: calc(10px + 1%);
+    margin-right: calc(10px + 1%);
+    padding-bottom: 5px !important;
+    }
+
+  ::ng-deep .p-card{
+        width:95% !important;
     }
 
     .table-container {
@@ -446,53 +428,207 @@ tr:nth-child(odd):hover{
         font-size: 12px;
     }
 
-}
-
-@media (max-width: 701px) {
-    .card {
-        width: 92% !important;
-        margin: 20px !important;
-        top:25vh !important;
+     ::ng-deep .validate-student-dialog1 .p-dialog {
+        font-family: "Roboto";
+        background-color: ghostwhite;
+        width: 100% !important;
+        padding: 5px;
     }
 
+     ::ng-deep .p-confirmdialog.p-dialog {
+        width: 100% !important;
+    }
+
+}
+
+
+
+@media (max-width: 577px) and (min-width: 769px) { 
+    .card1 {
+        position: absolute !important;
+    z-index: 2 !important;
+    top: 25vh;
+    width: calc(100% - 10px);
+    background-color: transparent;
+    margin-left: calc(10px + 1%);
+    margin-right: calc(10px + 2%);
+    padding-bottom: 5px !important;
+    }
+
+    .card-header {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        flex-wrap: wrap;
+    }
+
+    .table-container {
+        height: 25vh !important;
+    }
+
+    th, td {
+        font-size: 10px;
+        padding: 5px;
+    }
+
+    .add-btn {
+        font-size: 9px;
+        height: 30px;
+    }
+
+    .confirm-box-card {
+        width: 70% !important;
+    }
+
+    .student-heading {
+        font-size: 2rem;
+    }
+
+    ::ng-deep .validate-student-dialog1 .p-dialog {
+        font-family: "Roboto";
+        background-color: #fff;
+        width: 80% !important;
+        padding: 5px;
+    }
+    
+
+  ::ng-deep .p-card {
+        border-radius: 0px !important;
+        width: 90% !important;
+        margin-left: 14px;
+        margin-top: 10px;
+    }
+
+    .paginator-btn {
+        border-radius: 5px;
+        height: 30px;
+        color: #fff !important;
+        outline: none !important;
+        background-color: transparent !important;
+    }
+
+    ::ng-deep .p-select-label {
+        padding: 0px 5px !important;
+    }
+
+    :host ::ng-deep .p-paginator-page,
+    :host ::ng-deep .p-paginator-next,
+    :host ::ng-deep .p-paginator-last,
+    :host ::ng-deep .p-paginator-first,
+    :host ::ng-deep .p-paginator-prev {
+        border: 1px solid #000 !important;
+        border-radius: 0px !important;
+        height: 20px !important;
+        width: 1rem !important;
+        min-width: 10px !important;
+    }
+
+    .header-element {
+        margin-left: 3%;
+        color: #fff !important;
+        font-family: 'Roboto';
+        font-size: 1rem;
+    }
+
+    ::ng-deep .p-confirmdialog.p-dialog {
+        width: 100% !important;
+    }
+
+    .search-container {
+        display: flex;
+        align-items: center;
+        border: 1px solid #ccc;
+        padding: 5px;
+        border-radius: 5px;
+        width: 250px;
+        background-color: transparent;
+        height: 30px !important;
+        margin-bottom: 5px;
+        margin-right: 5px;
+    }
+
+    .searchBox {
+        background-color: transparent !important;
+        height: 30px !important;
+        margin-right: 5px !important;
+    }
+
+  ::ng-deep .p-dialog-topright .p-dialog {
+        background-color: #fff;
+        width: 100% !important;
+        padding-left: 10px;
+    }
+
+    .p-confirmdialog .p-dialog-header {
+        padding-left: 0px;
+    }
+
+    ::ng-deep .p-confirmdialog .p-dialog-content {
+        font-family: "Roboto";
+        color: #34baeb;
+        font-weight: bold;
+        font-size: 10px;
+        margin-left:10px;
+}
+
+}
+
+@media (max-width: 576px){
+   .card1 {
+    position: absolute !important;
+    z-index: 2 !important;
+    margin:10px !important;
+    width: 95% !important;
+    background-color: transparent;
+    top:26vh !important;
+    border-radius: 30px !important;
+    padding-bottom: 5px;
+
+}
+
+::ng-deep .p-card{
+    height:66vh;
+}
     .card-header{
         display:flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content:space-between;
         flex-wrap: wrap;
     }
 
+.student-form-elements{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
 
-    .table-container {
-        height: 30vh;
-    }
+.search-container {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    width: 250px;
+    background-color: transparent;
+    height: 30px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+}
 
-    th, td {
-        font-size: 12px;
-        padding: 6px;
-    }
+.search-container i {
+    margin-right: 10px;
+    color: #555;
+    align-self: center;
+    font-size:18px;
+    margin-left:5px;
+}
 
-    .add-btn {
-      /*  width: 100px !important;*/
-        font-size: 10px;
-        height: 30px;
-    }
-    .confirm-box-card {
-        width: 50% !important;
-    }
 
-    ::ng-deep .validate-student-dialog .p-dialog{
-        font-family:'Roboto';
-       /* background-color: ghostwhite;*/
-        width:80% !important;
-        padding:5px;
-    }
-    
-.p-card {
-    border-radius: 0px !important;
-    width: 90% !important;
-    margin-left: 14px;
-    margin-top: 10px;
+
+.search-container input {
+    border: none;
+    outline: none;
+    width: 100%;
 }
 
 .paginator-btn{
@@ -504,167 +640,290 @@ tr:nth-child(odd):hover{
        border-radius: 5px !important;
        /* width: auto !important; */
        background-color: transparent !important;
+       display: flex;
+       flex-direction: row;
+       justify-content: center;
+       align-items: center;
    }
 
-::ng-deep .p-select-label{
-    padding:0px !important;
-    padding-left: 5px !important;
-    padding-right:5px !important;
-   }
+   .add-btn {
+        font-size: 9px;
+        background-color: #0077aa !important;
+        margin-bottom: 5px !important;
+        border-radius: 5px !important;
+        margin-left:5px !important;
+        font-weight: bold !important;
+        height:30px;
+    }
 
- ::ng-deep .p-paginator-page, ::ng-deep
- .p-paginator-next, ::ng-deep
- .p-paginator-last, ::ng-deep
- .p-paginator-first, ::ng-deep
+.table-container {
+    height: 30vh !important;
+    width: 100%;
+    overflow-x: auto;
+    border: none;
+    scrollbar-width: none;
+}
+
+.no-records-container {
+    text-align: center;
+    padding-top: 30px;
+    font-family: "Roboto";
+    font-weight: bold;
+    font-style: italic;
+}
+
+::ng-deep .custom-paginator{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+}
+
+::ng-deep .go-btn .p-button{
+    height: 30px !important;
+    background-color: #0077aa !important;
+   
+}
+
+::ng-deep .p-inputtext.ng-invalid.ng-dirty {
+    border-color: #d9dbde !important;
+}
+:host ::ng-deep .p-paginator{
+        gap:0px !important;
+        height: 30px;
+        padding:0px;    
+  }
+  
+:host ::ng-deep .p-paginator-page,
+ .p-paginator-next, 
+ .p-paginator-last, 
+ .p-paginator-first, 
  .p-paginator-prev{
    border: 1px solid #000 !important;
    border-radius: 0px !important;
-   height: 20px !important;
-  
+   height: 30px !important;
+   min-width:20px !important;
+
 }
  
+:host ::ng-deep .p-paginator-first{
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    border-right: none !important;
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+     height: 30px !important;
 }
 
-@media (max-width: 480px) and (min-width:700px){
-    .card {
-        width: 90% !important;
-        margin-left: 5px !important;
-        top: 0;
-        margin-top:20vh;
-        
-    }
+:host ::ng-deep .p-paginator-prev,.p-paginator-next{
+     border: 1px solid #000 !important;
+     border-radius: 0px !important;
+     border-right: none !important;
+      height: 30px !important;
+      min-width: 20px !important;
+}
 
-    .table-container {
-      height: 25vh !important;
-    }
+:host ::ng-deep .p-paginator-page{
+    gap:none !important;
+    border-right: 0px !important;
+    height: 30px !important;  
+}
 
-    th, td {
+:host ::ng-deep .p-paginator-pages{
+    gap:0px !important;
+    height: 30px !important;  
+}
+:host ::ng-deep .p-paginator-next{
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    border-right:none !important;
+     height: 30px !important;
+     min-width: 20px !important;
+}
+
+:host ::ng-deep .p-paginator-last{
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+     height: 30px !important;
+}
+
+:host ::ng-deep .p-paginator-page.p-paginator-page-selected {
+    background-color: #0077aa !important;
+    color: #FFFF !important;
+    height: 30px !important;
+}
+
+::ng-deep .validate-student-dialog1 .p-dialog-title {
+    font-weight: bold;
+    color: #0077aa;
+    font-family: "Roboto";
+    font-size: 18px;
+   /* margin-left: 10px;*/
+}
+
+
+
+:host ::ng-deep .paginatorFormElement{
+ /*   position: absolute;
+    right:2%;*/
+    height: 30px !important;
+    padding:0px;
+    width:30px;
+    padding:5px;
+    text-align: center;
+    border: 1px solid #000;
+}
+
+::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd) {
+    background: #F0F0F0 !important;
+    border-color: #F2F2F2 !important;
+}
+
+::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd):hover {
+    background: #F0F0F0 !important;
+    border-color: #F2F2F2 !important;
+   background-color: #d5ddeb !important;
+   padding:10px !important;
+   color: #000;
+}
+
+ th, td {
         font-size: 10px;
         padding: 5px;
-    }
-
-   
-    .add-btn {
-      /*  width: 80px !important;*/
-        font-size: 9px;
-    }
-
-   
-
-    .confirm-box-card {
+       
+}
+.confirm-box-card {
         width: 70% !important;
     }
 
-    .student-heading{
-        font-size:15px;
-    }
-
-    ::ng-deep  .card-header{
-        display:flex !important;
-        flex-direction: column !important;
-        justify-content:flex-start !important;
-    }
-
-    ::ng-deep .validate-student-dialog .p-dialog{
+     ::ng-deep .validate-student-dialog1 .p-dialog{
         font-family:"Roboto";
-        background-color: ghostwhite;
-        width:80% !important;
+        background-color: #fff;
+        width:90% !important;
     }
 
- ::ng-deep .p-card {
-    border-radius: 0px !important;
-    width: 90% !important;
-    margin-left: 14px !important;
-    margin-top: 10px !important;
-}
-
-p-card-body {
-    padding: var(--p-card-body-padding);
-    display: flex;
-    flex-direction: column;
-    gap: var(--p-card-body-gap);
-    height: 65vh;
-}
-
-
-  
-
-.header-element{
-   margin-left:3%;
-    color:#fff !important;
-    font-family:'Roboto';
+    ::ng-deep .validate-student-dialog1 .p-dialog-title {
+    color: white;
+    font-weight: bold;
+    color:#0077aa;
+    font-family:"Roboto";
+    font-size:20px;
+    margin-left:0px;
    
-    font-size:1rem;
-    margin-left: 10px;
 }
 
-::ng-deep .header-element[_ngcontent-ng-c1266205125] {
-    margin-left: 3%;
-    color: #fff !important;
+::ng-deep .cancel-btn .p-button {
+    color: #000 !important;
+    border-radius: 5px;
+    padding: 10px;
+    margin-right: 10px;
+    border: 1px solid #d9dbde !important;
+    margin-top:10px;
+    height: 30px;
+}
+
+::ng-deep .submit-btn .p-button  {
+    background-color: #0077aa !important;
+    color: white !important;
+    border-radius: 5px;
+    margin-top:10px;
+    height: 30px;
+}
+
+
+
+.delete-btn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+::ng-deep .p-confirmdialog {
+    width: 100% !important;
+}
+
+
+::ng-deep .p-confirmdialog .p-dialog-content {
     font-family: "Roboto";
-    /* padding-top: 10px; */
-    font-size: 2rem;
-    margin-left: 10px;
+    color: #34baeb;
+    font-weight: bold;
 }
 
-.search-container {
+::ng-deep .p-dialog-topright .p-dialog {
+    background-color: #fff;
+    width:100% !important;
+}
+
+
+
+::ng-deep .error-text{
+    color:red;
+}
+
+.custom-dropdown1 {
+    width: 100% !important;
+    margin-top:5px;
+    margin-bottom: 10px;
+   /* background-color: #f0f0f0 !important;*/
+    border-radius: 0px;
+    background-color: transparent !important;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+ .p-dialog-header {
     display: flex;
     align-items: center;
-    border: 1px solid #ccc;
+    justify-content: space-between;
+    flex-shrink: 0;
     padding: 5px;
-    border-radius: 5px;
-    width: 250px;
-    background-color: transparent;
-    height: 30px !important;
-    margin-bottom: 5px;
-    margin-right: 5px;
+    padding:0px;
+   /* padding-left: 20px !important;*/
 }
 
-.searchBox{
-    background-color: transparent !important;
-    height:30px !important;
-    margin-right: 5px !important;
+.header-element{
+    color:#fff !important;
+    font-family:'Roboto';
+    font-size:1rem;
+    margin-left: 30px;
+    padding-top:10px;
 }
 
-
-:host ::ng-deep .p-paginator-page{
-      border: 1px solid #000 !important;
-   border-radius: 0px !important;
-   height: 20px !important;
-   width:10% !important;
+.fa-solid{
+    font-size:15px;
+    margin-right:5px;
 }
 
-:host ::ng-deep
- .p-paginator-next{
-   border: 1px solid #000 !important;
-   border-radius: 0px !important;
-   height: 20px !important;
-   width:1rem !important;
- } 
+::ng-deep .p-datatable-tbody > tr > td {
+    padding:8px !important;
+    cursor: pointer !important;
+}
 
-:host ::ng-deep
- .p-paginator-last{
-      border: 1px solid #000 !important;
-   border-radius: 0px !important;
-   height: 20px !important;
-   width:1rem !important;
- } 
- :host ::ng-deep
- .p-paginator-first{
-       border: 1px solid #000 !important;
-   border-radius: 0px !important;
-   height: 20px !important;
-   width:1rem !important;
- } 
- :host ::ng-deep
- .p-paginator-prev{
-   border: 1px solid #000 !important;
-   border-radius: 0px !important;
-   height: 20px !important;
-   width:1rem !important;
-  
+::ng-deep .p-datatable-thead > tr > th {
+    padding:8px !important;
+}
+
+.student-heading{
+    font-size:19px !important;
+}
+
+ ::ng-deep .p-dialog-topright .p-dialog {
+        background-color: #fff;
+        width: 90% !important;
+        padding-left: 10px;
+    }
+
+::ng-deep .p-confirmdialog .p-dialog-content {
+        font-family: "Roboto";
+        color: #34baeb;
+        font-weight: bold;
+        font-size: 10px;
+        margin-left:10px;
 }
 
 }
-
-

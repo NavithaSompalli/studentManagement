@@ -36,7 +36,8 @@ import { LoginServiceService } from "./login-service.service";
 import { MessageService } from 'primeng/api'; // toast modules
 import { ConfirmationService } from 'primeng/api';
 import { ChartDataService } from "./chart-data.service";
-import { SortServiceService } from "./sort-service.service";
+import { SortServiceService } from "./sortService.service";
+import { NavigationService } from "./navigation.service";
 
 import { Toast } from 'primeng/toast';
 import { Ripple } from 'primeng/ripple';
@@ -122,7 +123,7 @@ const routes: Routes = [
       TableModule,
       CommonModule,
       MenubarModule,
-      RouterModule.forRoot(routes),
+      RouterModule.forRoot(routes, { onSameUrlNavigation: 'reload' }),
       Toast,
       Ripple,
       BrowserModule,
@@ -148,7 +149,8 @@ const routes: Routes = [
       SortServiceService,
       InputIconModule,
       IconFieldModule,
-      AuthGuardService
+      AuthGuardService,
+      NavigationService
 
     ],
     exports:[RouterModule]

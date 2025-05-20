@@ -18,11 +18,18 @@ export class GraphComponent implements OnInit {
   attendanceList: any[] = [];
   deptOptionsList: any[] = [];
   deptCodeOptionsList:any[] = [];
+  deptOptionsListFilter:any[] = [];
 
+  isStudentLogged = localStorage.getItem('student');
+ 
+  studentActive = localStorage.getItem('studentId');
+  
   constructor(private http: HttpClient, private cd: ChangeDetectorRef) {}
 
   ngOnInit() {
     this.fetchAttendanceData();
+  //  console.log(this.isStudentLogged);
+   // console.log(this.studentActive);
   }
 
   fetchAttendanceData() {
@@ -36,27 +43,31 @@ export class GraphComponent implements OnInit {
         this.attendanceList = response;
 
         // Extract unique student and department combinations
-        const uniqueEntries = this.attendanceList.map(item => ({
+        const uniqueEntries = this.attendanceList.filter(item => ({
           studentId: item.studentId
         }));
 
         const deptCodeUniqueValues = this.attendanceList.map(item =>({
           departmentId: item.departmentId
         }))
+       
+     
+        if(this.isStudentLogged !== null){
+          this.deptOptionsList = uniqueEntries.filter((obj,index,self) => index === self.findIndex(t =>t.studentId === this.studentActive))
+          this.deptCodeOptionsList = uniqueEntries.filter((obj,index,self)=>index === self.findIndex(t => t.studentId === this.studentActive))
+        }else{
+            this.deptCodeOptionsList =  deptCodeUniqueValues.filter(
+              (item, index, self) =>
+              index === self.findIndex(t => t.departmentId === item.departmentId )
+            );
+            // Remove duplicate studentId-departmentId pairs
+            this.deptOptionsList = uniqueEntries.filter(
+              (item, index, self) =>
+                index === self.findIndex(t => t.studentId === item.studentId )
+            );
 
-        this.deptCodeOptionsList =  deptCodeUniqueValues.filter(
-          (item, index, self) =>
-            index === self.findIndex(t => t.departmentId === item.departmentId )
-        );
-
-
-
-        // Remove duplicate studentId-departmentId pairs
-        this.deptOptionsList = uniqueEntries.filter(
-          (item, index, self) =>
-            index === self.findIndex(t => t.studentId === item.studentId )
-        );
-
+            this.deptOptionsListFilter = [...this.deptOptionsList]
+        }
         
         if (this.deptOptionsList.length > 0) {
           this.studentId = this.deptOptionsList[0].studentId;
@@ -64,7 +75,6 @@ export class GraphComponent implements OnInit {
         }
 
         if (this.deptCodeOptionsList.length > 0) {
-          
           this.departmentId = this.deptCodeOptionsList[0].departmentId;
         }
 
@@ -129,6 +139,9 @@ export class GraphComponent implements OnInit {
   onDepartmentChange(value) {
     this.departmentId = value;
     console.log(this.departmentId);
+      
+    this.deptOptionsListFilter = this.deptOptionsList.filter((item) => item.departmentId === value);
+    this.studentId = this.deptOptionsListFilter[0].studentId;
     this.updateChartData();
   }
 }

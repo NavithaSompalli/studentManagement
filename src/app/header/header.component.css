@@ -79,15 +79,14 @@
 
 .profilename{
     border:1px solid #0099cc;
-   
     border-radius: 50%;
     margin-left:10px;
     margin-right:10px;
     background-color:#0099cc;
     color:#fff;
     font-size:13px;
-    height:40px;
-    width:40px;
+    height: 2.5rem;
+    width: 2.5rem;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -105,14 +104,50 @@
    background-color: #0099cc !important;
 }
 
-::ng-deep .p-confirmpopup .p-confirmpopup-accept-button .p-button{
-    background-color: #0099cc !important;
+ ::ng-deep .p-dialog-footer{
+    padding:5px !important;
+ }
+
+    ::ng-deep .p-dialog-footer .p-confirmpopup-accept-button .p-button{
+        background-color: #0099cc !important;
+        width:100% !important;
+    }
+
+    ::ng-deep .p-dialog{
+        width: 30% !important;
+        padding:0px !important;
+        box-shadow: 1px 1px 1px 1px #0099cc;
+    }
+
+   ::ng-deep .p-confirmdialog .p-dialog-content{
+        padding-left:10px !important;
+    }
+
+    ::ng-deep .p-confirmdialog-accept-button{
+        height: 30px !important;
+        background-color: #0077aa !important;
+    }
+
+    ::ng-deep .p-confirmdialog-reject-button{
+        height: 30px !important;
+        border:1px solid #000 !important;
+    }
+
+    ::ng-deep .p-confirmdialog .p-dialog-header{
+        padding: 0px !important;
+        padding-left:13px !important;
+    }
+@media (max-width:770px) and (min-width:1024px){
+    ::ng-deep .p-dialog{
+        width: 35% !important;
+        padding:0px !important;
+        box-shadow: 1px 1px 1px 1px #0099cc;
+    }
 }
 
-/* Responsive styles for smaller screens */
-@media (max-width: 768px) {
-  
 
+/* Responsive styles for smaller screens */
+@media (max-width:480px) and (min-width: 769px) {
     .header-image {
         width: 20%;
     }
@@ -133,6 +168,10 @@
         padding: 10px;
     }
 
+     ::ng-deep .p-dialog{
+        width: 100% !important;
+        padding:0px !important;
+    }
    
 }
 
@@ -163,8 +202,8 @@
     }
 
     .hearder-profile-image{
-      height: 20px;
-    width: 20px;
+      height: 15px;
+    width: 15px;
     border-radius: 50%;
     margin-left: 10px;
     margin-right: 10px;
@@ -176,10 +215,42 @@
       color:#0099cc;
 
     }
+
+    .profilename{
+        width:2rem !important;
+        height: 2rem !important;
+        font-size:10px !important;
+    }
    
 
     ::ng-deep .logout-btn .p-button {
         width: 100%;
         font-size: 10px;
+        background-color: #0099cc;
+    }
+
+    ::ng-deep .p-dialog-footer .p-confirmpopup-accept-button .p-button{
+        background-color: #0099cc !important;
+        width:100% !important;
+    }
+
+    ::ng-deep .p-dialog{
+        width: 100% !important;
+        padding:0px !important;
+        margin:5px !important;
+    }
+
+    ::ng-deep .p-confirmdialog-accept-button{
+        height: 30px !important;
+        background-color: #0077aa !important;
+    }
+
+    ::ng-deep .p-confirmdialog-reject-button{
+        height: 30px !important;
+    }
+
+    ::ng-deep .p-confirmdialog .p-dialog-header{
+        padding: 0px !important;
+        padding-left:10px !important;
     }
 }

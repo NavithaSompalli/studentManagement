@@ -9,18 +9,61 @@ import { ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css'], // Corrected property
+  styleUrls: ['./login.component.css'], 
   standalone: false,
   encapsulation: ViewEncapsulation.Emulated 
 })
-export class LoginComponent implements OnInit{
-  @Input() isSignUpActive: boolean = true;
-  studentId:string = "";
-  visible2:boolean;
-  
+export class LoginComponent implements OnInit {
 
-  constructor(private http: HttpClient, private loginService: LoginServiceService, private messageService: MessageService, private router: Router) {} 
-  //loginService: LoginServiceService = Inject(LoginServiceService);
+  // Move all variable declarations to the top
+  @Input() isSignUpActive: boolean = true;
+  @ViewChild('myForm') form!: NgForm;
+  @ViewChild('myFormSignup') signup!: NgForm;
+  @ViewChild('miniDialogStudent') studentIDDialog: NgForm;
+
+  studentId: string = "";
+  visible2: boolean;
+  username!: string;
+  password!: string;
+  confirmpassword!: string;
+  userError: string = ''; 
+  userType: boolean = false;
+  visible: boolean;
+  position: 'center' | 'topleft' | 'topright'  = 'center';
+
+  userData = {
+    id: '',
+    username: '',
+    password: '',
+    confirmpassword: ''
+  };
+
+  studentIdObj = {
+    studentId: ''
+  };
+
+  constructor(
+    private http: HttpClient, 
+    private loginService: LoginServiceService, 
+    private messageService: MessageService, 
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    const token = localStorage.getItem("jwtToken");
+    const isValidToken = token ? JSON.parse(token) : null;
+    this.userType = JSON.parse(localStorage.getItem('student') || 'false');
+
+    if (isValidToken !== null && this.userType !== undefined) {
+      if (isValidToken) {
+        this.router.navigate(['home/graph']);
+      } else {
+        this.router.navigate(['']);
+      }
+    } else {
+      this.router.navigate(['']);
+    }
+  }
 
   showDialog() {
     this.isSignUpActive = !this.isSignUpActive;
@@ -30,218 +73,107 @@ export class LoginComponent implements OnInit{
     this.isSignUpActive = false;
   }
 
-  username!: string;
-  password!: string;
-  confirmpassword!: string;
-  userError: string = ''; 
-  userType:boolean = false;
- ngOnInit(): void {
-    const token = localStorage.getItem("jwtToken");
-  const isValidToken = token ? JSON.parse(token) : null;
-   this.userType =  JSON.parse(localStorage.getItem('student'));
-
-   if(isValidToken !== null && this.userType !== undefined  ){
-  if (isValidToken) {
-    if(this.userType === true){
-      this.router.navigate(['home/graph'])
-    }else{
-      this.router.navigate(['home/graph'])
-    }
-    
-  } else {
-    this.router.navigate(['']);
-  }
-}else{
-   this.router.navigate(['']);
-}
- 
-   
- }
-  
-
-  @ViewChild('myForm') form!: NgForm;
-
   onSubmitLogin(): any {
-   /* if (!this.form) {
-      alert('Form is not properly initialized.');
-      return;
-    }*/
-  
     const usernameControl = this.form.controls['username'];
     const passwordControl = this.form.controls['password'];
-  
-   /* if (!usernameControl || !passwordControl) {
-      alert('Invalid form structure.');
-      return;
-    }*/
-  
+
     this.username = usernameControl.value;
     this.password = passwordControl.value;
 
-    if(this.username === undefined || this.password === undefined){
-      if(this.username === undefined && this.password !== undefined){
-        this.userError = 'Please Enter Username field';
-        this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError});
-      }else if(this.username !== undefined && this.password === undefined){
-        this.userError = 'Please Enter Password field';
-        this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError});
-      }else{
-      this.userError = "Please Enter all the fields"
-      this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError});
-      }
-    }else if (this.username.trim() !== '' && this.password.trim() !== '') {
-      //console.log('Attempting login...');
-    /*  this.loginService.login(this.username, this.password).subscribe({
-        next: () => alert('Login Successful'),
-        error: (error) => {
-          console.error('Login failed:', error);
-          alert('Invalid Credentials');
-        }
-      });*/
-
+    if (this.username === undefined || this.password === undefined) {
+      this.userError = !this.username ? 'Please Enter Username field' : !this.password ? 'Please Enter Password field' : 'Please Enter all the fields';
+      this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError });
+    } else if (this.username.trim() !== '' && this.password.trim() !== '') {
       this.loginService.login(this.username, this.password).subscribe({
-        next: (response) => {console.log('Success:', response)
-          if(this.username === 'admin'){
-          this.userError = "User Login Successfully";
-          localStorage.clear();
-          localStorage.setItem("jwtToken", JSON.stringify(true));
-         this.messageService.add({ severity: 'success', summary: 'Success', detail: this.userError })
-          this.router.navigate(['home/graph']);
-          }else{
-           // this.visible2 = !this.visible2
-          /*  this.router.navigate(['home/graph']);
-            localStorage.setItem('student', JSON.stringify({"student": "true"}));*/
-           // this.onStudentLoginDetails(response.user.id)
-         //  console.log(response)
-           let results = response.user.id;
-           localStorage.setItem('studentId', results);
-           this.loginService.studentId = response.user.id;
-          // console.log(results);
-            localStorage.setItem('student', JSON.stringify({"student": "true"}));
+        next: (response) => {
+          if (this.username === 'admin') {
+            localStorage.clear();
             localStorage.setItem("jwtToken", JSON.stringify(true));
-            this.router.navigate(['home','graph']);
+            this.messageService.add({ severity: 'success', summary: 'Success', detail: "User Login Successfully" });
+            this.router.navigate(['home/graph']);
+          } else {
+            let results = response.user.id;
+            localStorage.setItem('studentId', results);
+            this.loginService.studentId = results;
+            localStorage.setItem('student', JSON.stringify({ "student": "true" }));
+            localStorage.setItem("jwtToken", JSON.stringify(true));
+            this.router.navigate(['home', 'graph']);
           }
         },
         error: (error) => {
-          this.userError = error
-          this.messageService.add({ severity: 'error', summary: 'Error', detail: this.userError })
+          this.userError = error;
+          this.messageService.add({ severity: 'error', summary: 'Error', detail: this.userError });
         },
         complete: () => {
           this.username = "";
           this.password = "";
         }
       });
-
     } else {
-      this.userError = 'Please enter valid credentials.'
-      this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError});
+      this.messageService.add({ severity: 'error', summary: 'Warn', detail: 'Please enter valid credentials.' });
     }
-  }
-  
-  @ViewChild('myFormSignup') signup!: NgForm;
-
-  userData = {
-    id:'',
-    username:'',
-    password:'',
-    confirmpassword:''
   }
 
   onSubmitSignUp() {
     let apiUrl = 'http://localhost:3000/users';
-    /*let userData = {
-      username: this.username,
-      password: this.password,
-    };*/
+    const regex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{1,9}$/;
 
-   // let response = false
-   const regex = /^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9]).{1,9}$/;
-
-   console.log(this.userData);
     if (!this.userData.username || !this.userData.password || !this.userData.confirmpassword) {
-      this.userError = 'Please enter all the fields';
-      this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError })
-    }else if(regex.test(this.userData.password)){
-        this.messageService.add({ severity: 'error', summary: 'Warn', detail: 'Your password must be less than 10 characters and include at least one letter, one number, and one special character.' })
-    }else if(this.userData.password !== this.userData.confirmpassword){
-           this.userError = 'Password and Confirm Password must match';
-        this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError })
-
-    }else {
-     // console.log('User created successfully'); 
-     this.loginService.findStudent(this.userData.id).subscribe({
-      next: (response) =>{
-       // console.log("findStudent", response);
-        if(response){
-           this.loginService.getUser(this.username, this.password, this.userData.id).subscribe({
-                    next: (response) => {
-                    // console.log("response",response);
-                      if(response[0] === null){
-                      //  console.log(`Get User true :  ${response}`);
-                            
-                            this.http.post(apiUrl, this.userData).subscribe({
-                              next: (response) => console.log('Success:', response),
-                              error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
-                              complete: () => {this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User created successfully' })
-                              this.signup.resetForm();
-                            },
-                            });
-                  
-                            this.isSignUpActive = !this.isSignUpActive;
-                          }else{
-                          //  console.log(`Get User false:  ${response}`);
-                            this.messageService.add({severity: 'error', summary: 'Warning', detail: 'User already Exits'});
-                          }
-                        }
-                      })
-             }else{
-               this.messageService.add({severity: 'error', summary: 'Warning', detail: `User doesn't exit in the studentList`});
-             }
-      }
-     })
-      
-    
+      this.messageService.add({ severity: 'error', summary: 'Warn', detail: 'Please enter all the fields' });
+    } else if (regex.test(this.userData.password)) {
+      this.messageService.add({ severity: 'error', summary: 'Warn', detail: 'Your password must be less than 10 characters and include at least one letter, one number, and one special character.' });
+    } else if (this.userData.password !== this.userData.confirmpassword) {
+      this.messageService.add({ severity: 'error', summary: 'Warn', detail: 'Password and Confirm Password must match' });
+    } else {
+    const signupSubscribe =   this.loginService.findStudent(this.userData.id).subscribe({
+        next: (response) => {
+          if (response) {
+          const userSubscribe =   this.loginService.getUser(this.username, this.password, this.userData.id).subscribe({
+              next: (response) => {
+                if (response[0] === null) {
+                  this.http.post(apiUrl, this.userData).subscribe({
+                    next: () => console.log('Success'),
+                    error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
+                    complete: () => {
+                      this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User created successfully' });
+                      this.signup.resetForm();
+                      userSubscribe.unsubscribe();
+                    },
+                  });
+                  this.isSignUpActive = !this.isSignUpActive;
+                } else {
+                  this.messageService.add({ severity: 'error', summary: 'Warning', detail: 'User already Exists' });
+                }
+              },
+              complete: () => signupSubscribe.unsubscribe()
+            });
+          } else {
+            this.messageService.add({ severity: 'error', summary: 'Warning', detail: `User doesn't exist in the student list` });
+          }
+        }
+      });
     }
   }
 
- // Forgot password
- visible: boolean; 
- position: 'left' | 'right' | 'top' | 'bottom' | 'center' | 'topleft' | 'topright' | 'bottomleft' | 'bottomright' = 'center';
-  onForgotPassword(position:  'topright' ){
+  onForgotPassword(position: 'topright') {
     this.position = position;
-    this.visible = !this.visible
+    this.visible = !this.visible;
   }
 
 
-  onStudentLoginDetails(){}
 
-
-
-  @ViewChild('miniDialogStudent') studentIDDialog: NgForm;
-  studentIdObj = {
-    studentId:''
-  }
-  onSubmitStudent(){
-    console.log(this.studentIdObj);
+  onSubmitStudent() {
     this.loginService.findStudent(this.studentIdObj.studentId).subscribe({
       next: (response) => {
-    
-        if(response[0].id === this.studentIdObj.studentId){
-          localStorage.setItem('student', JSON.stringify({"student": "true"}));
+        if (response[0].id === this.studentIdObj.studentId) {
+          localStorage.setItem('student', JSON.stringify({ "student": "true" }));
           localStorage.setItem("jwtToken", JSON.stringify(true));
           this.router.navigate(['home/student']);
-            localStorage.setItem('student', JSON.stringify({"student": "true"}));
           this.visible2 = !this.visible2;
-        }else{
-          alert(`${this.studentIdObj.studentId} does not exits.`)
+        } else {
+          alert(`${this.studentIdObj.studentId} does not exist.`);
         }
-      },
-      error: (error) => console.log(error),
-      complete: ()=>{
-       // console.log("completed");
       }
-    })
-     
+    });
   }
 }
-

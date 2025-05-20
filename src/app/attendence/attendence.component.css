@@ -1,20 +1,14 @@
 .graph-card1{
-    position: absolute !important;
-    z-index: index 1 !important;
-    top:23vh;
-    margin:20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width:98% !important;
+     position: absolute !important;
+    z-index: 2 !important;
+    top: 25vh;
+    width: calc(100% - 50px);
+    background-color: transparent;
+    margin-left: calc(10px + 1%);
+    margin-right: calc(10px + 2%);
   
 }
 
-
-
-::ng-deep .bargraph-container{
-    width:90% !important;
-}
 
 ::ng-deep .p-card-container{
     width:98% !important;
@@ -106,8 +100,6 @@ body {
     cursor: pointer;
 }
 
-
-
 /* Confirmation Box */
 .confirm-box-card {
     width: 30% !important;
@@ -124,12 +116,12 @@ body {
 }
 
 ::ng-deep .p-dialog-topright .p-dialog {
-    background-color: ghostwhite;
+    background-color: #fff;
     width:30% !important;
 }
 
 ::ng-deep .p-dialog-center .p-dialog {
-    background-color: ghostwhite;
+    background-color: #fff;
     width:30% !important;
 }
 
@@ -159,7 +151,7 @@ th{
     font-family:"Roboto";
    /* background-color: ghostwhite;*/
     width:35% !important;
-    padding:5px !important;
+    padding:0px !important;
 }
 
 ::ng-deep .validate-student-dialog .p-dialog-title {
@@ -168,14 +160,23 @@ th{
     font-family:"Roboto";
     margin: 0px;
     padding: 0px;
-    font-size:20px;
+    font-size:18px;
+}
+
+:host ::ng-deep .p-dialog-content{
+    padding:2px !important;
+    padding-left:10px !important;
 }
 
 ::ng-deep .validate-student-dialog .p-dialog-header {
-    padding: 0px !important;
-    padding-left: 0px !important;
-    /* padding-right: 10px !important; */
+   
     background-color: transparent !important;
+    padding:0px !important;
+    padding-left: 5px !important;
+}
+
+::ng-deep .p-confirmdialog-message{
+    margin-left:10px !important;
 }
 
 ::ng-deep .p-select-overlay {
@@ -191,37 +192,39 @@ th{
   /*  background-color: red !important;*/
     color: #000 !important;
     border-radius: 5px;
-    padding: 10px;
     margin-right: 10px;
+    height: 30px !important;
 }
 
 ::ng-deep .submit-btn .p-button  {
     background-color: #0077aa !important;
     color: white !important;
     border-radius: 5px;
-    padding: 10px; 
+    height: 30px !important;
 }
 
 ::ng-deep .error-text{
     color:red;
 }
 
-tr:hover{
-  background-color: cadetblue;
-  color:#fff;
+::ng-deep tr:hover{
+  background-color: #d5ddeb;
+  color:#000;
+  cursor: pointer;
 }
 
 tr:nth-child(odd):hover{
-     background-color: cadetblue !important;
-  color:#fff;
+     background-color: #d5ddeb !important;
+  color:#000;
 }
-
-
 
 
 .input-Element2 {
  /* position: relative;*/
-  margin-bottom: 5px;
+ /* margin-bottom: 5px;*/
+  width:100%;
+  margin-bottom:3px !important;
+
 }
 .error-text {
   color: red;
@@ -235,9 +238,10 @@ tr:nth-child(odd):hover{
 }
 
 
-input, .pInputText{
+::ng-deep input, .pInputText{
     margin-bottom: 5px;
     color:#000 !important;
+    width:100%;
 }
 
 
@@ -245,12 +249,8 @@ input, .pInputText{
     display:flex;
     flex-direction: row;
     justify-content:space-between !important;
-      align-items:'center';
-   
+    align-items:'center'; 
 }
-
-
-
 
 ::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd) {
     background: #F0F0F0 !important;
@@ -260,160 +260,44 @@ input, .pInputText{
 ::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd):hover {
     background: #F0F0F0 !important;
     border-color: #F2F2F2 !important;
-   background-color: cadetblue !important;
-    color: #fff;
+   background-color: #d5ddeb !important;
+    color: #000;
 }
-
-
 ::ng-deep .p-datatable-tbody > tr > td {
     padding:8px !important;
 }
 
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-    .card {
-        width: 97% !important;
-        margin-left: 20px !important;
-    }
 
-    .table-container {
-        height: 40vh;
-    }
-
-    th, td {
-        font-size: 14px;
-        padding: 8px;
-    }
-
-    .add-btn {
-     /*   width: 120px !important;*/
-        font-size: 12px;
-    }
-
-    .custom-paginator button {
-        font-size: 12px;
-    }
+::ng-deep .custom-paginator2{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+    margin-top:5px !important;
 }
 
-@media (max-width: 768px) {
-    .card {
-        width: 97% !important;
-        margin-left: 10px !important;
-        top: 20vh;
-        
-    }
-
-    .table-container {
-        height: 30vh;
-    }
-
-    th, td {
-        font-size: 12px;
-        padding: 6px;
-    }
-
-    .add-btn {
-      /*  width: 100px !important;*/
-        font-size: 10px;
-        height: 40px;
-    }
-
-    .confirm-box-card {
-        width: 50% !important;
-    }
-
-    ::ng-deep .p-confirmdialog {
-        width: 100% !important;
-        margin:10px !important;
-        padding:0px !important;
-    }
-
-    ::ng-deep .validate-student-dialog .p-dialog{
-    font-family:"Roboto";
-   /* background-color: ghostwhite;*/
-    width:40% !important;
+::ng-deep .go-btn2 .p-button{
+    height: 30px !important;
+    background-color: #0077aa !important;
+    margin-top: 0px !important;
 }
 
-
-
-    
+::ng-deep .p-inputtext.ng-invalid.ng-dirty {
+    border-color: #d9dbde !important;
 }
 
-@media (max-width: 480px) {
-    .card {
-        width: 95% !important;
-        margin-left: 5px !important;
-      /*  top: 12vh;*/
-        margin-top:15vh;
-    }
-
-    ::ng-deep .p-overlay-content {
-    transform-origin: inherit;
-    width: 80% !important;
-}
-
-    .graph-card1{
-    position: absolute !important;
-    z-index: index 1 !important;
-    top:25vh;
-    margin:20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    height:40vh;
-    width:98% !important;
-  
-}
-
-    .table-container {
-        height: 20vh;
-    }
-
-    ::ng-deep .p-confirmdialog {
-        width: 100% !important;
-        margin:10px !important;
-        padding:0px !important;
-    }
-    
-
-    th, td {
-        font-size: 10px;
-        padding: 5px;
-    }
-
-    .add-btn {
-      /*  width: 80px !important;*/
-        font-size: 9px;
-        height: 30px !important;
-    }
-
-   
-
-    .confirm-box-card {
-        width: 70% !important;
-    }
-
-    .student-heading{
-        font-size:15px;
-    }
-
-    .paginator-btn{
-        width: 80px !important;
-        font-size: 9px;
-        border-radius: 5px;
-        height:30px !important;
-       
-    }
-
-      ::ng-deep .validate-student-dialog .p-dialog{
-    font-family:"Roboto";
-   /* background-color: ghostwhite;*/
-    width:90% !important;
-}
-
-
-
-
+:host ::ng-deep .paginatorFormElement2{
+ /*   position: absolute;
+    right:2%;*/
+    height: 30px !important;
+    padding:0px;
+    margin:5px; 
+    margin-top:5px !important;
+    width:35px;
+    padding:5px;
+    text-align: center;
+    border: 1px solid #000;
 }
 
 .p-select {
@@ -455,6 +339,7 @@ input, .pInputText{
 
   :host ::ng-deep .p-paginator{
         gap:0px !important;
+        padding:0px !important;
   }
   
   
@@ -465,6 +350,7 @@ input, .pInputText{
  .p-paginator-prev{
    border: 1px solid #000 !important;
    border-radius: 0px !important;
+   height: 30px;
 }
  
 
@@ -474,6 +360,7 @@ input, .pInputText{
     border-right: none !important;
     border-top-left-radius: 5px !important;
     border-bottom-left-radius: 5px !important;
+    height: 30px;
 
 
 }
@@ -482,24 +369,28 @@ input, .pInputText{
      border: 1px solid #000 !important;
      border-radius: 0px !important;
       border-right: none !important;
+      height: 30px;
 
 }
 
 :host ::ng-deep .p-paginator-page{
     gap:none !important;
     border-right: 0px !important;
+    height: 30px;
     
 }
 
 :host ::ng-deep .p-paginator-pages{
     gap:0px !important;
+    height: 30px;
    
     
 }
 :host ::ng-deep .p-paginator-next{
     border: 1px solid #000 !important;
     border-radius: 0px !important;
-    border-right:none !important
+    border-right:none !important;
+    height: 30px;
 }
 
 :host ::ng-deep .p-paginator-last{
@@ -507,9 +398,227 @@ input, .pInputText{
     border-radius: 0px !important;
     border-top-right-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
+    height: 30px;
 }
 
 :host ::ng-deep .p-paginator-page.p-paginator-page-selected {
     background-color: #0077aa !important;
     color: #FFFF !important;
+    height: 30px;
 }
+
+.header-element{
+    color:#fff !important;
+    font-family:'Roboto';
+    font-size:1.5rem;
+    margin-left: 30px;
+    padding-top:10px;
+}
+
+.fa-solid{
+    font-size:1.5rem;
+    margin-right:5px;
+}
+
+
+
+/* Responsive Adjustments */
+@media (max-width: 768px) and (min-width: 1024px) {
+    .card {
+        width: 97% !important;
+        margin-left: 20px !important;
+    }
+
+    .table-container {
+        height: 40vh;
+    }
+
+    th, td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .add-btn {
+     /*   width: 120px !important;*/
+        font-size: 12px;
+    }
+
+    .custom-paginator button {
+        font-size: 12px;
+    }
+}
+
+@media (max-width:578px) and (min-width: 768px) {
+    .card {
+        width: 97% !important;
+        margin-left: 10px !important;
+        top: 20vh;  
+    }
+
+    .table-container {
+        height: 30vh;
+    }
+
+    th, td {
+        font-size: 12px;
+        padding: 6px;
+    }
+    .add-btn {
+      /*  width: 100px !important;*/
+        font-size: 10px;
+        height: 40px;
+    }
+
+    .confirm-box-card {
+        width: 50% !important;
+    }
+
+    ::ng-deep .p-confirmdialog {
+        width: 100% !important;
+        margin:10px !important;
+        padding:0px !important;
+    }
+
+    ::ng-deep .validate-student-dialog .p-dialog{
+    font-family:"Roboto";
+   /* background-color: ghostwhite;*/
+    width:40% !important;
+}
+}
+
+@media (max-width: 576px) {
+    .card {
+        width: 95% !important;
+        margin-left: 5px !important;
+      /*  top: 12vh;*/
+        margin-top:15vh;
+        height: 50vh !important;
+    }
+
+    ::ng-deep .p-overlay-content {
+    transform-origin: inherit;
+    width: 80% !important;
+}
+
+    .graph-card1{
+    position: absolute !important;
+    z-index: index 1 !important;
+    top:25vh;
+    margin:20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    height:40vh;
+    width:98% !important;
+  
+}
+
+    .table-container {
+        height: 39vh !important;
+    }
+
+    ::ng-deep .p-confirmdialog {
+        width: 100% !important;
+        margin:10px !important;
+        padding:0px !important;
+    }
+    
+
+    th, td {
+        font-size: 10px;
+        padding: 5px;
+    }
+
+    .add-btn {
+      /*  width: 80px !important;*/
+        font-size: 9px;
+        height: 30px !important;
+    }
+
+    .confirm-box-card {
+        width: 70% !important;
+    }
+
+    .student-heading{
+        font-size:15px;
+    }
+
+   ::ng-deep .go-btn2 .p-button {
+    height: 30px !important;
+    background-color: #0077aa !important;
+    margin-top: 5px !important;
+}
+
+    .paginator-btn{
+        width: 80px !important;
+        font-size: 9px;
+        border-radius: 5px;
+        height:30px !important;
+       
+    }
+
+    ::ng-deep .validate-student-dialog .p-dialog{
+        font-family:"Roboto";
+        /* background-color: ghostwhite;*/
+        width:90% !important;
+    }
+
+    ::ng-deep .p-card {
+        display: flex;
+        flex-direction: column;
+        height: 65vh;
+        padding: 10px !important;
+    }
+
+    .header-element{
+    color:#fff !important;
+    font-family:'Roboto';
+    font-size:1rem;
+    margin-left: 30px;
+    padding-top:10px;
+}
+
+.fa-solid{
+    font-size:15px;
+    margin-right:5px;
+}
+
+:host ::ng-deep .p-paginator-page,
+ .p-paginator-next, 
+ .p-paginator-last, 
+ .p-paginator-first, 
+ .p-paginator-prev{
+   border: 1px solid #000 !important;
+   border-radius: 0px !important;
+   height: 30px !important;
+   min-width:20px !important;
+
+}
+
+:host ::ng-deep .p-paginator-next{
+    min-width:20px !important;
+
+}
+:host ::ng-deep .p-paginator-prev{
+    min-width: 20px !important;
+}
+
+:host ::ng-deep .p-paginator-page.p-paginator-page-selected {
+    background-color: #0077aa !important;
+    color: #FFFF !important;
+    height: 30px;
+}
+
+:host ::ng-deep .paginatorFormElement2{
+ /*   position: absolute;
+    right:2%;*/
+    height: 30px !important;
+    padding:0px;
+    margin:5px; 
+    width:35px;
+    padding:5px;
+    text-align: center;
+    border: 1px solid #000;
+}
+}
+

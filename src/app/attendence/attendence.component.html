@@ -1,16 +1,16 @@
 <div [ngStyle]="{'background-color':'#0099cc', 'height':'15vh'}">
-    <h1 [ngStyle]="{'margin-left':'3%', 'color':'#fff','font-family':'Roboto', 'padding-top':'10px', 'font-size':'26px'}">
+    <h1 class="header-element">
        Attendance
     </h1>
 </div>
 
-<div class=" card mb-4 p-8 graph-card1 bargraph-container">
+<div class=" card mb-4 p-8 graph-card1">
     <p-card class="p-card-container">
         <div class="form-header-container">
             <h3 class="student-heading">Attendance</h3>
             <div class="student-form-elements">
                 <p-select [options]="rowsPerPageArray" [(ngModel)]="rowsPerPage" optionLabel="name" 
-                          class="w-full md:w-56 paginator-btn" *ngIf="studentList.length !== 0" />
+                          class="w-full md:w-56 paginator-btn" *ngIf="studentList.length !== 0" (onChange)=" onChangeRowsPerPage($event)"/>
                 <button type="button" class="p-button add-btn" (click)="onClickAddData('center')" *ngIf="studentActive">+Add</button>
             </div>
         </div>
@@ -22,28 +22,28 @@
                 <h2>No records found.</h2>
             </div>
 
-            <p-table [value]="studentList" stripedRows *ngIf="studentList?.length !== 0"
-                     [rows]="rowsPerPage.value" responsiveLayout="scroll" paginator="true"> 
+            <p-table [value]="paginatedStudentList" stripedRows *ngIf="studentList?.length !== 0"
+                     [rows]="rowsPerPage.value" responsiveLayout="scroll" paginator="false"> 
                 <ng-template #header>
                     <tr>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="id" (click)="sortColumn('studentId')">Student ID <i class="fa-solid fa-sort" field="id"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="month" (click)="sortColumn('month')">Month <i class="fa-solid fa-sort" field="month"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="year" (click)="sortColumn('year')">Year  <i class="fa-solid fa-sort" field="year"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="attendanceCount" (click)="sortColumn('attendanceCount')">Attendance Count <i class="fa-solid fa-sort" field="attendanceCount"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="departmentName" (click)="sortColumn('departmentName')">Department Name <i class="fa-solid fa-sort" field="departmentName"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="departmentID" (click)="sortColumn('departmentId')">Department ID <i class="fa-solid fa-sort" field="departmentId"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="createdSource" (click)="sortColumn('createdSource')">Created Source <i class="fa-solid fa-sort" field="createdSource"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="createdSourceType" (click)="sortColumn('createdSourceType')">Created Source Type <i class="fa-solid fa-sort" field="createdSourceType"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="createdDttm" (click)="sortColumn('createdDttm')">Created Datetime <i class="fa-solid fa-sort" field="createdDttm"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedResource" (click)="sortColumn('modifiedSource')">Modified Resource <i class="fa-solid fa-sort" field="modifiedResource"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedSourceType" (click)="sortColumn('modifiedSourceType')">Modified Resource Type <i class="fa-solid fa-sort" field="modifiedSourceType"></i></th>
-                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedDttm" (click)="sortColumn('modifiedDttm')">Modified Datetime <i class="fa-solid fa-sort" field="modifiedDttm"></i></th>  
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="id" (click)="sortColumn('studentId')" *ngIf="studentActive">Student ID <p-sortIcon field="id"/></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="month" (click)="sortColumn('month')">Month <p-sortIcon field="month"/></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="year" (click)="sortColumn('year')">Year  <p-sortIcon field="year"/></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="attendanceCount" (click)="sortColumn('attendanceCount')">Attendance Count <p-sortIcon field="attendanceCount"/></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="departmentName" (click)="sortColumn('departmentName')">Department Name <p-sortIcon field="departmentName"/></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="departmentID" (click)="sortColumn('departmentId')">Department ID <p-sortIcon field="departmentId"/></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="createdSource" (click)="sortColumn('createdSource')">Created Source <p-sortIcon field="createdSource"/></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="createdSourceType" (click)="sortColumn('createdSourceType')">Created Source Type <p-sortIcon field="createdSourceType"/></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="createdDttm" (click)="sortColumn('createdDttm')">Created Datetime <p-sortIcon field="createdDttm"/></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedResource" (click)="sortColumn('modifiedSource')">Modified Resource <p-sortIcon field="modifiedResource"/></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedSourceType" (click)="sortColumn('modifiedSourceType')">Modified Resource Type <p-sortIcon field="modifiedSourceType"/></th>
+                        <th style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedDttm" (click)="sortColumn('modifiedDttm')">Modified Datetime <p-sortIcon field="modifiedDttm"/></th>  
                         <th *ngIf="studentActive"></th>
                     </tr>
                 </ng-template>
                 <ng-template #body let-product>
                     <tr (dblclick)="viewStudentDetails(product)">
-                        <td style="white-space: nowrap;">{{ product.studentId }}</td>
+                        <td style="white-space: nowrap;" *ngIf="studentActive">{{ product.studentId }}</td>
                         <td style="white-space: nowrap;">{{ product.month }}</td>
                         <td style="white-space: nowrap;">{{ product.year }}</td>
                         <td style="white-space: nowrap;">{{ product.attendanceCount }}</td>
@@ -62,20 +62,15 @@
                 </ng-template>                
             </p-table>
         </div>
-
- <!--    <div class="custom-paginator" *ngIf="studentList?.length >= rowsPerPage?.value">
-            
-            <button (click)="prevPage()" [disabled]="currentPage === 0" class="previous-btn">Previous</button>
-            <div *ngFor="let page of displayedPages; let i = index" class="paginator-container" (click)="goToPage(page)" [ngClass]="{'activePage': currentPage === page}">
-                
-                    {{ page }}
-               
+        <ng-template pTemplate="paginator"  >
+            <div class="custom-paginator2">
+                <p-paginator [rows]="rowsPerPage.value" [totalRecords]="studentList.length" (onPageChange)="handlePageChange($event)" [first]="currentPage * rowsPerPage.value" [pageLinkSize]="3"></p-paginator>
+                <input pInputText id="currentPageNo" class="paginatorFormElement2" autocomplete="off" [(ngModel)]="updatePage" name="currentPage" #page="ngModel" required [ngStyle]="{'background-color':'transparent'}"/>
+                <p-button type="button" label="GO" class="go-btn2" (click)="onClickGo()"/>
             </div>
-            <button (click)="nextPage()" [disabled]="currentPage === totalPages.length - 1" class="next-btn">Next</button>
-        
-        </div>
+        </ng-template>
     </p-card>
-</div>-->  
+</div>
 
 <!--<app-attendance-form [visible]="isAddBtnActive" [stuId]="studentValidateObj.studentId" [dept]="studentValidateObj.department"></app-attendance-form>-->
 
@@ -86,38 +81,33 @@
 <form #miniDialog="ngForm" (ngSubmit)="onsubmitDialogue()" [ngStyle]="{'margin':'5px'}">
     <div class="input-Element2" >
         <label for="studentId" class="font-semibold w-24">Student ID</label>
-       
-            <input pInputText id="studentId" class="flex-auto" autocomplete="off" [(ngModel)]="studentValidateModalObject.studentId" name="studentId" #studentId="ngModel" required />
+            <input pInputText id="studentId" class="flex-auto" autocomplete="off" [(ngModel)]="studentValidateModalObject.studentId" name="studentId" #studentId="ngModel" required placeholder="Enter your student ID"/>
             <div class="error-text">
             <div *ngIf="studentId.invalid && studentId.touched" >Student ID is required</div>
-      
         </div>
     </div>
 
-    <div class=" input-Element2" >
+    <div class="input-Element2" [ngStyle]="{'margin-bottom':'5px'}">
           <label for="department" class="font-semibold w-24">Department</label>
-       <div>
+      
         <p-select 
                 [(ngModel)]="studentValidateModalObject.department" 
                 [options]="departmentList" 
                 optionLabel="departmentName" 
                 optionValue="departmentName"
+                id="department"
                 name="department"
                 class="custom-dropdown"
                 [appendTo]="'body'" 
+                placeholder="Select your Department"
                 required #department="ngModel"/>
-          
-
-       </div>
-         <div class="error-text">
-                     <span *ngIf="department.invalid && department.touched">Department is required</span>
-            </div>
-            
-           
         
+        <div class="error-text">
+                <span *ngIf="department.invalid && department.touched">Department is required</span>
+            </div>
     </div>
-    <div class="flex justify-end gap-2 add-btn-container">
-        <p-button label="Cancel" severity="secondary" (click)="visible = false" class="cancel-btn"/>
+    <div class=" add-btn-container">
+        <p-button label="Cancel" severity="secondary" (click)="onCancelBtn()" class="cancel-btn"/>
         <p-button type="submit" label="Save" class="submit-btn" [disabled]="miniDialog.invalid"/>
     </div>        
 </form>

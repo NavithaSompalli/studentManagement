@@ -6,22 +6,24 @@ body {
     box-sizing: border-box;
 }
 
+
+
 /* Card Container */
-.graph-card1 {
+.graph-card2 {
     position: absolute !important;
     z-index: 2 !important;
-    top: 26vh;
-    /* margin: 20px; */
-    margin: 5px;
-    width: 95% !important;
-    margin-left:40px;
+    top: 25vh;
+    width: calc(100% - 50px);
+    background-color: transparent;
+    margin-left: calc(10px + 1%);
+    margin-right: calc(10px + 2%);
 }
 
 /* Table Container */
-.table-container {
+.table-containerDepart {
     width: 100%;
     overflow-x: auto;
-    height: 50vh;
+    height: 46vh;
     border: none;
     scrollbar-width: none;
 }
@@ -34,7 +36,6 @@ body {
 
 ::ng-deep .p-table {
     width: 80% !important;
-   
 }
 
 /* Buttons */
@@ -50,7 +51,7 @@ body {
 .no-records-container {
     text-align: center;
     padding-top: 30px;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-family: "Roboto";
     font-weight: bold;
     font-style: italic;
 }
@@ -99,30 +100,13 @@ td{
     font-family: "Roboto";
 }
 
-th{
-    font-family: "Roboto";
-}
-
-h3{
+th,h3{
     font-family: "Roboto";
 }
 
 ::ng-deep .flex-auto{
     width:100%;
     margin-bottom: 10px;
-}
-
-::ng-deep .validate-student-dialog .p-dialog{
-    font-family:'Roboto';
-    background-color: ghostwhite;
-    width:30% !important;
-}
-
-::ng-deep .validate-student-dialog .p-dialog-title {
-    color: white;
-    font-weight: bold;
-    color:#0077aa;
-    font-family:'Roboto';
 }
 
 ::ng-deep .cancel-btn .p-button {
@@ -153,13 +137,14 @@ h3{
 }
 
 tr:hover{
-  background-color: cadetblue;
-  color:#fff;
+  background-color: #d5ddeb;
+  color:#000;
+  cursor:pointer;
 }
 
 tr:nth-child(odd):hover{
-     background-color: cadetblue !important;
-  color:#fff;
+     background-color: #d5ddeb!important;
+  color:#000;
 }
 
 ::ng-deep .p-datatable-tbody > tr > td {
@@ -169,14 +154,56 @@ tr:nth-child(odd):hover{
 ::ng-deep .p-datatable-thead > tr > th {
     padding:8px !important;
 }
-/* Responsive Adjustments */
-@media (max-width: 1024px) {
-    .card {
-        width: 100% !important;
-        margin-left: 20px !important;
-    }
 
-    .table-container {
+::ng-deep .p-paginator {
+    gap: 0px !important;
+    padding:0px !important;
+}
+
+:host ::ng-deep .paginatorFormElement1{
+    height: 30px !important;
+    margin:5px; 
+    margin-top:5px !important;
+    width:35px;
+    padding:5px;
+    padding-left: 0px;
+    text-align: center;
+    border: 1px solid #000;
+    background-color: transparent !important;
+    border-radius: 5px !important;
+}
+
+::ng-deep .custom-paginator1{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    align-items: center !important;
+    flex-wrap: wrap !important;
+}
+
+.header-element{
+    color:#fff !important;
+    font-family:'Roboto';
+    font-size:1.5rem;
+    margin-left: 30px;
+    padding-top:10px;
+}
+
+.fa-solid{
+    font-size:1.5rem;
+    margin-right:5px;
+}
+
+.department-form-modal{
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Responsive Adjustments */
+@media (max-width:769px) and (min-width: 1024px) {
+    
+    .table-containerDepart {
         height: 40vh;
     }
 
@@ -190,14 +217,6 @@ tr:nth-child(odd):hover{
         font-size: 12px;
     }
 
-  
- /*    ::ng-deep .p-paginator{
-    position: fixed !important;
-    top:80vh !important;
-    right:5% !important;
-}
-*/
-
 
 .p-card {
     border-radius: 0px !important;
@@ -206,82 +225,39 @@ tr:nth-child(odd):hover{
 }
 }
 
-@media (max-width: 768px) {
-   
-
-    .graph-card1 {
-    position: absolute !important;
-    z-index: 2 !important;
-    top: 22vh;
-    margin: 15px !important;
-    /* margin-left: 40px !important; */
-   
-    height:60vh;
+@media (max-width: 576px) and (min-width:768px) {
+   .graph-card2 {
+        width: calc(100%) !important;
+        background-color: transparent;
+        margin-left: calc(10px + 1%);
+        margin-right: calc(10px + 1%);
+        padding-top: 23px;
     }
 
-    .p-card {
-    border-radius: 0px !important;
-    width: 100% !important;
-    height: 80vh !important;
+     ::ng-deep .p-card{
+        height: 50vh !important;
+        display: flex !important;
+    }
+
 }
 
-
-.validate-student-dialog .p-dialog {
-    font-family: "Roboto";
-    width: 100% !important;
-    margin: 5px !important;
-}
-
-.p-card-body {
-    padding: var(--p-card-body-padding);
-    display: flex;
-    flex-direction: column;
-    gap: var(--p-card-body-gap);
-    height: 60vh;
-}
-
-.table-container[_ngcontent-ng-c350209301] {
-    height: 40vh;
-}
-
-    th, td {
-        font-size: 12px;
-        padding: 6px;
+@media (max-width: 576px) {
+    .graph-card2 {
+        width: calc(100% - 20px);
+        background-color: transparent;
+        margin-left: calc(10px + 1%);
+        margin-right: calc(10px + 2%);
+        padding-top: 23px;
     }
 
-    .add-btn {
-        width: 100px !important;
-        font-size: 10px;
-    }
-
-   
-
-    .confirm-box-card {
-        width: 50% !important;
-    }
-}
-
-@media (max-width: 480px) {
-    .card {
-        width: 90% !important;
-        margin-left: 5px !important;
-        top: 22vh;
-        margin-top:15vh;
-    }
-
-    .graph-card1 {
-    position: absolute !important;
-    z-index: 2 !important;
-    top: 25vh;
-    margin: 10px;
-    /* margin-left: 40px !important; */
-   
-    height:60vh;
+    ::ng-deep .p-card{
+        height: 65vh !important;
+        display: flex !important;
     }
 
 
-    .table-container {
-        height: 30vh;
+    .table-containerDepart{
+        height: 40vh;
     }
 
     th, td {
@@ -293,6 +269,14 @@ tr:nth-child(odd):hover{
         width: 80px !important;
         font-size: 9px;
     }
+
+    ::ng-deep .custom-paginator1{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    align-items: flex-end !important;
+    flex-wrap: wrap !important;
+}
 
   
 
@@ -312,7 +296,117 @@ tr:nth-child(odd):hover{
         align-items: center;
     }
 
-   
+    
+:host ::ng-deep .p-paginator{
+        gap:0px !important;
+        height: 30px;
+        padding:0px;
+        margin:5px; 
+        margin-top:15px;
+  }
+  
+:host ::ng-deep .p-paginator-page,
+ .p-paginator-next, 
+ .p-paginator-last, 
+ .p-paginator-first, 
+ .p-paginator-prev{
+   border: 1px solid #000 !important;
+   border-radius: 0px !important;
+   height: 30px !important;
+   min-width:20px !important;
+
+}
+ 
+:host ::ng-deep .p-paginator-first{
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    border-right: none !important;
+    border-top-left-radius: 5px !important;
+    border-bottom-left-radius: 5px !important;
+     height: 30px !important;
+}
+
+:host ::ng-deep .p-paginator-prev,.p-paginator-next{
+     border: 1px solid #000 !important;
+     border-radius: 0px !important;
+     border-right: none !important;
+      height: 30px !important;
+
+}
+
+:host ::ng-deep .p-paginator-page{
+    gap:none !important;
+    border-right: 0px !important;
+     height: 30px !important;
+    
+}
+
+:host ::ng-deep .p-paginator-pages{
+    gap:0px !important;
+    height: 30px !important;  
+}
+:host ::ng-deep .p-paginator-next{
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    border-right:none !important;
+     height: 30px !important;
+}
+
+:host ::ng-deep .p-paginator-last{
+    border: 1px solid #000 !important;
+    border-radius: 0px !important;
+    border-top-right-radius: 5px !important;
+    border-bottom-right-radius: 5px !important;
+     height: 30px !important;
+}
+
+:host ::ng-deep .p-paginator-page.p-paginator-page-selected {
+    background-color: #0077aa !important;
+    color: #FFFF !important;
+     height: 30px !important;
+}
+
+
+::ng-deep .custom-paginator{
+    display: flex !important;
+    flex-direction: row !important;
+    justify-content: flex-end !important;
+    align-items: flex-end !important;
+    flex-wrap: wrap !important;
+    
+    margin-top:5px !important;
+}
+
+.header-element{
+    color:#fff !important;
+    font-family:'Roboto';
+    font-size:1rem;
+    margin-left: 30px;
+    padding-top:10px;
+}
+
+.fa-solid{
+    font-size:15px;
+    margin-right:5px;
+}
+
+.department-form-modal{
+    display: flex;
+    flex-direction: column;
+}
+
+::ng-deep .go-btn1 .p-button{
+    height: 30px !important;
+    background-color: #0077aa !important;
+    margin-bottom: 5px;
+}
+
+:host ::ng-deep .paginatorFormElement1{
+    margin-left: 0px;
+}
+
+
+ 
 }
 
 
@@ -332,6 +426,11 @@ tr:nth-child(odd):hover{
 
   :host ::ng-deep .p-paginator{
         gap:0px !important;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: stretch;
+      /*  margin-top: 10px;*/
   }
   
   
@@ -342,6 +441,7 @@ tr:nth-child(odd):hover{
  .p-paginator-prev{
    border: 1px solid #000 !important;
    border-radius: 0px !important;
+   height: 30px;
 }
  
 
@@ -351,32 +451,35 @@ tr:nth-child(odd):hover{
     border-right: none !important;
     border-top-left-radius: 5px !important;
     border-bottom-left-radius: 5px !important;
-
+    height: 30px;
 
 }
 
 :host ::ng-deep .p-paginator-prev,.p-paginator-next{
      border: 1px solid #000 !important;
      border-radius: 0px !important;
-      border-right: none !important;
-
+     border-right: none !important;
+     height: 30px;
 }
 
 :host ::ng-deep .p-paginator-page{
     gap:none !important;
     border-right: 0px !important;
+    height: 30px;
     
 }
 
 :host ::ng-deep .p-paginator-pages{
     gap:0px !important;
+    height: 30px;
    
     
 }
 :host ::ng-deep .p-paginator-next{
     border: 1px solid #000 !important;
     border-radius: 0px !important;
-    border-right:none !important
+    border-right:none !important;
+    height: 30px;
 }
 
 :host ::ng-deep .p-paginator-last{
@@ -384,9 +487,27 @@ tr:nth-child(odd):hover{
     border-radius: 0px !important;
     border-top-right-radius: 5px !important;
     border-bottom-right-radius: 5px !important;
+    height: 30px;
 }
 
 :host ::ng-deep .p-paginator-page.p-paginator-page-selected {
     background-color: #0077aa !important;
     color: #FFFF !important;
+    height: 30px;
+}
+
+::ng-deep .go-btn1 .p-button{
+    height: 30px !important;
+    background-color: #0077aa !important;
+}
+
+::ng-deep .p-inputtext.ng-invalid.ng-dirty {
+    border-color: #d9dbde !important;
+}
+
+::ng-deep .p-datatable.p-datatable-striped .p-datatable-tbody > tr:nth-child(odd):hover {
+    background: #F0F0F0 !important;
+    border-color: #F2F2F2 !important;
+   background-color: #d5ddeb !important;
+    color: #000;
 }

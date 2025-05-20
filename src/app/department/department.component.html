@@ -1,59 +1,59 @@
 
 <div [ngStyle]="{'background-color':'#0099cc', 'height':'15vh'}">
-    <h2 [ngStyle]="{'margin-left':'3%', 'color':'#fff','font-family':'Roboto', 'padding-top':'10px'}">Department</h2>
+    <h2 class="header-element">Department</h2>
 </div>
 
-<div class="mb-4 p-8 graph-card1" >
+<div class="graph-card2" >
     <p-card class="department-form-modal">
         <div class="dept-pagi-selector">
             <h3> Departments</h3>
             <p-select [options]="rowsPerPageArray" [(ngModel)]="rowsPerPage" optionLabel="name" 
-                  class="w-full md:w-56 paginator-btn" *ngIf="studentList.length !== 0"  />
+                  class="w-full md:w-56 paginator-btn" *ngIf="studentList.length !== 0"  (onChange)="onChangeRowsPerPage($event)"/>
         </div>
         <hr/>
-        <div class="table-container">
+        <div class="table-containerDepart">
             <div *ngIf="studentList?.length === 0" class="no-records-container">
                 <h2>No records found.</h2>
             </div>
 
-            <p-table [value]="departmentList" stripedRows *ngIf="studentList?.length !== 0"
-                     [rows]="rowsPerPage.value" responsiveLayout="scroll" paginator="true"> 
+            <p-table [value]="paginatedStudentList" stripedRows *ngIf="studentList?.length !== 0"
+                     [rows]="rowsPerPage.value" responsiveLayout="scroll" paginator="false"> 
                 <ng-template #header>
                     <tr>
                         <th (click)="sortColumn('departmentId')" style="white-space: nowrap; text-align: center;" pSortableColumn="departmentId">
-                            Department Id <i class="fa-solid fa-sort"></i>
+                            Department Id <p-sortIcon field="departmentId"/>
                           </th>
                           
                           <th (click)="sortColumn('departmentName')" style="white-space: nowrap; text-align: center;" pSortableColumn="department">
-                            Department Name <i class="fa-solid fa-sort"></i>
+                            Department Name <p-sortIcon field="departmentName"/>
                           </th>
                           
                           <th (click)="sortColumn('noOfStudents')" style="white-space: nowrap; text-align: center;" pSortableColumn="noOfStudents">
-                            Number Of Students <i class="fa-solid fa-sort"></i>
+                            Number Of Students <p-sortIcon field="noOfStudents"/>
                           </th>
                           
                           <th (click)="sortColumn('createdSource')" style="white-space: nowrap; text-align: center;" pSortableColumn="createdSource">
-                            Created Source <i class="fa-solid fa-sort"></i>
+                            Created Source <p-sortIcon field="createdSource"/>
                           </th>
                           
                           <th (click)="sortColumn('createdSourceType')" style="white-space: nowrap; text-align: center;" pSortableColumn="createdSourceType">
-                            Created Source Type <i class="fa-solid fa-sort"></i>
+                            Created Source Type <p-sortIcon field="createdSourceType"/>
                           </th>
                           
                           <th (click)="sortColumn('createdDttm')" style="white-space: nowrap; text-align: center;" pSortableColumn="createdDttm">
-                            Created Datetime <i class="fa-solid fa-sort"></i>
+                            Created Datetime <p-sortIcon field="createdDttm"/>
                           </th>
                           
                           <th (click)="sortColumn('modifiedSource')" style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedSource">
-                            Modified Source <i class="fa-solid fa-sort"></i>
+                            Modified Source <p-sortIcon field="modifiedSource"/>
                           </th>
                           
                           <th (click)="sortColumn('modifiedSourceType')" style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedSourceType">
-                            Modified Source Type <i class="fa-solid fa-sort"></i>
+                            Modified Source Type <p-sortIcon field="modifiedSourceType"/>
                           </th>
                           
                           <th (click)="sortColumn('modifiedDttm')" style="white-space: nowrap; text-align: center;" pSortableColumn="modifiedDttm">
-                            Modified Datetime <i class="fa-solid fa-sort"></i>
+                            Modified Datetime <p-sortIcon field="modifiedDttm"/>
                           </th>
                     </tr>
                 </ng-template>
@@ -74,17 +74,16 @@
                 </ng-template>                
             </p-table>
             
+          </div>
+           <ng-template pTemplate="paginator"  >
+            <div class="custom-paginator1">
+                <p-paginator [rows]="rowsPerPage.value" [totalRecords]="departmentList.length" (onPageChange)="handlePageChange($event)" [first]="currentPage * rowsPerPage.value" [pageLinkSize]="3"></p-paginator>
+                <input pInputText id="currentPageNo" class="paginatorFormElement1" autocomplete="off" [(ngModel)]="updatePage" name="currentPage" #page="ngModel" required [ngStyle]="{'background-color':'transparent'}"/>
+                <p-button type="button" label="GO" class="go-btn1" (click)="onClickGo()"/>
             </div>
+        </ng-template>
 
-       <!--    <div class="custom-paginator" *ngIf="studentList?.length >= rowsPerPage.value">
-                <button (click)="prevPage()" [disabled]="currentPage === 0">Previous</button>
-                <span *ngFor="let page of totalPages; let i = index">
-                    <button (click)="goToPage(i)" [ngClass]="{'active': currentPage === i}">
-                        {{ i + 1 }}
-                    </button>
-                </span>
-                <button (click)="nextPage()" [disabled]="currentPage === totalPages.length - 1">Next</button>
-            </div>--> 
+      
     </p-card>
 </div>
 

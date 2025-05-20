@@ -14,7 +14,7 @@ import { Tooltip } from 'primeng/tooltip';
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
   standalone: false,
-  encapsulation: ViewEncapsulation.Emulated 
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class HeaderComponent implements  OnInit{
   studentActive: boolean = false;
@@ -35,6 +35,7 @@ export class HeaderComponent implements  OnInit{
   studentObj:any;
   firstname: string = "";
   lastname: string = "";
+  position1:string = 'top';
  
   ngOnInit(){
    this.studentActive = !this.isStudentLoggedIn
@@ -72,21 +73,22 @@ export class HeaderComponent implements  OnInit{
   
  }
 
- onLogout(){
+ onLogout(top){
    /* localStorage.clear();
     this.router.navigate(['']);
     console.log("logout");*/
+    this.position1 =top;
    this.confirmationService.confirm({
       message: 'Are you sure you want to proceed?',
-      
+      header: 'Confirmation',
       target: event?.target as EventTarget,
       rejectButtonProps: {
-        label: 'Cancel',
+        label: 'No',
         severity: 'secondary',
         outlined: true
       },
       acceptButtonProps: {
-        label: 'Logout'
+        label: 'Yes'
       },
       accept: () => {
         this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have logged out', life: 3000 });

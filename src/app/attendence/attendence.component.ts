@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginServiceService } from '../login-service.service';
-import { SortServiceService } from '../sort-service.service';
+import { SortServiceService } from '../sortService.service';
 
 import { NgForm } from '@angular/forms';
 import { MenuItem } from 'primeng/api';
@@ -24,9 +24,12 @@ export class AttendanceComponent implements OnInit {
 
   studentData = JSON.parse(localStorage.getItem('student'));
 
-   displayedPages: number[] = [];
+  displayedPages: number[] = [];
+  paginatedStudentList: object[] = [];
+  updatePage?:string;
 
   position:  'top' | 'center' | 'topleft' | 'topright'  = 'center';
+  
 
   visible: boolean = false;
   stuId: string= "";
@@ -71,20 +74,17 @@ export class AttendanceComponent implements OnInit {
   
  
    ngOnChanges(){
-     this.service.getStudentDetails().subscribe({
-       next: (response) => {
-         this.studentList = response
-        // console.log(this.studentList)
-       },
-       error: (error) => console.log(error),
-       complete: ()=>console.log("completed")
-     })
+     this.getAttendanceStudentDetails();
+    
    }
  
    getAttendanceStudentDetails(){ // this function return total records from the jsonserver
      this.service.getAttendanceDetails().subscribe({
        next: (response) => {
-         this.studentList = response
+         this.studentList = response;
+          this.updatePaginatedList();
+          this.calculateTotalPages();
+          this.togglePaginator();
         // console.log(this.studentList)
          if(this.studentList.length >=5){
            this.paginator = true;
@@ -98,15 +98,7 @@ export class AttendanceComponent implements OnInit {
        },
        error: (error) => console.log(error),
        complete: ()=>{
-       //  console.log("completed");
-         this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i + 1);
-
-      // console.log("total pages " + this.totalPages);
-          if(this.totalPages.length === 2){
-              this.displayedPages = [1,2];
-            }else{
-              this.displayedPages = [1,2,3];
-            }
+       
        }
      })
    }
@@ -172,58 +164,50 @@ export class AttendanceComponent implements OnInit {
      this.position = position;
    }
  
+    private calculateTotalPages(): void {
+    this.totalPages = Array.from(
+      { length: Math.ceil(this.studentList.length / this.rowsPerPage.value) },
+      (_, i) => i + 1
+    );
+  }
+
+  // **Enable/Disable Paginator**
+  private togglePaginator(): void {
+    this.paginator = this.studentList.length >= this.rowsPerPage.value;
+  }
  
  
 
 
 
-// Update Pagination when rows per page changes
-updatePagination() {
-    this.currentPage = 0; // Reset to first page when pagination is updated
-    this.totalPages = Array.from({ length: Math.ceil(this.studentList.length / this.rowsPerPage.value) }, (_, i) => i + 1);
-    this.updateDisplayedPages();
-}
+/// **Page and Rows Per Page Update Logic**
+  onChangeRowsPerPage(event: any) {
+    this.rowsPerPage = event.value;
+    this.currentPage = 0;
+    this.updatePaginatedList();
+  }
 
-// Get paginated data based on current page selection
-get paginatedStudents() {
+  updatePaginatedList() {
     const start = this.currentPage * this.rowsPerPage.value;
     const end = start + this.rowsPerPage.value;
-    return this.studentList.slice(start, end);
-}
+    this.paginatedStudentList = this.studentList.slice(start, end);
+  }
 
-// Update displayed pages (Only show 3 at a time dynamically)
-updateDisplayedPages() {
-    let start = Math.max(0, this.currentPage - 1); 
-    let end = Math.min(this.totalPages.length, start + 3);
-    if(this.totalPages.slice(start, end)[this.totalPages.slice(start, end).length-1] !== this.totalPages.length){
-      this.displayedPages = this.totalPages.slice(start, end);
-    }
-    
-}
+  handlePageChange(event: any) {
+    this.currentPage = event.page;
+    this.rowsPerPage.value = event.rows;
+    this.updatePaginatedList();
+  }
 
-// Navigate to previous page
-prevPage() {
-    if (this.currentPage > 0) {
-        this.currentPage--;
-        this.updateDisplayedPages();
+  onClickGo() {
+    console.log("Go");
+    if (this.updatePage && parseInt(this.updatePage) > 0 && parseInt(this.updatePage) <= this.totalPages.length) {
+      this.currentPage = parseInt(this.updatePage) - 1;
+      this.updatePaginatedList();
+      this.updatePage = ""
+      
     }
-}
-
-// Navigate to next page
-nextPage() {
-    if (this.currentPage < this.totalPages.length - 1) {
-        this.currentPage++;
-        this.updateDisplayedPages();
-        console.log(this.displayedPages, this.totalPages.length);
-    }
-}
-
-// Navigate to a specific page
-goToPage(pageIndex: number) {
-    if (pageIndex >= 0 && pageIndex < this.totalPages.length) {
-        this.currentPage = pageIndex;
-    }
-}
+  }
 
  
  
@@ -307,6 +291,11 @@ goToPage(pageIndex: number) {
 
   sortColumn(field: string) {
     this.studentList = this.sortService.sortData(this.studentList, field);
+  }
+
+  onCancelBtn(){
+    this.visible = false;
+    this.mindialogueForm.resetForm();
   }
 
 }

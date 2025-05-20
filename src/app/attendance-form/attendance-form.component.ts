@@ -6,12 +6,14 @@ import { Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'app-attendance-form',
   
   templateUrl: './attendance-form.component.html',
   styleUrl: './attendance-form.component.css',
-  standalone:false
+  standalone:false,
+  encapsulation: ViewEncapsulation.Emulated 
 })
 export class AttendanceFormComponent implements OnInit,  OnChanges, AfterViewChecked {
     @Input() visible: boolean = false;

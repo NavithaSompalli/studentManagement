@@ -129,9 +129,18 @@ export class FormModalComponent implements OnInit, OnChanges {
     });
     
       this.user.department = this.dept;
-          this.user.id = this.stuId;
-          this.user.departmentId = this.deptCode;
+      this.user.id = this.stuId;
+      this.user.departmentId = this.deptCode;
   }
+
+
+isValidEmail: boolean = true;
+
+validateEmail() {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
+  this.isValidEmail = emailRegex.test(this.user.email);
+}
+
 
 
   @ViewChild('dialogForm') dialogForm:NgForm;
@@ -148,10 +157,7 @@ export class FormModalComponent implements OnInit, OnChanges {
 
     this.service.findStudent(this.user.id).subscribe({
       next: (response) => {
-   // console.log("User",this.user);
-   // console.log(response);
-
-        
+   
           this.http.post('http://localhost:3000/studentList', this.user).pipe(
             switchMap(() => this.service.getStudentDetails())
           ).subscribe({
@@ -190,6 +196,10 @@ export class FormModalComponent implements OnInit, OnChanges {
 
  today: Date = new Date();
 
+ onClickCancel(){
+  this.visible = false;
+  this.dialogForm.resetForm();
+ }
 
 
 }
