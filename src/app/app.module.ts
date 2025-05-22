@@ -84,10 +84,8 @@ const routes: Routes = [
       {path:'attendance', component: AttendanceComponent ,canActivate:[AuthGuardService]}
     ] 
   },
-  /*{path:'home/student', component: HomeComponent},
-  {path:'home/graph', component: HomeComponent},
-  {path:'home/department', component: HomeComponent},
-  {path:'home/attendance', component: HomeComponent},*/
+  
+ 
 
   { path: 'admin', component: AdminComponent }
 ];

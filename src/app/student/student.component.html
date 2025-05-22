@@ -68,7 +68,7 @@
                         <td style="white-space: nowrap;">{{ product?.modifiedResource }}</td>
                         <td style="white-space: nowrap;">{{ product?.modifiedSourceType }}</td>
                         <td style="white-space: nowrap;">{{ product?.modifiedDttm | date: 'medium' }}</td>
-                        <td style="white-space: nowrap;"><button type="button" (click)="onDeleteRecord(product?.id,'topright')" class="delete-btn" *ngIf="studentActive">
+                        <td style="white-space: nowrap;"><button type="button" (click)="onDeleteRecord(product?.id,'center')" class="delete-btn" *ngIf="studentActive">
                             <i class="fa-solid fa-trash" style="color:red; font-size:20px;"></i></button>
                         </td>
                     </tr>
@@ -80,20 +80,11 @@
                 </ng-template>               
             </p-table> 
         </div>
-
-   <!--    <div class="custom-paginator" *ngIf="studentList?.length >= rowsPerPage?.value">
-            <button (click)="prevPage()" [disabled]="currentPage === 0" class="previous-btn">Previous</button>
-            <button *ngFor="let page of displayedPages; let i = index" class="paginator-container" (click)="goToPage(page)" [ngClass]="{'active': currentPage === page}">
-                {{ page }} 
-            </button>
-            <button (click)="nextPage()" [disabled]="currentPage === totalPages.length - 1" class="next-btn">Next</button>
-        </div>--> 
-
-       <ng-template pTemplate="paginator"  *ngIf="studentActive">
-            <div class="custom-paginator">
-                <p-paginator [rows]="rowsPerPage.value" [totalRecords]="studentList.length" (onPageChange)="handlePageChange($event)" [first]="currentPage * rowsPerPage.value" [pageLinkSize]="3"></p-paginator>
-                <input pInputText id="currentPageNo" class="paginatorFormElement" autocomplete="off" [(ngModel)]="updatePage" name="currentPage" #page="ngModel" required [ngStyle]="{'background-color':'transparent'}"/>
-                <p-button type="button" label="GO" class="go-btn" (click)="onClickGo()"/>
+       <ng-template pTemplate="paginator"  *ngIf="studentActive" class="ng-template-paginator" >
+            <div class="custom-paginator" *ngIf = "!isSerachRecordsEmpty">
+                <p-paginator [rows]="rowsPerPage.value" [totalRecords]="studentList.length" (onPageChange)="handlePageChange($event)" [first]="currentPage * rowsPerPage.value" [pageLinkSize]="3" *ngIf="ispaginatorIsSingle"></p-paginator>
+                <input pInputText id="currentPageNo" class="paginatorFormElement" autocomplete="off" [(ngModel)]="updatePage" name="currentPage" #page="ngModel" required [ngStyle]="{'background-color':'transparent'}" *ngIf="ispaginatorIsSingle"/>
+                <p-button type="button" label="GO" class="go-btn" (click)="onClickGo()" *ngIf="ispaginatorIsSingle"/>
             </div>
         </ng-template>
     </p-card>
@@ -102,14 +93,14 @@
 <app-form-modal [visible]="isAddBtnActive" [stuId]="studentValidateObj.studentId" [dept]="studentValidateObj.department" *ngIf="studentActive"></app-form-modal>
 
 <div class="card confirm-box-card">
-    <p-toast />
+   <!-- <p-toast />-->
     <p-confirmdialog key="positionDialog" [position]="position" />
 </div>
 
 <p-dialog header="Student ID Checker" [modal]="true" [(visible)]="visible" [position]="position" class="validate-student-dialog1" *ngIf="studentActive">
 
 <form #miniDialog="ngForm" (ngSubmit)="onsubmitDialogue()" [ngStyle]="{'margin':'10px'}">
-    <div class=" input-Element" [ngStyle]="{'padding-bottom':'5px'}">
+    <div class="input-Element" [ngStyle]="{'padding-bottom':'5px'}">
         <label for="studentId" class="font-semibold w-24">Student ID</label><br/>
             <input pInputText id="studentId" class="flex-auto" autocomplete="off" [(ngModel)]="copiedObj.studentId" name="studentId" #studentId="ngModel" required [ngStyle]="{'background-color':'transparent'}" placeholder="Enter your student ID"/>
             <div class="error-text" [ngStyle]="{'bottom':'0px'}">

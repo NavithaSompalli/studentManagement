@@ -468,8 +468,7 @@ input{
 ::ng-deep .student-details-modal .p-dialog {
   width: 90% !important;
   height: 90vh !important;
- 
-   background-size: cover;
+  background-size: cover;
 }
 
 .image-container {

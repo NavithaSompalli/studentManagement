@@ -111,11 +111,19 @@ export class DepartmentComponent implements OnInit {
     this.departmentList = this.sortSerivce.sortData(this.departmentList, field);
   }
 
+  ispaginatorIsSinglePage:boolean = true
    // **Page and Rows Per Page Update Logic**
   onChangeRowsPerPage(event: any) {
     this.rowsPerPage = event.value;
     this.currentPage = 0;
     this.updatePaginatedList();
+  
+     if(this.departmentList.length <= this.rowsPerPage.value ){
+      this.ispaginatorIsSinglePage = false
+        
+    }else{
+      this.ispaginatorIsSinglePage = true
+    }
   }
 
   updatePaginatedList() {

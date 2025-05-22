@@ -1,5 +1,6 @@
 <div [ngStyle]="{'background-color':'#0099cc', 'height':'15vh'}">
     <h1 class="header-element">
+       <i class="fa-solid fa-user-check"></i>
        Attendance
     </h1>
 </div>
@@ -63,7 +64,7 @@
             </p-table>
         </div>
         <ng-template pTemplate="paginator"  >
-            <div class="custom-paginator2">
+            <div class="custom-paginator2" *ngIf="ispaginatorIsSinglePage">
                 <p-paginator [rows]="rowsPerPage.value" [totalRecords]="studentList.length" (onPageChange)="handlePageChange($event)" [first]="currentPage * rowsPerPage.value" [pageLinkSize]="3"></p-paginator>
                 <input pInputText id="currentPageNo" class="paginatorFormElement2" autocomplete="off" [(ngModel)]="updatePage" name="currentPage" #page="ngModel" required [ngStyle]="{'background-color':'transparent'}"/>
                 <p-button type="button" label="GO" class="go-btn2" (click)="onClickGo()"/>
@@ -106,7 +107,7 @@
                 <span *ngIf="department.invalid && department.touched">Department is required</span>
             </div>
     </div>
-    <div class=" add-btn-container">
+    <div class="add-btn-container">
         <p-button label="Cancel" severity="secondary" (click)="onCancelBtn()" class="cancel-btn"/>
         <p-button type="submit" label="Save" class="submit-btn" [disabled]="miniDialog.invalid"/>
     </div>        
@@ -118,7 +119,7 @@
 <!--Toast--> 
 
 <div class="card confirm-box-card">
-    <p-toast />
+  <p-toast />
     <p-confirmdialog key="positionDialog" [position]="position" class="attendance-confirm-model"/>
 </div>
 

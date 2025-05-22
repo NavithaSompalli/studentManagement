@@ -128,7 +128,7 @@ export class AttendanceFormComponent implements OnInit,  OnChanges, AfterViewChe
     OnSubmitAttendance() {
       let stu = this.form.controls["studentId"].value;
       let month = this.form.controls["month"]?.value;
-      console.log(month);
+    //  console.log(month);
       let year = this.form.controls["year"]?.value;
       this.user["month"] = this.months[month-1]?.name;
       this.user["year"] = year;
@@ -148,66 +148,62 @@ export class AttendanceFormComponent implements OnInit,  OnChanges, AfterViewChe
             }
           }
       );
-  
-     
-      
     //  console.log("exting Record",this.existingRecord);
     
-     
-
       if(this.existingRecord.length === 0){
-    
       // Proceed with adding attendance
-      this.service.addAttendanceStudentDetails(this.user).subscribe({
-        next: (response) => {
-          console.log("Attendance submitted successfully!", response);
-          this.message.add({
-                 severity: 'success',
-                 summary: 'Success',
-                 detail: 'Attendance submitted successfully!',
-                 life: 3000,
-             });
-        },
-        error: (error) => {
-          console.error("Failed to submit attendance", error);
-           this.message.add({
-                 severity: 'success',
-                 summary: 'Rejected',
-                 detail: 'Failed to submit attendance',
-                 life: 3000,
-             });
-        },
-        complete: () => {
-          this.router.navigate(["home/attendance"]).then(() => {
-            window.location.reload(); // Forces page refresh
-          });
-          this.visible=false;
-        }
-      });
+            this.service.addAttendanceStudentDetails(this.user).subscribe({
+              next: (response) => {
+              //  console.log("Attendance submitted successfully!", response);
+                this.message.add({
+                      severity: 'success',
+                      summary: 'Success',
+                      detail: 'Attendance submitted successfully!',
+                      life: 3000,
+                  });
+              },
+              error: (error) => {
+              //  console.error("Failed to submit attendance", error);
+                this.message.add({
+                      severity: 'success',
+                      summary: 'Rejected',
+                      detail: 'Failed to submit attendance',
+                      life: 3000,
+                  });
+              },
+              complete: () => {
+                this.form.resetForm();
+                this.router.navigate(["home/attendance"]).then(() => {
+                  window.location.reload(); // Forces page refresh
+                });
+                this.visible=false;
+              }
+            });
     }else{
-      
        this.message.add({
                  severity: 'error',
                  summary: 'Rejected',
                  detail: 'Attendance record for this student and month already exists.',
                  life: 3000,
              });
-
              this.visible=false;
+             this.form.resetForm();
     }
     }
     
-
-
     ngAfterViewChecked(){
-      
       let year = this.form.controls["year"]?.value;
       let month = this.form.controls["month"]?.value;
     //  this.user["month"] = this.months[month-1]?.name;
       this.attendanceDays = this.getDaysInMonth(month, year); 
-      
     }
 
+    onClickCancel(){
+     
+      this.form.resetForm();
+      this.visible = false
+
+    }
 
     
 }

@@ -15,7 +15,6 @@ import { ViewEncapsulation } from '@angular/core';
 export class StudentDetailsComponent implements AfterViewChecked, OnInit, OnChanges {
   studentActive: boolean = false;
   studentData = JSON.parse(localStorage.getItem('student'));
-
   constructor(private service: LoginServiceService, 
     private messageService: MessageService,
     private Router: Router
@@ -60,8 +59,6 @@ export class StudentDetailsComponent implements AfterViewChecked, OnInit, OnChan
       this.storedStudentData = { ...changes['studentDetailsObject'].currentValue };
       this.storedStudentData['gender'] = this.storedStudentData?.selectedCategory?.name
     }
-
-  //  console.log(this.storedStudentData);
   }
 
   ngAfterViewChecked() {
@@ -70,7 +67,7 @@ export class StudentDetailsComponent implements AfterViewChecked, OnInit, OnChan
   }
 
   OnEditOption() {
-    this.isUpdateActive = !this.isUpdateActive;
+    this.isUpdateActive = true;
     this.isViewDetailsActive = false;
   }
 
@@ -101,4 +98,23 @@ export class StudentDetailsComponent implements AfterViewChecked, OnInit, OnChan
   onBackClick() {
     this.isUpdateActive = false;
   }
+
+  imageUrl:string = ""
+
+   openUploadDialog() {
+    document.getElementById('fileInput')?.click();
+    console.log("opendialog");
+  }
+
+  onFileSelected(event: any) {
+  const file: File = event.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imageUrl = reader.result as string;
+      this.storedStudentData.image = this.imageUrl; // Ensure this is inside the onload function
+    };
+    reader.readAsDataURL(file);
+  }
+}
 }

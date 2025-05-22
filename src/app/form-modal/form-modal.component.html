@@ -8,10 +8,10 @@
                 <div [ngStyle]="{'padding':'5px'}" class="avatar-pg-container">
                 <div class="avatar-container">
                     <div class="avatar-upload" (click)="openUploadDialog()">
-                        <img *ngIf="imageUrl" [src]="imageUrl" alt="Avatar" class="avatar-preview"/>
+                        <img *ngIf="this.user.image" [src]="imageUrl" alt="Avatar" class="avatar-preview"/>
                         <div *ngIf="!imageUrl" class="upload-placeholder">+</div>
                     </div>
-                    <label [ngStyle]="{'margin-top':'5px'}">Max file 2MB<br/> Supporting formats: JPG, PNG</label>
+                    <label [ngStyle]="{'margin-top':'20px'}">Max file 2MB<br/> Supporting formats: JPG, PNG</label>
                     <input type="file" id="fileInput"  (change)="onFileSelected($event)" accept="image/png, image/jpeg" hidden name="image" required/>
                 </div>
             </div>
@@ -24,14 +24,14 @@
                 </div>
                 <div class="input-Element">
                     <div class="input-element-container">
-                        <label for="firstname">First Name<br/></label>
+                        <label for="firstname">First Name <span [ngStyle]="{'color':'red'}">*</span><br/></label>
                         <input type="text" pInputText [(ngModel)]="user.firstname" id="firstname" name="firstname" required placeholder="Enter your first name" #firstname="ngModel" autocomplete="given-name"/>
                         <div class="error-text">
                             <span *ngIf="firstname.invalid && firstname.touched" class="error-text">First Name is required</span>
                         </div>   
                     </div>
                     <div class="input-element-container">
-                        <label for="lastname">Last Name <br/></label>
+                        <label for="lastname">Last Name <span [ngStyle]="{'color':'red'}">*</span><br/></label>
                         <input type="text" pInputText [(ngModel)]="user.lastname" id="lastname" name="lastname" required placeholder="Enter your last name" #lastname="ngModel" autocomplete="family-name"/>
                         <div class="error-text">
                             <span *ngIf="lastname.invalid && lastname.touched" class="error-text">Last Name is required</span>
@@ -40,14 +40,15 @@
                 </div>
                 <div class="input-Element">
                     <div class="input-element-container">
-                        <label for="email">Email<br/></label>
+                        <label for="email">Email <span [ngStyle]="{'color':'red'}">*</span><br/></label>
                         <input type="email" pInputText [(ngModel)]="user.email" id="email" name="email" required placeholder="abcd@gmail.com" #email="ngModel" autocomplete="email"/>
                         <div class="error-text">
                             <span *ngIf="email.invalid && email.touched" class="error-text">Valid email Id is required</span>
+                            <span *ngIf="user.email && !user.email.endsWith('@gmail.com')">Enter a valid email ID</span>
                         </div>
                     </div>
                     <div class="input-element-container">
-                         <label for="gender">Gender* <br/></label>
+                         <label for="gender">Gender <span [ngStyle]="{'color':'red'}">*</span> <br/></label>
                             <div class=" flex justify-center">
                                 <div class="flex flex-col gap-4">
                                     <div *ngFor="let category of categories" class="field-checkbox flex">
@@ -62,14 +63,14 @@
                 </div>
                 <div class="input-Element">
                     <div class="input-element-container">
-                        <label for="dob">Date Of Birth<br/></label>
-                        <p-datepicker [(ngModel)]="user.dob" id="dob" name="dob" required #dob="ngModel" [showIcon]="true" placeholder="Enter date Of birth" appendTo="body" [maxDate]="today" autocomplete="bday"/>
+                        <label for="dob">Date Of Birth <span [ngStyle]="{'color':'red'}">*</span><br/></label>
+                        <p-datepicker [(ngModel)]="user.dob" id="dob" name="dob" required #dob="ngModel" [showIcon]="true" placeholder="Enter date Of birth" appendTo="body" [maxDate]="today" autocomplete="bday" [showTime]="true"/>
                         <div class="error-text" [ngStyle]="{'margin-top':'2px'}">
                             <span *ngIf="dob.invalid && dob.touched" class="error-text">Date Of Birth is required</span>
                         </div>
                     </div>
                     <div class="input-element-container">
-                        <label for="phonenumber">Phone Number <br/></label>
+                        <label for="phonenumber">Phone Number <span [ngStyle]="{'color':'red'}">*</span><br/></label>
                         <input pInputNumber [(ngModel)]="user.phoneNumber" id="phoneNumber" name="phoneNumber" pattern="[0-9]{10}" required #phNumber="ngModel" class="phone-number" placeholder="Enter 10 digits phone number" autocomplete="tel"/>
                         <div class="error-text">
                             <span *ngIf="phNumber.invalid && phNumber.touched" class="error-text">Valid Phone Number is required</span>
@@ -78,14 +79,14 @@
                 </div>
                 <div class="input-Element">
                     <div class="input-element-container">
-                        <label for="departmentId">Department ID<br/></label>
+                        <label for="departmentId">Department ID <span [ngStyle]="{'color':'red'}">*</span><br/></label>
                         <p-select [(ngModel)]="user.departmentId" id="departmentId" [options]="departmentList" optionLabel="departmentId" optionValue="departmentId" name="departmentId" class="custom-dropdown" required #departmentId="ngModel" autocomplete="off"/>
                         <div class="error-text">
                             <span *ngIf="departmentId.invalid && departmentId.touched" class="error-text">Department ID is required</span>
                         </div>
                     </div>
                     <div class="input-element-container">
-                        <label for="department">Department <br/></label>
+                        <label for="department">Department <span [ngStyle]="{'color':'red'}">*</span><br/></label>
                         <p-select [(ngModel)]="user.department" id="department" [options]="departmentList" optionLabel="departmentName" optionValue="departmentName" name="department" class="custom-dropdown" required #department="ngModel" autocomplete="off"/>
                         <div class="error-text">
                             <span *ngIf="department.invalid && department.touched" class="error-text">Department is required</span>
@@ -94,7 +95,7 @@
                 </div>
                 <div class="input-Element">
                     <div class="input-element-container">
-                        <label for="dateOfJoining">Date Of Joining <br/></label>
+                        <label for="dateOfJoining">Date Of Joining <span [ngStyle]="{'color':'red'}">*</span><br/></label>
                         <p-datepicker [(ngModel)]="user.dateOfJoining" id="dateOfJoining" name="dateOfJoining" required #dateOfJoining="ngModel" placeholder="Enter date of joining" showIcon="true" [showTime]="true" appendTo="body" autocomplete="off"/>
                         <div class="error-text" [ngStyle]="{'margin-top':'2px'}">
                             <span *ngIf="dateOfJoining.invalid && dateOfJoining.touched" class="error-text">Date Of Joining is required</span>
@@ -123,7 +124,7 @@
         <!-- Buttons -->
         <div class="buttons-container2">
             <p-button label="Back" severity="secondary" (click)="onClickCancel()" class="back-dept-button"/>
-            <p-button label="Save" type="submit" class="back-dept-button submit-model-btn" [disabled]="dialogForm.invalid" [ngStyle]="{'opacity': dialogForm.invalid ? '0.5' : '1'}"/>
+            <p-button label="Save" type="submit" class="back-dept-button submit-model-btn" [disabled]="dialogForm.invalid || !user.email.endsWith('@gmail.com')" [ngStyle]="{'opacity': dialogForm.invalid ? '0.5' : '1'}"/>
         </div>
     </form>
 </p-dialog>

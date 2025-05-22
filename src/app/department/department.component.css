@@ -68,26 +68,6 @@ body {
     width: 30% !important;
 }
 
-::ng-deep .p-confirmdialog {
-    width: 30% !important;
-}
-
-::ng-deep .p-confirmdialog .p-dialog-content {
-    font-family: "Roboto";
-    color: #34baeb;
-    font-weight: bold;
-}
-
-::ng-deep .p-dialog-topright .p-dialog {
-    background-color: ghostwhite;
-    width:30% !important;
-}
-
-::ng-deep .p-dialog-center .p-dialog {
-    background-color: ghostwhite;
-    width:30% !important;
-}
-
 /* Button Container */
 .add-btn-container {
     display: flex;
@@ -227,9 +207,8 @@ tr:nth-child(odd):hover{
 
 @media (max-width: 576px) and (min-width:768px) {
    .graph-card2 {
-        width: calc(100%) !important;
         background-color: transparent;
-        margin-left: calc(10px + 1%);
+        margin-left: calc(10px + 5%);
         margin-right: calc(10px + 1%);
         padding-top: 23px;
     }
@@ -237,6 +216,7 @@ tr:nth-child(odd):hover{
      ::ng-deep .p-card{
         height: 50vh !important;
         display: flex !important;
+        
     }
 
 }
@@ -257,7 +237,7 @@ tr:nth-child(odd):hover{
 
 
     .table-containerDepart{
-        height: 40vh;
+        height: 37vh;
     }
 
     th, td {
@@ -274,11 +254,9 @@ tr:nth-child(odd):hover{
     display: flex !important;
     flex-direction: row !important;
     justify-content: flex-end !important;
-    align-items: flex-end !important;
+    align-items: center !important;
     flex-wrap: wrap !important;
 }
-
-  
 
     .confirm-box-card {
         width: 70% !important;
@@ -324,6 +302,7 @@ tr:nth-child(odd):hover{
     border-top-left-radius: 5px !important;
     border-bottom-left-radius: 5px !important;
      height: 30px !important;
+    
 }
 
 :host ::ng-deep .p-paginator-prev,.p-paginator-next{
@@ -331,6 +310,7 @@ tr:nth-child(odd):hover{
      border-radius: 0px !important;
      border-right: none !important;
       height: 30px !important;
+      min-width:20px !important;
 
 }
 
@@ -350,6 +330,7 @@ tr:nth-child(odd):hover{
     border-radius: 0px !important;
     border-right:none !important;
      height: 30px !important;
+      min-width:20px !important;
 }
 
 :host ::ng-deep .p-paginator-last{
@@ -367,14 +348,14 @@ tr:nth-child(odd):hover{
 }
 
 
-::ng-deep .custom-paginator{
+::ng-deep .custom-paginator1{
     display: flex !important;
     flex-direction: row !important;
     justify-content: flex-end !important;
-    align-items: flex-end !important;
+    align-items: center !important;
     flex-wrap: wrap !important;
-    
-    margin-top:5px !important;
+    margin-top:45px !important;
+
 }
 
 .header-element{
@@ -398,13 +379,28 @@ tr:nth-child(odd):hover{
 ::ng-deep .go-btn1 .p-button{
     height: 30px !important;
     background-color: #0077aa !important;
-    margin-bottom: 5px;
+    font-size:10px;
+    margin-top: 10px;
+   
 }
 
 :host ::ng-deep .paginatorFormElement1{
+    height: 30px !important;
+    margin:5px; 
     margin-left: 0px;
+    margin-top:15px !important;
+    width:35px;
+    padding:5px;
+    padding-left: 0px;
+    text-align: center;
+    border: 1px solid #000;
+    background-color: transparent !important;
+    border-radius: 5px !important;
 }
 
+:host ::ng-deep .p-toast{
+    width:90% !important;
+}
 
  
 }

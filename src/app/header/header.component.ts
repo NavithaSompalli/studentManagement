@@ -91,13 +91,13 @@ export class HeaderComponent implements  OnInit{
         label: 'Yes'
       },
       accept: () => {
-        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have logged out', life: 3000 });
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have logged out', life: 1000 });
         localStorage.clear();
         this.router.navigate(['']).then(() => window.location.reload());
         console.log("logout");
       },
       reject: () => {
-        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Logout cancelled', life: 1000 });
+       return this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Logout cancelled', life: 1000 });
       }
     });
  }

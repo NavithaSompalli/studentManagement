@@ -374,7 +374,7 @@ textarea{
 
 
 
-@media screen and (max-width: 1024px) {
+@media (min-width:769px) and (max-width: 1024px) {
   .department-details {
       width: 80%;
   }
@@ -384,7 +384,7 @@ textarea{
 }
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .department-details {
       width: 100%;
       padding: 15px;
@@ -417,7 +417,16 @@ textarea{
   /*border: 1px solid #000;*/
 }
 
-
+.details-container-student {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  overflow-y: auto;
+  width: 100%;
+  max-height: 60vh;
+  padding-bottom: 50px;
+}
 
 ::ng-deep .p-dialog .p-dialog-title {
     font-size: 15px !important;
@@ -458,6 +467,7 @@ textarea{
   overflow-y: auto;
   display: flex;
   flex-direction: column !important;
+  
 }
 
 

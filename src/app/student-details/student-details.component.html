@@ -24,7 +24,7 @@
             <strong>Gender</strong>: <span>{{ studentDetailsObject?.selectedCategory?.name }}</span>
         </div>
         <div class="detail-row">
-            <strong>Date Of Birth</strong>: <span>{{ studentDetailsObject?.dob }}</span>
+            <strong>Date Of Birth</strong>: <span>{{ studentDetailsObject?.dob | date:'medium' }}</span>
         </div>
         <div class="detail-row">
             <strong>Address</strong>: <span>{{ studentDetailsObject?.address }}</span>
@@ -50,16 +50,13 @@
             <strong>Created Source</strong> :<span>{{ studentDetailsObject?.createdSource }}</span>
         </div>
         <div class="detail-row">
-            <strong>Created Date</strong> :<span>{{ studentDetailsObject?.createdDttm | date:'medium' }}</span>
-        </div>
-        <div class="detail-row">
             <strong>Created Source Type</strong>: <span>{{ studentDetailsObject?.createdSourceType }}</span>
+        </div>
+         <div class="detail-row">
+            <strong>Modified Datetime</strong> :<span>{{ studentDetailsObject?.modifiedDttm | date:'medium' }}</span>
         </div>
         <div class="detail-row">
             <strong>Modified Source</strong> :<span>{{ studentDetailsObject?.modifiedResource }}</span>
-        </div>
-        <div class="detail-row">
-            <strong>Modified Date</strong> :<span>{{ studentDetailsObject?.modifiedDttm | date:'medium' }}</span>
         </div>
         <div class="detail-row" [ngStyle]="{'border-bottom':'none'}">
             <strong>Modified Source Type</strong> :<span>{{ studentDetailsObject?.modifiedSourceType }}</span>
@@ -78,8 +75,9 @@
        <hr/>
         <!-- Form Container -->
         <div class="form1-container">
-             <div class="image-container">
-                <img [src]="studentDetailsObject?.image" alt="imageElement" class="student-details-image"/>
+             <div class="image-container" (click)="openUploadDialog()">
+                <img [src]="storedStudentData?.image" alt="imageElement" class="student-details-image"/>
+                <input type="file" id="fileInput"  (change)="onFileSelected($event)" accept="image/png, image/jpeg" hidden name="image" required/>
             </div>
             <div class="details-form-container">
                 <div [ngStyle]="{  'width':'100%'}">
@@ -107,7 +105,7 @@
                         <label for="email">Email<br/></label>
                         <input type="email" pInputText [(ngModel)]="storedStudentData.email" id="email" name="email" email required placeholder="abcd@gmail.com" #email="ngModel" />
                         <div class="error-text">
-                                 <span *ngIf="email.invalid && email.touched" class="error-text">Email is required</span>
+                            <span *ngIf="email.invalid && email.touched" class="error-text">Email is required</span>
                         </div>
                        
                     </div>
@@ -185,7 +183,6 @@
                         <label for="createdSourceType">Created Source <br/></label>
                         <input pInputText [(ngModel)]="storedStudentData.createdSourceType" id="createdSourceType" class="w-full md:w-56"  name="createdSourceType" [disabled]="true"/>
                     </div>
-                    
                 </div>
                 <div class="input-Element" >
                     <div  class="input-element-container">

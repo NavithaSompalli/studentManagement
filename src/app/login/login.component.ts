@@ -86,6 +86,7 @@ export class LoginComponent implements OnInit {
     } else if (this.username.trim() !== '' && this.password.trim() !== '') {
       this.loginService.login(this.username, this.password).subscribe({
         next: (response) => {
+          
           if (this.username === 'admin') {
             localStorage.clear();
             localStorage.setItem("jwtToken", JSON.stringify(true));
@@ -93,11 +94,20 @@ export class LoginComponent implements OnInit {
             this.router.navigate(['home/graph']);
           } else {
             let results = response.user.id;
-            localStorage.setItem('studentId', results);
-            this.loginService.studentId = results;
-            localStorage.setItem('student', JSON.stringify({ "student": "true" }));
-            localStorage.setItem("jwtToken", JSON.stringify(true));
-            this.router.navigate(['home', 'graph']);
+            this.loginService.findStudent(results).subscribe({
+              next: (response) => {if(response){
+                      localStorage.setItem('studentId', results);
+                      this.loginService.studentId = results;
+                      localStorage.setItem('student', JSON.stringify({ "student": "true" }));
+                      localStorage.setItem("jwtToken", JSON.stringify(true));
+                      this.router.navigate(['home', 'graph']);
+              }else{
+                  this.messageService.add({ severity: 'success', summary: 'Success', detail: "StudentId is not in the studentList" });
+              }
+            }
+          
+          })
+            
           }
         },
         error: (error) => {
@@ -162,7 +172,7 @@ export class LoginComponent implements OnInit {
 
 
 
-  onSubmitStudent() {
+  /*onSubmitStudent() {
     this.loginService.findStudent(this.studentIdObj.studentId).subscribe({
       next: (response) => {
         if (response[0].id === this.studentIdObj.studentId) {
@@ -175,5 +185,5 @@ export class LoginComponent implements OnInit {
         }
       }
     });
-  }
+  }*/
 }

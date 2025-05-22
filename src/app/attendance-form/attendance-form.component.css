@@ -5,6 +5,11 @@
     font-family: "Roboto";
 }
 
+::ng-deep .add-attendance-form-modal .p-dialog{
+  width:90% !important;
+  box-shadow: none !important;
+}
+
 
 
 

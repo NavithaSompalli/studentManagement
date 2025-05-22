@@ -115,4 +115,8 @@ label{
 }
 
 
+:host ::ng-deep .p-toast{
+    width:90% !important;
+}
+
 }

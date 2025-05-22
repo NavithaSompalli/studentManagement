@@ -71,6 +71,14 @@
     border: none;
 }
 
+::ng-deep .logout-btn .p-button:not(:disabled):hover{
+   background-color: #0077aa !important;
+    color: white !important;
+    border-radius: 5px;
+    margin-right:10px;
+    border: none;
+}
+
 .icon-size{
       font-size:30px;
       color:#0099cc;
@@ -116,7 +124,7 @@
     ::ng-deep .p-dialog{
         width: 30% !important;
         padding:0px !important;
-        box-shadow: 1px 1px 1px 1px #0099cc;
+       
     }
 
    ::ng-deep .p-confirmdialog .p-dialog-content{
@@ -128,6 +136,7 @@
         background-color: #0077aa !important;
     }
 
+
     ::ng-deep .p-confirmdialog-reject-button{
         height: 30px !important;
         border:1px solid #000 !important;
@@ -137,6 +146,9 @@
         padding: 0px !important;
         padding-left:13px !important;
     }
+
+
+
 @media (max-width:770px) and (min-width:1024px){
     ::ng-deep .p-dialog{
         width: 35% !important;
@@ -230,7 +242,7 @@
     }
 
     ::ng-deep .p-dialog-footer .p-confirmpopup-accept-button .p-button{
-        background-color: #0099cc !important;
+        background-color: #000 !important;
         width:100% !important;
     }
 
@@ -253,4 +265,8 @@
         padding: 0px !important;
         padding-left:10px !important;
     }
+
+    :host ::ng-deep .p-toast{
+    width:90% !important;
+}
 }

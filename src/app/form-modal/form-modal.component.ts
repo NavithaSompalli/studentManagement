@@ -41,7 +41,7 @@ export class FormModalComponent implements OnInit, OnChanges {
   ];
 
   student: object = {};
-  imageUrl: string = 'https://cdn.pixabay.com/photo/2015/03/04/22/35/avatar-659651_960_720.png';
+  imageUrl: string = '';
 
   getFormattedDate(date: Date = new Date()): string {
     let year = date.getFullYear();
@@ -103,27 +103,10 @@ export class FormModalComponent implements OnInit, OnChanges {
 
      this.service.findStudent(this.stuId).subscribe({
       next: (response) => {
-      // console.log(response);
-        if (response) {
-       /* this.user.firstname = response[0].firstname;
-         this.user.lastname = response[0].lastname;
-         this.user.dob = response[0].dob;
-         this.user.selectedCategory = response[0].selectedCategory,
-         this.user.image = response[0].image,
-         this.user.address = response[0].address,
-         this.user.email = response[0].email,
-         this.user.bloodGroup = response[0].bloodGroup,
-         this.user = response[0]
-         this.user.departmentId = this.deptCode;
-         this.user.department = this.dept;*/
-        }else{
-        //  console.log(response);
-
           this.user = this.user;
           this.user.department = this.dept;
           this.user.id = this.stuId;
           this.user.departmentId = this.deptCode;
-        }
       },
       error: (error) => console.error('Error:', error)
     });
@@ -141,11 +124,8 @@ validateEmail() {
   this.isValidEmail = emailRegex.test(this.user.email);
 }
 
-
-
-  @ViewChild('dialogForm') dialogForm:NgForm;
-
-  onSubmitDialogue() {
+@ViewChild('dialogForm') dialogForm:NgForm;
+onSubmitDialogue() {
     if (!this.user.dateOfJoining) {
       alert('Please provide a valid joining date.');
       return;
@@ -153,11 +133,9 @@ validateEmail() {
 
     const date = new Date(this.user.dateOfJoining);
     this.user.dateOfJoining = this.getFormattedDate(date);
-
-
+    this.user.dob = this.getFormattedDate(new Date(this.user.dob))
     this.service.findStudent(this.user.id).subscribe({
       next: (response) => {
-   
           this.http.post('http://localhost:3000/studentList', this.user).pipe(
             switchMap(() => this.service.getStudentDetails())
           ).subscribe({
@@ -169,10 +147,9 @@ validateEmail() {
             complete: () => {
                this.dialogForm.resetForm();
               this.messageService.add({ severity: 'success', detail: 'Student details added successfully', life: 3000 });
-             
+              this.visible = false
             }
           });
-        
       },
       error: (error) => console.error('Error:', error)
     });
@@ -200,6 +177,4 @@ validateEmail() {
   this.visible = false;
   this.dialogForm.resetForm();
  }
-
-
 }

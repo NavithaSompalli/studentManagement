@@ -66,7 +66,7 @@
 
 .buttons-container5 {
   display: flex;
-  gap: 10px;
+ 
   justify-content: flex-end;
   padding: 0px;
   padding-top: 10px;
@@ -74,11 +74,12 @@
   border-top: 1px solid #ccc;
   position: absolute;
   bottom: 0;
-  width: 98%;
+  width: 100%;
   background: #fff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding-right:10px;
+ 
 }
 
 ::ng-deep .add-form-modal .p-dialog-header {
@@ -170,7 +171,7 @@
 
 
 
-@media screen and (max-width: 1024px) {
+@media (min-width:769px) and (max-width: 1024px) {
   .department-details {
       width: 80%;
   }
@@ -178,7 +179,7 @@
  
 }
 
-@media screen and (max-width: 768px) {
+@media (min-width: 577px) and (max-width: 768px) {
   .department-details {
       width: 100%;
       padding: 15px;
@@ -191,6 +192,25 @@
   .department-details p {
       font-size: 14px;
   }
+
+  .detail-row strong{
+    font-size:0.8rem;
+  }
+
+  .detail-row span{
+    font-size:0.8rem;
+  }
+
+  .details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  overflow-y: auto;
+  width: 100%;
+  max-height: 70vh;
+  padding-bottom: 40px;
+}
 
   .form-container {
   flex: 1;
@@ -240,10 +260,15 @@
 
 }
 
-@media (max-width:545px){
+@media (max-width:576px){
     ::ng-deep .depart-modal .p-dialog {
  height: 80vh !important;
 }
+
+:host ::ng-deep .p-icon{
+    height: 10px;
+}
+
 
 }
 

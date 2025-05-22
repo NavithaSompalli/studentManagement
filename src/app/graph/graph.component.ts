@@ -55,6 +55,7 @@ export class GraphComponent implements OnInit {
         if(this.isStudentLogged !== null){
           this.deptOptionsList = uniqueEntries.filter((obj,index,self) => index === self.findIndex(t =>t.studentId === this.studentActive))
           this.deptCodeOptionsList = uniqueEntries.filter((obj,index,self)=>index === self.findIndex(t => t.studentId === this.studentActive))
+          this.deptOptionsListFilter = [...this.deptOptionsList]
         }else{
             this.deptCodeOptionsList =  deptCodeUniqueValues.filter(
               (item, index, self) =>

@@ -6,6 +6,7 @@ import { LoginServiceService } from '../login-service.service';
 import { HttpClient } from '@angular/common/http';
 import { ChartDataService } from '../chart-data.service';
 import { SortServiceService } from '../sortService.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-student',
@@ -27,6 +28,7 @@ export class StudentComponent implements OnInit {
   isAddBtnActive: boolean = false;
   loading: boolean = true;
   paginator: boolean = false;
+  isSerachRecordsEmpty: any;
 
   // **Position Tracking**
   position: 'top' | 'center' | 'topleft' | 'topright' = 'center';
@@ -59,7 +61,8 @@ export class StudentComponent implements OnInit {
     private confirmService: ConfirmationService,
     private messageService: MessageService,
     private departmentService: ChartDataService,
-    private sortService: SortServiceService
+    private sortService: SortServiceService,
+    private router: Router
   ) {}
 
   // **Lifecycle Hook**
@@ -116,7 +119,7 @@ export class StudentComponent implements OnInit {
     this.position = position;
 
     this.confirmAction(`Are you sure you want to remove ${id}? Confirm to delete.`, () => {
-    const deleteSubscription =   this.service.deleteStudentDetails(id).subscribe({
+    const deleteSubscription = this.service.deleteStudentDetails(id).subscribe({
         next: () => {
           this.fetchStudentDetails();
 
@@ -138,7 +141,10 @@ export class StudentComponent implements OnInit {
           }) 
         },
         error: (error) => console.error(error),
-        complete:()=> deleteSubscription.unsubscribe()
+        complete:()=> {
+          deleteSubscription.unsubscribe()
+          this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Student record deleted', life:1000 });
+        }
       });
     });
   }
@@ -150,9 +156,9 @@ export class StudentComponent implements OnInit {
       header: 'Confirmation',
       acceptButtonProps: { label: 'Yes', text: true },
       rejectButtonProps: { label: 'No', severity: 'secondary', text: true },
-      accept: acceptCallback,
+      accept:acceptCallback,
       reject: () => {
-        this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Process incomplete', life: 1000 });
+       this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Student record is not deleted',life:1000 });
       },
       key: 'positionDialog',
     });
@@ -160,7 +166,7 @@ export class StudentComponent implements OnInit {
 
   // **Open Add Student Dialog**
   onClickAddData(position: 'center' | 'topleft' | 'topright'): void {
-    this.visible = !this.visible;
+    this.visible = true;
     this.position = position;
   }
 
@@ -173,22 +179,26 @@ export class StudentComponent implements OnInit {
       alert('Please enter all fields');
       return;
     }
-
     this.studentValidateObj = structuredClone(this.copiedObj);
-
     this.service.findStudent(id).subscribe({
       next: (response) => {
         if (!response || response.length === 0) {
           this.isAddBtnActive = !this.isAddBtnActive;
-          this.visible = !this.visible;
+          this.visible = false;
           this.minidialogueForm.resetForm();
           return;
         }
         if (response[0].id === id) {
-          this.messageService.add({ severity: 'error', detail: 'Student already registered in this department' });
+          this.messageService.add({ severity: 'error', detail: 'Student already registered in this department',life:1000 });
+          this.visible = false;
+          this.minidialogueForm.resetForm();
         }
       },
-      error: (error) => console.error(error),
+      error: (error) => {console.error(error)
+        this.visible = false;
+        this.minidialogueForm.resetForm();
+        this.isAddBtnActive = false
+      },
     });
   }
 
@@ -204,19 +214,31 @@ export class StudentComponent implements OnInit {
     this.updatePaginatedList();
   }
 
-  // **Search Functionality**
+  // Search Functionality
   onSearch(event: Event): void {
     const inputValue = (event.target as HTMLInputElement).value;
     if (this.dt2) {
       this.dt2.filterGlobal(inputValue, 'contains');
+      // console.log(this.dt2);
+      if(inputValue !== ""){
+        this.isSerachRecordsEmpty = this.dt2.filteredValue !== null;
+      }else{
+        this.isSerachRecordsEmpty = null;
+      }
     }
   }
 
+  ispaginatorIsSingle = true
   // **Page and Rows Per Page Update Logic**
   onChangeRowsPerPage(event: any) {
     this.rowsPerPage = event.value;
     this.currentPage = 0;
     this.updatePaginatedList();
+    if(this.studentList.length < this.rowsPerPage.value ){
+      this.ispaginatorIsSingle = false
+    }else{
+      this.ispaginatorIsSingle = true
+    }
   }
 
   updatePaginatedList() {
@@ -229,16 +251,20 @@ export class StudentComponent implements OnInit {
     this.currentPage = event.page;
     this.rowsPerPage.value = event.rows;
     this.updatePaginatedList();
+    // console.log(this.dt2);
   }
 
   onClickGo() {
     if (this.updatePage && parseInt(this.updatePage) > 0 && parseInt(this.updatePage) <= this.totalPages.length) {
       this.currentPage = parseInt(this.updatePage) - 1;
       this.updatePaginatedList();
-      this.updatePage = ""
-      
+      this.updatePage = "" 
     }
   }
 
-  onClickCancel(){ this.minidialogueForm.resetForm(); this.visible = false; }
+  onClickCancel(){ 
+    this.minidialogueForm.resetForm(); 
+    this.visible = false; 
+    this.isAddBtnActive = false;
+  }
 }

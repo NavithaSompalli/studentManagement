@@ -1,6 +1,6 @@
 
 <div [ngStyle]="{'background-color':'#0099cc', 'height':'15vh'}">
-    <h2 class="header-element">Department</h2>
+    <h2 class="header-element"><i class="fa-solid fa-graduation-cap"></i> Department</h2>
 </div>
 
 <div class="graph-card2" >
@@ -76,7 +76,7 @@
             
           </div>
            <ng-template pTemplate="paginator"  >
-            <div class="custom-paginator1">
+            <div class="custom-paginator1" *ngIf="ispaginatorIsSinglePage">
                 <p-paginator [rows]="rowsPerPage.value" [totalRecords]="departmentList.length" (onPageChange)="handlePageChange($event)" [first]="currentPage * rowsPerPage.value" [pageLinkSize]="3"></p-paginator>
                 <input pInputText id="currentPageNo" class="paginatorFormElement1" autocomplete="off" [(ngModel)]="updatePage" name="currentPage" #page="ngModel" required [ngStyle]="{'background-color':'transparent'}"/>
                 <p-button type="button" label="GO" class="go-btn1" (click)="onClickGo()"/>

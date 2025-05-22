@@ -51,20 +51,20 @@ export class AttendanceComponent implements OnInit {
    isAddBtnActive:boolean = false;
    currentPage = 0;
    rowsPerPage = {
-     name:"show 5",
+     name:"Show 5",
      value:5
    };
    totalPages = [];
    rowsPerPageArray = [{
-         name:"show 5",
+         name:"Show 5",
          value:5
        },
        {
-         name:"show 10",
+         name:"Show 10",
          value:10
        },
        {
-         name:"show 20",
+         name:"Show 20",
          value:20
        }
    ]
@@ -92,7 +92,6 @@ export class AttendanceComponent implements OnInit {
 
          if(localStorage.getItem("studentId") !== null){
           this.studentList = this.studentList.filter((obj)=> obj["studentId"] === localStorage.getItem("studentId"))
-          
        }
        
        },
@@ -151,7 +150,7 @@ export class AttendanceComponent implements OnInit {
              this.messageService.add({
                  severity: 'error',
                  summary: 'Rejected',
-                 detail: 'Process incomplete',
+                 detail: 'Attendance record is not deleted.',
                  life: 3000,
              });
          },
@@ -178,13 +177,19 @@ export class AttendanceComponent implements OnInit {
  
  
 
-
+ispaginatorIsSinglePage:boolean = true;
 
 /// **Page and Rows Per Page Update Logic**
   onChangeRowsPerPage(event: any) {
     this.rowsPerPage = event.value;
     this.currentPage = 0;
     this.updatePaginatedList();
+     if(this.studentList.length <= this.rowsPerPage.value ){
+      this.ispaginatorIsSinglePage = false
+        
+    }else{
+      this.ispaginatorIsSinglePage = true
+    }
   }
 
   updatePaginatedList() {
@@ -247,9 +252,7 @@ export class AttendanceComponent implements OnInit {
         if(response){
         this.isAddBtnActive = !this.isAddBtnActive;
          this.visible = !this.visible;
-        
         }else{
-       
            this.messageService.add({ severity: 'warn', detail: `Student Id doesn't exit in the Student List` });
         }
        
