@@ -2,24 +2,21 @@
   width: 90% !important;
   height: 68vh !important;
   scrollbar-width: none;
-   background-size: cover;
-   margin:5px;
-
-  
+  background-size: cover;
+  margin: 5px;
   max-width: 100%;
-  
- 
-  color:#000;
+  color: #000;
   scrollbar-width: none;
 
 }
 
 
 ::ng-deep .p-dialog .p-dialog-content {
-    /* overflow-y: auto; */
-    padding: var(--p-dialog-content-padding);
-    flex-grow: 1;
+  /* overflow-y: auto; */
+  padding: var(--p-dialog-content-padding);
+  flex-grow: 1;
 }
+
 .card {
   padding: 20px;
   background-color: #f9f9f9;
@@ -30,15 +27,15 @@
 
 
 ::ng-deep .p-button-icon-only.p-button-rounded {
-     border-radius: 50% !important; 
-    height: var(--p-button-icon-only-width);
-    background-color: transparent;
+  border-radius: 50% !important;
+  height: var(--p-button-icon-only-width);
+  background-color: transparent;
 }
 
 ::ng-deep .p-button-text.p-button-secondary {
-    /* background: transparent; */
-    border-color: transparent;
-    color: var(--p-button-text-secondary-color);
+  /* background: transparent; */
+  border-color: transparent;
+  color: var(--p-button-text-secondary-color);
 }
 
 
@@ -49,8 +46,8 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  
-  
+
+
 }
 
 ::ng-deep .form-elements-container {
@@ -59,14 +56,14 @@
   overflow-x: hidden;
   scrollbar-width: none;
   width: 100%;
-  height:80vh;
+  height: 80vh;
 }
 
 
 
 .buttons-container5 {
   display: flex;
- 
+
   justify-content: flex-end;
   padding: 0px;
   padding-top: 10px;
@@ -74,16 +71,16 @@
   border-top: 1px solid #ccc;
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 98%;
   background: #fff;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  padding-right:10px;
- 
+  padding-right: 10px;
+
 }
 
 ::ng-deep .add-form-modal .p-dialog-header {
-  padding:5px;
+  padding: 5px;
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   font-family: 'Roboto';
@@ -91,11 +88,11 @@
 }
 
 
-::ng-deep .p-dialog-header{
-  padding:0px !important;
-  padding-left:5px !important;
-  padding-right:10px !important;
-   background-color: transparent !important;
+::ng-deep .p-dialog-header {
+  padding: 0px !important;
+  padding-left: 5px !important;
+  padding-right: 10px !important;
+  background-color: transparent !important;
 }
 
 
@@ -115,9 +112,9 @@
   max-height: 70vh;
 }
 
-.details-form-container{
-  width:100%;
-  
+.details-form-container {
+  width: 100%;
+
   gap: 10px;
   padding: 10px;
   overflow-y: auto;
@@ -131,7 +128,7 @@
   padding: 5px 20px;
   font-weight: bold;
   border: 1px solid #dadbd9;
-  height:30px;
+  height: 30px;
 }
 
 .detail-row {
@@ -165,111 +162,127 @@
   background-color: transparent !important;
 }
 
-
-
-
-
-
+::ng-deep .p-button-text.p-button-secondary:not(:disabled):hover {
+  background: transparent;
+  border-color: transparent;
+  color: var(--p-button-text-secondary-color);
+}
 
 @media (min-width:769px) and (max-width: 1024px) {
   .department-details {
-      width: 80%;
+    width: 80%;
   }
 
- 
+
 }
 
 @media (min-width: 577px) and (max-width: 768px) {
   .department-details {
-      width: 100%;
-      padding: 15px;
+    width: 100%;
+    padding: 15px;
   }
 
   .department-details h2 {
-      font-size: 18px;
+    font-size: 18px;
   }
 
   .department-details p {
-      font-size: 14px;
+    font-size: 14px;
   }
 
-  .detail-row strong{
-    font-size:0.8rem;
+  .detail-row strong {
+    font-size: 0.8rem;
   }
 
-  .detail-row span{
-    font-size:0.8rem;
+  .detail-row span {
+    font-size: 0.8rem;
   }
 
   .details-container {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  overflow-y: auto;
-  width: 100%;
-  max-height: 70vh;
-  padding-bottom: 40px;
-}
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    overflow-y: auto;
+    width: 100%;
+    max-height: 70vh;
+    padding-bottom: 40px;
+  }
 
   .form-container {
-  flex: 1;
- 
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin-bottom:30px;
-  border: 1px solid #000;
-}
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    border: 1px solid #000;
+  }
 
-::ng-deep .depart-modal .p-dialog {
- height: 70vh !important;
-}
+  ::ng-deep .depart-modal .p-dialog {
+    height: 70vh !important;
+  }
 
-::ng-deep .p-dialog .p-dialog-title {
-    font-size: 10px !important;
+  ::ng-deep .p-dialog .p-dialog-title {
+    font-size: 18px !important;
     font-weight: bold;
     color: #000 !important;
     text-align: center;
     padding: 0px;
-    
-}
+    margin-left: 15px;
+  }
 
-::ng-deep .p-dialog-title {
-  font-size:15rem !important;
-}
+  .buttons-container5 {
+    width: 95%;
+    padding-right: 0px;
+  }
 
+  .form-container {
+    /* Adjust as needed */
+    overflow-y: auto;
+  }
 
-.buttons-container5{
-  width:99%;
-}
-
-.form-container {
-  /* Adjust as needed */
-  overflow-y: auto;
-}
-
-.depart-modal{
-    left:0px;
+  .depart-modal {
+    left: 0px;
     scrollbar-width: none;
-    margin:5px;
-}
+    margin: 5px;
+  }
 
 
 
 }
 
-@media (max-width:576px){
-    ::ng-deep .depart-modal .p-dialog {
- height: 80vh !important;
-}
+@media (max-width:576px) {
+  ::ng-deep .depart-modal .p-dialog {
+    width: 92% !important;
+    height: 80vh !important;
+    scrollbar-width: none;
+    background-size: cover;
+    margin: 5px;
+    max-width: 100%;
+    color: #000;
+    scrollbar-width: none;
+  }
 
-:host ::ng-deep .p-icon{
+  :host ::ng-deep .p-icon {
     height: 10px;
+  }
+
+  .details-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    overflow-y: auto;
+    width: 100%;
+    max-height: 63vh;
+
+  }
+
+  .buttons-container5 {
+    width: 93%;
+  }
+
+
+
 }
-
-
-}
-
-

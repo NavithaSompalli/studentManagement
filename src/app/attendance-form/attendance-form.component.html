@@ -98,7 +98,7 @@
                 </div>         
                 <div class="input-Element">
                     <div class="attendance-input-container">
-                        <label for="modifiedSourceType">Modified Source Typee<br/></label>
+                        <label for="modifiedSourceType">Modified Source Type<br/></label>
                         <input type="text" pInputText [(ngModel)]="user.modifiedSourceType" id="modifiedSourceType" name="modifiedSourceType" required  #modifiedSourceType="ngModel"  disabled="true"/>
                         <div class="error-text">
                             <span *ngIf="modifiedSourceType.invalid && modifiedSourceType.touched" >modifiedSourceType is required</span>
@@ -116,7 +116,7 @@
             <hr/>
             <div class="buttons-containerA">
                  <p-button label="Back" severity="secondary" (click)="onClickCancel()" class="back-dept-button"/>
-                <p-button label="Save" type="submit" class="submit-model-btn" [disabled]="ngAttendanceForm.invalid"></p-button>
+                <p-button label="Save" type="submit" class="submit-model-btn" [disabled]="ngAttendanceForm.invalid || (user.attendanceCount <= 0 || user.attendanceCount > attendanceDays)"></p-button>
             </div>
         </form>   
     </p-dialog>

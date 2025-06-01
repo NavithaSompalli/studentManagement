@@ -38,14 +38,14 @@
             </p>-->
 
             <!-- Logout Button -->
-            <p-button type="button" class="logout-btn" (click)="onLogout('center')">Logout</p-button>
+            <p-button type="button" class="logout-btn" (click)="onLogout('center')" routerLink="logout">Logout</p-button>
         </div>
     </div>
 </div>
 
 <!-- Navigation Menu -->
-<ul class="ul-container container-fluid">
-    <li routerLink="graph" routerLinkActive="active">Home</li>
+<ul class="ul-container container-fluid" >
+    <li routerLink="graph" routerLinkActive="active" >Home</li>
     <li routerLink="student" routerLinkActive="active">Student</li>
     <li routerLink="attendance" routerLinkActive="active">Attendance</li>
     <li routerLink="department" routerLinkActive="active" *ngIf="studentActive">Department</li>

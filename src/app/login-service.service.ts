@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-
+import { BehaviorSubject } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
@@ -32,9 +32,7 @@ export class LoginServiceService {
     createdSource: 'Admin',
     dateOfJoining: ''
   };
-
   constructor(private http: HttpClient) {}
-
   login(username: string, password: string): Observable<any> {
     return this.http.get<any[]>(`${this.apiUrl}?username=${username}`).pipe(
       map((users) => {
@@ -48,7 +46,7 @@ export class LoginServiceService {
         return { message: 'Login successful', user };
       }),
       catchError((error: HttpErrorResponse) => {
-        console.error('Login error:', error);
+        //  console.error('Login error:', error);
         return throwError(() => new Error(error.message));
       })
     );
@@ -58,10 +56,10 @@ export class LoginServiceService {
     return this.http.get<any[]>(`${this.apiUrl}`).pipe(
       map(users => {
         const user = users.find(u => u.id === id);
-        return user ? user : [null, user];  
+        return user ? user : [null, user];
       }),
       catchError((error: HttpErrorResponse) => {
-        console.error("Error fetching user:", error);
+        //  console.error("Error fetching user:", error);
         return throwError(() => new Error(error.message));
       })
     );
@@ -71,7 +69,7 @@ export class LoginServiceService {
     return this.http.get<any[]>(`${this.apiUrl}?username=${username}`).pipe(
       map((users) => users.length === 0 ? [true, users] : false),
       catchError((error: HttpErrorResponse) => {
-        console.error("Error checking credentials:", error);
+        // console.error("Error checking credentials:", error);
         return throwError(() => new Error(error.message));
       })
     );
@@ -81,7 +79,7 @@ export class LoginServiceService {
     return this.http.get<any[]>(`http://localhost:3000/users?id=${id}`).pipe(
       map((users) => users.length !== 0 ? users : false),
       catchError((error: HttpErrorResponse) => {
-        console.error("Error fetching user details:", error);
+        //  console.error("Error fetching user details:", error);
         return throwError(() => new Error(error.message));
       })
     );
@@ -90,7 +88,7 @@ export class LoginServiceService {
   getStudentDetails(): Observable<any> {
     return this.http.get('http://localhost:3000/studentList').pipe(
       catchError((error: HttpErrorResponse) => {
-        console.error("Error fetching student details:", error);
+        //  console.error("Error fetching student details:", error);
         return throwError(() => new Error(error.message));
       })
     );
@@ -99,7 +97,7 @@ export class LoginServiceService {
   deleteStudentDetails(id: any): Observable<any> {
     return this.http.delete(`http://localhost:3000/studentList/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.error("Error deleting student details:", error);
+        //  console.error("Error deleting student details:", error);
         return throwError(() => new Error(error.message));
       })
     );
@@ -109,7 +107,7 @@ export class LoginServiceService {
     return this.http.get<any[]>(`http://localhost:3000/studentList?id=${id}`).pipe(
       map((users) => users.length !== 0 ? users : false),
       catchError((error: HttpErrorResponse) => {
-        console.error("Error finding student:", error);
+        // console.error("Error finding student:", error);
         return throwError(() => new Error(error.message));
       })
     );
@@ -118,7 +116,7 @@ export class LoginServiceService {
   updateStudent(studentId: string, studentData: any): Observable<any> {
     return this.http.put(`http://localhost:3000/studentList/${studentId}`, studentData).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.error("Error updating student:", error);
+        //  console.error("Error updating student:", error);
         return throwError(() => new Error(error.message));
       })
     );
@@ -127,7 +125,7 @@ export class LoginServiceService {
   addAttendanceStudentDetails(obj: any): Observable<any> {
     return this.http.post('http://localhost:3000/attendanceList', obj).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.error("Error adding attendance details:", error);
+      //  console.error("Error adding attendance details:", error);
         return throwError(() => new Error(error.message));
       })
     );
@@ -136,7 +134,7 @@ export class LoginServiceService {
   getAttendanceDetails(): Observable<any> {
     return this.http.get('http://localhost:3000/attendanceList').pipe(
       catchError((error: HttpErrorResponse) => {
-        console.error("Error fetching attendance details:", error);
+       // console.error("Error fetching attendance details:", error);
         return throwError(() => new Error(error.message));
       })
     );
@@ -145,7 +143,7 @@ export class LoginServiceService {
   deleteAttendanceDetails(id: any): Observable<any> {
     return this.http.delete(`http://localhost:3000/attendanceList/${id}`).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.error("Error deleting attendance details:", error);
+      //  console.error("Error deleting attendance details:", error);
         return throwError(() => new Error(error.message));
       })
     );
@@ -154,7 +152,7 @@ export class LoginServiceService {
   updateStudentAttendance(studentId: string, studentData: any): Observable<any> {
     return this.http.put(`http://localhost:3000/attendanceList/${studentId}`, studentData).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.error("Error updating student attendance:", error);
+       // console.error("Error updating student attendance:", error);
         return throwError(() => new Error(error.message));
       })
     );
@@ -163,7 +161,7 @@ export class LoginServiceService {
   getAttendanceDetailsID(studentId: string): Observable<any> {
     return this.http.get(`http://localhost:3000/attendanceList/${studentId}`).pipe(
       catchError((error: HttpErrorResponse) => {
-        console.error("Error fetching attendance details by ID:", error);
+      //  console.error("Error fetching attendance details by ID:", error);
         return throwError(() => new Error(error.message));
       })
     );

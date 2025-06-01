@@ -6,7 +6,7 @@
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    width:100%;
+    width: 100%;
 }
 
 .header-image {
@@ -24,10 +24,10 @@
     color: #fff;
     background-color: #2a566b;
     height: 8vh;
-    padding-left:20px;
+    padding-left: 20px;
 }
 
-.ul-container > li {
+.ul-container>li {
     margin-right: 20px;
     cursor: pointer;
     align-self: center;
@@ -58,41 +58,41 @@
     display: flex;
     flex-direction: row;
     align-items: center;
-  
+
     height: 8vh;
-    width:100%;
+    width: 100%;
 }
 
 ::ng-deep .logout-btn .p-button {
     background-color: #0077aa !important;
     color: white !important;
     border-radius: 5px;
-    margin-right:10px;
+    margin-right: 10px;
     border: none;
 }
 
-::ng-deep .logout-btn .p-button:not(:disabled):hover{
-   background-color: #0077aa !important;
+::ng-deep .logout-btn .p-button:not(:disabled):hover {
+    background-color: #0077aa !important;
     color: white !important;
     border-radius: 5px;
-    margin-right:10px;
+    margin-right: 10px;
     border: none;
 }
 
-.icon-size{
-      font-size:30px;
-      color:#0099cc;
+.icon-size {
+    font-size: 30px;
+    color: #0099cc;
 }
 
 
-.profilename{
-    border:1px solid #0099cc;
+.profilename {
+    border: 1px solid #0099cc;
     border-radius: 50%;
-    margin-left:10px;
-    margin-right:10px;
-    background-color:#0099cc;
-    color:#fff;
-    font-size:13px;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: #0099cc;
+    color: #fff;
+    font-size: 13px;
     height: 2.5rem;
     width: 2.5rem;
     display: flex;
@@ -101,58 +101,58 @@
     align-items: center;
 }
 
-.header-profile-image{
+.header-profile-image {
     height: 30px;
-    width:30px;
+    width: 30px;
     border-radius: 50%;
-    margin:10px;
+    margin: 10px;
 }
 
 ::ng-deep {
-   background-color: #0099cc !important;
+    background-color: #0099cc !important;
 }
 
- ::ng-deep .p-dialog-footer{
-    padding:5px !important;
- }
+::ng-deep .p-dialog-footer {
+    padding: 5px !important;
+}
 
-    ::ng-deep .p-dialog-footer .p-confirmpopup-accept-button .p-button{
-        background-color: #0099cc !important;
-        width:100% !important;
-    }
+::ng-deep .p-dialog-footer .p-confirmpopup-accept-button .p-button {
+    background-color: #0099cc !important;
+    width: 100% !important;
+}
 
-    ::ng-deep .p-dialog{
-        width: 30% !important;
-        padding:0px !important;
-       
-    }
+::ng-deep .p-dialog {
+    width: 30% !important;
+    padding: 0px !important;
 
-   ::ng-deep .p-confirmdialog .p-dialog-content{
-        padding-left:10px !important;
-    }
+}
 
-    ::ng-deep .p-confirmdialog-accept-button{
-        height: 30px !important;
-        background-color: #0077aa !important;
-    }
+::ng-deep .p-confirmdialog .p-dialog-content {
+    padding-left: 10px !important;
+}
 
-
-    ::ng-deep .p-confirmdialog-reject-button{
-        height: 30px !important;
-        border:1px solid #000 !important;
-    }
-
-    ::ng-deep .p-confirmdialog .p-dialog-header{
-        padding: 0px !important;
-        padding-left:13px !important;
-    }
+::ng-deep .p-confirmdialog-accept-button {
+    height: 30px !important;
+    background-color: #0077aa !important;
+}
 
 
+::ng-deep .p-confirmdialog-reject-button {
+    height: 30px !important;
+    border: 1px solid #000 !important;
+}
 
-@media (max-width:770px) and (min-width:1024px){
-    ::ng-deep .p-dialog{
+::ng-deep .p-confirmdialog .p-dialog-header {
+    padding: 0px !important;
+    padding-left: 13px !important;
+}
+
+
+
+@media (max-width:770px) and (min-width:1024px) {
+    ::ng-deep .p-dialog {
         width: 35% !important;
-        padding:0px !important;
+        padding: 0px !important;
         box-shadow: 1px 1px 1px 1px #0099cc;
     }
 }
@@ -165,14 +165,14 @@
     }
 
     .ul-container {
-      
+
         align-items: center;
         height: auto;
     }
 
-    .ul-container > li {
-       font-size: 12px;
-       margin-right: 10px;
+    .ul-container>li {
+        font-size: 12px;
+        margin-right: 10px;
     }
 
     ::ng-deep .active {
@@ -180,25 +180,25 @@
         padding: 10px;
     }
 
-     ::ng-deep .p-dialog{
+    ::ng-deep .p-dialog {
         width: 100% !important;
-        padding:0px !important;
+        padding: 0px !important;
     }
-   
+
 }
 
 /* Extra small screens (mobile) */
 @media (max-width: 480px) {
 
-  .card-container {
-    padding: 10px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    box-sizing: border-box;
-    width:100%;
-}
+    .card-container {
+        padding: 10px;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        box-sizing: border-box;
+        width: 100%;
+    }
 
     .header-image {
         width: 30%;
@@ -206,34 +206,34 @@
 
     .ul-container {
         text-align: center;
-        font-size:12px;
+        font-size: 12px;
     }
 
-    li{
-      margin-right: 10px;
+    li {
+        margin-right: 10px;
     }
 
-    .hearder-profile-image{
-      height: 15px;
-    width: 15px;
-    border-radius: 50%;
-    margin-left: 10px;
-    margin-right: 10px;
+    .hearder-profile-image {
+        height: 15px;
+        width: 15px;
+        border-radius: 50%;
+        margin-left: 10px;
+        margin-right: 10px;
     }
 
 
-    .icon-size{
-      font-size:20px;
-      color:#0099cc;
+    .icon-size {
+        font-size: 20px;
+        color: #0099cc;
 
     }
 
-    .profilename{
-        width:2rem !important;
+    .profilename {
+        width: 2rem !important;
         height: 2rem !important;
-        font-size:10px !important;
+        font-size: 10px !important;
     }
-   
+
 
     ::ng-deep .logout-btn .p-button {
         width: 100%;
@@ -241,32 +241,32 @@
         background-color: #0099cc;
     }
 
-    ::ng-deep .p-dialog-footer .p-confirmpopup-accept-button .p-button{
+    ::ng-deep .p-dialog-footer .p-confirmpopup-accept-button .p-button {
         background-color: #000 !important;
-        width:100% !important;
-    }
-
-    ::ng-deep .p-dialog{
         width: 100% !important;
-        padding:0px !important;
-        margin:5px !important;
     }
 
-    ::ng-deep .p-confirmdialog-accept-button{
+    ::ng-deep .p-dialog {
+        width: 100% !important;
+        padding: 0px !important;
+        margin: 5px !important;
+    }
+
+    ::ng-deep .p-confirmdialog-accept-button {
         height: 30px !important;
         background-color: #0077aa !important;
     }
 
-    ::ng-deep .p-confirmdialog-reject-button{
+    ::ng-deep .p-confirmdialog-reject-button {
         height: 30px !important;
     }
 
-    ::ng-deep .p-confirmdialog .p-dialog-header{
+    ::ng-deep .p-confirmdialog .p-dialog-header {
         padding: 0px !important;
-        padding-left:10px !important;
+        padding-left: 10px !important;
     }
 
-    :host ::ng-deep .p-toast{
-    width:90% !important;
-}
+    :host ::ng-deep .p-toast {
+        width: 90% !important;
+    }
 }

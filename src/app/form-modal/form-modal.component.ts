@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, OnChanges, ViewChild, EventEmitter } from '@angular/core';
 import { LoginServiceService } from '../login-service.service';
 import { HttpClient } from '@angular/common/http';
 import { ChartDataService } from '../chart-data.service';
@@ -7,28 +7,34 @@ import { Router } from '@angular/router';
 import { switchMap } from 'rxjs';
 import { NgForm } from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
+import { Output } from '@angular/core';
 
 @Component({
   selector: 'app-form-modal',
   templateUrl: './form-modal.component.html',
   styleUrls: ['./form-modal.component.css'],
   standalone: false,
-  encapsulation: ViewEncapsulation.Emulated 
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class FormModalComponent implements OnInit, OnChanges {
   constructor(
-    private service: LoginServiceService, 
+    private service: LoginServiceService,
     private http: HttpClient,
     private chartDataService: ChartDataService,
     private router: Router,
     private messageService: MessageService
-  ) {}
+  ) { }
 
   departmentList: any[] = [];
 
   @Input() visible: boolean = false;
   @Input() stuId: string = '';
-  @Input() dept: string = '';
+  @Input() dept: string = ''; 
+ @Output() messageEvent = new EventEmitter();
+ 
+  
+
+
 
   deptCode?: string = '';
 
@@ -37,7 +43,7 @@ export class FormModalComponent implements OnInit, OnChanges {
   categories = [
     { name: 'Female', key: 'F' },
     { name: 'Male', key: 'M' },
-    { name: 'Transgender', key: 'T' }
+    { name: 'Prefer not to say', key: 'P' }
   ];
 
   student: object = {};
@@ -45,12 +51,12 @@ export class FormModalComponent implements OnInit, OnChanges {
 
   getFormattedDate(date: Date = new Date()): string {
     let year = date.getFullYear();
-    let month = String(date.getMonth() + 1).padStart(2, '0'); 
+    let month = String(date.getMonth() + 1).padStart(2, '0');
     let day = String(date.getDate()).padStart(2, '0');
     let hours = date.getHours();
     let minutes = String(date.getMinutes()).padStart(2, '0');
     let seconds = String(date.getSeconds()).padStart(2, '0');
-    let amPm = hours >= 12 ? 'PM' : 'AM'; 
+    let amPm = hours >= 12 ? 'PM' : 'AM';
     hours = hours % 12 || 12;
 
     return `${year}-${month}-${day} ${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${amPm}`;
@@ -64,8 +70,8 @@ export class FormModalComponent implements OnInit, OnChanges {
     email: '',
     phoneNumber: '',
     selectedCity: { code: '+91', country: 'India' },
-    selectedCategory: { name: 'Female', key: 'F' },
-    image: this.imageUrl,
+    selectedCategory: '',
+    image: '',
     modifiedResource: 'Admin',
     modifiedSourceType: 'Admin',
     modifiedDttm: this.getFormattedDate(),
@@ -96,36 +102,36 @@ export class FormModalComponent implements OnInit, OnChanges {
       return;
     }
 
-   // this.student = this.service.user;
-    
+    // this.student = this.service.user;
+
     let matchedDept = this.departmentList.find(depart => depart['departmentName'] === this.dept);
     this.deptCode = matchedDept ? matchedDept['departmentId'] : null;
 
-     this.service.findStudent(this.stuId).subscribe({
+    this.service.findStudent(this.stuId).subscribe({
       next: (response) => {
-          this.user = this.user;
-          this.user.department = this.dept;
-          this.user.id = this.stuId;
-          this.user.departmentId = this.deptCode;
+        this.user = this.user;
+        this.user.department = this.dept;
+        this.user.id = this.stuId;
+        this.user.departmentId = this.deptCode;
       },
       error: (error) => console.error('Error:', error)
     });
-    
-      this.user.department = this.dept;
-      this.user.id = this.stuId;
-      this.user.departmentId = this.deptCode;
+
+    this.user.department = this.dept;
+    this.user.id = this.stuId;
+    this.user.departmentId = this.deptCode;
   }
 
 
-isValidEmail: boolean = true;
+  isValidEmail: boolean = true;
 
-validateEmail() {
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
-  this.isValidEmail = emailRegex.test(this.user.email);
-}
+  validateEmail() {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}$/;
+    this.isValidEmail = emailRegex.test(this.user.email);
+  }
 
-@ViewChild('dialogForm') dialogForm:NgForm;
-onSubmitDialogue() {
+  @ViewChild('dialogForm') dialogForm: NgForm;
+  onSubmitDialogue() {
     if (!this.user.dateOfJoining) {
       alert('Please provide a valid joining date.');
       return;
@@ -136,20 +142,30 @@ onSubmitDialogue() {
     this.user.dob = this.getFormattedDate(new Date(this.user.dob))
     this.service.findStudent(this.user.id).subscribe({
       next: (response) => {
-          this.http.post('http://localhost:3000/studentList', this.user).pipe(
-            switchMap(() => this.service.getStudentDetails())
-          ).subscribe({
-            next: () => {
-              this.router.navigate(['home/student']).then(() => window.location.reload());
-              this.visible = false
-            },
-            error: (error) => console.error('Error:', error),
-            complete: () => {
-               this.dialogForm.resetForm();
-              this.messageService.add({ severity: 'success', detail: 'Student details added successfully', life: 3000 });
-              this.visible = false
-            }
-          });
+        this.http.post('http://localhost:3000/studentList', this.user
+        ).subscribe({
+          next: () => {
+
+                    this.messageEvent.emit();
+           /* this.service.getStudentDetails().subscribe({
+              next: (response) => {
+              this.service.students$ = response;
+                console.log(this.service.students);
+                this.router.navigate(["home/student"]).then(() => {
+                  window.location.reload(); // Forces page refresh
+                });
+              }
+            })*/
+
+           // this.visible = false
+          },
+          error: (error) => console.error('Error:', error),
+          complete: () => {
+            this.dialogForm.resetForm();
+            this.messageService.add({ severity: 'success', detail: 'Student details added successfully', life: 3000 });
+            this.visible = false
+          }
+        });
       },
       error: (error) => console.error('Error:', error)
     });
@@ -160,21 +176,22 @@ onSubmitDialogue() {
   }
 
   onFileSelected(event: any) {
-  const file: File = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imageUrl = reader.result as string;
-      this.user.image = this.imageUrl; // Ensure this is inside the onload function
-    };
-    reader.readAsDataURL(file);
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageUrl = reader.result as string;
+        this.user.image = this.imageUrl; // Ensure this is inside the onload function
+      };
+      reader.readAsDataURL(file);
+    }
+  }
+
+  today: Date = new Date();
+
+  onClickCancel() {
+    this.visible = false;
+    this.dialogForm.resetForm();
   }
 }
 
- today: Date = new Date();
-
- onClickCancel(){
-  this.visible = false;
-  this.dialogForm.resetForm();
- }
-}

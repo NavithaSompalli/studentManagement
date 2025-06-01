@@ -4,46 +4,48 @@ import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { ViewEncapsulation } from '@angular/core';
+import { Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-student-details',
   templateUrl: './student-details.component.html',
   styleUrl: './student-details.component.css',
   standalone: false,
-  encapsulation: ViewEncapsulation.Emulated 
 })
 export class StudentDetailsComponent implements AfterViewChecked, OnInit, OnChanges {
   studentActive: boolean = false;
   studentData = JSON.parse(localStorage.getItem('student'));
-  constructor(private service: LoginServiceService, 
-    private messageService: MessageService,
-    private Router: Router
-  ) {}
-
-  isUpdateActive: boolean = true;
-
+  @ViewChild('dialogForm') detailsForm: NgForm;
   @Input() studentDetailsObject: any; // Data received from parent
   @Input() isViewDetailsActive: boolean = false; // Dialog visibility state
+  isUpdateActive: boolean = true;
+  imageUrl: string = ""
+  @Output() messageEvent1 = new EventEmitter();
 
   storedStudentData: any = {
-    id:'ITO2025'+`${Math.floor(Math.random() * 90)+10}`,
-    firstname:'',
-    lastname:'',
-    dob:'',
-    email:'',
-    phoneNumber:'',
-    selectedCity:{ code: "+91", country: "India" },
-    selectedCategory:{name:'Female', key:'F'},
-    image:'',
-    modifiedResource:'Admin',
-    modifiedSourceType:'Admin',
-    modifiedDttm:'',
-    createdDttm:'',
-    createdSourceType:'Admin',
-    createdSource:'Admin',
-    dateOfJoining:''
+    id: 'ITO2025' + `${Math.floor(Math.random() * 90) + 10}`,
+    firstname: '',
+    lastname: '',
+    dob: '',
+    email: '',
+    phoneNumber: '',
+    selectedCity: { code: "+91", country: "India" },
+    selectedCategory: { name: 'Female', key: 'F' },
+    image: '',
+    modifiedResource: 'Admin',
+    modifiedSourceType: 'Admin',
+    modifiedDttm: '',
+    createdDttm: '',
+    createdSourceType: 'Admin',
+    createdSource: 'Admin',
+    dateOfJoining: ''
 
-  }; // Separate object for rendering
+  };
+  // Separate object for rendering
+  constructor(private service: LoginServiceService,
+    private messageService: MessageService,
+    private Router: Router
+  ) { }
 
   ngOnInit() {
     this.isUpdateActive = false;
@@ -55,10 +57,20 @@ export class StudentDetailsComponent implements AfterViewChecked, OnInit, OnChan
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['studentDetailsObject']) {
-      this.storedStudentData = { ...changes['studentDetailsObject'].currentValue };
+    /* if (changes['studentDetailsObject']) { // it will return true when object changed
+      this.storedStudentData = { ...changes['studentDetailsObject'].currentValue }; // The spread operator { ... } creates a copy of the studentDetailsObject, ensuring immutability.
       this.storedStudentData['gender'] = this.storedStudentData?.selectedCategory?.name
-    }
+    }*/
+
+    //console.log(this.studentDetailsObject);
+
+    this.storedStudentData = { ...this.studentDetailsObject };
+   // console.log(this.storedStudentData);
+
+
+    /* this.storedStudentData = this.studentDetailsObject; // if we assign the object directly, when ever the changes will happpen in studentDetailsObject that changes will trigger in the storedDataObject
+      this.storedStudentData['gender'] = this.storedStudentData?.selectedCategory?.name*/
+
   }
 
   ngAfterViewChecked() {
@@ -71,22 +83,13 @@ export class StudentDetailsComponent implements AfterViewChecked, OnInit, OnChan
     this.isViewDetailsActive = false;
   }
 
-
-  @ViewChild('dialogForm') detailsForm : NgForm;
   OnUpdateOption(id: string) {
-    if (!id || !this.storedStudentData) {
-      return;
-    }
-
-  //  console.log(this.detailsForm);
-
+    this.storedStudentData["selectedCategory"] = { name: this.storedStudentData.gender, key: this.storedStudentData.gender[0] }
     this.isUpdateActive = !this.isUpdateActive;
-
     this.service.updateStudent(id, this.storedStudentData).subscribe(
       response => {
         this.messageService.add({ severity: 'success', detail: 'Updated successfully', life: 3000 });
-       /* this.Router.navigate['/home/student'];*/
-        this.Router.navigate(['home/student']).then(() => window.location.reload());
+        this.messageEvent1.emit();
         this.detailsForm.resetForm();
       },
       error => {
@@ -99,22 +102,21 @@ export class StudentDetailsComponent implements AfterViewChecked, OnInit, OnChan
     this.isUpdateActive = false;
   }
 
-  imageUrl:string = ""
-
-   openUploadDialog() {
+  openUploadDialog() {
     document.getElementById('fileInput')?.click();
-    console.log("opendialog");
+    //console.log("opendialog");
+  }
+// handle uploading photo
+  onFileSelected(event: any) {
+    const file: File = event.target.files[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        this.imageUrl = reader.result as string;
+        this.storedStudentData.image = this.imageUrl; // Ensure this is inside the onload function
+      };
+      reader.readAsDataURL(file);
+    }
   }
 
-  onFileSelected(event: any) {
-  const file: File = event.target.files[0];
-  if (file) {
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imageUrl = reader.result as string;
-      this.storedStudentData.image = this.imageUrl; // Ensure this is inside the onload function
-    };
-    reader.readAsDataURL(file);
-  }
-}
 }

@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="attendance-input-container">
-                    <label for="month" class="font-semibold w-24">Month</label>
+                    <label for="month" class="font-semibold w-24">Month <span [ngStyle]="{'color':'red'}">*</span></label>
                     <div>
                         <p-select 
                             [(ngModel)]="storedStudentData.month" 
@@ -84,7 +84,7 @@
             </div>
             <div class="input-Element">
                 <div class="attendance-input-container">
-                    <label for="year">Year<br/></label>
+                    <label for="year">Year <span [ngStyle]="{'color':'red'}">*</span><br/></label>
                     <input type="text" pInputText [(ngModel)]="storedStudentData.year" id="year" name="year" required  #year="ngModel" placeholder="Enter year"/>
                     <div class="error-text">
                         <span *ngIf="year.invalid && year.touched" >Year is required</span>
@@ -108,7 +108,7 @@
                    
                 </div>
                 <div class="attendance-input-container">
-                    <label for="attendanceCount">Attendance Count <br/></label>
+                    <label for="attendanceCount">Attendance Count <span [ngStyle]="{'color':'red'}">*</span><br/></label>
                     <input type="text" pInputText [(ngModel)]="storedStudentData.attendanceCount" id="attendanceCount" name="attendanceCount" required placeholder="Enter attendance count" #attendanceCount="ngModel" />
                    <div class="error-text">
                         <span *ngIf="attendanceCount.invalid && attendanceCount.touched" >Attendance Count is required</span>
@@ -133,7 +133,6 @@
                 </div>
             </div>
             <div class="input-Element">
-
                 <div class="attendance-input-container">
                     <label for="createdDttm">Created Datetime <br/></label>
                     <input type="text" pInputText [(ngModel)]="storedStudentData.createdDttm" id="createdDttm" name="createdDttm" required placeholder="Enter Your createdDttm" #createdDttm="ngModel" disabled="true"/>
@@ -141,7 +140,6 @@
                     <span *ngIf="createdDttm.invalid && createdDttm.touched" >Created Datetime is required</span>
                     </div>
                 </div>
-
                 <div class="attendance-input-container">
                     <label for="modifiedSource">Modified Source <br/></label>
                     <input type="text" pInputText [(ngModel)]="storedStudentData.modifiedSource" id="modifiedSource" name="modifiedSource" required placeholder="Enter Your modifiedSource" #modifiedSource="ngModel" disabled="true"/>
@@ -154,7 +152,7 @@
                        
             <div class="input-Element">
                 <div class="attendance-input-container">
-                    <label for="modifiedSourceType">Modified Source Typee<br/></label>
+                    <label for="modifiedSourceType">Modified Source Type<br/></label>
                     <input type="text" pInputText [(ngModel)]="storedStudentData.modifiedSourceType" id="modifiedSourceType" name="modifiedSourceType" required  #modifiedSourceType="ngModel" disabled="true"/>
                     <div class="error-text">
                         <span *ngIf="modifiedSourceType.invalid && modifiedSourceType.touched" >Modified Source Type is required</span>

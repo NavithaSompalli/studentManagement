@@ -1,5 +1,5 @@
 <!-- Add Student Information Dialog -->
-<p-dialog header="Add Student Information" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }" class="student-details-modal">
+<p-dialog header="Add Student Information" [modal]="true" [(visible)]="visible" [style]="{ width: '25rem' }" class="student-details-modal2">
     <form #dialogForm="ngForm" (ngSubmit)="onSubmitDialogue()" [ngStyle]="{'height':'80vh'}">
         <hr/>
         <!-- Form Container -->
@@ -8,14 +8,13 @@
                 <div [ngStyle]="{'padding':'5px'}" class="avatar-pg-container">
                 <div class="avatar-container">
                     <div class="avatar-upload" (click)="openUploadDialog()">
-                        <img *ngIf="this.user.image" [src]="imageUrl" alt="Avatar" class="avatar-preview"/>
-                        <div *ngIf="!imageUrl" class="upload-placeholder">+</div>
+                        <img *ngIf="this.user.image" [src]="this.user.image" alt="Avatar" class="avatar-preview"/>
+                        <div *ngIf="!this.user.image" class="upload-placeholder">+</div>
                     </div>
                     <label [ngStyle]="{'margin-top':'20px'}">Max file 2MB<br/> Supporting formats: JPG, PNG</label>
                     <input type="file" id="fileInput"  (change)="onFileSelected($event)" accept="image/png, image/jpeg" hidden name="image" required/>
                 </div>
             </div>
-
             </div>
             <div class="details-form-container">
                 <div [ngStyle]="{ 'width':'100%' }">

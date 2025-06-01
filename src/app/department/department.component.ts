@@ -3,17 +3,20 @@ import { LoginServiceService } from '../login-service.service';
 import { HttpClient } from '@angular/common/http';
 import { ChartDataService } from '../chart-data.service';
 import { SortServiceService } from '../sortService.service';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
 import { NavigationService } from '../navigation.service';
 import { Router } from '@angular/router';
+import { take } from 'rxjs';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-department',
   templateUrl: './department.component.html',
   styleUrls: ['./department.component.css'], // Fixed `styleUrl` to `styleUrls`
   standalone: false,
-  encapsulation: ViewEncapsulation.Emulated 
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class DepartmentComponent implements OnInit {
 
@@ -24,7 +27,7 @@ export class DepartmentComponent implements OnInit {
   currentPage = 0;
   rowsPerPage = { name: "Show 5", value: 5 };
   totalPages = [];
-  visible:boolean = false;
+  visible: boolean = false;
   paginatedStudentList: object[] = [];
   rowsPerPageArray = [
     { name: "Show 5", value: 5 },
@@ -32,49 +35,54 @@ export class DepartmentComponent implements OnInit {
     { name: "Show 20", value: 20 }
   ];
 
+
   updatePage?: string;
-  userType: string;
-
   selectedDepartment: any = null;
-
-  constructor(private service: LoginServiceService, 
-    private http: HttpClient, 
+  ispaginatorIsSinglePage: boolean = true
+  constructor(private service: LoginServiceService,
+    private http: HttpClient,
     private chartDataService: ChartDataService,
     private sortSerivce: SortServiceService,
     private router: Router,
-    private location:Location,
-    private navigationService: NavigationService
-  ) {}
+    private location: Location,
+    private navigationService: NavigationService,
+     private confirmService: ConfirmationService,
+        private messageService: MessageService,
+  ) { }
+
+  userType: string;
 
   ngOnInit() {
 
     const token = localStorage.getItem("jwtToken");
-  const isValidToken = token ? JSON.parse(token) : null;
-  this.userType =  JSON.parse(localStorage.getItem('student'));
-  console.log("department",this.userType);
-  if(this.userType !== null){
-   if(isValidToken !== null && token !== undefined){
-    if(this.userType["student"] === 'true'){
-     console.log(this.router.url)
-    if (this.router.url === 'department') {
-    const prevUrl = this.navigationService.getPreviousUrl();
-    if (prevUrl) {
-      this.router.navigate([prevUrl]);
-    }else{
-      this.router.navigate(['home','graph']);
+    const isValidToken = token ? JSON.parse(token) : null;
+    this.userType = JSON.parse(localStorage.getItem('student'));
+    // console.log("department",this.userType);
+    if (this.userType !== null) {
+      if (isValidToken !== null && token !== undefined) {
+        if (this.userType["student"] === 'true') {
+          // console.log("department",this.router.url)
+        /*  if (this.router.url === '/home/department') {
+            this.location.back();
+          }*/
+         
+
+          /*else{
+              const prevUrl = this.navigationService.getPreviousUrl();
+           //   console.log("navi",prevUrl);
+              this.router.navigate([prevUrl.slice(1,prevUrl.length)]);
+          }*/
+        }
+      }
     }
-  }
-    }
-  }
-}
     this.departmentList = this.chartDataService.departmentList; // Fetching department data from the service
     this.getStudentDetails();
     this.updatePaginatedList();
-    
+
   }
 
-  getStudentDetails() { 
-    this.service.getStudentDetails().subscribe({
+  getStudentDetails() {
+    this.service.getStudentDetails().pipe(take(1)).subscribe({
       next: (response) => {
         this.studentList = response;
         const departmentStudentCount = {};
@@ -100,28 +108,27 @@ export class DepartmentComponent implements OnInit {
     });
   }
 
- 
+  // this function is used for to selecting each student details 
   viewStudentDetails(department) {
     // Implement view logic
     this.selectedDepartment = department;
     this.visible = !this.visible;
   }
 
+  // sorting table rows based on column name
   sortColumn(field: string) {
     this.departmentList = this.sortSerivce.sortData(this.departmentList, field);
   }
 
-  ispaginatorIsSinglePage:boolean = true
-   // **Page and Rows Per Page Update Logic**
+
+  // **Page and Rows Per Page Update Logic**
   onChangeRowsPerPage(event: any) {
     this.rowsPerPage = event.value;
     this.currentPage = 0;
     this.updatePaginatedList();
-  
-     if(this.departmentList.length <= this.rowsPerPage.value ){
+    if (this.departmentList.length <= this.rowsPerPage.value) {
       this.ispaginatorIsSinglePage = false
-        
-    }else{
+    } else {
       this.ispaginatorIsSinglePage = true
     }
   }
@@ -144,7 +151,46 @@ export class DepartmentComponent implements OnInit {
       this.currentPage = parseInt(this.updatePage) - 1;
       this.updatePaginatedList();
       this.updatePage = ""
-      
     }
   }
+
+
+   canDeactivate(): Promise<boolean> {
+      return new Promise((resolve) => {
+        this.confirmService.confirm({
+          message: 'Are you sure you want to proceed?',
+          header: 'Confirmation',
+          rejectButtonProps: {
+            label: 'No',
+            severity: 'secondary',
+            outlined: true
+          },
+          acceptButtonProps: {
+            label: 'Yes'
+          },
+          accept: () => {
+            
+  
+           
+            if(localStorage.getItem('isUserLoggedout') === 'true'){
+               console.log(this.router.url);
+            console.log("isUserr",localStorage.getItem('isUserLoggedout'));
+              localStorage.clear();
+              this.router.navigate(['']).then(() => window.location.reload());
+              console.log('logout');
+              this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have logged out', life: 1000 });
+            }
+  
+            
+            resolve(true); // Allow navigation
+          },
+          reject: () => {
+            this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Logout cancelled', life: 1000 });
+          //  result$.next(false)
+          localStorage.setItem('isUserLoggedout','false');
+            resolve(false); // Prevent navigation
+          }
+        });
+      });
+    }
 }

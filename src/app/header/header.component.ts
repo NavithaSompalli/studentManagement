@@ -1,5 +1,4 @@
 import { Component, Input,Output,EventEmitter, OnChanges, OnInit} from '@angular/core';
-import { AdminComponent } from '../admin/admin.component';
 import { HomeComponent } from '../home/home.component';
 import { Router } from '@angular/router';
 import { LoginServiceService } from '../login-service.service';
@@ -21,14 +20,12 @@ export class HeaderComponent implements  OnInit{
 
   isLoggingOut: boolean = false;
   imageUrl:string = "";
+   @Output() notifyParent = new EventEmitter<string>();
+  selectedComponent: string = 'home';
 
   constructor(private router: Router,
     private service : LoginServiceService,
-    private confirmationService: ConfirmationService, private messageService: MessageService
-   
-  ){
-
-  }
+    private confirmationService: ConfirmationService, private messageService: MessageService){}
 
   isStudentLoggedIn = JSON.parse(localStorage.getItem('student'));
   studentId = localStorage.getItem('studentId');
@@ -64,8 +61,7 @@ export class HeaderComponent implements  OnInit{
 
 
 //@Input() selectedComponent:any;
-  @Output() notifyParent = new EventEmitter<string>();
-  selectedComponent: string = 'home';
+ 
 
  loadComponent(component: string){
   this.notifyParent.emit(component);
@@ -73,11 +69,7 @@ export class HeaderComponent implements  OnInit{
   
  }
 
- onLogout(top){
-   /* localStorage.clear();
-    this.router.navigate(['']);
-    console.log("logout");*/
-    this.position1 =top;
+ /*canDeactivate(){
    this.confirmationService.confirm({
       message: 'Are you sure you want to proceed?',
       header: 'Confirmation',
@@ -100,5 +92,43 @@ export class HeaderComponent implements  OnInit{
        return this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Logout cancelled', life: 1000 });
       }
     });
+ }*/
+
+ onLogout(top){
+  console.log("top")
+   this.position1 =top;
+   localStorage.setItem("isUserLoggedout", 'true');
+  // localStorage.clear()
+   /* localStorage.clear();
+    this.router.navigate(['']);
+    console.log("logout");*/
+    this.position1 =top;
+  /*this.confirmationService.confirm({
+      message: 'Are you sure you want to proceed?',
+      header: 'Confirmation',
+      target: event?.target as EventTarget,
+      rejectButtonProps: {
+        label: 'No',
+        severity: 'secondary',
+        outlined: true
+      },
+      acceptButtonProps: {
+        label: 'Yes'
+      },
+      accept: () => {
+        this.messageService.add({ severity: 'info', summary: 'Confirmed', detail: 'You have logged out', life: 1000 });
+        localStorage.clear();
+        this.router.navigate(['']).then(() => window.location.reload());
+        console.log("logout");
+      },
+      reject: () => {
+       return this.messageService.add({ severity: 'error', summary: 'Rejected', detail: 'Logout cancelled', life: 1000 });
+      }
+    });
+   // localStorage.clear();
+ /*  this.router.navigate(['']).then(() => {
+     // localStorage.clear()
+      window.location.reload()
+    });*/
  }
 }

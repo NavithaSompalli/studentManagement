@@ -1,9 +1,9 @@
 ::ng-deep .student-details-modal .p-dialog {
   width: 90% !important;
   height: 80vh !important;
- 
-   background-size: cover;
-   margin:5px !important;
+
+  background-size: cover;
+  margin: 5px !important;
 }
 
 .card {
@@ -20,13 +20,15 @@ label {
   margin-bottom: 5px;
 }
 
-input, textarea, p-datepicker {
+input,
+textarea,
+p-datepicker {
   width: 100%;
   border-radius: 4px !important;
   margin-bottom: 10px;
   background-color: transparent !important;
   height: 40px;
-  
+
 }
 
 p-select {
@@ -98,10 +100,10 @@ p-button {
 }
 
 ::ng-deep .p-dialog-content {
-    overflow-y: hidden !important;
-    overflow: hidden !important;
-    padding: 0px !important;
-    flex-grow: 1;
+  overflow-y: hidden !important;
+  overflow: hidden !important;
+  padding: 0px !important;
+  flex-grow: 1;
 }
 
 ::ng-deep .form-elements-container {
@@ -109,7 +111,7 @@ p-button {
   overflow-x: hidden;
   scrollbar-width: none;
   width: 100%;
-  height:80vh;
+  height: 80vh;
 }
 
 .image-container {
@@ -117,7 +119,7 @@ p-button {
   display: flex;
   justify-content: center;
   height: 100%;
-  margin-top:20px;
+  margin-top: 20px;
 }
 
 .input-Element {
@@ -139,11 +141,11 @@ p-button {
   bottom: 0;
   width: 100%;
   background: #fff;
-  border-bottom-left-radius:10px;
-  border-bottom-right-radius:10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-.buttons-container4{
+.buttons-container4 {
   display: flex;
   gap: 10px;
   justify-content: flex-end;
@@ -153,11 +155,12 @@ p-button {
   bottom: 0;
   width: 99%;
   background: #fff;
-  border-bottom-left-radius:10px;
-  border-bottom-right-radius:10px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
-::ng-deep .p-select, ::ng-deep .p-inputtext {
+::ng-deep .p-select,
+::ng-deep .p-inputtext {
   border-radius: 5px !important;
 }
 
@@ -168,27 +171,30 @@ p-button {
   outline: none !important;
 }
 
-::ng-deep .phone-number{
-  width:100% !important;
+::ng-deep .phone-number {
+  width: 100% !important;
 }
+
 ::ng-deep .phone-number .p-select-label {
   color: #000 !important;
 }
 
 
 
-::ng-deep input[type="date"], ::ng-deep .p-datepicker {
+::ng-deep input[type="date"],
+::ng-deep .p-datepicker {
   width: 100% !important;
 }
 
-::ng-deep input.p-inputtext, ::ng-deep .p-textarea {
+::ng-deep input.p-inputtext,
+::ng-deep .p-textarea {
   background-color: transparent !important;
   color: #000;
 }
 
 
 
-::ng-deep .submit-model-btn1 .p-button  {
+::ng-deep .submit-model-btn1 .p-button {
   color: white !important;
   border-radius: 5px;
   height: 30px;
@@ -202,19 +208,19 @@ p-button {
 
 
 
-::ng-deep .buttons-container4 .submit-model-btn .p-button{
+::ng-deep .buttons-container4 .submit-model-btn .p-button {
   background-color: #0099cc !important;
-  color: white; 
- 
-  border-radius: 5px; 
+  color: white;
+
+  border-radius: 5px;
 }
 
 
-::ng-deep .buttons-container3 .submit-model-btn .p-button{
+::ng-deep .buttons-container3 .submit-model-btn .p-button {
   background-color: #0099cc !important;
-  color: white; 
- 
-  border-radius: 5px; 
+  color: white;
+
+  border-radius: 5px;
 }
 
 
@@ -223,11 +229,12 @@ p-button {
   color: #000 !important;
   border-radius: 5px;
   margin-left: 5px;
-    margin-top: 5px;
-    height: 30px;
-  
-  
+  margin-top: 5px;
+  height: 30px;
+
+
 }
+
 ::ng-deep .add-form-modal .p-dialog-header {
   padding: 10px 20px;
   border-top-right-radius: 10px;
@@ -242,21 +249,21 @@ p-button {
   border-radius: 50%;
 }
 
-::ng-deep .p-dialog-header{
-  padding:0px !important;
-  padding-left:10px !important;
-  padding-right:10px !important;
-   background-color: transparent !important;
-   color:#000 !important;
+::ng-deep .p-dialog-header {
+  padding: 0px !important;
+  padding-left: 10px !important;
+  padding-right: 10px !important;
+  background-color: transparent !important;
+  color: #000 !important;
 }
 
 
-::ng-deep .depart-modal .p-dialog {
+::ng-deep .depart-modal-student .p-dialog {
   width: 90rem !important;
   max-width: 100%;
   height: 80vh;
   margin: 5px;
-  color:#000;
+  color: #000;
 }
 
 
@@ -276,17 +283,17 @@ p-button {
   padding-bottom: 50px;
 }
 
-.form1-container{
+.form1-container {
   flex: 1;
   display: flex;
-  flex-direction: row; 
+  flex-direction: row;
   width: 100%;
 }
 
 
-.details-form-container{
-  width:100%;
-  
+.details-form-container {
+  width: 100%;
+
   gap: 10px;
   padding: 10px;
   overflow-y: auto;
@@ -334,41 +341,42 @@ p-button {
   background-color: transparent !important;
 }
 
- .input-element-container{
-  width:48% !important;
+.input-element-container {
+  width: 48% !important;
 }
 
 .p-iconwrapper {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    color: #000 !important;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  color: #000 !important;
 }
 
 
 .input-Element {
-  min-height: 80px; 
+  min-height: 80px;
   position: relative;
   margin-bottom: 10px;
 }
+
 .error-text {
   color: red;
   font-size: 15px;
   position: absolute;
-  bottom: -15px; 
-  width:48%;
+  bottom: -15px;
+  width: 48%;
   margin-bottom: 5px;
 }
 
 
-.p-inputtext:disabled{
-    background-color: #f5f5f5 !important;
+.p-inputtext:disabled {
+  background-color: #f5f5f5 !important;
   color: #808080 !important;
   height: 40px;
   border-radius: 5px;
 }
 
-textarea{
+textarea {
   height: 50%;
 }
 
@@ -376,113 +384,113 @@ textarea{
 
 @media (min-width:769px) and (max-width: 1024px) {
   .department-details {
-      width: 80%;
+    width: 80%;
   }
 
-  .input-element-container{
-  width:48% !important;
-}
+  .input-element-container {
+    width: 48% !important;
+  }
 }
 
 @media (max-width: 768px) {
   .department-details {
-      width: 100%;
-      padding: 15px;
+    width: 100%;
+    padding: 15px;
   }
 
   .department-details h2 {
-      font-size: 18px;
+    font-size: 18px;
   }
 
   .department-details p {
-      font-size: 14px;
+    font-size: 14px;
   }
 
-  .image-container{
+  .image-container {
     align-self: center;
   }
 
-  .detail-row{
+  .detail-row {
     width: 100%;
   }
 
   .form1-container {
-  flex: 1;
-  height: 65vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin-bottom:30px;
-  /*border: 1px solid #000;*/
-}
+    flex: 1;
+    height: 65vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 30px;
+    /*border: 1px solid #000;*/
+  }
 
-.details-container-student {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 10px;
-  overflow-y: auto;
-  width: 100%;
-  max-height: 60vh;
-  padding-bottom: 50px;
-}
+  .details-container-student {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    overflow-y: auto;
+    width: 100%;
+    max-height: 54vh !important;
 
-::ng-deep .p-dialog .p-dialog-title {
+  }
+
+  ::ng-deep .p-dialog .p-dialog-title {
     font-size: 15px !important;
     font-weight: bold;
     color: #000 !important;
     text-align: center;
     padding: 0px;
-    
-}
+
+  }
 
 
 
-::ng-deep .p-dialog-title {
-  font-size:15rem !important;
-}
+  ::ng-deep .p-dialog-title {
+    font-size: 15rem !important;
+  }
 
-::ng-deep .student-details-image {
-  height: 5rem;
-  width: 5rem;
-  border-radius: 50%; 
-}
+  ::ng-deep .student-details-image {
+    height: 5rem;
+    width: 5rem;
+    border-radius: 50%;
+  }
 
-.input-element-container{
-  width:100% !important;
-}
+  .input-element-container {
+    width: 100% !important;
+  }
 
-.buttons-container4{
-  width:95%;
-  border-bottom-right-radius: 5px;
-}
+  .buttons-container4 {
+    width: 95%;
+    border-bottom-right-radius: 5px;
+  }
 
-.buttons-container3{
-  width:99%;
-  border-bottom-right-radius: 5px;
-}
+  .buttons-container3 {
+    width: 99%;
+    border-bottom-right-radius: 5px;
+  }
 
-.form-container-student {
-  overflow-y: auto;
-  display: flex;
-  flex-direction: column !important;
-  
-}
+  .form-container-student {
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column !important;
+
+  }
 
 
 
-input{
-  border-radius: 5px;
-}
+  input {
+    border-radius: 5px;
+  }
 
-::ng-deep .depart-modal .p-dialog {
-  width: 90rem !important;
-  max-width: 100%;
-  height: 85vh;
-  color:#000;
-  margin:5px;
-}
+  ::ng-deep .depart-modal-student .p-dialog {
+    width: 90rem !important;
+    max-width: 100%;
+    height: 85vh;
+    color: #000;
+    margin: 5px;
+  }
 
 }
 
@@ -496,4 +504,3 @@ input{
   /* width: auto !important; */
   background-color: transparent !important;
 }
-

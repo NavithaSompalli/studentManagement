@@ -1,83 +1,99 @@
-.graph-card{
+.graph-component-container {
     position: absolute !important;
-    z-index: index 1 !important;
-    top:23vh;
-    margin:20px;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    width:98% !important;
+    z-index: 2 !important;
+    top: 25vh;
+    width: calc(100% - 50px);
+    background-color: transparent;
+    margin-left: calc(10px + 1%);
+    margin-right: calc(10px + 2%);
+    padding-bottom: 5px !important;
 }
 
-
-::ng-deep .p-card{
-    border-radius: 0px !important;
+::ng-deep .p-card {
+    border-radius: 0px;
 }
 
-::ng-deep .bargraph-container{
-    width:90% !important;
+::ng-deep .p-card-container {
+    width: 98%;
 }
-
-::ng-deep .p-card-container{
-    width:98% !important;
-}
-
 
 ::ng-deep .p-card-title {
-    /* font-size: var(--p-card-title-font-size); */
     font-weight: bold;
-    font-size: 20px !important;
+    font-size: 20px;
 }
 
-.select-elements-container{
+.select-elements-container {
     position: absolute;
-    top:3%;
-    right:2%;
-    gap:10px;
+    top: 3%;
+    right: 2%;
+    gap: 10px;
     display: flex;
 }
 
-.custom-dropdown{
+.custom-dropdown {
     border-radius: 5px !important;
     background-color: transparent !important;
     box-shadow: 2px 2px 2px 2px #8a8988 !important;
 }
 
-.header-element{
-    color:#fff !important;
-    font-family:'Roboto';
-    font-size:1.5rem;
+.header-element {
+    color: #fff;
+    font-family: 'Roboto';
+    font-size: 1.5rem;
     margin-left: 30px;
-    padding-top:10px;
+    padding-top: 10px;
 }
 
-.fa-solid{
-    font-size:1.5rem;
-    margin-right:5px;
+.fa-solid {
+    font-size: 1.5rem;
+    margin-right: 5px;
 }
 
 
-@media (min-width:601px) and (max-width: 769px){
-         .graph-card {
-        position: absolute !important;
-        z-index: index 1 !important;
-        top: 23vh;
-        margin: 20px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        width: 95% !important;
-        height: 100%;
+/* Mobile Devices (481px - 600px) */
+@media (min-width: 577px) and (max-width: 786px) {
+    .graph-component-container {
+        top: 26vh;
+        width: calc(100% - 25px);
+        margin-left: calc(10px + 1%);
+        margin-right: calc(10px + 2%);
+        padding-bottom: 5px !important;
     }
 
+    .select-elements-container {
+        top: 3%;
+        right: 1%;
+        flex-direction: row;
+    }
 
-   
+    .custom-dropdown {
+        font-size: 10px;
+        width: auto;
+    }
+
+    .p-card-title {
+        font-size: 15px;
+    }
+}
+
+/* Small Screens (max-width: 480px) */
+@media (max-width: 576px) {
+    .graph-component-container {
+        position: absolute !important;
+        z-index: 1 !important;
+        top: 27vh;
+        width: calc(100% - 20px);
+        background-color: transparent;
+        margin-left: calc(10px + 1%);
+        margin-right: calc(10px + 1%);
+        padding-bottom: 5px !important;
+    }
 
 
     .p-card-title {
         font-size: 15px;
     }
-  
+
     .select-elements-container {
         top: 3%;
         right: 5%;
@@ -88,73 +104,6 @@
         font-size: 10px;
         width: auto;
     }
-    .p-card-title {
-    /* font-size: var(--p-card-title-font-size); */
-    font-weight: var(--p-card-title-font-weight);
-    font-size: 15px;
-}
-}
-
-
-
-
-
-/* Mobile devices (max-width: 600px) */
-@media (max-width: 481px) and (min-width: 600px) {
-       .graph-card[_ngcontent-ng-c1752484099] {
-        position: absolute !important;
-        z-index: index 1 !important;
-        top: 22vh;
-        margin: 20px;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        width: 92% !important;
-        height: 100%;
-    }
-
-
-    .p-card-title {
-  
-    font-size: 15px;
-}
-    .graph-card {
-        width: 98% !important;
-        height: 50%;
-        top: 20vh;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .select-elements-container {
-        top: 3%;
-        right: 0%;
-        flex-direction: row;
-    }
-
-    .custom-dropdown {
-        font-size: 10px;
-        width: auto;
-    }
-    .p-card-title {
-    /* font-size: var(--p-card-title-font-size); */
-    font-weight: var(--p-card-title-font-weight);
-    font-size: 15px;
-}
-}
-
-/* Extra small screens (max-width: 480px) */
-@media (max-width: 480px) {
-    .graph-card {
-        top:22vh;
-    }
-
-    .bargraph-container {
-        width: 99.5% !important;
-        padding: 10px;
-        margin-left:0px;
-       
-    }
 
     .select-elements-container {
         flex-direction: row;
@@ -162,41 +111,36 @@
         position: relative;
         top: auto;
         right: auto;
-        
     }
 
     .custom-dropdown {
         width: auto;
-        font-size:8px;
+        font-size: 8px;
     }
 
-   ::ng-deep .p-card-title {
-    /* font-size: var(--p-card-title-font-size); */
-    font-weight: bold;
-    font-size: 15px !important;
-}
+    ::ng-deep .p-card-title {
+        font-weight: bold;
+        font-size: 15px;
+    }
 
-.header-element{
-    color:#fff !important;
-    font-family:'Roboto';
-    font-size:1rem;
-    margin-left: 30px;
-    padding-top:10px;
-}
+    .header-element {
+        color: #fff;
+        font-family: 'Roboto';
+        font-size: 1rem;
+        margin-left: 15px;
+        padding-top: 10px;
+    }
 
-.fa-solid{
-    font-size:15px;
-    margin-right:5px;
-}
+    .fa-solid {
+        font-size: 15px;
+        margin-right: 5px;
+    }
 
+    ::ng-deep p-chart div {
+        height: 48vh;
+    }
 
-::ng-deep p-chart div {
-    height: 48vh;
-}
-
-:host ::ng-deep .p-toast{
-    width:90% !important;
-}
-
-
+    :host ::ng-deep .p-toast {
+        width: 90%;
+    }
 }

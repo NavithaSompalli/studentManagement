@@ -12,8 +12,8 @@
         </div>
         <hr/>
         <div class="table-containerDepart">
-            <div *ngIf="studentList?.length === 0" class="no-records-container">
-                <h2>No records found.</h2>
+            <div class="card flex justify-center align-center no-records-container" *ngIf="studentList?.length === 0" >
+                <p-progress-spinner strokeWidth="8" fill="transparent" animationDuration=".5s" [style]="{ width: '50px', height: '50px' }" />
             </div>
 
             <p-table [value]="paginatedStudentList" stripedRows *ngIf="studentList?.length !== 0"
@@ -76,7 +76,7 @@
             
           </div>
            <ng-template pTemplate="paginator"  >
-            <div class="custom-paginator1" *ngIf="ispaginatorIsSinglePage">
+            <div class="custom-paginator1" *ngIf="ispaginatorIsSinglePage && studentList?.length !== 0">
                 <p-paginator [rows]="rowsPerPage.value" [totalRecords]="departmentList.length" (onPageChange)="handlePageChange($event)" [first]="currentPage * rowsPerPage.value" [pageLinkSize]="3"></p-paginator>
                 <input pInputText id="currentPageNo" class="paginatorFormElement1" autocomplete="off" [(ngModel)]="updatePage" name="currentPage" #page="ngModel" required [ngStyle]="{'background-color':'transparent'}"/>
                 <p-button type="button" label="GO" class="go-btn1" (click)="onClickGo()"/>

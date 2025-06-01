@@ -1,4 +1,4 @@
-.form-login-container{
+.form-login-container {
     height: 100vh;
     width: 100%;
     display: flex;
@@ -6,117 +6,121 @@
     justify-content: center;
     align-items: center;
     background-color: 300;
-    background-image: linear-gradient(180deg,#fff, #93d0d9);
+    background-image: linear-gradient(180deg, #fff, #93d0d9);
     font-family: "Roboto";
-    
+
 }
 
- :host ::ng-deep .p-card{
+:host ::ng-deep .p-card {
     display: flex !important;
     flex-direction: column !important;
     justify-content: center !important;
     align-items: center !important;
-  /*  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.5) !important;*/
+    /*  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.5) !important;*/
 
-  border-radius: 5px !important;
-  height: 100%;
+    border-radius: 5px !important;
+    height: 100%;
 
 }
 
-.login-image{
-    width:40%;
+.login-image {
+    width: 40%;
     height: 10%;
     margin-left: 30%;
-    margin-top:20px;
+    margin-top: 20px;
 }
 
-::ng-deep .ng-template{
+::ng-deep .ng-template {
     display: flex !important;
     flex-direction: row !important;
     justify-content: center !important;
 }
 
-.p-card-header{
+.p-card-header {
     display: flex !important;
     flex-direction: row !important;
     justify-content: center !important;
 }
 
-.heading-elements{
+.heading-elements {
     text-align: center;
 }
 
-::ng-deep .p-password{
-    width:100%;
+::ng-deep .p-password {
+    width: 100%;
     font-family: "Roboto" !important;
 }
 
-.p-inputtext{
-    width:100%;
+.p-inputtext {
+    width: 100%;
     font-family: "Roboto" !important;
 }
 
 ::ng-deep .p-password input {
-  /*  background-color: lightgray;*/
+    /*  background-color: lightgray;*/
     border-radius: 5px;
     padding: 10px;
-    width:100%;
-    margin-top:5px;
+    width: 100%;
+    margin-top: 5px;
 }
 
-::ng-deep .p-button{
-    width:97%;
-    margin-top:10px;
+::ng-deep .p-button {
+    width: 97%;
+    margin-top: 10px;
     cursor: pointer;
 }
 
-.signup-btn{
+.signup-btn {
     background-color: transparent;
     border: none;
-    margin:5px;
+    margin: 5px;
     font-family: "Roboto";
     color: #0099cc;
     font-weight: bold;
     cursor: pointer;
 }
 
-label{
+label {
     font-family: "Roboto" !important;
 }
 
-.forgot-password{
+.forgot-password {
     background-color: transparent;
     color: #0099cc;
-    font-family:"Roboto";
-    border:none;
+    font-family: "Roboto";
+    border: none;
     cursor: pointer;
     font-weight: bold;
-    margin-left:5px;
+    margin-left: 5px;
 }
 
-@media (max-width:500px){
-::ng-deep .p-card{
-    display: flex !important;
-    flex-direction: column !important;
-    justify-content: center !important;
-    align-items: center !important;
-  /*  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.5) !important;*/
+@media (max-width:576px) {
+    ::ng-deep .p-card {
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: center !important;
+        align-items: center !important;
+        /*  box-shadow: 1px 1px 1px 2px rgba(0, 0, 0, 0.5) !important;*/
+        border-radius: 5px !important;
+        width: 92% !important;
+        margin-left: 10px !important;
+        height: 90vh !important;
+    }
 
-  border-radius: 5px !important;
-  width:92% !important;
-  margin-left:10px !important;
-}
-
-.w-full{
-    width:30%;
-    height: 10%;
-    margin-left: 35%;
-    margin-top:20px;
-}
+    .w-full {
+        width: 30%;
+        height: 10%;
+        margin-left: 35%;
+        margin-top: 20px;
+    }
 
 
-:host ::ng-deep .p-toast{
-    width:90% !important;
-}
+    :host ::ng-deep .p-toast {
+        width: 90% !important;
+    }
+
+    .heading-elements {
+        font-size: 12px !important;
+    }
 
 }

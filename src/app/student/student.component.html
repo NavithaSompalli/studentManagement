@@ -27,11 +27,11 @@
         </div>
         <hr/>
         <div class="table-container">
-            <div *ngIf="studentList?.length === 0" class="no-records-container">
-                <h2>No records found.</h2>
+            
+            <div class="card flex justify-center align-center no-records-container" *ngIf="studentList?.length === 0" >
+                <p-progress-spinner strokeWidth="8" fill="transparent" animationDuration=".5s" [style]="{ width: '50px', height: '50px' }" />
             </div>
-          
-            <p-table  #dt2 [value]="paginatedStudentList" dataKey="id" [loading]="loading" stripedRows *ngIf="studentList?.length !== 0"
+            <p-table  #dt2 [value]="paginatedStudentList" dataKey="id"  stripedRows *ngIf="studentList?.length !== 0"
                       responsiveLayout="scroll"  [paginator]="false" [globalFilterFields]="['id', 'department','firstname']"
                      [tableStyle]="{ 'min-width': '75rem' }" emptyMessage="No records found"> 
                 <ng-template #header>
@@ -42,6 +42,7 @@
                         <th style="white-space: nowrap;" pSortableColumn="dob" (click)="sortColumn('dob')">Date Of Birth<p-sortIcon field="dob"/></th>
                         <th style="white-space: nowrap;" pSortableColumn="gender" (click)="sortColumn('gender')">Gender <p-sortIcon field="gender"/></th>
                         <th style="white-space: nowrap;" pSortableColumn="phoneNumber" (click)="sortColumn('phoneNumber')">Phone Number <p-sortIcon field="phoneNumber"/></th>
+                        <th style="white-space: nowrap;" pSortableColumn="department" (click)="sortColumn('department')">Department Name<p-sortIcon field="department"/></th>
                         <th style="white-space: nowrap;" pSortableColumn="dateOfJoining" (click)="sortColumn('dateOfJoining')">Date Of Joining <p-sortIcon field="dateOfJoining"/></th>
                         <th style="white-space: nowrap;" pSortableColumn="createdSource" (click)="sortColumn('createdSource')">Created Source <p-sortIcon field="createdSource"/></th>
                         <th style="white-space: nowrap;" pSortableColumn="createdSourceType" (click)="sortColumn('createdSourceType')">Created Source Type <p-sortIcon field="createdSourceType"/></th>
@@ -55,12 +56,13 @@
 
                 <ng-template #body let-product>
                     <tr (dblclick)="viewStudentDetails(product)" [ngStyle]="{'cursor':'pointer'}">
-                        <td style="white-space: nowrap;" *ngIf="studentActive">{{ product?.id }}</td>
+                        <td style="white-space: nowrap;" *ngIf="studentActive">{{ product?.id | titlecase}}</td>
                         <td style="white-space: nowrap;">{{ product?.firstname }}</td>
                         <td style="white-space: nowrap;">{{ product?.lastname }}</td>
                         <td style="white-space: nowrap;">{{ product?.dob| date:'MMMM d, yyyy' }}</td>
                         <td style="white-space: nowrap;">{{ product?.selectedCategory?.name }}</td>
                         <td style="white-space: nowrap;">{{ product?.phoneNumber }}</td>
+                        <td style="white-space: nowrap;">{{ product.department }}</td>
                         <td style="white-space: nowrap;">{{ product?.dateOfJoining | date:'medium' }}</td>
                         <td style="white-space: nowrap;">{{ product?.createdSource }}</td>
                         <td style="white-space: nowrap;">{{ product?.createdSourceType }}</td>
@@ -82,22 +84,22 @@
         </div>
        <ng-template pTemplate="paginator"  *ngIf="studentActive" class="ng-template-paginator" >
             <div class="custom-paginator" *ngIf = "!isSerachRecordsEmpty">
-                <p-paginator [rows]="rowsPerPage.value" [totalRecords]="studentList.length" (onPageChange)="handlePageChange($event)" [first]="currentPage * rowsPerPage.value" [pageLinkSize]="3" *ngIf="ispaginatorIsSingle"></p-paginator>
-                <input pInputText id="currentPageNo" class="paginatorFormElement" autocomplete="off" [(ngModel)]="updatePage" name="currentPage" #page="ngModel" required [ngStyle]="{'background-color':'transparent'}" *ngIf="ispaginatorIsSingle"/>
-                <p-button type="button" label="GO" class="go-btn" (click)="onClickGo()" *ngIf="ispaginatorIsSingle"/>
+                <p-paginator [rows]="rowsPerPage.value" [totalRecords]="totalRecords" (onPageChange)="handlePageChange($event)" [first]="currentPage * rowsPerPage.value" [pageLinkSize]="3" *ngIf="ispaginatorIsSingle && studentList.length !==0"></p-paginator>
+                <input pInputText id="currentPageNo" class="paginatorFormElement" autocomplete="off" [(ngModel)]="updatePage" name="currentPage" #page="ngModel" required [ngStyle]="{'background-color':'transparent'}" *ngIf="ispaginatorIsSingle && studentList.length !==0"/>
+                <p-button type="button" label="GO" class="go-btn" (click)="onClickGo()" *ngIf="ispaginatorIsSingle && studentList.length !==0"/>
             </div>
         </ng-template>
     </p-card>
 </div>
 
-<app-form-modal [visible]="isAddBtnActive" [stuId]="studentValidateObj.studentId" [dept]="studentValidateObj.department" *ngIf="studentActive"></app-form-modal>
+<app-form-modal [visible]="isAddBtnActive" [stuId]="studentValidateObj.studentId" [dept]="studentValidateObj.department" *ngIf="studentActive" (messageEvent) = "fetchStudentDetails()"></app-form-modal>
 
 <div class="card confirm-box-card">
    <!-- <p-toast />-->
     <p-confirmdialog key="positionDialog" [position]="position" />
 </div>
 
-<p-dialog header="Student ID Checker" [modal]="true" [(visible)]="visible" [position]="position" class="validate-student-dialog1" *ngIf="studentActive">
+<p-dialog header="StudentID Checker" [modal]="true" [(visible)]="visible" [position]="position" class="validate-student-dialog1" *ngIf="studentActive">
 
 <form #miniDialog="ngForm" (ngSubmit)="onsubmitDialogue()" [ngStyle]="{'margin':'10px'}">
     <div class="input-Element" [ngStyle]="{'padding-bottom':'5px'}">
@@ -119,9 +121,9 @@
                 placeholder="Select your Department"
                 [appendTo]="'body'" 
                 required #department="ngModel"/>
-            <div class="error-text">
-                 <span *ngIf="department.invalid && department.touched" >Department Name is required</span>
-            </div>
+         <!--   <div class="error-text">
+                 <span *ngIf="department.invalid && department.touched && department.dirty" >Department Name is required</span>
+            </div>-->
     </div>
 
     <div class="flex justify-end gap-2 add-btn-container">
@@ -132,4 +134,4 @@
 </p-dialog>
 
 
-<app-student-details [studentDetailsObject]="studentDetailsObject"  [isViewDetailsActive]="isViewDetailsActive"></app-student-details>
+<app-student-details [studentDetailsObject]="studentDetailsObject"  [isViewDetailsActive]="isViewDetailsActive" (messageEvent1) = "onSubmitFrom1()"></app-student-details>

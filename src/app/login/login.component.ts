@@ -5,6 +5,7 @@ import { LoginServiceService } from '../login-service.service';
 import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { ViewEncapsulation } from '@angular/core';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -79,12 +80,13 @@ export class LoginComponent implements OnInit {
 
     this.username = usernameControl.value;
     this.password = passwordControl.value;
-
+    localStorage.setItem('isUserLoggedout','false');
+    
     if (this.username === undefined || this.password === undefined) {
       this.userError = !this.username ? 'Please Enter Username field' : !this.password ? 'Please Enter Password field' : 'Please Enter all the fields';
       this.messageService.add({ severity: 'error', summary: 'Warn', detail: this.userError });
     } else if (this.username.trim() !== '' && this.password.trim() !== '') {
-      this.loginService.login(this.username, this.password).subscribe({
+      this.loginService.login(this.username, this.password).pipe(take(1)).subscribe({
         next: (response) => {
           
           if (this.username === 'admin') {
@@ -92,13 +94,15 @@ export class LoginComponent implements OnInit {
             localStorage.setItem("jwtToken", JSON.stringify(true));
             this.messageService.add({ severity: 'success', summary: 'Success', detail: "User Login Successfully" });
             this.router.navigate(['home/graph']);
+            
           } else {
             let results = response.user.id;
-            this.loginService.findStudent(results).subscribe({
+            this.loginService.findStudent(results).pipe(take(1)).subscribe({
               next: (response) => {if(response){
                       localStorage.setItem('studentId', results);
                       this.loginService.studentId = results;
                       localStorage.setItem('student', JSON.stringify({ "student": "true" }));
+
                       localStorage.setItem("jwtToken", JSON.stringify(true));
                       this.router.navigate(['home', 'graph']);
               }else{
@@ -130,24 +134,23 @@ export class LoginComponent implements OnInit {
 
     if (!this.userData.username || !this.userData.password || !this.userData.confirmpassword) {
       this.messageService.add({ severity: 'error', summary: 'Warn', detail: 'Please enter all the fields' });
-    } else if (regex.test(this.userData.password)) {
+    } else if (!regex.test(this.userData.password)) {
       this.messageService.add({ severity: 'error', summary: 'Warn', detail: 'Your password must be less than 10 characters and include at least one letter, one number, and one special character.' });
     } else if (this.userData.password !== this.userData.confirmpassword) {
       this.messageService.add({ severity: 'error', summary: 'Warn', detail: 'Password and Confirm Password must match' });
     } else {
-    const signupSubscribe =   this.loginService.findStudent(this.userData.id).subscribe({
+    this.loginService.findStudent(this.userData.id).pipe(take(1)).subscribe({
         next: (response) => {
           if (response) {
-          const userSubscribe =   this.loginService.getUser(this.username, this.password, this.userData.id).subscribe({
+             this.loginService.getUser(this.username, this.password, this.userData.id).subscribe({
               next: (response) => {
                 if (response[0] === null) {
-                  this.http.post(apiUrl, this.userData).subscribe({
+                  this.http.post(apiUrl, this.userData).pipe(take(1)).subscribe({
                     next: () => console.log('Success'),
                     error: (error) => this.messageService.add({ severity: 'error', summary: 'Error', detail: error }),
                     complete: () => {
                       this.messageService.add({ severity: 'success', summary: 'Success', detail: 'User created successfully' });
                       this.signup.resetForm();
-                      userSubscribe.unsubscribe();
                     },
                   });
                   this.isSignUpActive = !this.isSignUpActive;
@@ -155,7 +158,7 @@ export class LoginComponent implements OnInit {
                   this.messageService.add({ severity: 'error', summary: 'Warning', detail: 'User already Exists' });
                 }
               },
-              complete: () => signupSubscribe.unsubscribe()
+              complete: () => this.signup.resetForm()
             });
           } else {
             this.messageService.add({ severity: 'error', summary: 'Warning', detail: `User doesn't exist in the student list` });
